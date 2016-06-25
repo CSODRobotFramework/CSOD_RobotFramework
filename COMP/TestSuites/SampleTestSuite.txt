@@ -1,0 +1,13 @@
+*** Settings ***
+Documentation     Development
+Suite Setup       Global Test Fixture Suite Setup
+Suite Teardown
+Test Setup        Global Test Fixture Test Setup
+Test Teardown
+Force Tags
+Default Tags
+Resource          ../Resources/COMP_PROJECTS/COMP_ObjectsResources.robot
+
+*** Test Cases ***
+Sample Test Case
+    Sleep    1 sec

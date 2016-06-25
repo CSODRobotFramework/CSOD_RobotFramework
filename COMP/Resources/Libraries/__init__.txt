@@ -1,0 +1,6 @@
+*** Settings ***
+Library           String
+Library           Process
+Library           Collections
+Library           Selenium2Library
+Library           CompareXL

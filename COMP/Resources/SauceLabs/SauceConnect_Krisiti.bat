@@ -1,0 +1,1 @@
+sc.exe -u kshevkun -k 3f78e000-d479-45c9-83c4-7dd22b40793b --wait-tunnel-shutdown -B all
