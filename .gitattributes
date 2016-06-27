@@ -1,4 +1,5 @@
 # Auto detect text files and perform LF normalization
+# RobotFramework Teamwork Attributes
 * text=auto
 
 # Custom for Visual Studio
