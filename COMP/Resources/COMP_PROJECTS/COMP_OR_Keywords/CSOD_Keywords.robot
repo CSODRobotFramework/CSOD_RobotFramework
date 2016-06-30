@@ -173,10 +173,10 @@ Excel_Save_As
     csodUtilClick    ${lnkExcel}
 
 Move_Files
-    [Arguments]    ${File1PathSource}=C:\\Users\\gfung\\Downloads\\*.xls    ${File2PathDestination}=C:\\Users\\gfung\\Documents\\RobotFrameworkTeam\\CSOD_RobotFramework\\COMP\\    ${OriginalFiles}=Comp_Adj_OG.xls
+    [Arguments]    ${File1PathSource}=C:\\Users\\gfung\\Downloads\\*.xls    ${File2PathDestination}=C:\\Users\\gfung\\.jenkins\\workspace\\COMP\\    ${OriginalFiles}=Comp_Adj_OG.xls
     ${MovedFile}=    Move File    ${File1PathSource}    ${File2PathDestination}
     Set Test Message    ${MovedFile}    append=True
-    ${str}=    Replace String    ${MovedFile}    C:\\Users\\gfung\\Documents\\RobotFrameworkTeam\\CSOD_RobotFramework\\COMP\\    ${EMPTY}
+    ${str}=    Replace String    ${MovedFile}    C:\\Users\\gfung\\.jenkins\\workspace\\COMP\\    ${EMPTY}
     Set Test Message    ${str}    append=True
     Set Test Message    ${str}
     CompareXL.Open File Write    ${str}    Runtime_Comp_Adj.xls
@@ -267,7 +267,7 @@ Download_Excel_And_Compare
     [Documentation]    The Downloaded Excel File is always being Downloaded to the Downloads folder therefore the path for the keywords: File_Exist, Move_Files, and Wait_For_File_Removed needs to point to the Downloads default folder on your Mac or PC system.
     Excel_Save_As
     File_Exist    C:\\Users\\gfung\\Downloads\\*.xls
-    Move_Files    C:\\Users\\gfung\\Downloads\\*.xls    C:\\Users\\gfung\\Documents\\RobotFrameworkTeam\\CSOD_RobotFramework\\COMP\\    ${OriginalFile}
+    Move_Files    C:\\Users\\gfung\\Downloads\\*.xls    C:\\Users\\gfung\\.jenkins\\workspace\\COMP\\    ${OriginalFile}
     Wait_For_File_Removed    C:\\Users\\gfung\\Downloads\\*.xls
     Archive_Files    ${EXECDIR}\\Compensation*    ${EXECDIR}\\Resources\\Uploads\\Comp_Excel_Archived_Files\\
     Archive_Files    ${EXECDIR}\\Runtime_Comp_Adj.xls    ${EXECDIR}\\Resources\\Uploads\\Comp_Excel_Archived_Files\\
