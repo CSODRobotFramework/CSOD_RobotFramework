@@ -32,7 +32,7 @@ Utility Alert Handler
 Utility Click Element
     [Arguments]    ${locator}    ${timeout}=1 min
     Utility Sync Element    ${locator}    ${timeout}
-    Click Element    ${locator}
+    Wait Until Keyword Succeeds    2 x    5s    Click Element    ${locator}
 
 Utility Click Element By Text
     [Arguments]    ${linkText}
