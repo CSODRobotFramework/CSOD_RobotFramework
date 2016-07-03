@@ -134,3 +134,12 @@ Utility Wait Until Element Is Visible
 Utility Set Test Message
     [Arguments]    ${testMsg}    ${append}=True
     Set Test Message    ${testMsg}    ${append}
+
+Utility Sync Element No Focus
+    [Arguments]    ${locator}    ${timeout}=1 min
+    ${syncElementReturn1}=    Run Keyword And Ignore Error    Wait Until Element Is Visible    ${locator}    ${timeout}
+
+Utility Click Element No Focus
+    [Arguments]    ${locator}    ${timeout}=1 min
+    Utility Sync Element No Focus    ${locator}    ${timeout}
+    Wait Until Keyword Succeeds    2 x    5s    Click Element    ${locator}

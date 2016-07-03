@@ -32,8 +32,8 @@ Global Login
 Global Logout
     [Documentation]    Logout of the CFS application
     Select Window
-    Utility Click Element    ${obj_global_logout_button}
-    Utility Click Element    ${obj_global_link_logout}
+    Utility Click Element No Focus    ${obj_global_logout_button}
+    Utility Click Element No Focus    ${obj_global_link_logout}
     Comment    Utility Page Should Contain    ${cfg_global_login_pagesync}
 
 Global Open Application
