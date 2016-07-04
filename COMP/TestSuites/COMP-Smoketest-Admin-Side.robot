@@ -8,7 +8,7 @@ Resource          ../Resources/COMP_PROJECTS/COMP_OR_Keywords/COMP_Config.robot
 *** Test Cases ***
 Compensation_Admin_Side
     [Tags]    ADMINPHANTOM
-    Open Browser    https://qa01.csod.com/    chrome
+    Open Browser    https://qa01.csod.com/    phantomjs
     Maximize Browser Window
     Login_Page    QA012-AUTO-QADEF2    JHennessy    popeye123
     comp_nav_to    ${comp_smoke_adjustment_guidelines}
