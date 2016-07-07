@@ -279,3 +279,30 @@ SauceLabs_Login
 Kill_Chrome_Driver
     [Arguments]    ${killDriver}=TASKKILL /IM chromedriver.exe /F
     Run    ${killDriver}
+
+Select_Criteria
+    [Arguments]    ${OUType}=Division    # Default OU is Division
+    ${OUTypeDictionary}=    Create Dictionary
+    Comment    Adds the given key_value_pairs and items to the dictionary
+    Set To Dictionary    ${OUTypeDictionary}    Division    Division
+    Set To Dictionary    ${OUTypeDictionary}    Position    Position
+    Set To Dictionary    ${OUTypeDictionary}    Grade    Grade
+    Set To Dictionary    ${OUTypeDictionary}    Users    Users
+    Set To Dictionary    ${OUTypeDictionary}    Location    Location
+    Set To Dictionary    ${OUTypeDictionary}    Cost Center    Cost Center
+    Comment    Returns a value from the given dictionary based on the given key
+    ${keyValue}=    Get From Dictionary    ${OUTypeDictionary}    ${OUType}
+    Log    ${keyValue}
+    csodUtilComboBox    ${comp_smoke_select_criteria}    ${keyValue}
+
+PopupWindowOU
+    [Arguments]    ${comp_smoke_OU}=Fire    # This is passed from the test run.
+    ${ID_Titles}=    Get Window Titles
+    Select Window    title=${ID_Titles[1]}
+    Comment    Maximize Browser Window
+    Comment    Sleep    5s
+    Wait Until Element Is Visible    ${comp_smoke_name_field}    timeout=10 Sec
+    csodUtilInputText    ${comp_smoke_name_field}    ${comp_smoke_OU}
+    csodUtilClick    ${lnkSearch}
+    csodUtilClick    ${imgAddButton}
+    csodUtilClick    ${lnkDone}
