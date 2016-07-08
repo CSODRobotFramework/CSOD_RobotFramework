@@ -24,3 +24,31 @@ ${comp_smoke_amount_perc_txt}    id=ctl00_ContentPlaceHolder1_specificAmountPerc
 ${comp_smoke_save_btn}    id=ctl00_ContentPlaceHolder1_submit
 ${comp_smoke_templates}    css=div a[title='Compensation Templates']
 ${comp_smoke_create_template}    id=ctl00_ContentPlaceHolder1_AddTemplate
+${comp_smoke_subtab_link}    xpath=//a[.='Compensation'][1]
+${comp_smoke_template_name}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_templateName
+${comp_smoke_template_type}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_templateType
+${comp_smoke_add_components}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_shBudgets_componentAdd
+${comp_smoke_component_popup}    id=tdComponent_1    # xpath=//td[.='Merit Increase'][1]//preceding::a[1]
+${comp_smoke_save_btn_popup}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_compControl_dlgComponent_saveBtn
+${comp_smoke_budget_combobox}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_budgetRepeater_ctl01_budgetType
+${comp_smoke_fixed_amount_value}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_budgetRepeater_ctl01_amount
+${comp_smoke_allow_lump_sum}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_allowLumpSum
+${comp_smoke_next_and_save_btn}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_submitBtn
+${comp_smoke_available_field1}    xpath=//span[.='Available fields']/following::span[.='Bi-Weekly: en-US'][1]    # xpath=//span[.='Available fields']/following::span[.='Bi-Weekly: en-US'][1]
+${comp_smoke_move_rt_top}    css=.rlbMoveFieldsRight.CsImageButton.wdt-lf
+${comp_smoke_deferral_guidelines}    css=div a[title='Deferral Guidelines']
+${comp_smoke_create_def_guideline}    id=ctl00_ContentPlaceHolder1_btnCreateGuideline
+${comp_smoke_def_name}    id=ctl00_ContentPlaceHolder1_txtName
+${comp_smoke_component_select}    id=ctl00_ContentPlaceHolder1_ddlComponents
+${comp_smoke_def_avail}    id=ctl00_ContentPlaceHolder1_ouFilterAvailability_ddlTypesList
+${comp_smoke_add_all}    id=ctl00_ContentPlaceHolder1_ouFilterAvailability_btnAddEverybody
+${comp_smoke_condition_popup}    xpath=//span[.='Condition'][1]//following::a[1]
+${comp_smoke_name_field_popup}    id=ctl00_ContentPlaceHolder1_importFieldsPopUp_dlgImportFields_tagNameSearch
+${comp_smoke_search_popup_btn}    id=ctl00_ContentPlaceHolder1_importFieldsPopUp_dlgImportFields_btnSearch
+${comp_smoke_field_add_popup_btn}    xpath=//td[.='Annual Salary and PR section scores and Salary Midpoint: en-US']//preceding::img[1]
+${comp_smoke_payoutschedule_add}    xpath=//span[.='Payout Schedule'][1]//following::a[1]
+${comp_smoke_method1}    id=ctl00_ContentPlaceHolder1_rptSchedule_ctl01_txtMethod
+${comp_smoke_method2}    id=ctl00_ContentPlaceHolder1_rptSchedule_ctl02_txtRemainingMethod
+${comp_smoke_eff_date}    id=ctl00_ContentPlaceHolder1_rptSchedule_ctl01_dtEffective_textboxDate
+${comp_smoke_def_save_btn}    xpath=//b[.='Save']/ancestor::a[1]
+${comp_smoke_emp_salaries}    css=div a[title='Employee Salaries']

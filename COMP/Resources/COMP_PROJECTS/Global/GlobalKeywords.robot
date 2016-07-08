@@ -44,7 +44,7 @@ Global Open Application
 
 Global Test Fixture Suite Setup
     [Documentation]    Test fixture that handles suite setup
-    Comment    Append To Environment Variable    PATH    ${cfg_global_resource_webdrivers}
+    Append To Environment Variable    PATH    ${cfg_global_resource_webdrivers}
     Global Open Application    ${cfg_global_login_url}    ${cfg_global_login_browser}
 
 Global Test Fixture Suite Teardown
