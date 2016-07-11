@@ -143,3 +143,10 @@ Utility Click Element No Focus
     [Arguments]    ${locator}    ${timeout}=1 min
     Utility Sync Element No Focus    ${locator}    ${timeout}
     Wait Until Keyword Succeeds    2 x    5s    Click Element    ${locator}
+
+Utility Input Cal Mon Date Year
+    ${d}=    Get Time
+    log    {d}
+    ${d}=    Get Current Date    result_format=%m/%d/%Y
+    ${d}
+    [Return]    ${d}

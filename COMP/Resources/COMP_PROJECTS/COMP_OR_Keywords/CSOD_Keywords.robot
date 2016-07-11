@@ -306,3 +306,71 @@ PopupWindowOU
     csodUtilClick    ${lnkSearch}
     csodUtilClick    ${imgAddButton}
     csodUtilClick    ${lnkDone}
+
+SummerSet_Users
+    [Arguments]    ${SummerSetUser}    ${textfieldlocator}    # Default user is aabbasi
+    [Documentation]    *Purpose:*
+    ...    This is a dictionary that can be used to type the username id into any textbox field across the application.
+    ${SummerSetDictionary}=    Create Dictionary
+    Comment    Adds the given key_value_pairs and items to the dictionary
+    Set To Dictionary    ${SummerSetDictionary}    AAbbasi    AAbbasi
+    Set To Dictionary    ${SummerSetDictionary}    ACanarry    ACanarry
+    Set To Dictionary    ${SummerSetDictionary}    AStructure    AStructure
+    Set To Dictionary    ${SummerSetDictionary}    BBee    BBee
+    Set To Dictionary    ${SummerSetDictionary}    COverman    COverman
+    Set To Dictionary    ${SummerSetDictionary}    CSeasons    CSeasons
+    Set To Dictionary    ${SummerSetDictionary}    DArrington    DArrington
+    Set To Dictionary    ${SummerSetDictionary}    DElkind    DElkind
+    Set To Dictionary    ${SummerSetDictionary}    DWan    DWan
+    Set To Dictionary    ${SummerSetDictionary}    DWatson    DWatson
+    Set To Dictionary    ${SummerSetDictionary}    ELynne    ELynne
+    Set To Dictionary    ${SummerSetDictionary}    ERogers    ERogers
+    Set To Dictionary    ${SummerSetDictionary}    EScott    EScott
+    Set To Dictionary    ${SummerSetDictionary}    EYoung    EYoung
+    Set To Dictionary    ${SummerSetDictionary}    FRich    FRich
+    Set To Dictionary    ${SummerSetDictionary}    GKneey    GKneey
+    Set To Dictionary    ${SummerSetDictionary}    JBrewster    JBrewster
+    Set To Dictionary    ${SummerSetDictionary}    JCatty    JCatty
+    Set To Dictionary    ${SummerSetDictionary}    JGhosty    JGhosty
+    Set To Dictionary    ${SummerSetDictionary}    JHennessy    JHennessy
+    Set To Dictionary    ${SummerSetDictionary}    JJohnson    JJohnson
+    Set To Dictionary    ${SummerSetDictionary}    JKness    JKness
+    Set To Dictionary    ${SummerSetDictionary}    JOsaka    JOsaka
+    Set To Dictionary    ${SummerSetDictionary}    JRodrigo    JRodrigo
+    Set To Dictionary    ${SummerSetDictionary}    JSpade    JSpade
+    Set To Dictionary    ${SummerSetDictionary}    KKohn    KKohn
+    Set To Dictionary    ${SummerSetDictionary}    KLewis    KLewis
+    Set To Dictionary    ${SummerSetDictionary}    KRiger    KRiger
+    Set To Dictionary    ${SummerSetDictionary}    LNordman    LNordman
+    Set To Dictionary    ${SummerSetDictionary}    MAbles    MAbles
+    Set To Dictionary    ${SummerSetDictionary}    MPleus    MPleus
+    Set To Dictionary    ${SummerSetDictionary}    NJackson    NJackson
+    Set To Dictionary    ${SummerSetDictionary}    PFormance    PFormance
+    Set To Dictionary    ${SummerSetDictionary}    PKelly    PKelly
+    Set To Dictionary    ${SummerSetDictionary}    POsofer    POsofer
+    Set To Dictionary    ${SummerSetDictionary}    PPompus    PPompus
+    Set To Dictionary    ${SummerSetDictionary}    RWinters    RWinters
+    Set To Dictionary    ${SummerSetDictionary}    SBear    SBear
+    Set To Dictionary    ${SummerSetDictionary}    SJuan    SJuan
+    Set To Dictionary    ${SummerSetDictionary}    SSewright    SSewright
+    Set To Dictionary    ${SummerSetDictionary}    SSmith    SSmith
+    Set To Dictionary    ${SummerSetDictionary}    STurnbull    STurnbull
+    Comment    Returns a value from the given dictionary based on the given key
+    ${keyValue}=    Get From Dictionary    ${SummerSetDictionary}    ${SummerSetUser}
+    Log    ${keyValue}
+    csodUtilInputText    ${textfieldlocator}    ${keyValue}
+
+Select_OU_Name
+    [Arguments]    ${OUName}=Assistant City Manager    # Default OU is Division
+    ${OUNameTypeDictionary}=    Create Dictionary
+    Comment    Adds the given key_value_pairs and items to the dictionary
+    Set To Dictionary    ${OUNameTypeDictionary}    Bike Lead    Bike Lead
+    Set To Dictionary    ${OUNameTypeDictionary}    Bike Officer    Bike Officer
+    Set To Dictionary    ${OUNameTypeDictionary}    Bike Supervisor    Bike Supervisor
+    Set To Dictionary    ${OUNameTypeDictionary}    Captain    Captain
+    Set To Dictionary    ${OUNameTypeDictionary}    Fire Inspector    Fire Inspector
+    Set To Dictionary    ${OUNameTypeDictionary}    Mascot    Mascot
+    Comment    Returns a value from the given dictionary based on the given key
+    ${keyValue}=    Get From Dictionary    ${OUNameTypeDictionary}    ${OUName}
+    Log    ${keyValue}
+    csodUtilInputText    ${comp_smoke_salary_str_searchfield}    ${keyValue}

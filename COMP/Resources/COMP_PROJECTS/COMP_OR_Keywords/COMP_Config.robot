@@ -37,8 +37,6 @@ comp_create_new_template
     csodUtilInputText    ${comp_smoke_fixed_amount_value}    1000
     csodUtilClick    ${comp_smoke_allow_lump_sum}
     csodUtilClick    ${comp_smoke_next_and_save_btn}
-    Comment    csodUtilClick    ${comp_smoke_available_field1}
-    Comment    csodUtilClick    ${comp_smoke_move_rt_top}
     csodUtilClick    ${comp_smoke_next_and_save_btn}
 
 comp_nav_to_subtab
@@ -67,3 +65,39 @@ comp_create_new_def_guideline
     csodUtilInputText    ${comp_smoke_method2}    Method-2
     csodUtilInputText    ${comp_smoke_eff_date}    1/20/2016
     csodUtilClick    ${comp_smoke_def_save_btn}
+
+comp_create_emp_salary
+    [Arguments]    ${Salary_Rate}
+    SummerSet_Users    AAbbasi    ${comp_smoke_userid_field}
+    csodUtilClick    ${comp_smoke_emp_salary_search}
+    csodUtilClick    ${comp_smoke_emp_salary_edit}
+    csodUtilClick    ${comp_smoke_add_salary_rate}
+    Utility Sync Element    ${comp_smoke_salary_rate_input}
+    csodUtilInputText    ${comp_smoke_salary_rate_input}    ${Salary_Rate}
+    Utility Sync Element    ${comp_smoke_date_field}
+    ${d}=    Get Time
+    log    {d}
+    ${d}=    Get Current Date    result_format=%m/%d/%Y
+    csodUtilInputText    ${comp_smoke_date_field}    ${d}
+    csodUtilClick    ${comp_smoke_emp_salary_save_icon}
+    csodUtilClick    ${comp_smoke_emp_salary_back_btn}
+
+comp_create_ind_target
+    [Arguments]    ${Target_Value}
+    SummerSet_Users    AAbbasi    ${comp_smoke_ind_target_userid}
+    csodUtilClick    ${comp_smoke_ind_target_searchbtn}
+    csodUtilClick    ${comp_smoke_edit_ind_target}
+    csodUtilClick    ${comp_smoke_ind_target_addTargetBtn}
+    Utility Sync Element    ${comp_smoke_ind_targets_value}
+    csodUtilInputText    ${comp_smoke_ind_targets_value}    ${Target_Value}
+    csodUtilClick    ${comp_smoke_ind_targets_saveimg}
+
+comp_create_salary_structures
+    Select_OU_Name    Mascot
+    csodUtilClick    ${comp_smoke_emp_salary_search}
+    csodUtilClick    ${comp_smoke_def_save_btn}
+
+comp_create_share_price
+    csodUtilClick    ${comp_smoke_add_shareprice}
+    csodUtilInputText    ${comp_smoke_shareprice_txt}    39.50
+    csodUtilClick    ${comp_smoke_shareprice_saveimg}

@@ -20,3 +20,18 @@ Compensation_Admin_Side
     comp_nav_to    ${comp_smoke_deferral_guidelines}
     comp_create_new_def_guideline    ${comp_smoke_name_value}
     comp_nav_to    ${comp_smoke_emp_salaries}
+    comp_create_emp_salary    1200.00
+    comp_nav_to    ${comp_smoke_individual_targets}
+    comp_create_ind_target    1000.00
+    comp_nav_to    ${comp_smoke_salary_structures}
+    comp_create_salary_structures
+    comp_nav_to    ${comp_smoke_Share_Price}
+    comp_create_share_price
+
+datatimetest
+    ${d}=    get time
+    log    {d}
+    ${d}=    Get Current Date    result_format=%m/%d/%Y
+    log    {d}
+    ${d} =    Add Time To Date    2014-05-28 12:05:03.111    7 days
+    log    {d}

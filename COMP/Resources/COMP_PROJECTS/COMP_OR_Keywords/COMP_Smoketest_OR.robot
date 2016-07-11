@@ -52,3 +52,24 @@ ${comp_smoke_method2}    id=ctl00_ContentPlaceHolder1_rptSchedule_ctl02_txtRemai
 ${comp_smoke_eff_date}    id=ctl00_ContentPlaceHolder1_rptSchedule_ctl01_dtEffective_textboxDate
 ${comp_smoke_def_save_btn}    xpath=//b[.='Save']/ancestor::a[1]
 ${comp_smoke_emp_salaries}    css=div a[title='Employee Salaries']
+${comp_smoke_userid_field}    css=input[placeholder="User ID"]
+${comp_smoke_emp_salary_search}    xpath=//a[.='Search']
+${comp_smoke_emp_salary_edit}    css=a[title=Edit]
+${comp_smoke_add_salary_rate}    css=a[title="Add Salary/Rate"]
+${comp_smoke_salary_rate_input}    xpath=//label[@title='Salary/Rate']//following::input[1]    # xpath=//span[.='Salary/Rate']//following::div[@class='clsUIBaseInput'][1]
+${comp_smoke_date_field}    css=input[placeholder="Select a date"]
+${comp_smoke_emp_salary_save_icon}    css=span.cso-btn-icon-save
+${comp_smoke_emp_salary_back_btn}    css=a[title=Back]
+${comp_smoke_individual_targets}    css=div a[title='Individual Targets']
+${comp_smoke_ind_target_userid}    id=ctl00_ContentPlaceHolder1_txtUserID
+${comp_smoke_ind_target_searchbtn}    id=ctl00_ContentPlaceHolder1_searchBtn
+${comp_smoke_edit_ind_target}    id=ctl00_ContentPlaceHolder1_searchRepeater_ctl00_btnEdit
+${comp_smoke_ind_target_addTargetBtn}    id=ctl00_ContentPlaceHolder1_addTargetBtn
+${comp_smoke_ind_targets_value}    id=ctl00_ContentPlaceHolder1_TargetsRepeater_ctl00_newAbsoluteTargetValue
+${comp_smoke_ind_targets_saveimg}    id=ctl00_ContentPlaceHolder1_TargetsRepeater_ctl00_saveNewTarget
+${comp_smoke_salary_structures}    css=div a[title='Salary Structures']
+${comp_smoke_salary_str_searchfield}    id=ctl00_ContentPlaceHolder1_txtSearch
+${comp_smoke_Share_Price}    css=div a[title='Share Price']
+${comp_smoke_add_shareprice}    id=ctl00_ContentPlaceHolder1_btnAdd
+${comp_smoke_shareprice_txt}    id=ctl00_ContentPlaceHolder1_rptSharePrice_ctl01_txtPrice
+${comp_smoke_shareprice_saveimg}    id=ctl00_ContentPlaceHolder1_rptSharePrice_ctl01_btnSave
