@@ -73,3 +73,65 @@ ${comp_smoke_Share_Price}    css=div a[title='Share Price']
 ${comp_smoke_add_shareprice}    id=ctl00_ContentPlaceHolder1_btnAdd
 ${comp_smoke_shareprice_txt}    id=ctl00_ContentPlaceHolder1_rptSharePrice_ctl01_txtPrice
 ${comp_smoke_shareprice_saveimg}    id=ctl00_ContentPlaceHolder1_rptSharePrice_ctl01_btnSave
+${comp_smoke_base_types}    css=div a[title='Base Types']
+${comp_smoke_base_types_edit}    id=edit_1
+${comp_smoke_base_types_saveimg}    id=save_1
+${comp_smoke_bonus_types}    css=div a[title='Bonus Types']
+${comp_smoke_bonus_types_edit}    id=edit_16
+${comp_smoke_bonus_types_cancel}    id=cancel_16
+${comp_smoke_currencies}    css=div a[title='Currencies']
+${comp_smoke_currencies_editRate}    id=ctl00_ContentPlaceHolder1_ratesRepeater_ctl00_editRate
+${comp_smoke_currencies_new_rate}    id=ctl00_ContentPlaceHolder1_editRateDlg_newRateTxt
+${comp_smoke_currencies_saveRateBtn}    id=ctl00_ContentPlaceHolder1_editRateDlg_saveRateBtn
+${comp_smoke_custom_fields}    css=div a[title='Custom Fields']
+${comp_smoke_custom_field_addlink}    id=ctl00_ctl00_ContentPlaceHolder1_insidepanel_shFields_lnkAddField
+${comp_smoke_custom_field_title}    id=ctl00_ctl00_ContentPlaceHolder1_insidepanel_txtTitle
+${comp_smoke_custom_field_types_combobox}    id=ctl00_ctl00_ContentPlaceHolder1_insidepanel_ddlFieldTypes
+${comp_smoke_custom_fields_select_criteria}    id=ctl00_ctl00_ContentPlaceHolder1_insidepanel_ouFilter_ouFilterSelector_ddlTypesList
+${comp_smoke_custom_field_add_btn}    id=ctl00_ctl00_ContentPlaceHolder1_insidepanel_ouFilter_ouFilterSelector_btnAddEverybody
+${comp_smoke_custom_field_save}    id=ctl00_ctl00_ContentPlaceHolder1_insidepanel_btnSave
+${comp_smoke_custom_statements}    css=div a[title='Custom Statements']
+${comp_smoke_cust_stmts_createlink}    css=span.text
+${comp_smoke_cust_stmts_name_field}    id=ctl00_ContentPlaceHolder1_txtName
+${comp_smoke_AddSectionbtn}    id=ctl00_ContentPlaceHolder1_btnAddSection
+${comp_smoke_cust_stmts_rad_editor}    id=ctl00_ContentPlaceHolder1_CsodRadEditor1_contentIframe    # ctl00_ContentPlaceHolder1_CsodRadEditor1Center
+${comp_smoke_cust_stmts_saveBtn}    id=ctl00_ContentPlaceHolder1_saveBtn
+${comp_smoke_cust_stmts_design_mode}    css=a.reMode_design > span
+${comp_smoke_cust_stmts_add_cond}    id=ctl00_ContentPlaceHolder1_customFormulaControl_hdrLayout0_addNewOptionLayout0
+${comp_smoke_cust_stmts_condition_addBtn}    css=td.CsLinkButton > img
+${comp_smoke_cust_stmts_save_stmt}    id=ctl00_ContentPlaceHolder1_btnSaveStatement
+${comp_smoke_tags}    css=div a[title='Tags']
+${comp_smoke_tag_name_field}    id=ctl00_ContentPlaceHolder1_txtSearch
+${comp_smoke_tags_btnSearch}    id=ctl00_ContentPlaceHolder1_btnSearch
+${comp_smoke_tags_verify_tag_amount}    css=#ctl00_ContentPlaceHolder1_rptType_ctl01_pnlType_titleMiddle > h2
+${comp_smoke_tags_collapse}    id=ctl00_ContentPlaceHolder1_rptType_ctl01_pnlType_lnkExpandCollapse
+${comp_smoke_tags_backBtn}    xpath=//b[.='« Back']
+${comp_smoke_tasks}    css=div a[title='Tasks']
+${comp_smoke_tasks_create_comp_plan}    css=span.text
+${comp_smoke_tasks_txtTitle}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_txtTitle
+${comp_smoke_tasks_desc}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_txtDescription
+${comp_smoke_tasks_inst}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_txtInstructions_viewEditTextBox
+${comp_smoke_tasks_FromTaskPeriod}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_dtFromTaskPeriod_textboxDate
+${comp_smoke_tasks_ToTaskPeriod}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_dtToTaskPeriod_textboxDate
+${comp_smoke_tasks_FromCompPeriod}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_dtFromCompPeriod_textboxDate
+${comp_smoke_tasks_ToCompPeriod}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_dtToCompPeriod_textboxDate
+${comp_smoke_tasks_add_base_template}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rptTemplate_ctl00_shTemplate_btnShowTemplate
+${comp_smoke_tasks_addButton}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_csdTemplate_templateControl_TemplateList_ctl01_addButton
+${comp_smoke_tasks_baseEffdate}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rptTemplate_ctl00_dtEffective_textboxDate
+${comp_smoke_tasks_base_tab_title}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rptTemplate_ctl00_txtTabTitle
+${comp_smoke_tasks_StatementDate}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_dtStatementDate_textboxDate
+${comp_smoke_tasks_btnNext}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_btnNext
+${comp_smoke_tasks_select_criteria}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_OrgUnitFilter_OrgUnitTypeList
+${comp_smoke_tasks_searchimg}    id=selectOrgUnitHref
+${comp_smoke_tasks_NameFieldPopup}    id=NameField
+${comp_smoke_tasks_searchbtnPopup}    id=cmdSearch
+${comp_smoke_tasks_addBtn_Popup}    id=ResultsListOU_ctl01_SelectResultsItem
+${comp_smoke_tasks_DoneBtn}    id=DoneButton
+${comp_smoke_tasks_avail_srch_Popup}    id=cmdSearch
+${comp_smoke_tasks_addImgBtn}    id=ResultsListOU_ctl01_SelectResultsItem
+${comp_smoke_tasks_DoneBtnPopup}    id=DoneButton
+${comp_smoke_tasks_SelectApprovals}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_shApprovals_btnSelectApprovals
+${comp_smoke_tasks_mgr_approver}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_csdApprover_ApproverControl_rptApprover_ctl01_btnAdd
+${comp_smoke_tasks_approval_doneBtnPopup}    xpath=//b[.='Done']/ancestor::a[1]
+${comp_smoke_tasks_saveBtn}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_btnSave
+${comp_smoke_tasks_approver_mgr_nametext}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rptApprover_ctl01_lblApproverName

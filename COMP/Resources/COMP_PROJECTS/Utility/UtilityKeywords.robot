@@ -150,3 +150,11 @@ Utility Input Cal Mon Date Year
     ${d}=    Get Current Date    result_format=%m/%d/%Y
     ${d}
     [Return]    ${d}
+
+Utility Element Should Contain
+    [Arguments]    ${tag_locator}
+    Element Should Contain    ${tag_locator}    User Tags(1)    The text appears fine.
+
+Utility Select Window Title
+    ${str}=    Catenate    title=Realize Your Potential:    ${cfg_global_login_corp_default}
+    [Return]    ${str}

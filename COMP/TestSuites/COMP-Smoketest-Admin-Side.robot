@@ -27,6 +27,20 @@ Compensation_Admin_Side
     comp_create_salary_structures
     comp_nav_to    ${comp_smoke_Share_Price}
     comp_create_share_price
+    comp_nav_to    ${comp_smoke_base_types}
+    comp_create_base_types
+    comp_nav_to    ${comp_smoke_bonus_types}
+    comp_create_bonus_types
+    comp_nav_to    ${comp_smoke_currencies}
+    comp_create_currencies_edit_rates    0.6403
+    comp_nav_to    ${comp_smoke_custom_fields}
+    comp_create_custom_fields    ${comp_smoke_name_value}
+    comp_nav_to    ${comp_smoke_custom_statements}
+    comp_create_custom_statements    ${comp_smoke_name_value}
+    comp_nav_to    ${comp_smoke_tags}
+    comp_create_tags    APPROVER
+    comp_nav_to    ${comp_smoke_tasks}
+    comp_create_tasks    ${comp_smoke_name_value}    DESC    INSTR
 
 datatimetest
     ${d}=    get time

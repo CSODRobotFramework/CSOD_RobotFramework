@@ -299,13 +299,12 @@ PopupWindowOU
     [Arguments]    ${comp_smoke_OU}=Fire    # This is passed from the test run.
     ${ID_Titles}=    Get Window Titles
     Select Window    title=${ID_Titles[1]}
-    Comment    Maximize Browser Window
-    Comment    Sleep    5s
+    Maximize Browser Window
     Wait Until Element Is Visible    ${comp_smoke_name_field}    timeout=10 Sec
     csodUtilInputText    ${comp_smoke_name_field}    ${comp_smoke_OU}
-    csodUtilClick    ${lnkSearch}
-    csodUtilClick    ${imgAddButton}
-    csodUtilClick    ${lnkDone}
+    csodUtilClick    ${comp_smoke_tasks_avail_srch_Popup}
+    csodUtilClick    ${comp_smoke_tasks_addBtn_Popup}
+    csodUtilClick    ${comp_smoke_tasks_DoneBtnPopup}
 
 SummerSet_Users
     [Arguments]    ${SummerSetUser}    ${textfieldlocator}    # Default user is aabbasi
@@ -374,3 +373,16 @@ Select_OU_Name
     ${keyValue}=    Get From Dictionary    ${OUNameTypeDictionary}    ${OUName}
     Log    ${keyValue}
     csodUtilInputText    ${comp_smoke_salary_str_searchfield}    ${keyValue}
+
+csodUtilPressKey
+    [Arguments]    ${locator}    ${input}
+    Wait Until Keyword Succeeds    2 x    5s    Selenium2Library.Press Key    ${locator}    ${input}
+
+Select_Browser_Window_Comp
+    [Arguments]    ${Wait_For_Locator_Visible}    ${Window_Title_No_Corp}
+    Sleep    3 seconds
+    ${str}=    Catenate    ${Window_Title_No_Corp}    ${cfg_global_login_corp_default}
+    Select Window    ${str}
+    Wait Until Element Is Visible    ${Wait_For_Locator_Visible}    timeout=5s    error=Could not find the page.
+    Comment    \    ${cfg_global_login_corp_default}
+    Comment    title=Realize Your Potential: QA-LD4STG-COMP1    title=Realize Your Potential: ${cfg_global_login_corp_default}

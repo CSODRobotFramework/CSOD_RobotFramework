@@ -73,7 +73,8 @@ comp_create_emp_salary
     csodUtilClick    ${comp_smoke_emp_salary_edit}
     csodUtilClick    ${comp_smoke_add_salary_rate}
     Utility Sync Element    ${comp_smoke_salary_rate_input}
-    csodUtilInputText    ${comp_smoke_salary_rate_input}    ${Salary_Rate}
+    csodUtilPressKey    ${comp_smoke_salary_rate_input}    ${Salary_Rate}
+    csodUtilClick    ${comp_smoke_salary_rate_input}
     Utility Sync Element    ${comp_smoke_date_field}
     ${d}=    Get Time
     log    {d}
@@ -101,3 +102,82 @@ comp_create_share_price
     csodUtilClick    ${comp_smoke_add_shareprice}
     csodUtilInputText    ${comp_smoke_shareprice_txt}    39.50
     csodUtilClick    ${comp_smoke_shareprice_saveimg}
+
+comp_create_base_types
+    csodUtilClick    ${comp_smoke_base_types_edit}
+    csodUtilClick    ${comp_smoke_base_types_saveimg}
+
+comp_create_bonus_types
+    csodUtilClick    ${comp_smoke_bonus_types_edit}
+    csodUtilClick    ${comp_smoke_bonus_types_cancel}
+
+comp_create_currencies_edit_rates
+    [Arguments]    ${RateAmount}
+    csodUtilClick    ${comp_smoke_currencies_editRate}
+    csodUtilInputText    ${comp_smoke_currencies_new_rate}    ${RateAmount}
+    csodUtilClick    ${comp_smoke_currencies_saveRateBtn}
+
+comp_create_custom_fields
+    [Arguments]    ${CustomFieldName}
+    csodUtilClick    ${comp_smoke_custom_field_addlink}
+    csodUtilInputText    ${comp_smoke_custom_field_title}    ${CustomFieldName}
+    csodUtilComboBox    ${comp_smoke_custom_field_types_combobox}    Date Field
+    csodUtilComboBox    ${comp_smoke_custom_fields_select_criteria}    All Users
+    csodUtilClick    ${comp_smoke_custom_field_add_btn}
+    csodUtilClick    ${comp_smoke_custom_field_save}
+
+comp_create_custom_statements
+    [Arguments]    ${Custom_Statement_Field_Name}
+    csodUtilClick    ${comp_smoke_cust_stmts_createlink}
+    csodUtilInputText    ${comp_smoke_cust_stmts_name_field}    ${Custom_Statement_Field_Name}
+    csodUtilClick    ${comp_smoke_AddSectionbtn}
+    csodUtilClick    ${comp_smoke_cust_stmts_design_mode}
+    csodUtilClick    ${comp_smoke_cust_stmts_rad_editor}
+    csodUtilPressKey    ${comp_smoke_cust_stmts_rad_editor}    ${Custom_Statement_Field_Name}
+    csodUtilClick    ${comp_smoke_cust_stmts_add_cond}
+    csodUtilClick    ${comp_smoke_cust_stmts_condition_addBtn}
+    csodUtilClick    ${comp_smoke_cust_stmts_saveBtn}
+    csodUtilClick    ${comp_smoke_cust_stmts_save_stmt}
+
+comp_create_tags
+    [Arguments]    ${Tag_Name}
+    csodUtilInputText    ${comp_smoke_tag_name_field}    ${Tag_Name}
+    csodUtilClick    ${comp_smoke_tags_btnSearch}
+    Utility Element Should Contain    ${comp_smoke_tags_verify_tag_amount}
+    csodUtilClick    ${comp_smoke_tags_collapse}
+    csodUtilClick    ${comp_smoke_tags_backBtn}
+
+comp_create_tasks
+    [Arguments]    ${Task_Name}    ${Task_Desc}    ${Task_Inst}
+    csodUtilClick    ${comp_smoke_tasks_create_comp_plan}
+    csodUtilInputText    ${comp_smoke_tasks_txtTitle}    ${Task_Name}
+    csodUtilInputText    ${comp_smoke_tasks_desc}    ${Task_Desc}
+    csodUtilInputText    ${comp_smoke_tasks_inst}    ${Task_Inst}
+    csodUtilInputText    ${comp_smoke_tasks_FromTaskPeriod}    1/20/2020
+    csodUtilInputText    ${comp_smoke_tasks_ToTaskPeriod}    12/30/2020
+    csodUtilInputText    ${comp_smoke_tasks_FromCompPeriod}    1/20/2008
+    csodUtilInputText    ${comp_smoke_tasks_ToCompPeriod}    12/30/2008
+    csodUtilClick    ${comp_smoke_tasks_add_base_template}
+    csodUtilClick    ${comp_smoke_tasks_addButton}
+    Utility Page Should Contain Element    ${comp_smoke_tasks_baseEffdate}
+    csodUtilInputText    ${comp_smoke_tasks_baseEffdate}    1/1/2009
+    csodUtilInputText    ${comp_smoke_tasks_StatementDate}    1/2/2021
+    csodUtilClick    ${comp_smoke_tasks_btnNext}
+    csodUtilComboBox    ${comp_smoke_tasks_select_criteria}    Division
+    csodUtilClick    ${comp_smoke_tasks_searchimg}
+    PopupWindowOU
+    Select_Browser_Window_Comp    ${comp_smoke_tasks_btnNext}    title=Realize Your Potential:
+    csodUtilClick    ${comp_smoke_tasks_btnNext}
+    Utility Page Should Contain Element    ${comp_smoke_tasks_btnNext}
+    csodUtilClick    ${comp_smoke_tasks_btnNext}
+    Utility Page Should Contain Element    ${comp_smoke_tasks_SelectApprovals}
+    csodUtilClick    ${comp_smoke_tasks_SelectApprovals}
+    Utility Page Should Contain Element    ${comp_smoke_tasks_mgr_approver}
+    csodUtilClick    ${comp_smoke_tasks_mgr_approver}
+    Utility Page Should Contain Element    ${comp_smoke_tasks_approval_doneBtnPopup}
+    Sleep    3s
+    csodUtilClick    ${comp_smoke_tasks_approval_doneBtnPopup}
+    Utility Page Should Contain Element    ${comp_smoke_tasks_approver_mgr_nametext}
+    Utility Page Should Contain Element    ${comp_smoke_tasks_btnNext}
+    csodUtilClick    ${comp_smoke_tasks_btnNext}
+    csodUtilClick    ${comp_smoke_tasks_saveBtn}
