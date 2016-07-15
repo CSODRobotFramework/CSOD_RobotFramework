@@ -24,6 +24,8 @@ comp_create_new_adj_guideline
     csodUtilClick    ${comp_smoke_non_disc}
     csodUtilInputText    ${comp_smoke_amount_perc_txt}    5
     csodUtilClick    ${comp_smoke_save_btn}
+    csodUtilClick    ${comp_smoke_adjustment_guideline_okPopup}
+    Utility Sleep
 
 comp_create_new_template
     [Arguments]    ${template_name}
@@ -179,9 +181,17 @@ comp_create_tasks
     Utility Page Should Contain Element    ${comp_smoke_tasks_mgr_approver}
     csodUtilClick    ${comp_smoke_tasks_mgr_approver}
     Utility Page Should Contain Element    ${comp_smoke_tasks_approval_doneBtnPopup}
-    Sleep    3s
+    Utility Sleep
     csodUtilClick    ${comp_smoke_tasks_approval_doneBtnPopup}
     Utility Page Should Contain Element    ${comp_smoke_tasks_approver_mgr_nametext}
     Utility Page Should Contain Element    ${comp_smoke_tasks_btnNext}
     csodUtilClick    ${comp_smoke_tasks_btnNext}
     csodUtilClick    ${comp_smoke_tasks_saveBtn}
+
+comp_nav_to_with_should_contain_ele
+    [Arguments]    ${Compensation_AdminLink}
+    Sleep    2s
+    Utility Element Should Contain    ${comp_smoke_admin_tab}
+    csodUtilClick    ${comp_smoke_admin_tab}
+    csodUtilClick    ${comp_smoke_compensation_link}
+    csodUtilClick    ${Compensation_AdminLink}
