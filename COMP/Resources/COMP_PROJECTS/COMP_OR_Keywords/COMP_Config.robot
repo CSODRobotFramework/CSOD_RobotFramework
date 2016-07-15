@@ -174,8 +174,10 @@ comp_create_tasks
     PopupWindowOU
     Select_Browser_Window_Comp    ${comp_smoke_tasks_btnNext}    title=Realize Your Potential:
     csodUtilClick    ${comp_smoke_tasks_btnNext}
+    Utility Sleep
     Utility Page Should Contain Element    ${comp_smoke_tasks_btnNext}
     csodUtilClick    ${comp_smoke_tasks_btnNext}
+    Utility Sleep
     Utility Page Should Contain Element    ${comp_smoke_tasks_SelectApprovals}
     csodUtilClick    ${comp_smoke_tasks_SelectApprovals}
     Utility Page Should Contain Element    ${comp_smoke_tasks_mgr_approver}
