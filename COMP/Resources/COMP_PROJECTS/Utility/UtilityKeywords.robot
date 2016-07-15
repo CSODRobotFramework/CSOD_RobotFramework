@@ -158,3 +158,8 @@ Utility Element Should Contain
 Utility Select Window Title
     ${str}=    Catenate    title=Realize Your Potential:    ${cfg_global_login_corp_default}
     [Return]    ${str}
+
+Utility Click Element If Visible
+    [Arguments]    ${locator}    ${timeout}=3 sec
+    ${elementFound}=    Run Keyword And Ignore Error    Wait Until Element Is Visible    ${locator}    ${timeout}
+    Run Keyword If    '${elementFound[0]}'=='PASS'    Utility Click Element    ${locator}
