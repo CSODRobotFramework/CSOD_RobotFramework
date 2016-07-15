@@ -24,7 +24,7 @@ comp_create_new_adj_guideline
     csodUtilClick    ${comp_smoke_non_disc}
     csodUtilInputText    ${comp_smoke_amount_perc_txt}    5
     csodUtilClick    ${comp_smoke_save_btn}
-    csodUtilClick    ${comp_smoke_adjustment_guideline_okPopup}
+    Utility Click Element If Exist    ${comp_smoke_adjustment_guideline_okPopup}
     Utility Sleep
 
 comp_create_new_template
