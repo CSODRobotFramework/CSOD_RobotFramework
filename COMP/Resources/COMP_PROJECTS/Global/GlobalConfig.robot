@@ -1,11 +1,11 @@
 *** Variables ***
 ${cfg_global_login_browser}    chrome
-${cfg_global_login_url}    https://corporate6.csod.com/    # https://corporate5-stg.csod.com/,https://corporate1-pilot.csod.com/,https://corporate6.csod.com/,https://corporate3.csod.com/
+${cfg_global_login_url}    https://corporate3.csod.com/    # https://corporate5-stg.csod.com/,https://corporate1-pilot.csod.com/,https://corporate6.csod.com/,https://corporate3.csod.com/
 ${cfg_global_login_profile}    default
 ${cfg_global_login_corp}    ${cfg_global_login_corp_${cfg_global_login_profile}}
 ${cfg_global_login_username}    ${cfg_global_login_username_${cfg_global_login_profile}}
 ${cfg_global_login_password}    ${cfg_global_login_password_${cfg_global_login_profile}}
-${cfg_global_login_corp_default}    QA-LD4SL1-COMP2    # QA-LD4STG-COMP1, QA-LA4PIL-COMP1,QA-LD4STG-COMP2,QA-LD4SL1-COMP1,QA-LD4SL1-COMP1
+${cfg_global_login_corp_default}    QA-LA4SL1-COMP2    # QA-LD4STG-COMP1, QA-LA4PIL-COMP1,QA-LD4STG-COMP2,QA-LD4SL1-COMP1,QA-LD4SL1-COMP1,QA-LD4SL1-COMP2
 ${cfg_global_login_username_default}    ca
 ${cfg_global_login_password_default}    popeye123
 ${cfg_global_home_pagesync}    ${EMPTY}
