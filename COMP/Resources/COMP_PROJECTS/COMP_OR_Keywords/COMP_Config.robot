@@ -59,6 +59,7 @@ comp_create_new_def_guideline
     csodUtilInputText    ${comp_smoke_name_field_popup}    SALARY
     csodUtilClick    ${comp_smoke_search_popup_btn}
     csodUtilClick    ${comp_smoke_search_popup_btn}
+    Utility Page Should Contain Element    ${comp_smoke_field_add_popup_btn}
     csodUtilClick    ${comp_smoke_field_add_popup_btn}
     csodUtilClick    ${comp_smoke_payoutschedule_add}
     csodUtilInputText    ${comp_smoke_method1}    Method-1
@@ -113,7 +114,9 @@ comp_create_bonus_types
 
 comp_create_currencies_edit_rates
     [Arguments]    ${RateAmount}
+    Utility Page Should Contain Element    ${comp_smoke_currencies_editRate}
     csodUtilClick    ${comp_smoke_currencies_editRate}
+    Utility Page Should Contain Element    ${comp_smoke_currencies_new_rate}
     csodUtilInputText    ${comp_smoke_currencies_new_rate}    ${RateAmount}
     csodUtilClick    ${comp_smoke_currencies_saveRateBtn}
 
