@@ -167,6 +167,7 @@ comp_create_tasks
     csodUtilInputText    ${comp_smoke_tasks_StatementDate}    1/2/2021
     csodUtilClick    ${comp_smoke_tasks_btnNext}
     csodUtilComboBox    ${comp_smoke_tasks_select_criteria}    Division
+    Utility Page Should Contain Element    ${comp_smoke_tasks_searchimg}
     csodUtilClick    ${comp_smoke_tasks_searchimg}
     PopupWindowOU
     Select_Browser_Window_Comp    ${comp_smoke_tasks_btnNext}    title=Realize Your Potential:
