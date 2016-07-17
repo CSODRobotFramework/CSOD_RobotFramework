@@ -8,6 +8,7 @@ Resource          ../Resources/COMP_PROJECTS/COMP_OR_Keywords/CSOD_Locators.robo
 Resource          ../Resources/COMP_PROJECTS/COMP_OR_Keywords/CSOD_Keywords.robot
 Resource          ../Resources/COMP_PROJECTS/Global/GlobalKeywords.robot
 Resource          ../Resources/COMP_PROJECTS/COMP_OR_Keywords/COMP_Config.robot
+Library           GmailEmailLibrary
 
 *** Test Cases ***
 Compensation_Admin_Side
@@ -41,6 +42,7 @@ Compensation_Admin_Side
     comp_create_tags    APPROVER
     comp_nav_to    ${comp_smoke_tasks}
     comp_create_tasks    ${comp_smoke_name_value}    DESC    INSTR
+    Comment    Utility Email Report
 
 datatimetest
     ${d}=    get time

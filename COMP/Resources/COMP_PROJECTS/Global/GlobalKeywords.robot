@@ -50,6 +50,7 @@ Global Test Fixture Suite Setup
 Global Test Fixture Suite Teardown
     [Documentation]    Test fixture that handles suite teardown
     Close All Browsers
+    Send Mail With Attachment    geeslimmy@gmail.com    popeye123    gfung@csod.com    Compensation Smoke Test    This is the Compensation Smoketest please take the time to review the Test Suite results    C:\\Users\\gfung\\.jenkins\\workspace\\COMP\\report.html
 
 Global Test Fixture Test Setup
     [Documentation]    Test fixture that handles test setup
