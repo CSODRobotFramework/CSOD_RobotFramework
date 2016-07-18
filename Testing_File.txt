@@ -2,3 +2,4 @@ Testing Dummy .txt file just testing to see if it will pass with new checkin and
 
 7/2 - doing a simple checkin to fire off Jenkins build test.
 7/3 - Quick Checkin and run.
+7/18 - Check in for test run with email and new -v for jenkins user login.
