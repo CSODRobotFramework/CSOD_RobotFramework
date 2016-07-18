@@ -50,7 +50,8 @@ Global Test Fixture Suite Setup
 Global Test Fixture Suite Teardown
     [Documentation]    Test fixture that handles suite teardown
     Close All Browsers
-    Send Mail With Attachment    geeslimmy@gmail.com    popeye123    gfung@csod.com    Compensation Smoke Test    This is the Compensation Smoketest please take the time to review the Test Suite results    C:\\Users\\gfung\\.jenkins\\workspace\\COMP\\report.html
+    Comment    Send Mail With Attachment    geeslimmy@gmail.com    popeye123    gfung@csod.com    Compensation Smoke Test    This is the Compensation Smoketest please take the time to review the Test Suite results
+    ...    C:\\Users\\gfung\\.jenkins\\workspace\\COMP\\report.html
 
 Global Test Fixture Test Setup
     [Documentation]    Test fixture that handles test setup
@@ -73,3 +74,8 @@ Global Open Application with SauceLabs
     [Documentation]    Opens a browser session in the specified browser, navigates to the specified URL, and maximizes the browser window. \ http://robotframework.org/Selenium2Library/doc/Selenium2Library.html#Open%20Browser
     Open Browser    https://qa05.csod.com/    chrome    remote_url=http://gfung:3e42e523-3f0e-4d5b-b68a-6a474253aacb@ondemand.saucelabs.com:80/wd/hub    desired_capabilities=platform:OS X 10.9,browserName:chrome
     Maximize Browser Window
+
+Global Test Fixture Suite Teardown with Email Attachment
+    [Documentation]    Test fixture that handles suite teardown
+    Close All Browsers
+    Send Mail With Attachment    geeslimmy@gmail.com    popeye123    gfung@csod.com    Compensation Smoke Test    This is the Compensation Smoketest please take the time to review the Test Suite results    C:\\Users\\gfung\\.jenkins\\workspace\\COMP\\report.html

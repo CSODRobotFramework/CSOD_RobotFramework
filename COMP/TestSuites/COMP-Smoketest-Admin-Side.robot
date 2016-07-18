@@ -1,6 +1,6 @@
 *** Settings ***
 Suite Setup       Global Test Fixture Suite Setup
-Suite Teardown    Global Test Fixture Suite Teardown
+Suite Teardown    Global Test Fixture Suite Teardown with Email Attachment
 Test Setup        Global Test Fixture Test Setup
 Test Teardown     Global Test Fixture Test Teardown
 Resource          ../Resources/COMP_PROJECTS/COMP_OR_Keywords/COMP_Smoketest_OR.robot
