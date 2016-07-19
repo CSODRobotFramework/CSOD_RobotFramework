@@ -136,3 +136,5 @@ ${comp_smoke_tasks_approval_doneBtnPopup}    xpath=//b[.='Done']/ancestor::a[1]
 ${comp_smoke_tasks_saveBtn}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_btnSave
 ${comp_smoke_tasks_approver_mgr_nametext}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_rptApprover_ctl01_lblApproverName
 ${comp_smoke_adjustment_guideline_okPopup}    id=ctl00_ContentPlaceHolder1_confirmCtrl_btnYes
+${comp_smoke_test_status}    Compensation Test Suite:
+${comp_status}    ${EMPTY}
