@@ -1,6 +1,6 @@
 *** Variables ***
 ${cfg_global_login_browser}    chrome
-${cfg_global_login_profile}    stage    # here we pass one variable 'default' in this case to control lots of variables with _default at the end.
+${cfg_global_login_profile}    ldstage    # here we pass one variable 'default' in this case to control lots of variables with _default at the end.
 ${cfg_global_login_corp}    ${cfg_global_login_corp_${cfg_global_login_profile}}
 ${cfg_global_login_username}    ${cfg_global_login_username_${cfg_global_login_profile}}
 ${cfg_global_login_password}    ${cfg_global_login_password_${cfg_global_login_profile}}
