@@ -63,7 +63,6 @@ Global Test Fixture Test Teardown
     Global Logout
     Run Keyword If    '${TEST_STATUS}'=='FAIL'    Global Test Fixture Suite Teardown
     Run Keyword If    '${TEST_STATUS}'=='FAIL'    Global Test Fixture Suite Setup
-    ${comp_status}=    Set Variable    ${TEST_STATUS}
 
 Global Test Fixture Suite Setup with Kill Browser
     [Arguments]    ${killBrowser}=killall -9 "Google Chrome"    # To kill browsers: killall -9 "Google Chrome", killall firefox, killall Safari
@@ -79,4 +78,5 @@ Global Open Application with SauceLabs
 Global Test Fixture Suite Teardown with Email Attachment
     [Documentation]    Test fixture that handles suite teardown
     Close All Browsers
-    Send Mail With Attachment    geefung@gmail.com    popeye123    gfung@csod.com    ${comp_status} ${comp_smoke_test_status}    This is the Compensation Smoketest please take the time to review the Test Suite results    C:\\Users\\gfung\\.jenkins\\workspace\\COMP\\TestResults\\report.html
+    ${comp_status}=    Set Variable    ${SUITE_STATUS}
+    Send Mail With Attachment    geefung@gmail.com    popeye123    gfung@csod.com    ${comp_smoke_test_status} ${comp_status}     This is the Compensation Smoketest please take the time to review the Test Suite results attached html file.    C:\\Users\\gfung\\Documents\\RobotFrameworkTeam\\CSOD_RobotFramework\\COMP\\TestResults\\report.html

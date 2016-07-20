@@ -1,6 +1,6 @@
 *** Variables ***
 ${cfg_global_login_browser}    chrome
-${cfg_global_login_profile}    ldstage    # here we pass one variable 'default' in this case to control lots of variables with _default at the end.
+${cfg_global_login_profile}    la4pilot    # here we pass one variable 'default' in this case to control lots of variables with _default at the end.
 ${cfg_global_login_corp}    ${cfg_global_login_corp_${cfg_global_login_profile}}
 ${cfg_global_login_username}    ${cfg_global_login_username_${cfg_global_login_profile}}
 ${cfg_global_login_password}    ${cfg_global_login_password_${cfg_global_login_profile}}
@@ -27,7 +27,19 @@ ${cfg_global_login_corp_qa052}    QA052-AUTO-QADEF2    # QA-LD4STG-COMP1, QA-LA4
 ${cfg_global_login_username_qa052}    ca
 ${cfg_global_login_password_qa052}    popeye123
 ${cfg_global_login_url_qa052}    https://qa05.csod.com/
-${cfg_global_login_corp_ldstage2}    QA-LD4STG-COMP2    # QA-LD4STG-COMP1, QA-LA4PIL-COMP1,QA-LD4STG-COMP2,QA-LD4SL1-COMP1,QA-LD4SL1-COMP1,QA-LD4SL1-COMP2,QA-LD4PIL-COMP1,QA052-AUTO-QADEF2
-${cfg_global_login_username_ldstage2}    ca
-${cfg_global_login_password_ldstage2}    popeye123
-${cfg_global_login_url_ldstage2}    https://corporate6.csod.com/
+${cfg_global_login_corp_ldstagecomp2}    QA-LD4STG-COMP2    # QA-LD4STG-COMP1, QA-LA4PIL-COMP1,QA-LD4STG-COMP2,QA-LD4SL1-COMP1,QA-LD4SL1-COMP1,QA-LD4SL1-COMP2,QA-LD4PIL-COMP1,QA052-AUTO-QADEF2
+${cfg_global_login_username_ldstagecomp2}    ca
+${cfg_global_login_password_ldstagecomp2}    popeye123
+${cfg_global_login_url_ldstagecomp2}    https://corporate5-stg.csod.com/
+${cfg_global_login_corp_la4sl1}    QA-LA4SL1-COMP1    # QA-LD4STG-COMP1, QA-LA4PIL-COMP1,QA-LD4STG-COMP2,QA-LD4SL1-COMP1,QA-LD4SL1-COMP1,QA-LD4SL1-COMP2,QA-LD4PIL-COMP1,QA052-AUTO-QADEF2
+${cfg_global_login_username_la4sl1}    ca
+${cfg_global_login_password_la4sl1}    popeye123
+${cfg_global_login_url_la4sl1}    https://corporate3.csod.com/
+${cfg_global_login_corp_la4sl1comp2}    QA-LA4SL1-COMP2    # QA-LD4STG-COMP1, QA-LA4PIL-COMP1,QA-LD4STG-COMP2,QA-LD4SL1-COMP1,QA-LD4SL1-COMP1,QA-LD4SL1-COMP2,QA-LD4PIL-COMP1,QA052-AUTO-QADEF2
+${cfg_global_login_username_la4sl1comp2}    ca
+${cfg_global_login_password_la4sl1comp2}    popeye123
+${cfg_global_login_url_la4sl1comp2}    https://corporate3.csod.com/
+${cfg_global_login_corp_ld4pilot}    QA-LD4PIL-COMP1    # QA-LD4STG-COMP1, QA-LA4PIL-COMP1,QA-LD4STG-COMP2,QA-LD4SL1-COMP1,QA-LD4SL1-COMP1,QA-LD4SL1-COMP2,QA-LD4PIL-COMP1,QA052-AUTO-QADEF2
+${cfg_global_login_username_ld4pilot}    ca
+${cfg_global_login_password_ld4pilot}    popeye123
+${cfg_global_login_url_ld4pilot}    https://corporate5-pilot.csod.com/

@@ -381,8 +381,6 @@ csodUtilPressKey
 Select_Browser_Window_Comp
     [Arguments]    ${Wait_For_Locator_Visible}    ${Window_Title_No_Corp}
     Sleep    3 seconds
-    ${str}=    Catenate    ${Window_Title_No_Corp}    ${cfg_global_login_corp_default}
+    ${str}=    Catenate    ${Window_Title_No_Corp}    ${cfg_global_login_corp}
     Select Window    ${str}
     Wait Until Element Is Visible    ${Wait_For_Locator_Visible}    timeout=5s    error=Could not find the page.
-    Comment    \    ${cfg_global_login_corp_default}
-    Comment    title=Realize Your Potential: QA-LD4STG-COMP1    title=Realize Your Potential: ${cfg_global_login_corp_default}
