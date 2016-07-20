@@ -63,6 +63,7 @@ Global Test Fixture Test Teardown
     Global Logout
     Run Keyword If    '${TEST_STATUS}'=='FAIL'    Global Test Fixture Suite Teardown
     Run Keyword If    '${TEST_STATUS}'=='FAIL'    Global Test Fixture Suite Setup
+    ${comp_status}=    Set Variable    ${TEST_STATUS}
 
 Global Test Fixture Suite Setup with Kill Browser
     [Arguments]    ${killBrowser}=killall -9 "Google Chrome"    # To kill browsers: killall -9 "Google Chrome", killall firefox, killall Safari
@@ -78,4 +79,4 @@ Global Open Application with SauceLabs
 Global Test Fixture Suite Teardown with Email Attachment
     [Documentation]    Test fixture that handles suite teardown
     Close All Browsers
-    Send Mail With Attachment    geeslimmy@gmail.com    popeye123    gfung@csod.com    Compensation Smoke Test    This is the Compensation Smoketest please take the time to review the Test Suite results    C:\\Users\\gfung\\.jenkins\\workspace\\COMP\\report.html
+    Send Mail With Attachment    geefung@gmail.com    popeye123    gfung@csod.com    ${comp_status} ${comp_smoke_test_status}    This is the Compensation Smoketest please take the time to review the Test Suite results    C:\\Users\\gfung\\.jenkins\\workspace\\COMP\\TestResults\\report.html
