@@ -384,3 +384,8 @@ Select_Browser_Window_Comp
     ${str}=    Catenate    ${Window_Title_No_Corp}    ${cfg_global_login_corp}
     Select Window    ${str}
     Wait Until Element Is Visible    ${Wait_For_Locator_Visible}    timeout=5s    error=Could not find the page.
+
+Email_Test_Results
+    ${comp_status}=    Set Variable    ${PREV_TEST_STATUS}
+    ${comp_suite_name}=    Set Variable    ${SUITE_NAME}
+    Send Mail With Attachment    geefung@gmail.com    popeye123    gfung@csod.com    ${comp_smoke_test_status} ${comp_suite_name} ${cfg_global_login_profile} ${comp_status}    This is the Compensation Smoketest please take the time to review the Test Suite results attached html file.    C:\\Users\\gfung\\Documents\\RobotFrameworkTeam\\CSOD_RobotFramework\\COMP\\TestResults\\report.html

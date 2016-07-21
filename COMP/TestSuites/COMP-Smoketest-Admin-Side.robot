@@ -1,14 +1,9 @@
 *** Settings ***
 Suite Setup       Global Test Fixture Suite Setup
-Suite Teardown    Global Test Fixture Suite Teardown with Email Attachment
+Suite Teardown    Global Test Fixture Suite Teardown
 Test Setup        Global Test Fixture Test Setup
 Test Teardown     Global Test Fixture Test Teardown
-Resource          ../Resources/COMP_PROJECTS/COMP_OR_Keywords/COMP_Smoketest_OR.robot
-Resource          ../Resources/COMP_PROJECTS/COMP_OR_Keywords/CSOD_Locators.robot
-Resource          ../Resources/COMP_PROJECTS/COMP_OR_Keywords/CSOD_Keywords.robot
-Resource          ../Resources/COMP_PROJECTS/Global/GlobalKeywords.robot
-Resource          ../Resources/COMP_PROJECTS/COMP_OR_Keywords/COMP_Config.robot
-Library           GmailEmailLibrary
+Resource          ../Resources/COMP_PROJECTS/COMP_ObjectsResources.robot
 
 *** Test Cases ***
 Compensation_Admin_Side
@@ -42,7 +37,6 @@ Compensation_Admin_Side
     comp_create_tags    APPROVER
     comp_nav_to    ${comp_smoke_tasks}
     comp_create_tasks    ${comp_smoke_name_value}    DESC    INSTR
-    Comment    Utility Email Report
 
 datatimetest
     ${d}=    get time
@@ -51,3 +45,7 @@ datatimetest
     log    {d}
     ${d} =    Add Time To Date    2014-05-28 12:05:03.111    7 days
     log    {d}
+
+Send_Test_Results_Email
+    [Tags]    ADMINPHANTOM
+    Email_Test_Results
