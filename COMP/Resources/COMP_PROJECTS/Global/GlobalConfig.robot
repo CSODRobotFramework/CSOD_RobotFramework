@@ -67,3 +67,7 @@ ${cfg_global_login_corp_la4stgcomp2}    QA-LA4STG-COMP2    # QA-LD4STG-COMP1, QA
 ${cfg_global_login_username_la4stgcomp2}    ca
 ${cfg_global_login_password_la4stgcomp2}    popeye123
 ${cfg_global_login_url_la4stgcomp2}    https://corporate1-stg.csod.com/
+${cfg_global_login_corp_autocomp2}    QA052-AUTO-COMP2    # QA-LD4STG-COMP1, QA-LA4PIL-COMP1,QA-LD4STG-COMP2,QA-LD4SL1-COMP1,QA-LD4SL1-COMP1,QA-LD4SL1-COMP2,QA-LD4PIL-COMP1,QA052-AUTO-QADEF2
+${cfg_global_login_username_autocomp2}    ssmith
+${cfg_global_login_password_autocomp2}    popeye123
+${cfg_global_login_url_autocomp2}    https://qa05.csod.com/
