@@ -22,7 +22,7 @@ Global Go To Home
 
 Global Login
     [Arguments]    ${corp}    ${username}    ${password}
-    [Documentation]    Log into the CFS application
+    [Documentation]    Log into the CSOD application
     Utility Input Text    ${obj_global_login_corp}    ${corp}
     Utility Input Text    ${obj_global_login_username}    ${username}
     Utility Input Text    ${obj_global_login_password}    ${password}
@@ -30,7 +30,7 @@ Global Login
     Utility Page Should Contain    ${cfg_global_home_pagesync}
 
 Global Logout
-    [Documentation]    Logout of the CFS application
+    [Documentation]    Logout of the CSOD application
     Select Window
     Utility Click Element No Focus    ${obj_global_logout_button}
     Utility Click Element No Focus    ${obj_global_link_logout}
@@ -81,3 +81,9 @@ Global Test Fixture Suite Teardown with Email Attachment
     ${comp_status}=    Set Variable    ${SUITE_STATUS}
     ${comp_suite_name}=    Set Variable    ${SUITE_NAME}
     Send Mail With Attachment    geefung@gmail.com    popeye123    gfung@csod.com    ${comp_smoke_test_status} ${comp_suite_name} ${cfg_global_login_profile} ${comp_status}    This is the Compensation Smoketest please take the time to review the Test Suite results attached html file.    C:\\Users\\gfung\\Documents\\RobotFrameworkTeam\\CSOD_RobotFramework\\COMP\\TestResults\\report.html
+
+Global Test Fixture Go To URL Teardown
+    Run Keyword If    '${TEST_STATUS}'=='FAIL'    Log Source
+    Utility Go To URL    ${cfg_global_login_url}
+    Run Keyword If    '${TEST_STATUS}'=='FAIL'    Global Test Fixture Suite Teardown
+    Run Keyword If    '${TEST_STATUS}'=='FAIL'    Global Test Fixture Suite Setup

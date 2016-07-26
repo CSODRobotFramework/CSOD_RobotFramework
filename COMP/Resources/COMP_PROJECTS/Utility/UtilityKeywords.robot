@@ -168,3 +168,7 @@ Utility Email Report
     Comment    Send Mail With Attachment    ${email_from}    popeye123    ${email_to}    ${email_sub}    ${email_body}
     ...    ${path_to_report}
     Send Mail With Attachment    geeslimmy@gmail.com    popeye123    gfung@csod.com    Python Email Test    This is python test    C:\\Users\\gfung\\.jenkins\\workspace\\COMP\\report.html
+
+Utility Go To URL
+    [Arguments]    ${GoToURL}
+    Run Keyword And Ignore Error    Go To    ${GoToURL}
