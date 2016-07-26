@@ -6,3 +6,4 @@ Testing Dummy .txt file just testing to see if it will pass with new checkin and
 7/21 - Updating for test run on new VM.
 7/22 - Update checkin run
 7/22 - Update again.
+7/26 - Update for parallel run two chrome browsers test
