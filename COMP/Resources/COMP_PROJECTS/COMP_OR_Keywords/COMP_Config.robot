@@ -197,3 +197,14 @@ comp_nav_to_with_should_contain_ele
     csodUtilClick    ${comp_smoke_admin_tab}
     csodUtilClick    ${comp_smoke_compensation_link}
     csodUtilClick    ${Compensation_AdminLink}
+
+comp_nav_to_cust_report
+    [Arguments]    ${Comp_Report_Title}
+    csodUtilClick    ${report.search_tab}
+    csodUtilClick    ${report.custom_reports}
+    csodUtilInputText    ${report.search_reports}    ${Comp_Report_Title}
+    csodUtilClick    ${report.search_btn}
+    csodUtilClick    ${report.action_btn}
+    csodUtilClick    ${report.action_edit}
+
+comp_search_cust_report
