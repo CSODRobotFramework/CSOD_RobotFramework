@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20160816 00:41:28.551" generator="Robot 3.0 (Python 2.7.11 on win32)">
+<robot generated="20160816 10:27:04.786" generator="Robot 3.0 (Python 2.7.11 on win32)">
 <suite source="C:\Users\gfung\Documents\RobotFrameworkTeam\CSOD_RobotFramework\COMP" id="s1" name="COMP">
 <suite source="C:\Users\gfung\Documents\RobotFrameworkTeam\CSOD_RobotFramework\COMP\TestSuites" id="s1-s1" name="TestSuites">
 <suite source="C:\Users\gfung\Documents\RobotFrameworkTeam\CSOD_RobotFramework\COMP\TestSuites\COMP-Custom-Reports.robot" id="s1-s1-s1" name="COMP-Custom-Reports">
@@ -11,8 +11,8 @@
 <arg>PATH</arg>
 <arg>${cfg_global_resource_webdrivers}</arg>
 </arguments>
-<msg timestamp="20160816 00:41:29.035" level="INFO">Environment variable 'PATH' set to value 'C:\ProgramData\Oracle\Java\javapath;C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Users\gfung\Documents\RobotFrameworkTeam\CSOD_RobotFramework\COMP\Resources\WebDrivers\'.</msg>
-<status status="PASS" endtime="20160816 00:41:29.035" starttime="20160816 00:41:29.035"></status>
+<msg timestamp="20160816 10:27:08.380" level="INFO">Environment variable 'PATH' set to value 'C:\ProgramData\Oracle\Java\javapath;C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Users\gfung\Documents\RobotFrameworkTeam\CSOD_RobotFramework\COMP\Resources\WebDrivers\'.</msg>
+<status status="PASS" endtime="20160816 10:27:08.380" starttime="20160816 10:27:08.380"></status>
 </kw>
 <kw name="Global Open Application" library="GlobalKeywords">
 <doc>Opens a browser session in the specified browser, navigates to the specified URL, and maximizes the browser window.  http://robotframework.org/Selenium2Library/doc/Selenium2Library.html#Open%20Browser</doc>
@@ -28,16 +28,16 @@
 <arg>remote_url=${cfg_sauceLabs_remoteUrl}</arg>
 <arg>desired_capabilities=${cfg_sauceLabs_desiredCapabilities}</arg>
 </arguments>
-<msg timestamp="20160816 00:41:29.035" level="INFO">Opening browser 'chrome' to base url 'https://qa05.csod.com/'</msg>
-<status status="PASS" endtime="20160816 00:41:31.128" starttime="20160816 00:41:29.035"></status>
+<msg timestamp="20160816 10:27:08.380" level="INFO">Opening browser 'chrome' to base url 'https://qa05.csod.com/'</msg>
+<status status="PASS" endtime="20160816 10:27:17.860" starttime="20160816 10:27:08.380"></status>
 </kw>
 <kw name="Maximize Browser Window" library="Selenium2Library">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" endtime="20160816 00:41:31.376" starttime="20160816 00:41:31.129"></status>
+<status status="PASS" endtime="20160816 10:27:18.175" starttime="20160816 10:27:17.861"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:31.377" starttime="20160816 00:41:29.035"></status>
+<status status="PASS" endtime="20160816 10:27:18.176" starttime="20160816 10:27:08.380"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:31.377" starttime="20160816 00:41:29.035"></status>
+<status status="PASS" endtime="20160816 10:27:18.176" starttime="20160816 10:27:08.380"></status>
 </kw>
 <test id="s1-s1-s1-t1" name="Comp_Cust_Report_Static_Report">
 <kw type="setup" name="Global Test Fixture Test Setup" library="GlobalKeywords">
@@ -74,19 +74,19 @@
 <arg>${locator}</arg>
 <arg>${timeout}</arg>
 </arguments>
-<status status="PASS" endtime="20160816 00:41:31.442" starttime="20160816 00:41:31.386"></status>
+<status status="PASS" endtime="20160816 10:27:18.225" starttime="20160816 10:27:18.184"></status>
 </kw>
-<msg timestamp="20160816 00:41:31.443" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
-<status status="PASS" endtime="20160816 00:41:31.443" starttime="20160816 00:41:31.385"></status>
+<msg timestamp="20160816 10:27:18.225" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20160816 10:27:18.225" starttime="20160816 10:27:18.183"></status>
 </kw>
 <kw name="Focus" library="Selenium2Library">
 <doc>Sets focus to element identified by `locator`.</doc>
 <arguments>
 <arg>${locator}</arg>
 </arguments>
-<status status="PASS" endtime="20160816 00:41:31.463" starttime="20160816 00:41:31.444"></status>
+<status status="PASS" endtime="20160816 10:27:18.261" starttime="20160816 10:27:18.225"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:31.464" starttime="20160816 00:41:31.384"></status>
+<status status="PASS" endtime="20160816 10:27:18.262" starttime="20160816 10:27:18.182"></status>
 </kw>
 <kw name="Input Text" library="Selenium2Library">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -94,10 +94,10 @@
 <arg>${locator}</arg>
 <arg>${inputText}</arg>
 </arguments>
-<msg timestamp="20160816 00:41:31.465" level="INFO">Typing text 'QA052-AUTO-QADEF2' into text field 'id=corpBox'</msg>
-<status status="PASS" endtime="20160816 00:41:31.640" starttime="20160816 00:41:31.465"></status>
+<msg timestamp="20160816 10:27:18.263" level="INFO">Typing text 'QA052-AUTO-QADEF2' into text field 'id=corpBox'</msg>
+<status status="PASS" endtime="20160816 10:27:18.410" starttime="20160816 10:27:18.263"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:31.640" starttime="20160816 00:41:31.383"></status>
+<status status="PASS" endtime="20160816 10:27:18.410" starttime="20160816 10:27:18.181"></status>
 </kw>
 <kw name="Utility Input Text" library="UtilityKeywords">
 <arguments>
@@ -124,19 +124,19 @@
 <arg>${locator}</arg>
 <arg>${timeout}</arg>
 </arguments>
-<status status="PASS" endtime="20160816 00:41:31.724" starttime="20160816 00:41:31.644"></status>
+<status status="PASS" endtime="20160816 10:27:18.464" starttime="20160816 10:27:18.414"></status>
 </kw>
-<msg timestamp="20160816 00:41:31.725" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
-<status status="PASS" endtime="20160816 00:41:31.725" starttime="20160816 00:41:31.643"></status>
+<msg timestamp="20160816 10:27:18.465" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20160816 10:27:18.465" starttime="20160816 10:27:18.413"></status>
 </kw>
 <kw name="Focus" library="Selenium2Library">
 <doc>Sets focus to element identified by `locator`.</doc>
 <arguments>
 <arg>${locator}</arg>
 </arguments>
-<status status="PASS" endtime="20160816 00:41:31.745" starttime="20160816 00:41:31.726"></status>
+<status status="PASS" endtime="20160816 10:27:18.488" starttime="20160816 10:27:18.466"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:31.746" starttime="20160816 00:41:31.642"></status>
+<status status="PASS" endtime="20160816 10:27:18.489" starttime="20160816 10:27:18.412"></status>
 </kw>
 <kw name="Input Text" library="Selenium2Library">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -144,10 +144,10 @@
 <arg>${locator}</arg>
 <arg>${inputText}</arg>
 </arguments>
-<msg timestamp="20160816 00:41:31.747" level="INFO">Typing text 'ca' into text field 'id=userNameBox'</msg>
-<status status="PASS" endtime="20160816 00:41:31.836" starttime="20160816 00:41:31.746"></status>
+<msg timestamp="20160816 10:27:18.490" level="INFO">Typing text 'ca' into text field 'id=userNameBox'</msg>
+<status status="PASS" endtime="20160816 10:27:18.600" starttime="20160816 10:27:18.490"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:31.837" starttime="20160816 00:41:31.641"></status>
+<status status="PASS" endtime="20160816 10:27:18.601" starttime="20160816 10:27:18.411"></status>
 </kw>
 <kw name="Utility Input Text" library="UtilityKeywords">
 <arguments>
@@ -174,19 +174,19 @@
 <arg>${locator}</arg>
 <arg>${timeout}</arg>
 </arguments>
-<status status="PASS" endtime="20160816 00:41:31.884" starttime="20160816 00:41:31.841"></status>
+<status status="PASS" endtime="20160816 10:27:18.642" starttime="20160816 10:27:18.605"></status>
 </kw>
-<msg timestamp="20160816 00:41:31.885" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
-<status status="PASS" endtime="20160816 00:41:31.885" starttime="20160816 00:41:31.840"></status>
+<msg timestamp="20160816 10:27:18.642" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20160816 10:27:18.642" starttime="20160816 10:27:18.603"></status>
 </kw>
 <kw name="Focus" library="Selenium2Library">
 <doc>Sets focus to element identified by `locator`.</doc>
 <arguments>
 <arg>${locator}</arg>
 </arguments>
-<status status="PASS" endtime="20160816 00:41:31.904" starttime="20160816 00:41:31.886"></status>
+<status status="PASS" endtime="20160816 10:27:18.676" starttime="20160816 10:27:18.642"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:31.904" starttime="20160816 00:41:31.839"></status>
+<status status="PASS" endtime="20160816 10:27:18.677" starttime="20160816 10:27:18.602"></status>
 </kw>
 <kw name="Input Text" library="Selenium2Library">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -194,10 +194,10 @@
 <arg>${locator}</arg>
 <arg>${inputText}</arg>
 </arguments>
-<msg timestamp="20160816 00:41:31.906" level="INFO">Typing text 'popeye123' into text field 'id=passWordBox'</msg>
-<status status="PASS" endtime="20160816 00:41:32.012" starttime="20160816 00:41:31.905"></status>
+<msg timestamp="20160816 10:27:18.678" level="INFO">Typing text 'popeye123' into text field 'id=passWordBox'</msg>
+<status status="PASS" endtime="20160816 10:27:18.792" starttime="20160816 10:27:18.677"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:32.013" starttime="20160816 00:41:31.837"></status>
+<status status="PASS" endtime="20160816 10:27:18.793" starttime="20160816 10:27:18.601"></status>
 </kw>
 <kw name="Utility Click Element" library="UtilityKeywords">
 <arguments>
@@ -224,19 +224,19 @@
 <arg>${locator}</arg>
 <arg>${timeout}</arg>
 </arguments>
-<status status="PASS" endtime="20160816 00:41:32.056" starttime="20160816 00:41:32.016"></status>
+<status status="PASS" endtime="20160816 10:27:18.840" starttime="20160816 10:27:18.798"></status>
 </kw>
-<msg timestamp="20160816 00:41:32.056" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
-<status status="PASS" endtime="20160816 00:41:32.056" starttime="20160816 00:41:32.015"></status>
+<msg timestamp="20160816 10:27:18.841" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20160816 10:27:18.841" starttime="20160816 10:27:18.797"></status>
 </kw>
 <kw name="Focus" library="Selenium2Library">
 <doc>Sets focus to element identified by `locator`.</doc>
 <arguments>
 <arg>${locator}</arg>
 </arguments>
-<status status="PASS" endtime="20160816 00:41:32.079" starttime="20160816 00:41:32.056"></status>
+<status status="PASS" endtime="20160816 10:27:18.865" starttime="20160816 10:27:18.842"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:32.079" starttime="20160816 00:41:32.014"></status>
+<status status="PASS" endtime="20160816 10:27:18.866" starttime="20160816 10:27:18.795"></status>
 </kw>
 <kw name="Wait Until Keyword Succeeds" library="BuiltIn">
 <doc>Runs the specified keyword and retries if it fails.</doc>
@@ -251,12 +251,12 @@
 <arguments>
 <arg>${locator}</arg>
 </arguments>
-<msg timestamp="20160816 00:41:32.082" level="INFO">Clicking element 'id=submit'.</msg>
-<status status="PASS" endtime="20160816 00:41:32.133" starttime="20160816 00:41:32.081"></status>
+<msg timestamp="20160816 10:27:18.868" level="INFO">Clicking element 'id=submit'.</msg>
+<status status="PASS" endtime="20160816 10:27:22.822" starttime="20160816 10:27:18.867"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:32.133" starttime="20160816 00:41:32.080"></status>
+<status status="PASS" endtime="20160816 10:27:22.823" starttime="20160816 10:27:18.866"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:32.134" starttime="20160816 00:41:32.013"></status>
+<status status="PASS" endtime="20160816 10:27:22.824" starttime="20160816 10:27:18.794"></status>
 </kw>
 <kw name="Utility Page Should Contain" library="UtilityKeywords">
 <arguments>
@@ -271,18 +271,18 @@
 <assign>
 <var>${pgShouldContainRet1}</var>
 </assign>
-<msg timestamp="20160816 00:41:34.929" level="INFO">${pgShouldContainRet1} = None</msg>
-<status status="PASS" endtime="20160816 00:41:34.929" starttime="20160816 00:41:32.136"></status>
+<msg timestamp="20160816 10:27:23.050" level="INFO">${pgShouldContainRet1} = None</msg>
+<status status="PASS" endtime="20160816 10:27:23.050" starttime="20160816 10:27:22.825"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:34.930" starttime="20160816 00:41:32.135"></status>
+<status status="PASS" endtime="20160816 10:27:23.050" starttime="20160816 10:27:22.824"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:34.930" starttime="20160816 00:41:31.381"></status>
+<status status="PASS" endtime="20160816 10:27:23.050" starttime="20160816 10:27:18.179"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:34.931" starttime="20160816 00:41:31.380"></status>
+<status status="PASS" endtime="20160816 10:27:23.050" starttime="20160816 10:27:18.178"></status>
 </kw>
 <kw name="Maximize Browser Window" library="Selenium2Library">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" endtime="20160816 00:41:34.941" starttime="20160816 00:41:34.933"></status>
+<status status="PASS" endtime="20160816 10:27:23.066" starttime="20160816 10:27:23.050"></status>
 </kw>
 <kw name="comp_nav_to_cust_report" library="COMP_Config">
 <arguments>
@@ -305,12 +305,12 @@
 <arguments>
 <arg>${locatorclick}</arg>
 </arguments>
-<msg timestamp="20160816 00:41:34.945" level="INFO">Clicking element 'xpath=//label[.='Reports']'.</msg>
-<status status="PASS" endtime="20160816 00:41:35.945" starttime="20160816 00:41:34.944"></status>
+<msg timestamp="20160816 10:27:23.081" level="INFO">Clicking element 'xpath=//label[.='Reports']'.</msg>
+<status status="PASS" endtime="20160816 10:27:24.849" starttime="20160816 10:27:23.081"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:35.946" starttime="20160816 00:41:34.943"></status>
+<status status="PASS" endtime="20160816 10:27:24.850" starttime="20160816 10:27:23.081"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:35.946" starttime="20160816 00:41:34.942"></status>
+<status status="PASS" endtime="20160816 10:27:24.851" starttime="20160816 10:27:23.081"></status>
 </kw>
 <kw name="csodUtilClick" library="CSOD_Keywords">
 <arguments>
@@ -329,12 +329,12 @@
 <arguments>
 <arg>${locatorclick}</arg>
 </arguments>
-<msg timestamp="20160816 00:41:35.949" level="INFO">Clicking element 'css=a[href='/analytics/Main.aspx?tab_page_id=-301']'.</msg>
-<status status="PASS" endtime="20160816 00:41:40.164" starttime="20160816 00:41:35.949"></status>
+<msg timestamp="20160816 10:27:24.854" level="INFO">Clicking element 'css=a[href='/analytics/Main.aspx?tab_page_id=-301']'.</msg>
+<status status="PASS" endtime="20160816 10:27:30.451" starttime="20160816 10:27:24.853"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:40.165" starttime="20160816 00:41:35.948"></status>
+<status status="PASS" endtime="20160816 10:27:30.454" starttime="20160816 10:27:24.852"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:40.165" starttime="20160816 00:41:35.947"></status>
+<status status="PASS" endtime="20160816 10:27:30.454" starttime="20160816 10:27:24.851"></status>
 </kw>
 <kw name="csodUtilInputText" library="CSOD_Keywords">
 <arguments>
@@ -356,12 +356,12 @@
 <arg>${locator}</arg>
 <arg>${input}</arg>
 </arguments>
-<msg timestamp="20160816 00:41:40.169" level="INFO">Typing text 'CO-Planners (copy)' into text field 'id=txtSearch'</msg>
-<status status="PASS" endtime="20160816 00:41:40.379" starttime="20160816 00:41:40.168"></status>
+<msg timestamp="20160816 10:27:30.458" level="INFO">Typing text 'CO-Planners (copy)' into text field 'id=txtSearch'</msg>
+<status status="PASS" endtime="20160816 10:27:30.650" starttime="20160816 10:27:30.457"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:40.379" starttime="20160816 00:41:40.167"></status>
+<status status="PASS" endtime="20160816 10:27:30.650" starttime="20160816 10:27:30.456"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:40.380" starttime="20160816 00:41:40.166"></status>
+<status status="PASS" endtime="20160816 10:27:30.651" starttime="20160816 10:27:30.455"></status>
 </kw>
 <kw name="csodUtilClick" library="CSOD_Keywords">
 <arguments>
@@ -380,12 +380,12 @@
 <arguments>
 <arg>${locatorclick}</arg>
 </arguments>
-<msg timestamp="20160816 00:41:40.383" level="INFO">Clicking element 'css=a.cso-btn.cso-btn-blue.cso-corner'.</msg>
-<status status="PASS" endtime="20160816 00:41:40.543" starttime="20160816 00:41:40.383"></status>
+<msg timestamp="20160816 10:27:30.654" level="INFO">Clicking element 'css=a.cso-btn.cso-btn-blue.cso-corner'.</msg>
+<status status="PASS" endtime="20160816 10:27:30.811" starttime="20160816 10:27:30.654"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:40.543" starttime="20160816 00:41:40.382"></status>
+<status status="PASS" endtime="20160816 10:27:30.811" starttime="20160816 10:27:30.652"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:40.544" starttime="20160816 00:41:40.381"></status>
+<status status="PASS" endtime="20160816 10:27:30.813" starttime="20160816 10:27:30.651"></status>
 </kw>
 <kw name="csodUtilClick" library="CSOD_Keywords">
 <arguments>
@@ -404,12 +404,12 @@
 <arguments>
 <arg>${locatorclick}</arg>
 </arguments>
-<msg timestamp="20160816 00:41:40.547" level="INFO">Clicking element 'css=span.action-btn-icon'.</msg>
-<status status="PASS" endtime="20160816 00:41:40.626" starttime="20160816 00:41:40.546"></status>
+<msg timestamp="20160816 10:27:30.818" level="INFO">Clicking element 'css=span.action-btn-icon'.</msg>
+<status status="PASS" endtime="20160816 10:27:30.921" starttime="20160816 10:27:30.817"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:40.626" starttime="20160816 00:41:40.546"></status>
+<status status="PASS" endtime="20160816 10:27:30.922" starttime="20160816 10:27:30.815"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:40.627" starttime="20160816 00:41:40.545"></status>
+<status status="PASS" endtime="20160816 10:27:30.922" starttime="20160816 10:27:30.813"></status>
 </kw>
 <kw name="csodUtilClick" library="CSOD_Keywords">
 <arguments>
@@ -428,14 +428,14 @@
 <arguments>
 <arg>${locatorclick}</arg>
 </arguments>
-<msg timestamp="20160816 00:41:40.632" level="INFO">Clicking element 'css=#ui-id-34'.</msg>
-<status status="PASS" endtime="20160816 00:41:52.400" starttime="20160816 00:41:40.631"></status>
+<msg timestamp="20160816 10:27:30.925" level="INFO">Clicking element 'css=#ui-id-34'.</msg>
+<status status="PASS" endtime="20160816 10:27:42.580" starttime="20160816 10:27:30.924"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:52.400" starttime="20160816 00:41:40.630"></status>
+<status status="PASS" endtime="20160816 10:27:42.581" starttime="20160816 10:27:30.924"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:52.401" starttime="20160816 00:41:40.628"></status>
+<status status="PASS" endtime="20160816 10:27:42.582" starttime="20160816 10:27:30.923"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:41:52.401" starttime="20160816 00:41:34.941"></status>
+<status status="PASS" endtime="20160816 10:27:42.582" starttime="20160816 10:27:23.066"></status>
 </kw>
 <kw type="teardown" name="Global Test Fixture Go To URL Teardown" library="GlobalKeywords">
 <kw name="Run Keyword If" library="BuiltIn">
@@ -444,7 +444,7 @@
 <arg>'${TEST_STATUS}'=='FAIL'</arg>
 <arg>Log Source</arg>
 </arguments>
-<status status="PASS" endtime="20160816 00:41:52.411" starttime="20160816 00:41:52.403"></status>
+<status status="PASS" endtime="20160816 10:27:42.592" starttime="20160816 10:27:42.584"></status>
 </kw>
 <kw name="Utility Go To URL" library="UtilityKeywords">
 <arguments>
@@ -461,25 +461,12 @@
 <arguments>
 <arg>${GoToURL}</arg>
 </arguments>
-<msg timestamp="20160816 00:41:52.414" level="INFO">Opening url 'https://qa05.csod.com/'</msg>
-<kw name="Capture Page Screenshot" library="Selenium2Library">
-<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
-<msg timestamp="20160816 00:51:52.499" level="FAIL">UnexpectedAlertPresentException: Alert Text: None
-&lt;super: &lt;class 'WebDriverException'&gt;, &lt;UnexpectedAlertPresentException object&gt;&gt;</msg>
-<status status="FAIL" endtime="20160816 00:51:52.500" starttime="20160816 00:51:52.479"></status>
+<msg timestamp="20160816 10:27:42.595" level="INFO">Opening url 'https://qa05.csod.com/'</msg>
+<status status="PASS" endtime="20160816 10:28:04.774" starttime="20160816 10:27:42.594"></status>
 </kw>
-<msg timestamp="20160816 00:51:52.501" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: UnexpectedAlertPresentException: Alert Text: None
-&lt;super: &lt;class 'WebDriverException'&gt;, &lt;UnexpectedAlertPresentException object&gt;&gt;</msg>
-<msg timestamp="20160816 00:51:52.503" level="FAIL">WebDriverException: Message: unknown error: cannot determine loading status
-from timeout: Timed out receiving message from renderer: 600.000
-  (Session info: chrome=52.0.2743.116)
-  (Driver info: chromedriver=2.20.353145 (343b531d31eeb933ec778dbcf7081628a1396067),platform=Windows NT 6.3 x86_64)
-</msg>
-<status status="FAIL" endtime="20160816 00:51:52.504" starttime="20160816 00:41:52.413"></status>
+<status status="PASS" endtime="20160816 10:28:04.774" starttime="20160816 10:27:42.593"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:51:52.504" starttime="20160816 00:41:52.412"></status>
-</kw>
-<status status="PASS" endtime="20160816 00:51:52.505" starttime="20160816 00:41:52.411"></status>
+<status status="PASS" endtime="20160816 10:28:04.775" starttime="20160816 10:27:42.592"></status>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
@@ -487,7 +474,7 @@ from timeout: Timed out receiving message from renderer: 600.000
 <arg>'${TEST_STATUS}'=='FAIL'</arg>
 <arg>Global Test Fixture Suite Teardown</arg>
 </arguments>
-<status status="PASS" endtime="20160816 00:51:52.518" starttime="20160816 00:51:52.506"></status>
+<status status="PASS" endtime="20160816 10:28:04.783" starttime="20160816 10:28:04.776"></status>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
@@ -495,20 +482,20 @@ from timeout: Timed out receiving message from renderer: 600.000
 <arg>'${TEST_STATUS}'=='FAIL'</arg>
 <arg>Global Test Fixture Suite Setup</arg>
 </arguments>
-<status status="PASS" endtime="20160816 00:51:52.530" starttime="20160816 00:51:52.519"></status>
+<status status="PASS" endtime="20160816 10:28:04.799" starttime="20160816 10:28:04.791"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:51:52.531" starttime="20160816 00:41:52.402"></status>
+<status status="PASS" endtime="20160816 10:28:04.799" starttime="20160816 10:27:42.583"></status>
 </kw>
 <tags>
 <tag>COMPCUSTREP</tag>
 </tags>
-<status status="PASS" endtime="20160816 00:51:52.532" critical="yes" starttime="20160816 00:41:31.378"></status>
+<status status="PASS" endtime="20160816 10:28:04.800" critical="yes" starttime="20160816 10:27:18.177"></status>
 </test>
 <kw type="teardown" name="Global Test Fixture Suite Teardown with Email Attachment" library="GlobalKeywords">
 <doc>Test fixture that handles suite teardown</doc>
 <kw name="Close All Browsers" library="Selenium2Library">
 <doc>Closes all open browsers and resets the browser cache.</doc>
-<status status="PASS" endtime="20160816 00:51:53.913" starttime="20160816 00:51:52.537"></status>
+<status status="PASS" endtime="20160816 10:28:07.245" starttime="20160816 10:28:04.803"></status>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <doc>Returns the given values which can then be assigned to a variables.</doc>
@@ -518,8 +505,8 @@ from timeout: Timed out receiving message from renderer: 600.000
 <assign>
 <var>${comp_status}</var>
 </assign>
-<msg timestamp="20160816 00:51:53.913" level="INFO">${comp_status} = PASS</msg>
-<status status="PASS" endtime="20160816 00:51:53.913" starttime="20160816 00:51:53.913"></status>
+<msg timestamp="20160816 10:28:07.245" level="INFO">${comp_status} = PASS</msg>
+<status status="PASS" endtime="20160816 10:28:07.245" starttime="20160816 10:28:07.245"></status>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <doc>Returns the given values which can then be assigned to a variables.</doc>
@@ -529,8 +516,8 @@ from timeout: Timed out receiving message from renderer: 600.000
 <assign>
 <var>${comp_suite_name}</var>
 </assign>
-<msg timestamp="20160816 00:51:53.913" level="INFO">${comp_suite_name} = COMP.TestSuites.COMP-Custom-Reports</msg>
-<status status="PASS" endtime="20160816 00:51:53.913" starttime="20160816 00:51:53.913"></status>
+<msg timestamp="20160816 10:28:07.245" level="INFO">${comp_suite_name} = COMP.TestSuites.COMP-Custom-Reports</msg>
+<status status="PASS" endtime="20160816 10:28:07.245" starttime="20160816 10:28:07.245"></status>
 </kw>
 <kw name="Send Mail With Attachment" library="GmailEmailLibrary">
 <arguments>
@@ -541,19 +528,19 @@ from timeout: Timed out receiving message from renderer: 600.000
 <arg>This is the Compensation Smoketest please take the time to review the Test Suite results attached html file.</arg>
 <arg>C:\\Users\\gfung\\Documents\\RobotFrameworkTeam\\CSOD_RobotFramework\\COMP\\TestResults\\report.html</arg>
 </arguments>
-<status status="PASS" endtime="20160816 00:51:57.616" starttime="20160816 00:51:53.913"></status>
+<status status="PASS" endtime="20160816 10:28:09.964" starttime="20160816 10:28:07.245"></status>
 </kw>
-<status status="PASS" endtime="20160816 00:51:57.616" starttime="20160816 00:51:52.535"></status>
+<status status="PASS" endtime="20160816 10:28:09.964" starttime="20160816 10:28:04.802"></status>
 </kw>
 <metadata>
 <item name="Log of First Run">[first_run_log.html|first_run_log.html]</item>
 <item name="Log of Second Run">[second_run_log.html|second_run_log.html]</item>
 </metadata>
-<status status="PASS" endtime="20160816 00:51:57.616" starttime="20160816 00:41:28.613"></status>
+<status status="PASS" endtime="20160816 10:28:09.964" starttime="20160816 10:27:05.130"></status>
 </suite>
-<status status="PASS" endtime="20160816 00:51:57.631" starttime="20160816 00:41:28.613"></status>
+<status status="PASS" endtime="20160816 10:28:09.964" starttime="20160816 10:27:05.130"></status>
 </suite>
-<status status="PASS" endtime="20160816 00:51:57.631" starttime="20160816 00:41:28.582"></status>
+<status status="PASS" endtime="20160816 10:28:09.979" starttime="20160816 10:27:04.958"></status>
 </suite>
 <statistics>
 <total>
@@ -570,7 +557,5 @@ from timeout: Timed out receiving message from renderer: 600.000
 </suite>
 </statistics>
 <errors>
-<msg timestamp="20160816 00:51:52.501" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: UnexpectedAlertPresentException: Alert Text: None
-&lt;super: &lt;class 'WebDriverException'&gt;, &lt;UnexpectedAlertPresentException object&gt;&gt;</msg>
 </errors>
 </robot>
