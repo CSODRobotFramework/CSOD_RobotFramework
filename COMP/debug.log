@@ -103,3 +103,12 @@
 [0715/002432:ERROR:file_io_win.cc(163)] CreateFile C:\Users\gfung\AppData\Local\Google\Chrome\User Data\Crashpad\settings.dat: Access is denied. (0x5)
 [0715/002432:ERROR:registration_protocol_win.cc(82)] TransactNamedPipe: The pipe has been ended. (0x6D)
 [0715/002432:ERROR:file_io_win.cc(163)] CreateFile C:\Users\gfung\AppData\Local\Google\Chrome\User Data\Crashpad\settings.dat: Access is denied. (0x5)
+[0817/120308:ERROR:process_info.cc(608)] range at 0xfdc425c200000000, size 0x81 fully unreadable
+[0817/120308:ERROR:process_info.cc(608)] range at 0xfdc4262800000000, size 0x81 fully unreadable
+[0817/120308:ERROR:process_info.cc(608)] range at 0x0, size 0x81 fully unreadable
+[0820/181920:ERROR:process_info.cc(608)] range at 0x5bc221ca00000000, size 0x62 fully unreadable
+[0820/181920:ERROR:process_info.cc(608)] range at 0x5bc221ea00000000, size 0x62 fully unreadable
+[0820/181920:ERROR:process_info.cc(608)] range at 0x0, size 0x62 fully unreadable
+[0820/181921:ERROR:process_reader_win.cc(114)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights.  (0xc0000022)
+[0820/181921:ERROR:exception_snapshot_win.cc(88)] thread ID 5440 not found in process
+[0820/181921:WARNING:crash_report_exception_handler.cc(60)] ProcessSnapshotWin::InitializeException failed

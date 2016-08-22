@@ -13,4 +13,7 @@ Resource          ../Resources/COMP_PROJECTS/COMP_OR_Keywords/COMP_Custom_Report
 Comp_Cust_Report_Static_Report
     [Tags]    COMPCUSTREP
     Maximize Browser Window
-    comp_nav_to_cust_report    CO-Planners (copy)
+    comp_nav_to_cust_report    UC-001: 16.03 Standard Planning Use Case - 3
+    comp_refresh_processed    ${report.last_run}
+    comp_export_excel    UC-001: 16.03 Standard Planning Use Case - 3
+    Download_Excel_And_Compare_Custom_Reports    Comp_Custom_GBP_OG.xls

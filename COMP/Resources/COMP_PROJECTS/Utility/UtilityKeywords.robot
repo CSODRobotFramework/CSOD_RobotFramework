@@ -172,3 +172,11 @@ Utility Email Report
 Utility Go To URL
     [Arguments]    ${GoToURL}
     Run Keyword And Ignore Error    Go To    ${GoToURL}
+
+Utility Element Should Contain Text
+    [Arguments]    ${tag_locator}    ${expected_text}
+    Element Should Contain    ${tag_locator}    ${expected_text}    The text appears fine.
+
+Utility Element Should Contain Comp
+    [Arguments]    ${tag_locator}
+    Element Should Contain    ${tag_locator}    Processing...    The text appears fine.

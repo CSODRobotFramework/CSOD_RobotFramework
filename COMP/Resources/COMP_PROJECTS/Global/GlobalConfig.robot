@@ -1,13 +1,13 @@
 *** Variables ***
 ${cfg_global_login_browser}    chrome
-${cfg_global_login_profile}    qa052    # here we pass one variable 'default' in this case to control lots of variables with _default at the end.
+${cfg_global_login_profile}    autocomp2    # here we pass one variable 'default' in this case to control lots of variables with _default at the end.
 ${cfg_global_login_corp}    ${cfg_global_login_corp_${cfg_global_login_profile}}
 ${cfg_global_login_username}    ${cfg_global_login_username_${cfg_global_login_profile}}
 ${cfg_global_login_password}    ${cfg_global_login_password_${cfg_global_login_profile}}
 ${cfg_global_login_url}    ${cfg_global_login_url_${cfg_global_login_profile}}
 ${cfg_global_login_url_qa012}    https://qa01.csod.com/    # https://corporate5-stg.csod.com/,https://corporate1-pilot.csod.com/,https://corporate6.csod.com/,https://corporate3.csod.com/,https://corporate5-pilot.csod.com/
 ${cfg_global_login_corp_qa012}    QA012-AUTO-QADEF2    # QA-LD4STG-COMP1, QA-LA4PIL-COMP1,QA-LD4STG-COMP2,QA-LD4SL1-COMP1,QA-LD4SL1-COMP1,QA-LD4SL1-COMP2,QA-LD4PIL-COMP1,QA052-AUTO-QADEF2
-${cfg_global_login_username_qa012}    ca
+${cfg_global_login_username_qa012}    ssmith
 ${cfg_global_login_password_qa012}    popeye123
 ${cfg_global_home_pagesync}    ${EMPTY}
 ${cfg_global_resource_webdrivers}    ${EXECDIR}\\Resources\\WebDrivers\\
@@ -71,3 +71,7 @@ ${cfg_global_login_corp_autocomp2}    QA052-AUTO-COMP2    # QA-LD4STG-COMP1, QA-
 ${cfg_global_login_username_autocomp2}    ssmith
 ${cfg_global_login_password_autocomp2}    popeye123
 ${cfg_global_login_url_autocomp2}    https://qa05.csod.com/
+${cfg_global_login_corp_autoqadef}    QA012-AUTO-QADEF    # QA-LD4STG-COMP1, QA-LA4PIL-COMP1,QA-LD4STG-COMP2,QA-LD4SL1-COMP1,QA-LD4SL1-COMP1,QA-LD4SL1-COMP2,QA-LD4PIL-COMP1,QA052-AUTO-QADEF2
+${cfg_global_login_username_autoqadef}    jhennessy
+${cfg_global_login_password_autoqadef}    popeye123
+${cfg_global_login_url_autoqadef}    https://qa01.csod.com/
