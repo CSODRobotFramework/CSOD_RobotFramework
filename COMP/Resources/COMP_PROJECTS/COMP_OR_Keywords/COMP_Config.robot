@@ -216,12 +216,6 @@ comp_nav_to_cust_report
 
 comp_refresh_processed
     [Arguments]    ${report_process}
-    Comment    Utility Element Should Contain Comp    ${report_process}
-    Comment    ${ints}=    Create List    ${report_process}
-    Comment    :FOR    ${ELEMENT}    IN    ${ints}
-    Comment    \    Log    ${ELEMENT}
-    Comment    \    Run Keyword If    '${ELEMENT}' == 'PASS'    Exit For Loop
-    Comment    Log    Exit For Loop triggered at the second element
     : FOR    ${INDEX}    IN RANGE    1    6
     \    ${status}    ${value}=    Run Keyword And Ignore Error    Page Should Contain Link    ${report_process}
     \    log    ${INDEX}
@@ -233,8 +227,9 @@ comp_export_excel
     [Arguments]    ${Comp_Report_Title}
     csodUtilInputText    ${report.search_reports}    ${Comp_Report_Title}
     csodUtilClick    ${report.search_btn}
+    Utility Sleep    1s
     Utility Click Element If Visible    ${report.action_btn}
-    Utility Click Element    ${report.action_btn}
+    Utility Click Element If Visible    ${report.action_btn}
     Utility Sleep    1s
     Utility Click Element    ${report.action_btn}
     Utility Sync Element    ${report.excel}

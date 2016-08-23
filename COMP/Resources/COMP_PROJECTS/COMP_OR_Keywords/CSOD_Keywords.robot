@@ -5,6 +5,7 @@ Library           String
 Library           Collections
 Library           Process
 Library           CompareXL
+Library           CompareXLCustReport
 
 *** Keywords ***
 Environment
@@ -160,7 +161,7 @@ Select_Currency
     Comment    Adds the given key_value_pairs and items to the dictionary
     Set To Dictionary    ${COMPWageTypeDictionary}    USD    $ USD
     Set To Dictionary    ${COMPWageTypeDictionary}    GBP    £ GBP
-    Set To Dictionary    ${COMPWageTypeDictionary}    KRW    ? KRW
+    Set To Dictionary    ${COMPWageTypeDictionary}    KRW    ₩ KRW
     Set To Dictionary    ${COMPWageTypeDictionary}    AUD    A$ AUD
     Set To Dictionary    ${COMPWageTypeDictionary}    EUR    € EUR
     Set To Dictionary    ${COMPWageTypeDictionary}    JPY    ¥ JPY
@@ -389,3 +390,26 @@ Email_Test_Results
     ${comp_status}=    Set Variable    ${PREV_TEST_STATUS}
     ${comp_suite_name}=    Set Variable    ${SUITE_NAME}
     Send Mail With Attachment    geefung@gmail.com    popeye123    gfung@csod.com    ${comp_smoke_test_status} ${comp_suite_name} ${cfg_global_login_profile} ${comp_status}    This is the Compensation Smoketest please take the time to review the Test Suite results attached html file.    C:\\Users\\gfung\\Documents\\RobotFrameworkTeam\\CSOD_RobotFramework\\COMP\\TestResults\\report.html
+
+Download_Excel_And_Compare_Custom_Reports
+    [Arguments]    ${OriginalFile}    # Example:USD_OG1.xls
+    [Documentation]    The Downloaded Excel File is always being Downloaded to the Downloads folder therefore the path for the keywords: File_Exist, Move_Files, and Wait_For_File_Removed needs to point to the Downloads default folder on your Mac or PC system.
+    File_Exist    C:\\Users\\gfung\\Downloads\\*.xls
+    Move_Files_Custom_Report    C:\\Users\\gfung\\Downloads\\*.xls    C:\\Users\\gfung\\.jenkins\\workspace\\COMP-Smoketest-Admin-Side\\COMP\\    ${OriginalFile}
+    Wait_For_File_Removed    C:\\Users\\gfung\\Downloads\\*.xls
+    Archive_Files    ${EXECDIR}\\UC-*    ${EXECDIR}\\Resources\\Uploads\\Comp_Excel_Archived_Files\\
+    Archive_Files    ${EXECDIR}\\Runtime_Comp_Custom.xls    ${EXECDIR}\\Resources\\Uploads\\Comp_Excel_Archived_Files\\
+
+Move_Files_Custom_Report
+    [Arguments]    ${File1PathSource}=C:\\Users\\gfung\\Downloads\\*.xls    ${File2PathDestination}=C:\\Users\\gfung\\.jenkins\\workspace\\COMP-Smoketest-Admin-Side\\COMP\\    ${OriginalFiles}=Comp_Adj_OG.xls
+    ${MovedFile}=    Move File    ${File1PathSource}    ${File2PathDestination}
+    Set Test Message    ${MovedFile}    append=True
+    ${str}=    Replace String    ${MovedFile}    C:\\Users\\gfung\\.jenkins\\workspace\\COMP-Smoketest-Admin-Side\\COMP\\    ${EMPTY}
+    Set Test Message    ${str}    append=True
+    Set Test Message    ${str}
+    CompareXLCustReport.Open File Write    ${str}    Runtime_Comp_Custom.xls
+    CompareXLCustReport.Excel One    ${OriginalFiles}
+    CompareXLCustReport.Excel Two    Runtime_Comp_Custom.xls
+    ${Result1}=    CompareXLCustReport.Open File    ${OriginalFiles}
+    ${Result2}=    CompareXLCustReport.Open File    Runtime_Comp_Custom.xls
+    ${Result3}=    Run Keyword And Continue On Failure    CompareXLCustReport.Compare Content    ${Result1}    ${Result2}

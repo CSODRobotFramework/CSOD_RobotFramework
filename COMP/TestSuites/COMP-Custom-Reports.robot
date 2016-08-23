@@ -8,6 +8,7 @@ Metadata          Log of Second Run    [second_run_log.html|second_run_log.html]
 Library           String
 Resource          ../Resources/COMP_PROJECTS/COMP_ObjectsResources.robot
 Resource          ../Resources/COMP_PROJECTS/COMP_OR_Keywords/COMP_Custom_Report_OR.robot
+Library           CompareXLCustReport
 
 *** Test Cases ***
 Comp_Cust_Report_Static_Report
