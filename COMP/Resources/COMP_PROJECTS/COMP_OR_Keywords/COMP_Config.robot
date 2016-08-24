@@ -204,9 +204,10 @@ comp_nav_to_cust_report
     csodUtilClick    ${report.custom_reports}
     csodUtilInputText    ${report.search_reports}    ${Comp_Report_Title}
     csodUtilClick    ${report.search_btn}
+    Utility Sleep    2s
     Utility Click Element If Visible    ${report.action_btn}
     Utility Click Element If Visible    ${report.action_btn}
-    Utility Sleep    1s
+    Utility Sleep    2s
     Utility Click Element    ${report.action_btn}
     Utility Sync Element    ${report.action_refresh}
     Utility Click Element    ${report.action_refresh}
@@ -234,3 +235,49 @@ comp_export_excel
     Utility Click Element    ${report.action_btn}
     Utility Sync Element    ${report.excel}
     Utility Click Element    ${report.excel}
+
+comp_edit_after_processed
+    [Arguments]    ${Comp_Report_Title}    ${Select_Currency_Combo_Custom_Rep}
+    csodUtilInputText    ${report.search_reports}    ${Comp_Report_Title}
+    csodUtilClick    ${report.search_btn}
+    Utility Sleep    1s
+    Utility Click Element If Visible    ${report.action_btn}
+    Utility Click Element If Visible    ${report.action_btn}
+    Utility Sleep    2s
+    Utility Click Element    ${report.action_btn}
+    Comment    Utility Click Element No Focus    ${report.edit}
+    Utility Sync Element    ${report.edit}
+    Utility Click Element    ${report.edit}
+    Utility Sync Element    ${report.currency_tab}
+    Utility Click Element    ${report.currency_tab}
+    Utility Click Element    ${report.pick_currency}
+    Select_Currency_Custom_Reports    ${Select_Currency_Combo_Custom_Rep}
+    Utility Sync Element    ${report.refresh_btn}
+    Utility Click Element    ${report.refresh_btn}
+    Utility Sleep    3 sec
+    Utility Sync Element    ${report.refresh_btn}
+    Utility Click Element    ${report.refresh_btn}
+    Utility Sleep    3 sec
+    Utility Sync Element    ${report.cellText}
+    Utility Sync Element    ${report.actions_btn}
+    Utility Click Element    ${report.actions_btn}
+    Utility Sync Element    ${report.action_excelPreview}
+    Utility Click Element    ${report.action_excelPreview}
+    Comment    Utility Sync Element    ${report.save_btn}
+    Comment    Utility Click Element    ${report.save_btn}
+
+comp_edit_cust_report
+    [Arguments]    ${report_process}
+    : FOR    ${INDEX}    IN RANGE    1    6
+    \    ${status}    ${value}=    Run Keyword And Ignore Error    Page Should Contain Link    ${report_process}
+    \    log    ${INDEX}
+    \    log    ${status}
+    \    Utility Sleep    1s
+    \    Run Keyword If    '${status}'=='PASS'    csodUtilClick    ${report.edit}
+
+comp_nav_to_cust_report_for_edit
+    [Arguments]    ${Comp_Report_Title}
+    csodUtilClick    ${report.search_tab}
+    csodUtilClick    ${report.custom_reports}
+    csodUtilInputText    ${report.search_reports}    ${Comp_Report_Title}
+    csodUtilClick    ${report.search_btn}

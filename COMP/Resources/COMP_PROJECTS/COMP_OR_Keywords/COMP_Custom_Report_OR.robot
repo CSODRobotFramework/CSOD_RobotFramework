@@ -11,5 +11,13 @@ ${report.currency_tab}    id=tabCurrencyTitle
 ${report.last_run}    xpath=//div[.='Processing...']    # Last Run "Processing"
 ${processing_status}    'Processing...'
 ${report.excel}    xpath=//span[.='Excel']/ancestor::a[1]
+${report.edit}    xpath=//span[.='Edit']/ancestor::a[1]
+${report.pick_currency}    id=rbtnPickCurrency
+${report.currency_combobox}    id=ucCurrency_CurrencyDDN
+${report.save_btn}    id=btnSave
+${report.refresh_btn}    id=btnPreview
+${report.actions_btn}    id=btnActions
+${report.action_excelPreview}    css=span.ui-icon.ui-icon-csod.ui-icon-csod-excel    # xpath=//span[@class='ui-icon ui-icon-csod ui-icon-csod-excel']
+${report.cellText}    xpath=//div[contains(text(),'Bear, Smokey')]
 
 *** Keywords ***

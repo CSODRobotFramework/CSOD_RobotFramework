@@ -413,3 +413,18 @@ Move_Files_Custom_Report
     ${Result1}=    CompareXLCustReport.Open File    ${OriginalFiles}
     ${Result2}=    CompareXLCustReport.Open File    Runtime_Comp_Custom.xls
     ${Result3}=    Run Keyword And Continue On Failure    CompareXLCustReport.Compare Content    ${Result1}    ${Result2}
+
+Select_Currency_Custom_Reports
+    [Arguments]    ${CurrencyType}=GBP    # Default Currency is £ GBP
+    ${COMPWageTypeDictionary}=    Create Dictionary
+    Comment    Adds the given key_value_pairs and items to the dictionary
+    Set To Dictionary    ${COMPWageTypeDictionary}    USD    $ USD
+    Set To Dictionary    ${COMPWageTypeDictionary}    GBP    £ GBP
+    Set To Dictionary    ${COMPWageTypeDictionary}    KRW    ₩ KRW
+    Set To Dictionary    ${COMPWageTypeDictionary}    AUD    A$ AUD
+    Set To Dictionary    ${COMPWageTypeDictionary}    EUR    € EUR
+    Set To Dictionary    ${COMPWageTypeDictionary}    JPY    ¥ JPY
+    Comment    Returns a value from the given dictionary based on the given key
+    ${keyValue}=    Get From Dictionary    ${COMPWageTypeDictionary}    ${CurrencyType}
+    Log    ${keyValue}
+    csodUtilComboBox    ${report.currency_combobox}    ${keyValue}
