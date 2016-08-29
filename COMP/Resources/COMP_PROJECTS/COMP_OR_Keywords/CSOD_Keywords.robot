@@ -428,3 +428,7 @@ Select_Currency_Custom_Reports
     ${keyValue}=    Get From Dictionary    ${COMPWageTypeDictionary}    ${CurrencyType}
     Log    ${keyValue}
     csodUtilComboBox    ${report.currency_combobox}    ${keyValue}
+
+PopupWindowComp
+    ${ID_Titles}=    Get Window Titles
+    Select Window    title=${ID_Titles[1]}

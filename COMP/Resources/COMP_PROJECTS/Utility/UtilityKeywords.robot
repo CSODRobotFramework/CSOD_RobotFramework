@@ -180,3 +180,13 @@ Utility Element Should Contain Text
 Utility Element Should Contain Comp
     [Arguments]    ${tag_locator}
     Element Should Contain    ${tag_locator}    Processing...    The text appears fine.
+
+Utility Select Window and Close Window
+    [Arguments]    ${locator}=${EMPTY}
+    Comment    ${selectWindowReturn1}=    Run Keyword And Continue On Failure    Wait Until Keyword Succeeds    10 sec    1 sec    Select Window
+    ...    ${locator}
+    Comment    ${windowIds}=    Run Keyword If    '${selectWindowReturn1}'=='None'    Get Window Identifiers
+    Comment    ${windowNames}=    Run Keyword If    '${selectWindowReturn1}'=='None'    Get Window Names
+    Comment    ${windowTitles}=    Run Keyword If    '${selectWindowReturn1}'=='None'    Get Window Titles
+    Comment    Run Keyword If    '${selectWindowReturn1}'=='None'    Fail    Select Window FAILED. \ ${locator} was not found.
+    Close Window

@@ -19,5 +19,9 @@ ${report.refresh_btn}    id=btnPreview
 ${report.actions_btn}    id=btnActions
 ${report.action_excelPreview}    css=span.ui-icon.ui-icon-csod.ui-icon-csod-excel    # xpath=//span[@class='ui-icon ui-icon-csod ui-icon-csod-excel']
 ${report.cellText}    xpath=//div[contains(text(),'Bear, Smokey')]
+${report.users_currency}    id=rbtnUserCurrency
+${report.close_btn}    id=btnClose
+${report.yes_btn}    xpath=//span[.='Yes'][1]
+${report.original_currency}    id=rbtnOriginalCurrency
 
 *** Keywords ***
