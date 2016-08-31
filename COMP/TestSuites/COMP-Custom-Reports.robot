@@ -1,4 +1,9 @@
 *** Settings ***
+Documentation     To Run this dynamically add the following line to the Run tab arguments text box area.
+...
+...
+...               -d TestResults -i COMPCUSTREP -v cfg_global_login_profile:autoqadef
+...
 Suite Setup       Global Test Fixture Suite Setup
 Suite Teardown    Global Test Fixture Suite Teardown with Email Attachment    # Global Test Fixture Suite Teardown with Email Attachment
 Test Setup        Global Test Fixture Test Setup
@@ -19,7 +24,7 @@ Comp_Cust_Report_Static_Report_GBP
     Maximize Browser Window
     comp_nav_to_cust_report    UC-001: 16.03 Standard Planning Use Case - 3
     comp_refresh_processed    ${report.last_run}
-    comp_export_excel    UC-001: 16.03 Standard Planning Use Case - 3
+    comp_export_excel    UC-001: 16.03 Standard Planning Use Case - 3    1 sec
     Download_Excel_And_Compare_Custom_Reports    Comp_Custom_GBP_OG.xls
 
 Comp_Cust_Report_Static_Report_JPY
@@ -31,7 +36,7 @@ Comp_Cust_Report_Static_Report_JPY
     comp_nav_to_cust_report_for_edit    UC-001: 16.03 Standard Planning Use Case - 3    50 sec
     comp_refresh_processed    ${report.last_run}
     comp_edit_after_processed    UC-001: 16.03 Standard Planning Use Case - 3    JPY
-    comp_export_excel    UC-001: 16.03 Standard Planning Use Case - 3
+    comp_export_excel    UC-001: 16.03 Standard Planning Use Case - 3    1 sec
     Download_Excel_And_Compare_Custom_Reports    Comp_Custom_JPY_OG.xls
 
 Comp_Cust_Report_Static_Report_USER
@@ -40,10 +45,10 @@ Comp_Cust_Report_Static_Report_USER
     ...    To run this Test alone please use GBP in the Run tab 'Only run tests with these tags' area. Optionally you can provide more than one tag like GBP, JPY
     [Tags]    COMPCUSTREP    USER
     Maximize Browser Window
-    comp_nav_to_cust_report_for_edit    UC-001: 16.03 Standard Planning Use Case - 3    50 sec
+    comp_nav_to_cust_report_for_edit    UC-001: 16.03 Standard Planning Use Case - 3    40 sec
     comp_refresh_processed    ${report.last_run}
     comp_edit_to_users_currency    UC-001: 16.03 Standard Planning Use Case - 3    USER
-    comp_export_excel    UC-001: 16.03 Standard Planning Use Case - 3
+    comp_export_excel    UC-001: 16.03 Standard Planning Use Case - 3    1 sec
     Download_Excel_And_Compare_Custom_Reports    Comp_Custom_USER_OG.xls
 
 Comp_Cust_Report_Static_Report_RESET

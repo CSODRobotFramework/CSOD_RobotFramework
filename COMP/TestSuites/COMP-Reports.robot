@@ -76,30 +76,50 @@ Kill_ChromeDriver
     Kill_Chrome_Driver
 
 COMP_BDD_Adj_Report_GBP
+    [Documentation]    To Run this dynamically add the following line to the Run tab arguments text box area.
+    ...
+    ...
+    ...    -d TestResults -i COMPADJ -v cfg_global_login_profile:autocomp2
     [Tags]    COMPADJ
     Navigate_To_Report
     Select_Task_And_Criteria    All employees    GBP
     Download_Excel_And_Compare    GBP_OG1.xls
 
 COMP_BDD_Adj_Report_USD
+    [Documentation]    To Run this dynamically add the following line to the Run tab arguments text box area.
+    ...
+    ...
+    ...    -d TestResults -i COMPADJ -v cfg_global_login_profile:autocomp2
     [Tags]    COMPADJ
     Navigate_To_Report
     Select_Task_And_Criteria    All employees    USD
     Download_Excel_And_Compare    USD_OG1.xls
 
 COMP_BDD_Adj_Report_AUD
+    [Documentation]    To Run this dynamically add the following line to the Run tab arguments text box area.
+    ...
+    ...
+    ...    -d TestResults -i COMPADJ -v cfg_global_login_profile:autocomp2
     [Tags]    COMPADJ
     Navigate_To_Report
     Select_Task_And_Criteria    All employees    AUD
     Download_Excel_And_Compare    AUD_OG1.xls
 
 COMP_BDD_Adj_Report_EUR
+    [Documentation]    To Run this dynamically add the following line to the Run tab arguments text box area.
+    ...
+    ...
+    ...    -d TestResults -i COMPADJ -v cfg_global_login_profile:autocomp2
     [Tags]    COMPADJ
     Navigate_To_Report
     Select_Task_And_Criteria    All employees    EUR
     Download_Excel_And_Compare    EUR_OG1.xls
 
 COMP_BDD_Adj_Report_KRW
+    [Documentation]    To Run this dynamically add the following line to the Run tab arguments text box area.
+    ...
+    ...
+    ...    -d TestResults -i COMPADJ -v cfg_global_login_profile:autocomp2
     [Tags]    COMPADJ
     Navigate_To_Report
     Select_Task_And_Criteria    All employees    KRW
@@ -179,6 +199,19 @@ Backup
     Comment    Wait Until Keyword Succeeds    2 x    5s    Swipe    10    0
     ...    10    0    1000
     Comment    Wait Until Keyword Succeeds    2 x    5s    AppiumLibrary.Click Element    xpath=//UIAStaticText[21][@name='Feedback'][1]
+    Comment    Utility Sync Element    ${report.actions_btn}
+    Comment    Utility Click Element    ${report.actions_btn}
+    Comment    Utility Sync Element    ${report.action_excelPreview}
+    Comment    Utility Click Element    ${report.action_excelPreview}
+    Comment    ${ID_Titles}=    Get Window Titles
+    Comment    Select Window    title=${ID_Titles[1]}
+    Comment    Close Window
+    Comment    Select_Browser_Window_Comp    ${report.refresh_btn}    Analytics - Realize Your Potential:
+    Comment    Sleep    3 seconds
+    Comment    Select Window    title=Compensation Adjustment
+    Comment    Sleep    3 seconds
+    Comment    Select Window    title=Compensation Adjustment
+    Comment    Wait Until Element Is Visible    ${Wait_For_Locator_Visible}    timeout=5s    error=Could not find the page.
 
 SauceLabs
     Setup system under test

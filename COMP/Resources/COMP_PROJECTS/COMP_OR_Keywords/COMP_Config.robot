@@ -225,13 +225,13 @@ comp_refresh_processed
     \    Run Keyword If    '${status}'=='PASS'    csodUtilClick    ${report.custom_reports}
 
 comp_export_excel
-    [Arguments]    ${Comp_Report_Title}
+    [Arguments]    ${Comp_Report_Title}    ${SleepTimeExcelExport}
     csodUtilInputText    ${report.search_reports}    ${Comp_Report_Title}
     csodUtilClick    ${report.search_btn}
     Utility Sleep    1s
     Utility Click Element If Visible    ${report.action_btn}
     Utility Click Element If Visible    ${report.action_btn}
-    Utility Sleep    1s
+    Utility Sleep    ${SleepTimeExcelExport}
     Utility Click Element    ${report.action_btn}
     Utility Sync Element    ${report.excel}
     Utility Click Element    ${report.excel}
@@ -267,19 +267,6 @@ comp_edit_after_processed
     Run Keyword And Ignore Error    Utility Sync Element    ${report.yes_btn}
     Run Keyword And Ignore Error    Utility Click Element    ${report.yes_btn}
     Utility Sleep    3 sec
-    Comment    Utility Sync Element    ${report.actions_btn}
-    Comment    Utility Click Element    ${report.actions_btn}
-    Comment    Utility Sync Element    ${report.action_excelPreview}
-    Comment    Utility Click Element    ${report.action_excelPreview}
-    Comment    ${ID_Titles}=    Get Window Titles
-    Comment    Select Window    title=${ID_Titles[1]}
-    Comment    Close Window
-    Comment    Select_Browser_Window_Comp    ${report.refresh_btn}    Analytics - Realize Your Potential:
-    Comment    Sleep    3 seconds
-    Comment    Select Window    title=Compensation Adjustment
-    Comment    Sleep    3 seconds
-    Comment    Select Window    title=Compensation Adjustment
-    Comment    Wait Until Element Is Visible    ${Wait_For_Locator_Visible}    timeout=5s    error=Could not find the page.
 
 comp_edit_cust_report
     [Arguments]    ${report_process}
@@ -330,15 +317,6 @@ comp_edit_to_users_currency
     Run Keyword And Ignore Error    Utility Sync Element    ${report.yes_btn}
     Run Keyword And Ignore Error    Utility Click Element    ${report.yes_btn}
     Utility Sleep    3 sec
-    Comment    Utility Sync Element    ${report.actions_btn}
-    Comment    Utility Click Element    ${report.actions_btn}
-    Comment    Utility Sync Element    ${report.action_excelPreview}
-    Comment    Utility Click Element    ${report.action_excelPreview}
-    Comment    ${ID_Titles}=    Get Window Titles
-    Comment    Select Window    title=${ID_Titles[1]}
-    Comment    Close Window
-    Comment    Select_Browser_Window_Comp    ${report.refresh_btn}    Analytics - Realize Your Potential:
-    Comment    Utility Click Element    ${report.save_btn}
 
 comp_edit_to_reset_currency
     [Arguments]    ${Comp_Report_Title}
