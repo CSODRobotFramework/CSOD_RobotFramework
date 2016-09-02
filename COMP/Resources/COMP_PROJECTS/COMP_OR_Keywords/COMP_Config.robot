@@ -357,3 +357,21 @@ comp_edit_to_reset_currency
     Comment    Close Window
     Comment    Select_Browser_Window_Comp    ${report.refresh_btn}    Analytics - Realize Your Potential:
     Comment    Utility Click Element    ${report.save_btn}
+
+comp_export_excel_click_twice
+    [Arguments]    ${Comp_Report_Title}    ${SleepTimeExcelExport}
+    csodUtilInputText    ${report.search_reports}    ${Comp_Report_Title}
+    csodUtilClick    ${report.search_btn}
+    Comment    Utility Sleep    1s
+    Utility Click Element If Visible    ${report.action_btn}
+    Comment    Utility Click Element If Visible    ${report.action_btn}
+    Utility Sleep    ${SleepTimeExcelExport}
+    Utility Click Element    ${report.action_btn}
+    Utility Sync Element    ${report.excel}
+    Utility Click Element    ${report.excel}
+    Comment    Utility Sleep    3s
+    Comment    Utility Sync Element    ${report.action_btn}
+    Comment    Utility Click Element    ${report.action_btn}
+    Comment    Utility Sleep    1s
+    Comment    Utility Sync Element    ${report.excel}
+    Comment    Utility Click Element    ${report.excel}

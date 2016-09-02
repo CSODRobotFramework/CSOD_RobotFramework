@@ -3,7 +3,6 @@ Documentation     To Run this dynamically add the following line to the Run tab 
 ...
 ...
 ...               -d TestResults -i COMPCUSTREP -v cfg_global_login_profile:autoqadef
-...
 Suite Setup       Global Test Fixture Suite Setup
 Suite Teardown    Global Test Fixture Suite Teardown with Email Attachment    # Global Test Fixture Suite Teardown with Email Attachment
 Test Setup        Global Test Fixture Test Setup
@@ -36,7 +35,7 @@ Comp_Cust_Report_Static_Report_JPY
     comp_nav_to_cust_report_for_edit    UC-001: 16.03 Standard Planning Use Case - 3    50 sec
     comp_refresh_processed    ${report.last_run}
     comp_edit_after_processed    UC-001: 16.03 Standard Planning Use Case - 3    JPY
-    comp_export_excel    UC-001: 16.03 Standard Planning Use Case - 3    1 sec
+    comp_export_excel_click_twice    UC-001: 16.03 Standard Planning Use Case - 3    1 sec
     Download_Excel_And_Compare_Custom_Reports    Comp_Custom_JPY_OG.xls
 
 Comp_Cust_Report_Static_Report_USER
