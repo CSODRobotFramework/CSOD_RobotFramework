@@ -3,6 +3,7 @@ Library           SQLlibrary
 Library           HttpLibrary.HTTP
 Library           Collections
 Library           String
+Resource          ../COMP_PROJECTS/Utility/UtilityKeywords.robot
 
 *** Keywords ***
 REST_NOAUTH
@@ -28,7 +29,7 @@ REST_NOAUTH
     Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
 
 REST_NOAUTH_NonExistentUser
-    [Documentation]    *REST_NOAUTH:*
+    [Documentation]    *REST_NOAUTH_NonExistentUser:*
     ...    This keyword is for http://laxqarexmt.office.cyberu.com/cornerstone-auth-api/swagger/ui/index#!/Auth/Auth_Put
     ...    PUT /v1
     ...
@@ -38,7 +39,7 @@ REST_NOAUTH_NonExistentUser
     ...    *Important:*
     ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
     Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
-    ${SQL_GET_USERID}=    Execute Raw    	\ SELECT MAX(user_id)+1000 FROM users
+    ${SQL_GET_USERID}=    Execute Raw    SELECT MAX(user_id)+1000 FROM users
     Log    ${SQL_GET_USERID}
     ${SQL_GET_USER_CULTURE}=    Execute Raw    SELECT 1
     Set Suite Variable    ${SQL_GET_USERID}    ${SQL_GET_USERID}
@@ -71,6 +72,50 @@ REST_NOAUTH_Shared_TalentPools
     Set Request Header    X-USERID    ${SQL_GET_USERID}
     Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
 
+REST_NOAUTH_User_With_Most_Talent_Pools
+    [Documentation]    *REST_NOAUTH:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/cornerstone-auth-api/swagger/ui/index#!/Auth/Auth_Put
+    ...    PUT /v1
+    ...
+    ...    *Arguments:*
+    ...    ${RNOAUTH_CUSTOM_SERVER} | ${SQL_DB} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} | ${RNOAUTH_CUSTOM_CORP}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_GET_USERID}=    Execute Raw    SELECT TOP 1 ou.owner_id FROM ou JOIN users ON ou.owner_id = users.user_id WHERE users.culture_lang_id IS NOT NULL AND ou.type_id = 131072 GROUP BY ou.owner_id ORDER BY COUNT(ou.owner_id) DESC
+    Log    ${SQL_GET_USERID}
+    ${SQL_GET_USER_CULTURE}=    Execute Raw    SELECT culture_lang_id FROM users WHERE user_id = ${SQL_GET_USERID}
+    Set Suite Variable    ${SQL_GET_USERID}    ${SQL_GET_USERID}
+    Set Suite Variable    ${SQL_GET_USER_CULTURE}    ${SQL_GET_USER_CULTURE}
+    Log    ${SQL_GET_USER_CULTURE}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+
+REST_NOAUTH_Random_Users_with_Talent_Pools
+    [Documentation]    *REST_NOAUTH:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/cornerstone-auth-api/swagger/ui/index#!/Auth/Auth_Put
+    ...    PUT /v1
+    ...
+    ...    *Arguments:*
+    ...    ${RNOAUTH_CUSTOM_SERVER} | ${SQL_DB} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} | ${RNOAUTH_CUSTOM_CORP}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_GET_USERID}=    Execute Raw    SELECT TOP 1 owner_id FROM ou JOIN users ON owner_id = user_id WHERE users.culture_lang_id IS NOT NULL AND ou.type_id = 131072 AND culture_lang_id = 1 GROUP BY owner_id HAVING COUNT(*) > 1 ORDER BY NEWID()
+    Log    ${SQL_GET_USERID}
+    ${SQL_GET_USER_CULTURE}=    Execute Raw    SELECT culture_lang_id FROM users WHERE user_id = ${SQL_GET_USERID}
+    Set Suite Variable    ${SQL_GET_USERID}    ${SQL_GET_USERID}
+    Set Suite Variable    ${SQL_GET_USER_CULTURE}    ${SQL_GET_USER_CULTURE}
+    Log    ${SQL_GET_USER_CULTURE}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+
 REST_AuthToken
     [Documentation]    *REST_AuthToken:*
     ...    This keyword is for http://laxqarexmt.office.cyberu.com/cornerstone-auth-api/swagger/ui/index#!/Auth/Auth_Put
@@ -91,7 +136,95 @@ REST_AuthToken
     HttpLibrary.HTTP.PUT    /cornerstone-auth-api/v1
     Response Status Code Should Equal    204
     ${resBody}=    Get Response Body
-    Close
+    Comment    Close
+
+REST_NOAUTH_Random_Active_Shared
+    [Documentation]    *REST_NOAUTH:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/cornerstone-auth-api/swagger/ui/index#!/Auth/Auth_Put
+    ...    PUT /v1
+    ...
+    ...    *Arguments:*
+    ...    ${RNOAUTH_CUSTOM_SERVER} | ${SQL_DB} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} | ${RNOAUTH_CUSTOM_CORP}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_GET_USERID}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE culture_lang_id IS NOT NULL AND status_id = 1 AND user_id IN (SELECT DISTINCT user_id FROM talent_pool_shared_user) ORDER BY NEWID()
+    Log    ${SQL_GET_USERID}
+    ${SQL_GET_USER_CULTURE}=    Execute Raw    SELECT culture_lang_id FROM users WHERE user_id = ${SQL_GET_USERID}
+    Set Suite Variable    ${SQL_GET_USERID}    ${SQL_GET_USERID}
+    Set Suite Variable    ${SQL_GET_USER_CULTURE}    ${SQL_GET_USER_CULTURE}
+    Log    ${SQL_GET_USER_CULTURE}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+
+REST_NOAUTH_Random_Active_Owner_OR_Shared
+    [Documentation]    *REST_NOAUTH:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/cornerstone-auth-api/swagger/ui/index#!/Auth/Auth_Put
+    ...    PUT /v1
+    ...
+    ...    *Arguments:*
+    ...    ${RNOAUTH_CUSTOM_SERVER} | ${SQL_DB} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} | ${RNOAUTH_CUSTOM_CORP}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_GET_USERID}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE culture_lang_id IS NOT NULL AND status_id = 1 AND (user_id IN (SELECT DISTINCT owner_id FROM ou WHERE type_id = 131072) OR user_id IN (SELECT DISTINCT user_id FROM talent_pool_shared_user)) ORDER BY NEWID()
+    Log    ${SQL_GET_USERID}
+    ${SQL_GET_USER_CULTURE}=    Execute Raw    SELECT culture_lang_id FROM users WHERE user_id = ${SQL_GET_USERID}
+    Set Suite Variable    ${SQL_GET_USERID}    ${SQL_GET_USERID}
+    Set Suite Variable    ${SQL_GET_USER_CULTURE}    ${SQL_GET_USER_CULTURE}
+    Log    ${SQL_GET_USER_CULTURE}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+
+REST_NOAUTH_Random_Active_Owner
+    [Documentation]    *REST_NOAUTH:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/cornerstone-auth-api/swagger/ui/index#!/Auth/Auth_Put
+    ...    PUT /v1
+    ...
+    ...    *Arguments:*
+    ...    ${RNOAUTH_CUSTOM_SERVER} | ${SQL_DB} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} | ${RNOAUTH_CUSTOM_CORP}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_GET_USERID}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE culture_lang_id IS NOT NULL AND status_id = 1 AND user_id IN (SELECT DISTINCT owner_id FROM ou WHERE type_id = 131072) ORDER BY NEWID()
+    Log    ${SQL_GET_USERID}
+    ${SQL_GET_USER_CULTURE}=    Execute Raw    SELECT culture_lang_id FROM users WHERE user_id = ${SQL_GET_USERID}
+    Set Suite Variable    ${SQL_GET_USERID}    ${SQL_GET_USERID}
+    Set Suite Variable    ${SQL_GET_USER_CULTURE}    ${SQL_GET_USER_CULTURE}
+    Log    ${SQL_GET_USER_CULTURE}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+
+REST_NOAUTH_Random_Not_Active_Owner_OR_Shared
+    [Documentation]    *REST_NOAUTH:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/cornerstone-auth-api/swagger/ui/index#!/Auth/Auth_Put
+    ...    PUT /v1
+    ...
+    ...    *Arguments:*
+    ...    ${RNOAUTH_CUSTOM_SERVER} | ${SQL_DB} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} | ${RNOAUTH_CUSTOM_CORP}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_GET_USERID}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE culture_lang_id IS NOT NULL AND status_id <> 1 AND (user_id IN (SELECT DISTINCT owner_id FROM ou WHERE type_id = 131072) OR user_id IN (SELECT DISTINCT user_id FROM talent_pool_shared_user)) ORDER BY NEWID()
+    Log    ${SQL_GET_USERID}
+    ${SQL_GET_USER_CULTURE}=    Execute Raw    SELECT culture_lang_id FROM users WHERE user_id = ${SQL_GET_USERID}
+    Set Suite Variable    ${SQL_GET_USERID}    ${SQL_GET_USERID}
+    Set Suite Variable    ${SQL_GET_USER_CULTURE}    ${SQL_GET_USER_CULTURE}
+    Log    ${SQL_GET_USER_CULTURE}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
 
 POST_TalentPool_Create
     [Arguments]    ${SUBMITTED_TITLE}    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
@@ -197,3 +330,976 @@ POST_TalentPool_Create_Over_Max_Count
     HttpLibrary.HTTP.POST    /talentpool-api/talentpools
     ${resBody}=    Get Response Body
     Set Test Message    The ${resBody} message from the API Negative Test Passed.
+
+GET_TalentPool
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *GET_TalentPool:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/GET/TalentPool_GetTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolIdToGet}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id=${SQL_GET_USERID} ORDER BY newid()
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${response}=    Parse Json    ${resBody}
+    ${responseDict}=    Convert To Dictionary    ${response}
+    ${keyValue}=    Get From Dictionary    ${responseDict}    ${KEY_NAME_JSON}
+
+GET_TalentPool_Title_Happy
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *GET_TalentPool:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/GET/TalentPool_GetTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolIdToGet}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id=${SQL_GET_USERID} AND title LIKE '%InnocentName%' ORDER BY newid()
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${response}=    Parse Json    ${resBody}
+    ${responseDict}=    Convert To Dictionary    ${response}
+    ${keyValue}=    Get From Dictionary    ${responseDict}    ${KEY_NAME_JSON}
+
+GET_TalentPool_Title_Length_1
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *GET_TalentPool:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/GET/TalentPool_GetTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolIdToGet}=    Execute Raw    \ SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id=${SQL_GET_USERID} AND LEN(title)=1 ORDER BY newid()
+    Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
+    ${SQL_TalentPoolTitleById}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${response}=    Parse Json    ${resBody}
+    ${responseDict}=    Convert To Dictionary    ${response}
+    ${keyValue}=    Get From Dictionary    ${responseDict}    ${KEY_NAME_JSON}
+
+GET_TalentPool_Title_Length_50
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *GET_TalentPool:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/GET/TalentPool_GetTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolIdToGet}=    Execute Raw    \ SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id=${SQL_GET_USERID} AND LEN(title)=50 ORDER BY newid()
+    Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
+    ${SQL_TalentPoolTitleById}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${response}=    Parse Json    ${resBody}
+    ${responseDict}=    Convert To Dictionary    ${response}
+    ${keyValue}=    Get From Dictionary    ${responseDict}    ${KEY_NAME_JSON}
+
+GET_TalentPool_Title_Char_Securit_SQL
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *GET_TalentPool:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/GET/TalentPool_GetTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolIdToGet}=    Execute Raw    \ SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id=${SQL_GET_USERID} AND title LIKE '%SELECT * FROM Users%' ORDER BY newid()
+    Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
+    ${SQL_TalentPoolTitleById}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${response}=    Parse Json    ${resBody}
+    ${responseDict}=    Convert To Dictionary    ${response}
+    ${keyValue}=    Get From Dictionary    ${responseDict}    ${KEY_NAME_JSON}
+
+GET_TalentPool_Title_Char_Securit_Script
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *GET_TalentPool:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/GET/TalentPool_GetTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolIdToGet}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id=${SQL_GET_USERID} AND title LIKE '%＜script＞alert(123)＜/script＞%' ORDER BY newid()
+    Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
+    ${SQL_TalentPoolTitleById}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${response}=    Parse Json    ${resBody}
+    ${responseDict}=    Convert To Dictionary    ${response}
+    ${keyValue}=    Get From Dictionary    ${responseDict}    ${KEY_NAME_JSON}
+
+GET_TalentPool_Title_Char_Extended1
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *GET_TalentPool:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/GET/TalentPool_GetTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolIdToGet}=    Execute Raw    \ SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id=${SQL_GET_USERID} AND title LIKE '%☺%' ORDER BY newid()
+    Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
+    ${SQL_TalentPoolTitleById}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${response}=    Parse Json    ${resBody}
+    ${responseDict}=    Convert To Dictionary    ${response}
+    ${keyValue}=    Get From Dictionary    ${responseDict}    ${KEY_NAME_JSON}
+
+GET_TalentPool_Title_Char_Extended2
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *GET_TalentPool:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/GET/TalentPool_GetTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolIdToGet}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id=${SQL_GET_USERID} AND title LIKE '%=%' ORDER BY newid()
+    Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
+    ${SQL_TalentPoolTitleById}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${response}=    Parse Json    ${resBody}
+    ${responseDict}=    Convert To Dictionary    ${response}
+    ${keyValue}=    Get From Dictionary    ${responseDict}    ${KEY_NAME_JSON}
+
+GET_TalentPool_Title_Char_Extended3
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *GET_TalentPool:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/GET/TalentPool_GetTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolIdToGet}=    Execute Raw    \ SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id=${SQL_GET_USERID} AND title LIKE '%ú%' ORDER BY newid()
+    Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
+    ${SQL_TalentPoolTitleById}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${response}=    Parse Json    ${resBody}
+    ${responseDict}=    Convert To Dictionary    ${response}
+    ${keyValue}=    Get From Dictionary    ${responseDict}    ${KEY_NAME_JSON}
+
+GET_TalentPool_Title_Char_Extended5
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *GET_TalentPool:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/GET/TalentPool_GetTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolIdToGet}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id = ${SQL_GET_USERID} AND title LIKE '%Š%' ORDER BY newid()
+    Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
+    ${SQL_TalentPoolTitleById}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${response}=    Parse Json    ${resBody}
+    ${responseDict}=    Convert To Dictionary    ${response}
+    ${keyValue}=    Get From Dictionary    ${responseDict}    ${KEY_NAME_JSON}
+
+GET_TalentPool_Title_Char_Extended6
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *GET_TalentPool:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/GET/TalentPool_GetTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolIdToGet}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id=${SQL_GET_USERID} AND title LIKE '%Ø%' ORDER BY newid()
+    Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
+    ${SQL_TalentPoolTitleById1}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${response}=    Parse Json    ${resBody}
+    ${responseDict}=    Convert To Dictionary    ${response}
+    ${keyValue}=    Get From Dictionary    ${responseDict}    ${KEY_NAME_JSON}
+
+GET_TalentPool_Title_Char_Foreign_Russian
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *GET_TalentPool:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/GET/TalentPool_GetTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolIdToGet}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id=${SQL_GET_USERID} AND title LIKE '%ё%' \ ORDER BY newid()
+    Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
+    ${SQL_TalentPoolTitleById1}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${response}=    Parse Json    ${resBody}
+    ${responseDict}=    Convert To Dictionary    ${response}
+    ${keyValue}=    Get From Dictionary    ${responseDict}    ${KEY_NAME_JSON}
+
+GET_TalentPool_Title_Char_Foreign_Arabic
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *GET_TalentPool:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/GET/TalentPool_GetTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolIdToGet}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id=${SQL_GET_USERID} AND title LIKE '%ز%' \ ORDER BY newid()
+    Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
+    ${SQL_TalentPoolTitleById1}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${response}=    Parse Json    ${resBody}
+    ${responseDict}=    Convert To Dictionary    ${response}
+    ${keyValue}=    Get From Dictionary    ${responseDict}    ${KEY_NAME_JSON}
+
+GET_TalentPool_Does_Not_Exist
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *GET_TalentPool:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/GET/TalentPool_GetTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolIdToGet}=    Execute Raw    SELECT TOP 1 ou_id+1000 FROM ou WHERE ou.type_id = 131072 ORDER BY ou_id DESC
+    Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    Next Request May Not Succeed
+    HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+
+GET_User_Does_Not_Exist
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *GET_TalentPool:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/GET/TalentPool_GetTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolIdToGet}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 ORDER BY newid()
+    Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    Next Request May Not Succeed
+    HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+
+GET_User_Did_Not_Create
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *GET_User_Did_Not_Create:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/GET/TalentPool_GetTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolIdToGet}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id<> ${SQL_GET_USERID} ORDER BY newid()
+    Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    Next Request May Not Succeed
+    HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+
+POST_TalentPool_Candidates_Add
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *POST_TalentPool_Candidates_Add:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/POST/TalentPool_AddCandidatesToTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id = ${SQL_GET_USERID} ORDER BY NEWID()
+    Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
+    ${SQL_UserToAdd1}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id NOT IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND name_first LIKE '%<script>alert(123)</script>%' AND status_id = 1 ORDER BY NEWID()
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    Set Request Body    [{ \"UserId\": ${SQL_UserToAdd1}, \"Status\": 128 }]
+    ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    HttpLibrary.HTTP.POST    /talentpool-api/talentpools/${SQL_TalentPoolId}/candidates
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${SQL_CandidatesCountAfter}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Run Keyword If    "${SQL_CandidateCountBefore} == ${SQL_CandidatesCountAfter}"    Set Test Message    The ${SQL_CandidateCountBefore} matches with ${SQL_CandidatesCountAfter}
+
+POST_TalentPool_Candidates_Add_SubSet
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *POST_TalentPool_Candidates_Add:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/POST/TalentPool_AddCandidatesToTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id = ${SQL_GET_USERID} AND ou_id IN (SELECT ou_id FROM ou_user GROUP BY ou_id HAVING COUNT(ou_id) >= 1) ORDER BY NEWID()
+    Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
+    ${SQL_UserToAdd1}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND status_id = 1 ORDER BY NEWID()
+    Set Suite Variable    ${SQL_UserToAdd1}    ${SQL_UserToAdd1}
+    ${SQL_UserToAdd2}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id NOT IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND user_id <> ${SQL_UserToAdd1} AND status_id = 1 ORDER BY NEWID()
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    Set Request Body    [{\"UserId\": ${SQL_UserToAdd1}},{\"UserId\": ${SQL_UserToAdd2}}]
+    ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidateCountBefore}    ${SQL_CandidateCountBefore}
+    HttpLibrary.HTTP.POST    /talentpool-api/talentpools/${SQL_TalentPoolId}/candidates
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${SQL_CandidatesCountAfter}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidatesCountAfter}    ${SQL_CandidatesCountAfter}
+    Run Keyword If    "${SQL_CandidateCountBefore} == ${SQL_CandidatesCountAfter}"    Set Test Message    The ${SQL_CandidateCountBefore} matches with ${SQL_CandidatesCountAfter}
+
+POST_TalentPool_Candidates_Already_Added_Single
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *POST_TalentPool_Candidates_Add:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/POST/TalentPool_AddCandidatesToTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id = ${SQL_GET_USERID} AND ou_id IN (SELECT ou_id FROM ou_user GROUP BY ou_id HAVING COUNT(ou_id) >= 1) ORDER BY NEWID()
+    Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
+    ${SQL_UserToAdd1}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND status_id = 1 ORDER BY NEWID()
+    Set Suite Variable    ${SQL_UserToAdd1}    ${SQL_UserToAdd1}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    Set Request Body    [{\"UserId\": ${SQL_UserToAdd1}}]
+    ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidateCountBefore}    ${SQL_CandidateCountBefore}
+    HttpLibrary.HTTP.POST    /talentpool-api/talentpools/${SQL_TalentPoolId}/candidates
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${SQL_CandidatesCountAfter}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidatesCountAfter}    ${SQL_CandidatesCountAfter}
+    Run Keyword If    "${SQL_CandidateCountBefore} == ${SQL_CandidatesCountAfter}"    Set Test Message    The ${SQL_CandidateCountBefore} matches with ${SQL_CandidatesCountAfter}
+
+POST_TalentPool_Candidates_Already_Added_All
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *POST_TalentPool_Candidates_Add:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/POST/TalentPool_AddCandidatesToTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id = ${SQL_GET_USERID} AND ou_id IN (SELECT ou_id FROM ou_user GROUP BY ou_id HAVING COUNT(ou_id) >= 2) ORDER BY NEWID()
+    Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
+    ${SQL_UserToAdd1}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) ORDER BY NEWID()
+    Set Suite Variable    ${SQL_UserToAdd1}    ${SQL_UserToAdd1}
+    ${SQL_UserToAdd2}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND user_id <> ${SQL_UserToAdd1} AND status_id = 1 ORDER BY NEWID()
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    Set Request Body    [{\"UserId\": ${SQL_UserToAdd1}},{\"UserId\": ${SQL_UserToAdd2}}]
+    ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidateCountBefore}    ${SQL_CandidateCountBefore}
+    HttpLibrary.HTTP.POST    /talentpool-api/talentpools/${SQL_TalentPoolId}/candidates
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${SQL_CandidatesCountAfter}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidatesCountAfter}    ${SQL_CandidatesCountAfter}
+    Run Keyword If    "${SQL_CandidateCountBefore} == ${SQL_CandidatesCountAfter}"    Set Test Message    The ${SQL_CandidateCountBefore} matches with ${SQL_CandidatesCountAfter}
+
+POST_TalentPool_Candidates_Add_2Users
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *POST_TalentPool_Candidates_Add:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/POST/TalentPool_AddCandidatesToTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id = ${SQL_GET_USERID} ORDER BY NEWID()
+    Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
+    ${SQL_UserToAdd1}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id NOT IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND status_id = 1 ORDER BY NEWID()
+    Set Suite Variable    ${SQL_UserToAdd1}    ${SQL_UserToAdd1}
+    ${SQL_UserToAdd2}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id <> ${SQL_UserToAdd1} AND user_id NOT IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND status_id = 1 ORDER BY NEWID()
+    Set Suite Variable    ${SQL_UserToAdd2}    ${SQL_UserToAdd2}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    Set Request Body    [{"UserId": ${SQL_UserToAdd1}},{"UserId": ${SQL_UserToAdd2}}]
+    ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidateCountBefore}    ${SQL_CandidateCountBefore}
+    HttpLibrary.HTTP.POST    /talentpool-api/talentpools/${SQL_TalentPoolId}/candidates
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${SQL_CandidatesCountAfter}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidatesCountAfter}    ${SQL_CandidatesCountAfter}
+    ${SQL_NUM}=    Evaluate    ${SQL_CandidateCountBefore}+2
+    Log    ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidatesCountAfter}'== '${SQL_NUM}'    Utility Set Test Message    The ${SQL_CandidatesCountAfter} matches with ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidatesCountAfter}'<>'${SQL_NUM}'    Fail    The ${SQL_CandidatesCountAfter} did not match ${SQL_NUM}
+
+POST_TalentPool_Add_1Users
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *POST_TalentPool_Candidates_Add:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/POST/TalentPool_AddCandidatesToTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id = ${SQL_GET_USERID} ORDER BY NEWID()
+    Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
+    ${SQL_UserToAdd1}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id NOT IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND status_id = 1 ORDER BY NEWID()
+    Set Suite Variable    ${SQL_UserToAdd1}    ${SQL_UserToAdd1}
+    ${SQL_UserToAdd2}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND status_id = 1 ORDER BY NEWID()
+    Set Suite Variable    ${SQL_UserToAdd2}    ${SQL_UserToAdd2}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    Set Request Body    [{"UserId": ${SQL_UserToAdd1}}]
+    ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidateCountBefore}    ${SQL_CandidateCountBefore}
+    HttpLibrary.HTTP.POST    /talentpool-api/talentpools/${SQL_TalentPoolId}/candidates
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${SQL_CandidatesCountAfter}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidatesCountAfter}    ${SQL_CandidatesCountAfter}
+    ${SQL_NUM}=    Evaluate    ${SQL_CandidateCountBefore}+1
+    Log    ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidatesCountAfter}'== '${SQL_NUM}'    Utility Set Test Message    The ${SQL_CandidatesCountAfter} matches with ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidatesCountAfter}'<>'${SQL_NUM}'    Fail    The ${SQL_CandidatesCountAfter} did not match ${SQL_NUM}
+
+POST_TalentPool_Add_0Users
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *POST_TalentPool_Candidates_Add:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/POST/TalentPool_AddCandidatesToTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id = ${SQL_GET_USERID} ORDER BY NEWID()
+    Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    Set Request Body    [{}]
+    ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidateCountBefore}    ${SQL_CandidateCountBefore}
+    HttpLibrary.HTTP.POST    /talentpool-api/talentpools/${SQL_TalentPoolId}/candidates
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${SQL_CandidatesCountAfter}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidatesCountAfter}    ${SQL_CandidatesCountAfter}
+    ${SQL_NUM}=    Evaluate    ${SQL_CandidateCountBefore}+0
+    Log    ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidatesCountAfter}'== '${SQL_NUM}'    Utility Set Test Message    The ${SQL_CandidatesCountAfter} matches with ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidatesCountAfter}'<>'${SQL_NUM}'    Fail    The ${SQL_CandidatesCountAfter} did not match ${SQL_NUM}
+
+POST_TalentPool_BaseCase_InputVsDataBase
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *POST_TalentPool_Candidates_Add:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/POST/TalentPool_AddCandidatesToTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id = ${SQL_GET_USERID} ORDER BY NEWID()
+    Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
+    ${SQL_UserToAdd1}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id NOT IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND status_id = 1 ORDER BY NEWID()
+    Set Suite Variable    ${SQL_UserToAdd1}    ${SQL_UserToAdd1}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    Set Request Body    [{"UserId": ${SQL_UserToAdd1}}]
+    ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidateCountBefore}    ${SQL_CandidateCountBefore}
+    HttpLibrary.HTTP.POST    /talentpool-api/talentpools/${SQL_TalentPoolId}/candidates
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${SQL_CandidatesCountAfter}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidatesCountAfter}    ${SQL_CandidatesCountAfter}
+    ${SQL_NUM}=    Evaluate    ${SQL_CandidateCountBefore}+1
+    Log    ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidatesCountAfter}'== '${SQL_NUM}'    Utility Set Test Message    The ${SQL_CandidatesCountAfter} matches with ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidatesCountAfter}'<>'${SQL_NUM}'    Fail    The ${SQL_CandidatesCountAfter} did not match ${SQL_NUM}
+
+POST_TalentPool_BaseCase_InputVsDataBase_Value
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *POST_TalentPool_Candidates_Add:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/POST/TalentPool_AddCandidatesToTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id = ${SQL_GET_USERID} ORDER BY NEWID()
+    Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
+    ${SQL_UserToAdd1}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id NOT IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND status_id = 1 ORDER BY NEWID()
+    Set Suite Variable    ${SQL_UserToAdd1}    ${SQL_UserToAdd1}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    Set Request Body    [{"UserId": ${SQL_UserToAdd1}}]
+    HttpLibrary.HTTP.POST    /talentpool-api/talentpools/${SQL_TalentPoolId}/candidates
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${SQL_GetAddedCandidateId}=    Execute Raw    SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId} AND user_id = ${SQL_UserToAdd1}
+    Set Suite Variable    ${SQL_GetAddedCandidateId}    ${SQL_GetAddedCandidateId}
+    Run Keyword If    '${SQL_UserToAdd1}'== '${SQL_GetAddedCandidateId}'    Utility Set Test Message    The ${SQL_UserToAdd1} matches with ${SQL_GetAddedCandidateId}
+    Run Keyword If    '${SQL_UserToAdd1}'<> '${SQL_GetAddedCandidateId}'    Fail    The ${SQL_UserToAdd1} did not match ${SQL_GetAddedCandidateId}
+
+DELETE_TalentPool_Add_0Users
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *POST_TalentPool_Candidates_Add:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/POST/TalentPool_AddCandidatesToTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id = ${SQL_GET_USERID} AND ou_id IN (SELECT ou_id FROM ou_user GROUP BY ou_id HAVING COUNT(ou_id) > 0) ORDER BY NEWID()
+    Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    Set Request Body    [ ]
+    ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidateCountBefore}    ${SQL_CandidateCountBefore}
+    HttpLibrary.HTTP.DELETE    /talentpool-api/talentpools/${SQL_TalentPoolId}/candidates
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${SQL_CandidatesCountAfter}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidatesCountAfter}    ${SQL_CandidatesCountAfter}
+    ${SQL_NUM}=    Evaluate    ${SQL_CandidateCountBefore}+0
+    Log    ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidatesCountAfter}'== '${SQL_NUM}'    Utility Set Test Message    The ${SQL_CandidatesCountAfter} matches with ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidatesCountAfter}'<>'${SQL_NUM}'    Fail    The ${SQL_CandidatesCountAfter} did not match ${SQL_NUM}
+
+DELETE_TalentPool_Candidates_Remove
+    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *POST_TalentPool_Candidates_Add:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/POST/TalentPool_AddCandidatesToTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND ou_id IN (SELECT ou_id FROM ou_user GROUP BY ou_id HAVING COUNT(ou_id) > 0) ORDER BY NEWID()
+    Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
+    ${SQL_UserToRemove1}=    Execute Raw    SELECT TOP 1 ou_user.user_id FROM ou_user LEFT JOIN users ON ou_user.user_id = users.user_id WHERE users.user_id > 0 AND ou_user.ou_id = ${SQL_TalentPoolId} AND users.user_id NOT IN (SELECT owner_id FROM ou WHERE ou_id = ${SQL_TalentPoolId}) AND users.status_id = 1 ORDER BY NEWID()
+    Set Suite Variable    ${SQL_UserToRemove1}    ${SQL_UserToRemove1}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    Next Request May Not Succeed
+    Set Request Body    [{"UserId": ${SQL_UserToRemove1}}]
+    ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidateCountBefore}    ${SQL_CandidateCountBefore}
+    HttpLibrary.HTTP.DELETE    /talentpool-api/talentpools/${SQL_TalentPoolId}/candidates
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${SQL_CandidatesCountAfter}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidatesCountAfter}    ${SQL_CandidatesCountAfter}
+    ${SQL_NUM}=    Evaluate    ${SQL_CandidateCountBefore}+0
+    Log    ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidatesCountAfter}'== '${SQL_NUM}'    Utility Set Test Message    The ${SQL_CandidatesCountAfter} matches with ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidatesCountAfter}'<>'${SQL_NUM}'    Fail    The ${SQL_CandidatesCountAfter} did not match ${SQL_NUM}
+
+PUT_TalentPool_Rename_Access
+    [Arguments]    ${SUBMITTED_TITLE}    ${KEY_NAME_JSON}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *POST_TalentPool_Create:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/POST/TalentPool_CreateTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${SUBMITTED_TITLE} | ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE (owner_id = ${SQL_GET_USERID} OR ou_id IN (SELECT ou_id FROM talent_pool_shared_user WHERE user_id = ${SQL_GET_USERID})) AND ou.type_id = 131072 ORDER BY NEWID()
+    Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    Next Request May Not Succeed
+    Set Request Body    { \"Title\":\"${SUBMITTED_TITLE}\"}
+    HttpLibrary.HTTP.PUT    /talentpool-api/talentpools/${SQL_TalentPoolId}
+    ${resBody}=    Get Response Body
+    Set Test Message    The ${resBody} message from the API PUT Test Passed.
+
+PUT_TalentPool_Candidate_Status_Set
+    [Arguments]    ${SUBMITTED_TITLE}    ${KEY_NAME_JSON}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *POST_TalentPool_Create:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/POST/TalentPool_CreateTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${SUBMITTED_TITLE} | ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE (owner_id = ${SQL_GET_USERID} OR ou_id IN (SELECT ou_id FROM talent_pool_shared_user WHERE user_id = ${SQL_GET_USERID})) AND ou_id IN (SELECT ou_id FROM ou_user GROUP BY ou_id HAVING COUNT(ou_id) >= 1) AND ou.type_id = 131072 ORDER BY NEWID()
+    Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
+    ${SQL_GetCandidateId1}=    Execute Raw    SELECT TOP 1 user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId} ORDER BY NEWID()
+    Set Suite Variable    ${SQL_GetCandidateId1}    ${SQL_GetCandidateId1}
+    ${SQL_GetCandidateId1Status}=    Execute Raw    SELECT TOP 1 status_id FROM ou_user_status WHERE culture_id = 1 AND status_id IN (128,256,512,1024) ORDER BY NEWID()
+    Set Suite Variable    ${SQL_GetCandidateId1Status}    ${SQL_GetCandidateId1Status}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    Set Request Body    [{"UserId": ${SQL_GetCandidateId1},"Status": ${SQL_GetCandidateId1Status}}]
+    HttpLibrary.HTTP.PUT    /talentpool-api/talentpools/${SQL_TalentPoolId}/candidates/status
+    ${resBody}=    Get Response Body
+    ${SQL_GetCandidate1Status_After}=    Execute Raw    SELECT status_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId} AND user_id = ${SQL_GetCandidateId1} ORDER BY NEWID()
+    Set Suite Variable    ${SQL_GetCandidate1Status_After}    ${SQL_GetCandidate1Status_After}
+    Run Keyword If    '${SQL_GetCandidate1Status_After}'== '${SQL_GetCandidateId1Status}'    Utility Set Test Message    The ${SQL_GetCandidate1Status_After} matches with ${SQL_GetCandidateId1Status}
+    Run Keyword If    '${SQL_GetCandidate1Status_After}'<> '${SQL_GetCandidateId1Status}'    Fail    The ${SQL_GetCandidate1Status_After} did not match ${SQL_GetCandidateId1Status}
+    Close
+
+PUT_TalentPool_Rename_Access_Owner
+    [Arguments]    ${SUBMITTED_TITLE}    ${KEY_NAME_JSON}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *POST_TalentPool_Create:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/POST/TalentPool_CreateTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${SUBMITTED_TITLE} | ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE (owner_id <> ${SQL_GET_USERID} AND ou_id NOT IN (SELECT ou_id FROM talent_pool_shared_user WHERE user_id = ${SQL_GET_USERID})) AND ou.type_id = 131072 ORDER BY NEWID()
+    Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    Next Request May Not Succeed
+    Set Request Body    { \"Title\":\"${SUBMITTED_TITLE}\"}
+    Next Request May Not Succeed
+    HttpLibrary.HTTP.PUT    /talentpool-api/talentpools/${SQL_TalentPoolId}
+    ${resBody}=    Get Response Body
+    Set Test Message    The ${resBody} message from the API Negative Test Passed.
+
+PUT_TalentPool_Rename_Access_Not_Active
+    [Arguments]    ${SUBMITTED_TITLE}    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Documentation]    *POST_TalentPool_Create:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/POST/TalentPool_CreateTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${SUBMITTED_TITLE} | ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE (owner_id = ${SQL_GET_USERID}) AND ou.type_id = 131072 ORDER BY NEWID()
+    Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
+    Create Http Context    ${HTTP_CONTEXT}    http
+    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    X-USERID    ${SQL_GET_USERID}
+    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    content-type    \ application/json
+    Set Request Body    { \"Title\":\"${SUBMITTED_TITLE}\"}
+    HttpLibrary.HTTP.PUT    /talentpool-api/talentpools/${SQL_TalentPoolId}
+    Response Status Code Should Equal    ${RESPONSE_POST}
+    ${resBody}=    Get Response Body
+    log    ${resBody}
+    ${response}=    Parse Json    ${resBody}
+    ${responseDict}=    Convert To Dictionary    ${response}
+    ${keyValue}=    Get From Dictionary    ${responseDict}    ${KEY_NAME_JSON}
