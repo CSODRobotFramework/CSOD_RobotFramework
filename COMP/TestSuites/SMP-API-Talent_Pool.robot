@@ -60,10 +60,10 @@ POST-API_TPC_Length_0
 
 POST-API_TPC_Length_1
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Create_Length_1
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify success when title length is 1
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -78,10 +78,10 @@ POST-API_TPC_Length_1
 
 POST-API_TPC_Length_50
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Create_Length_50
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify success when title length is 50
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -96,10 +96,10 @@ POST-API_TPC_Length_50
 
 POST-API_TPC_Length_51
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Create_Length_51
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify failure when title length is 51
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -114,10 +114,10 @@ POST-API_TPC_Length_51
 
 POST-API_TPC_Trim_Space
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Create_Trim_Space
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify trimming with only space
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -132,10 +132,10 @@ POST-API_TPC_Trim_Space
 
 POST-API_TPC_Trim_TabSpace
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Create_Trim_TabSpace
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify trimming with only tab-space
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -150,10 +150,10 @@ POST-API_TPC_Trim_TabSpace
 
 POST-API_TPC_Trim_Leading
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Create_Trim_Leading
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify trimming leading spaces
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -168,10 +168,10 @@ POST-API_TPC_Trim_Leading
 
 POST-API_TPC_Trim_Trailing
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Create_Trim_Trailing
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify trimming trailing spaces
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -186,10 +186,10 @@ POST-API_TPC_Trim_Trailing
 
 POST-API_TPC_Trim_Middle
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Create_Trim_Middle
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify no trimming middle spaces
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -204,10 +204,10 @@ POST-API_TPC_Trim_Middle
 
 POST-API_TPC_Trim_SpaceAnd50
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Create_Trim_SpaceAnd50
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify trimming happens before submissions attempt
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -222,10 +222,10 @@ POST-API_TPC_Trim_SpaceAnd50
 
 POST-API_TPC_Security_Script
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Create_Security_Script
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify script injection is allowed
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -240,10 +240,10 @@ POST-API_TPC_Security_Script
 
 POST-API_TPC_Security_SQL
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Create_Security_SQL
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify sql injection fails
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -258,10 +258,10 @@ POST-API_TPC_Security_SQL
 
 POST-API_TPC_Characters_Extended2
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Create_Characters_Extended2
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify ASCII characters 2
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -269,17 +269,17 @@ POST-API_TPC_Characters_Extended2
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    ASCII    POSTFAIL
+    [Tags]    ASCII
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create    <=>?@^_`{|}~⌂ÇüéâäàåçêëèïîìæÆôöòûùÿ¢£¥₧ƒáíóúñÑª    Title    200
 
 POST-API_TPC_Characters_Extended3
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Create_Characters_Extended3
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify ASCII characters 3
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -294,10 +294,10 @@ POST-API_TPC_Characters_Extended3
 
 POST-API_TPC_Characters_Extended4
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Create_Characters_Extended4
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify ASCII characters 4
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -312,10 +312,10 @@ POST-API_TPC_Characters_Extended4
 
 POST-API_TPC_Characters_Extended5
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Create_Characters_Extended5
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify ASCII characters 5
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -330,10 +330,10 @@ POST-API_TPC_Characters_Extended5
 
 POST-API_TPC_Characters_Extended6
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Create_Characters_Extended6
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify ASCII characters 6
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -348,10 +348,10 @@ POST-API_TPC_Characters_Extended6
 
 POST-API_TPC_Foreign_Russian
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Create_Foreign_Russian
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify russian alphabet
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -366,10 +366,10 @@ POST-API_TPC_Foreign_Russian
 
 POST-API_TPC_Foreign_Arabic
     [Documentation]    *Name:*
-    ...    POST-API_TPC_Foreign_Arabic.
+    ...    API_TalentPool_Create_Foreign_Arabic
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify arabic alphabet
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -384,10 +384,10 @@ POST-API_TPC_Foreign_Arabic
 
 POST-API_TPC_Access_Does_Not_Exist
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Create_Access_DNE
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify failure when user does not exist
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -402,10 +402,10 @@ POST-API_TPC_Access_Does_Not_Exist
 
 GET-API_TPC_GET_Return_ID_Expected
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Get_Return_ID_Expected
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify the id passed is matching the id returned
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -420,10 +420,10 @@ GET-API_TPC_GET_Return_ID_Expected
 
 GET-API_TPC_GET_Return_Title_Happy
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Get_Return_Title_Happy
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify a random name matches
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -438,10 +438,10 @@ GET-API_TPC_GET_Return_Title_Happy
 
 GET-API_TPC_GET_Return_Title_Length_1
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Get_Return_Title_Length_1
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify success when title length is 1
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -456,10 +456,10 @@ GET-API_TPC_GET_Return_Title_Length_1
 
 GET-API_TPC_GET_Return_Title_Length_50
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Get_Return_Title_Length_50
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify success when title length is 50
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -474,10 +474,10 @@ GET-API_TPC_GET_Return_Title_Length_50
 
 GET-API_TPC_GET_Return_Title_SQL
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Get_Return_Title_SQL
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify sql injection fails
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -492,10 +492,10 @@ GET-API_TPC_GET_Return_Title_SQL
 
 GET-API_TPC_GET_Return_Title_Security_Script
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    TP_Get_Ret_Title_sec_script
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify script injection is allowed
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -510,10 +510,10 @@ GET-API_TPC_GET_Return_Title_Security_Script
 
 GET-API_TPC_GET_Return_Title_Extended1
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TPC_Extended1
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify ASCII characters 1
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -528,10 +528,10 @@ GET-API_TPC_GET_Return_Title_Extended1
 
 GET-API_TPC_GET_Return_Title_Extended2
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Get_Return_Title_Characters_Extended2
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify ASCII characters 2
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -546,10 +546,10 @@ GET-API_TPC_GET_Return_Title_Extended2
 
 GET-API_TPC_GET_Return_Title_Extended3
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Get_Return_Title_Characters_Extended3
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify ASCII characters 3
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -564,10 +564,10 @@ GET-API_TPC_GET_Return_Title_Extended3
 
 GET-API_TPC_GET_Return_Title_Extended5
     [Documentation]    *Name:*
-    ...    GET-API_TPC_GET_Return_Title_Extended5
+    ...    API_TalentPool_Get_Return_Title_Characters_Extended5
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify ASCII characters 5
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -582,10 +582,10 @@ GET-API_TPC_GET_Return_Title_Extended5
 
 GET-API_TPC_GET_Return_Title_Extended6
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TalentPool_Get_Return_Title_Characters_Extended6
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify ASCII characters 6
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -600,10 +600,10 @@ GET-API_TPC_GET_Return_Title_Extended6
 
 GET-API_TPC_GET_Return_Title_Char_Foreign_Russian
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TP_Get_Return_Title_Char_Foreign_Russian
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify russian alphabet
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -618,10 +618,10 @@ GET-API_TPC_GET_Return_Title_Char_Foreign_Russian
 
 GET-API_TPC_GET_Return_Title_Char_Foreign_Arabic
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TP_Get_Return_Title_Char_Foreign_Arabic
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify arabic alphabet
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -636,10 +636,10 @@ GET-API_TPC_GET_Return_Title_Char_Foreign_Arabic
 
 GET-API_TPC_GET_Input_TP_Does_Not_Exist
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TP_Get_Input_TP_DNE
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify failure when talent pool id provided does not exist
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -654,10 +654,10 @@ GET-API_TPC_GET_Input_TP_Does_Not_Exist
 
 GET-API_TPC_GET_Input_User_Does_Not_Exist
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TP_Get_Input_User_DNE
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify failure when user provided does not exist
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -672,10 +672,10 @@ GET-API_TPC_GET_Input_User_Does_Not_Exist
 
 GET-API_TPC_GET_Input_User_Did_Not_Create
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TP_Get_Input_User_DidNotCreate
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify failure when user provided did not create the talent pool
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -690,10 +690,10 @@ GET-API_TPC_GET_Input_User_Did_Not_Create
 
 POST-API_TPC_Add_Security_Script
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TPC_Security_Script
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    verify script injection is allowed
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -708,10 +708,10 @@ POST-API_TPC_Add_Security_Script
 
 POST-API_TPC_Add_Already_Added_Subset
     [Documentation]    *Name:*
-    ...    API_TPC_Add_Already_Added_Subset.
+    ...    API_TPC_Add_Already_Added_Subset
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    Verify success when subset of added users are already added
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -726,10 +726,10 @@ POST-API_TPC_Add_Already_Added_Subset
 
 POST-API_TPC_Add_Already_Added_Single
     [Documentation]    *Name:*
-    ...    API_TPC_Add_Already_Added_Single.
+    ...    API_TPC_Add_AlreadyAdded_Single
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    Verify success when single added user is already added
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -744,10 +744,10 @@ POST-API_TPC_Add_Already_Added_Single
 
 POST-API_TPC_Add_Already_Added_All
     [Documentation]    *Name:*
-    ...    API_TPC_Add_Already_Added_Single.
+    ...    Api_TPC_Add_AlreadyAdded_All
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    Verify success when multiple added users are already added
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -762,10 +762,10 @@ POST-API_TPC_Add_Already_Added_All
 
 POST-API_TPC_Add_Access_No_Visibility_Subset
     [Documentation]    *Name:*
-    ...    API_TPC_Add_Already_Added_Single.
+    ...    API_TPC_Add_Access_NoVis_SubSet
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    Verify failure when no actor does not have Visibility on a subset of added multiple users
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -780,10 +780,10 @@ POST-API_TPC_Add_Access_No_Visibility_Subset
 
 POST-API_TPC_Add_2Users
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TPC_Add_2Users
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    Verify success when adding 2 users
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -798,10 +798,10 @@ POST-API_TPC_Add_2Users
 
 POST-API_TPC_Add_1Users
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TPC_Add_1Users
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    Verify success when adding 1 user
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -816,10 +816,10 @@ POST-API_TPC_Add_1Users
 
 POST-API_TPC_Add_0Users
     [Documentation]    *Name:*
-    ...    API_Talent_Pool_Create_Success_Return_Name.
+    ...    API_TPC_Add_0Users
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    Verify success when adding 0 users
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -834,10 +834,10 @@ POST-API_TPC_Add_0Users
 
 POST-API_TPC_Add_BaseCase_Input_Vs_Database
     [Documentation]    *Name:*
-    ...    API_TPC_Add_Already_Added_Single.
+    ...    API_TPC_Add_BaseCase_InputVsDatabase
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    Verify successful input user ends up in database
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -852,10 +852,10 @@ POST-API_TPC_Add_BaseCase_Input_Vs_Database
 
 POST-API_TPC_Add_BaseCase_Input_Vs_Output_Value
     [Documentation]    *Name:*
-    ...    API_TPC_Add_Already_Added_Single.
+    ...    API_TPC_Add_BC_InputVsOutput_Value
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    Verify successful input user ends up in output
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -870,10 +870,10 @@ POST-API_TPC_Add_BaseCase_Input_Vs_Output_Value
 
 DELETE-API_TPC_Candidates_Remove
     [Documentation]    *Name:*
-    ...    API_TPC_Add_Already_Added_Single.
+    ...    API_TPC_Remove_0Users
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    Verify success when removing 0 users
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -888,10 +888,10 @@ DELETE-API_TPC_Candidates_Remove
 
 DELETE-API_TPC_Remove_Access_Does_Not_Exist
     [Documentation]    *Name:*
-    ...    API_TPC_Add_Already_Added_Single.
+    ...    Api_TPC_Remove_Access_DNE
     ...
     ...    *Description:*
-    ...    verify new talent pool returns correct name
+    ...    Verify failure when acting user does not exist
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -935,7 +935,7 @@ PUT-API_Talent_Pool_Candidate_Search_Set_UseCase_Base_InputVsStatusDatabase
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    PUT2
+    [Tags]    PUT
     REST_NOAUTH_Random_Active_Shared
     REST_AuthToken
     PUT_TalentPool_Candidate_Status_Set    Title    200
@@ -953,7 +953,7 @@ PUT-API_TalentPool_Candidate_Status_Set_UseCase_Elaborate_Users_1
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    PUT3
+    [Tags]    PUT
     REST_NOAUTH_Random_Active_Owner_OR_Shared
     REST_AuthToken
     PUT_TalentPool_Candidate_Status_Set    Title    200
@@ -971,17 +971,17 @@ PUT-API_TPC_Rename_Access_Owner
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    PUT4
+    [Tags]    PUT
     REST_NOAUTH_Random_Active_Owner
     REST_AuthToken
     PUT_TalentPool_Rename_Access_Owner    SimpleName    Title
 
 PUT-API_TalentPool_Rename_Access_Not_Active
     [Documentation]    *Name:*
-    ...    PUT-API_TP_CS_Set_UC_Elab_Users_1
+    ...    PUT-API_TP_Rename_Access_NotActive
     ...
     ...    *Description:*
-    ...    UseCase_Elaborate: Verify success when status passed is identical
+    ...    Access: Verify failure when actor not active
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -989,17 +989,17 @@ PUT-API_TalentPool_Rename_Access_Not_Active
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    PUT5
+    [Tags]    PUT
     REST_NOAUTH_Random_Active_Owner_OR_Shared
     REST_AuthToken
     PUT_TalentPool_Candidate_Status_Set    Title    200
 
 PUT-API_TalentPool_Rename_Not_Active
     [Documentation]    *Name:*
-    ...    PUT-API_TP_CS_Set_UC_Elab_Users_1
+    ...    PUT-API_TP_Rename_Access_NotActive
     ...
     ...    *Description:*
-    ...    UseCase_Elaborate: Verify success when status passed is identical
+    ...    Access: Verify failure when actor not active
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -1007,17 +1007,17 @@ PUT-API_TalentPool_Rename_Not_Active
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    PUT6
+    [Tags]    PUT
     REST_NOAUTH_Random_Not_Active_Owner_OR_Shared
     REST_AuthToken
     PUT_TalentPool_Rename_Access_Not_Active    test 2    Title    200
 
-PUT-APIi_TalentPool_Candidate_Status_Set_UseCase_Base_InputVsUserDatabase
+PUT-API_TalentPool_Candidate_Status_Set_UseCase_Base_InputVsUserDatabase
     [Documentation]    *Name:*
-    ...    PUT-API_TP_CS_Set_UC_Elab_Users_1
+    ...    PUT-API_TC_Status_Set_UC_Base_InputVsUDB
     ...
     ...    *Description:*
-    ...    UseCase_Elaborate: Verify success when status passed is identical
+    ...    UseCase_Base: Verify provided user matches the new entry in database
     ...
     ...    *Run Arguments:*
     ...    -d TestResults -v RNOAUTH_HOST:QA01
@@ -1025,7 +1025,7 @@ PUT-APIi_TalentPool_Candidate_Status_Set_UseCase_Base_InputVsUserDatabase
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    PUT7
+    [Tags]    PUT
     REST_NOAUTH_Random_Active_Owner_OR_Shared
     REST_AuthToken
     PUT_TalentPool_Candidate_Status_Set    test 2    Title

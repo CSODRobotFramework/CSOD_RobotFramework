@@ -1137,7 +1137,8 @@ DELETE_TalentPool_Add_0Users
     Set Request Header    X-USERID    ${SQL_GET_USERID}
     Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
-    Set Request Body    [ ]
+    Set Request Header    content-length    0
+    Set Request Body    [{}]
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
     Set Suite Variable    ${SQL_CandidateCountBefore}    ${SQL_CandidateCountBefore}
     HttpLibrary.HTTP.DELETE    /talentpool-api/talentpools/${SQL_TalentPoolId}/candidates
@@ -1173,9 +1174,10 @@ DELETE_TalentPool_Candidates_Remove
     Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
     Set Request Header    X-USERID    ${SQL_GET_USERID}
     Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
-    Set Request Header    content-type    \ application/json
+    Set Request Header    content-type    application/json
+    Set Request Header    content-length    0
     Next Request May Not Succeed
-    Set Request Body    [{"UserId": ${SQL_UserToRemove1}}]
+    Set Request Body    [{\"UserId\": ${SQL_UserToRemove1}}]
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
     Set Suite Variable    ${SQL_CandidateCountBefore}    ${SQL_CandidateCountBefore}
     HttpLibrary.HTTP.DELETE    /talentpool-api/talentpools/${SQL_TalentPoolId}/candidates
