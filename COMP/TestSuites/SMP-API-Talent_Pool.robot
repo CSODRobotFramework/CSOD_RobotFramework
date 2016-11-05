@@ -2,6 +2,8 @@
 Library           SQLlibrary
 Library           HttpLibrary.HTTP
 Resource          ../Resources/SMP_PROJECTS/SMP_Resources.robot
+Library           requests
+Library           RequestsLibrary
 
 *** Test Cases ***
 POST-API_Talent_Pool_Create_Succ_Return_Name
@@ -904,6 +906,24 @@ DELETE-API_TPC_Remove_Access_Does_Not_Exist
     REST_AuthToken
     DELETE_TalentPool_Candidates_Remove    Title    400
 
+DELETE-API_TPC_Candidates_Remove_1User
+    [Documentation]    *Name:*
+    ...    API_TPC_Remove_0Users
+    ...
+    ...    *Description:*
+    ...    Verify success when removing 0 users
+    ...
+    ...    *Run Arguments:*
+    ...    -d TestResults -v RNOAUTH_HOST:QA01
+    ...
+    ...
+    ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
+    ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
+    [Tags]    DELETE
+    REST_NOAUTH_Random_Active_Owner_OR_Shared_With_Candidates
+    REST_AuthToken
+    DELETE_TalentPool_Candidates_Remove_1User    Title    200
+
 PUT-API_TPC_Rename
     [Documentation]    *Name:*
     ...    PUT-TP_Rename_Access.
@@ -1029,3 +1049,29 @@ PUT-API_TalentPool_Candidate_Status_Set_UseCase_Base_InputVsUserDatabase
     REST_NOAUTH_Random_Active_Owner_OR_Shared
     REST_AuthToken
     PUT_TalentPool_Candidate_Status_Set    test 2    Title
+
+Delete Request With URL Params
+    [Tags]    delete
+    Create Session    httpbin    http://httpbin.org
+    &{params}=    Create Dictionary    key=value    key2=value2
+    ${resp}=    Delete Request    httpbin    /delete    ${params}
+    Should Be Equal As Strings    ${resp.status_code}    200
+
+Delete Request With No Data
+    [Tags]    delete
+    Comment    Create Session    ${HTTP_CONTEXT}    http://laxqarexmt.office.cyberu.com/talentpool-api/talentpools/0/candidates
+    Comment    ${resp}=    Delete Request    ${HTTP_CONTEXT}    /delete
+    Comment    Should Be Equal As Strings    ${resp.status_code}    200
+    Create Session    httpbin    http://httpbin.org
+    ${resp}=    Delete Request    httpbin    /delete
+    Should Be Equal As Strings    ${resp.status_code}    200
+
+Delete Request With Data
+    [Tags]    delete
+    Create Session    httpbin    http://httpbin.org    debug=3
+    &{data}=    Create Dictionary    name=bulkan    surname=evcimen
+    ${resp}=    Delete Request    httpbin    /delete    data=${data}
+    Should Be Equal As Strings    ${resp.status_code}    200
+    Log    ${resp.content}
+    Comment    Dictionary Should Contain Value    ${resp.json()['data']}    bulkan
+    Comment    Dictionary Should Contain Value    ${resp.json()['data']}    evcimen
