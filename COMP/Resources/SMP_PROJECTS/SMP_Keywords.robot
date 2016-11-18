@@ -140,6 +140,29 @@ REST_AuthToken
     ${resBody}=    Get Response Body
     Comment    Close
 
+REST_AuthToken_RequestsLibrary
+    [Documentation]    *REST_AuthToken_RequestsLibrary:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/cornerstone-auth-api/swagger/ui/index#!/Auth/Auth_Put
+    ...    PUT /v1
+    ...
+    ...    *Arguments:*
+    ...    Run Time Arguments:
+    ...    ${SQL_GET_USERID},${RNOAUTH_CUSTOM_CORP}
+    ...
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Notes*
+    ...    Set Request Body keyword has Constraints that are hard coded this is assuming that all users on the portal have these constraints for the permission_id -157 Talent Pool Permission. We can also remove the constraints here if needed and it should run fine.
+    Create Session    http    ${HTTP_CONTEXT_CSOD_AUTH}     debug=3
+    Comment    Create Session    http    ${HTTP_CONTEXT}    debug=3
+    &{headers}=    Create Dictionary    Content-Type=application/json
+    Set Test Variable    ${body}    { \ \ \"UserId\": ${SQL_GET_USERID}, \ \ \"CorpName\": \"${RNOAUTH_CUSTOM_CORP}\", \ \ \"Permissions\": [ \ \ \ \ { \ \ \ \ \ \ \"Id\": -157, \ \ \ \ \ \ \"Constraints\": [ \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 73, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 2, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": true \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 87, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 32, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 111, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 4, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 150, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 8, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ } \ \ \ \ \ \ ] \ \ \ \ } \ \ ], \ \ \"Token\": \"${RNOAUTH_CUSTOM_CORP}_${SQL_GET_USERID}\", \ \ \"expDt\": \"2019-08-17T16:16:19.550Z\", \ \ \"CultureId\": 0 }
+    ${resp}=    RequestsLibrary.Put Request    http    /    data=${body}    headers=${headers}
+    Log    ${resp}
+    Should Be Equal As Strings    ${resp.status_code}    204
+
 REST_NOAUTH_Random_Active_Shared
     [Documentation]    *REST_NOAUTH:*
     ...    This keyword is for http://laxqarexmt.office.cyberu.com/cornerstone-auth-api/swagger/ui/index#!/Auth/Auth_Put
@@ -308,7 +331,7 @@ POST_TalentPool_Create_Random_Title
     Close
 
 POST_TalentPool_Create_Empty_String
-    [Arguments]    ${SUBMITTED_TITLE}    ${KEY_NAME_JSON}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
+    [Arguments]    ${SUBMITTED_TITLE}    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
     [Documentation]    *POST_TalentPool_Create:*
     ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/POST/TalentPool_CreateTalentPool
     ...
@@ -324,10 +347,11 @@ POST_TalentPool_Create_Empty_String
     Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
     Set Request Header    X-USERID    ${SQL_GET_USERID}
     Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
-    Set Request Header    content-type    \ application/json
+    Set Request Header    content-type    application/json
     Next Request May Not Succeed
-    Set Request Body    { \"Title\":\"${SUBMITTED_TITLE}\"}
+    Set Request Body    { \"${KEY_NAME_JSON}\":\"${SUBMITTED_TITLE}\"}
     HttpLibrary.HTTP.POST    /talentpool-api/talentpools
+    Response Status Code Should Equal    ${RESPONSE_POST}
     ${resBody}=    Get Response Body
     Set Test Message    The ${resBody} message from the API Negative Test Passed.
 
@@ -1215,9 +1239,35 @@ DELETE_TalentPool_Candidates_Remove
     Run Keyword If    '${SQL_CandidatesCountAfter}'== '${SQL_NUM}'    Utility Set Test Message    The ${SQL_CandidatesCountAfter} matches with ${SQL_NUM}
     Run Keyword If    '${SQL_CandidatesCountAfter}'<>'${SQL_NUM}'    Fail    The ${SQL_CandidatesCountAfter} did not match ${SQL_NUM}
 
+DELETE_TalentPool_Candidates_Remove_0User
+    [Documentation]    *DELETE_TalentPool_Candidates_Remove_0User:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/POST/TalentPool_AddCandidatesToTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id = ${SQL_GET_USERID} AND ou_id IN (SELECT ou_id FROM ou_user GROUP BY ou_id HAVING COUNT(ou_id) > 0) ORDER BY NEWID()
+    Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
+    &{headers}=    Create Dictionary    Content-Type=application/json    X-CORP=${RNOAUTH_CUSTOM_CORP}    X-USERID=0${SQL_GET_USERID}    X-CULTUREID=0${SQL_GET_USER_CULTURE}
+    Create Session    http    ${HTTP_CONTEXT_NORMAL}    debug=3
+    Set Suite Variable    ${body}    [{}]
+    ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    ${resp}=    RequestsLibrary.Delete Request    http    /talentpools/${SQL_TalentPoolId}/candidates    data=${body}    headers=${headers}
+    ${SQL_CandidateCountAfter}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidateCountAfter}    ${SQL_CandidateCountAfter}
+    ${SQL_NUM}=    Evaluate    ${SQL_CandidateCountBefore}+0
+    Log    ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidateCountAfter}'=='${SQL_NUM}'    Utility Set Test Message    The ${SQL_CandidateCountAfter} matches with ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidateCountAfter}'<>'${SQL_NUM}'    Fail    The ${SQL_CandidateCountAfter} did NOT matches with ${SQL_NUM}
+
 DELETE_TalentPool_Candidates_Remove_1User
-    [Arguments]    ${KEY_NAME_JSON}    ${RESPONSE_POST}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
-    [Documentation]    *POST_TalentPool_Candidates_Add:*
+    [Documentation]    *DELETE_TalentPool_Candidates_Remove_1User:*
     ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/POST/TalentPool_AddCandidatesToTalentPool
     ...
     ...    *Arguments:*
@@ -1233,34 +1283,81 @@ DELETE_TalentPool_Candidates_Remove_1User
     Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
     ${SQL_UserToRemove1}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND user_id NOT IN (SELECT owner_id FROM ou WHERE ou_id = ${SQL_TalentPoolId}) AND status_id = 1 ORDER BY NEWID()
     Set Suite Variable    ${SQL_UserToRemove1}    ${SQL_UserToRemove1}
-    Create Session    ${HTTP_CONTEXT}    http://laxqarexmt.office.cyberu.com
-    ${resp}=    Options Request    ${HTTP_CONTEXT}    /headers
+    &{headers}=    Create Dictionary    Content-Type=application/json    X-CORP=${RNOAUTH_CUSTOM_CORP}    X-USERID=0${SQL_GET_USERID}    X-CULTUREID=0${SQL_GET_USER_CULTURE}
+    Create Session    http    ${HTTP_CONTEXT_NORMAL}    debug=3
+    Set Suite Variable    ${body}    [{"UserId": ${SQL_UserToRemove1}}]
+    ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    ${resp}=    RequestsLibrary.Delete Request    http    /talentpools/${SQL_TalentPoolId}/candidates    data=${body}    headers=${headers}
+    Log    ${resp}
     Should Be Equal As Strings    ${resp.status_code}    200
-    Dictionary Should Contain Key    ${resp.headers}    allow
-    Comment    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
-    Comment    Set Request Header    X-USERID    ${SQL_GET_USERID}
-    Comment    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
-    Comment    Set Request Header    content-type    application/json
-    Comment    Set Request Header    content-length    0
-    Comment    Next Request May Not Succeed
-    Comment    Set Request Body    [{\"UserId\" :${SQL_UserToRemove1}}]
-    Comment    requests.Request    GET    http://laxqarexmt.office.cyberu.com/talentpool-api/talentpools/${SQL_TalentPoolId}/candidates
-    Comment    ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
-    Comment    Set Suite Variable    ${SQL_CandidateCountBefore}    ${SQL_CandidateCountBefore}
-    Comment    Comment    HttpLibrary.HTTP.DELETE    /talentpool-api/talentpools/${SQL_TalentPoolId}/candidates
-    Comment    ${params}=    Create Dictionary    key=[{\"UserId\" :${SQL_UserToRemove1}}]
-    ${resp}=    Delete Request    ${HTTP_CONTEXT}    /delete    [{\"UserId\" :${SQL_UserToRemove1}}]    ${RNOAUTH_CUSTOM_CORP}
-    Should Be Equal As Strings    ${resp.status_code}    404
-    Comment    Response Status Code Should Equal    ${RESPONSE_POST}
-    Comment    ${resBody}=    Get Response Body
-    Comment    log    ${resBody}
-    Comment    ${SQL_CandidatesCountAfter}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
-    Comment    Set Suite Variable    ${SQL_CandidatesCountAfter}    ${SQL_CandidatesCountAfter}
-    Comment    ${SQL_NUM}=    Evaluate    ${SQL_CandidateCountBefore}-1
-    Comment    Log    ${SQL_NUM}
-    Comment    Run Keyword If    '${SQL_CandidatesCountAfter}'== '${SQL_NUM}'    Utility Set Test Message    The ${SQL_CandidatesCountAfter} matches with ${SQL_NUM}
-    Comment    Run Keyword If    '${SQL_CandidatesCountAfter}'<>'${SQL_NUM}'    Fail    The ${SQL_CandidatesCountAfter} did not match ${SQL_NUM}
-    Comment    requests.Delete
+    ${SQL_CandidateCountAfter}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidateCountAfter}    ${SQL_CandidateCountAfter}
+    ${SQL_NUM}=    Evaluate    ${SQL_CandidateCountBefore}-1
+    Log    ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidateCountAfter}'=='${SQL_NUM}'    Utility Set Test Message    The ${SQL_CandidateCountAfter} matches with ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidateCountAfter}'<>'${SQL_NUM}'    Fail    The ${SQL_CandidateCountAfter} did NOT matches with ${SQL_NUM}
+
+DELETE_TalentPool_Candidates_Remove_Access_DNE
+    [Documentation]    *DELETE_TalentPool_Candidates_Remove_Access_DNE:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/POST/TalentPool_AddCandidatesToTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND ou_id IN (SELECT ou_id FROM ou_user GROUP BY ou_id HAVING COUNT(ou_id) > 0) ORDER BY NEWID()
+    Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
+    ${SQL_UserToRemove1}=    Execute Raw    SELECT TOP 1 ou_user.user_id FROM ou_user LEFT JOIN users ON ou_user.user_id = users.user_id WHERE users.user_id > 0 AND ou_user.ou_id = ${SQL_TalentPoolId} AND users.user_id NOT IN (SELECT owner_id FROM ou WHERE ou_id = ${SQL_TalentPoolId}) AND users.status_id = 1 ORDER BY NEWID()
+    Set Suite Variable    ${SQL_UserToRemove1}    ${SQL_UserToRemove1}
+    &{headers}=    Create Dictionary    Content-Type=application/json    X-CORP=${RNOAUTH_CUSTOM_CORP}    X-USERID=0${SQL_GET_USERID}    X-CULTUREID=0${SQL_GET_USER_CULTURE}
+    Create Session    http    ${HTTP_CONTEXT_NORMAL}    debug=3
+    Set Suite Variable    ${body}    [{"UserId": ${SQL_UserToRemove1}}]
+    ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    ${resp}=    RequestsLibrary.Delete Request    http    /talentpools/${SQL_TalentPoolId}/candidates    data=${body}    headers=${headers}
+    Log    ${resp}
+    Should Be Equal As Strings    ${resp.status_code}    400
+    ${SQL_CandidateCountAfter}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidateCountAfter}    ${SQL_CandidateCountAfter}
+    ${SQL_NUM}=    Evaluate    ${SQL_CandidateCountBefore}+0
+    Log    ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidateCountAfter}'=='${SQL_NUM}'    Utility Set Test Message    The ${SQL_CandidateCountAfter} matches with ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidateCountAfter}'<>'${SQL_NUM}'    Fail    The ${SQL_CandidateCountAfter} did NOT matches with ${SQL_NUM}
+
+DELETE_TalentPool_Candidates_Remove_Not_TP_Owner
+    [Documentation]    *DELETE_TalentPool_Candidates_Remove_1User:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/POST/TalentPool_AddCandidatesToTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id <> ${SQL_GET_USERID} AND ou_id IN (SELECT ou_id FROM ou_user GROUP BY ou_id HAVING COUNT(ou_id) > 0) ORDER BY NEWID()
+    Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
+    ${SQL_UserToRemove1}=    Execute Raw    SELECT TOP 1 ou_user.user_id FROM ou_user LEFT JOIN users ON ou_user.user_id = users.user_id WHERE users.user_id > 0 AND ou_user.ou_id = ${SQL_TalentPoolId} AND users.user_id NOT IN (SELECT owner_id FROM ou WHERE ou_id = ${SQL_TalentPoolId}) AND users.status_id = 1 ORDER BY NEWID()
+    Set Suite Variable    ${SQL_UserToRemove1}    ${SQL_UserToRemove1}
+    &{headers}=    Create Dictionary    Content-Type=application/json    X-CORP=${RNOAUTH_CUSTOM_CORP}    X-USERID=0${SQL_GET_USERID}    X-CULTUREID=0${SQL_GET_USER_CULTURE}
+    Create Session    http    ${HTTP_CONTEXT_NORMAL}    debug=3
+    Set Suite Variable    ${body}    [{"UserId": ${SQL_UserToRemove1}}]
+    ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    ${resp}=    RequestsLibrary.Delete Request    http    /talentpools/${SQL_TalentPoolId}/candidates    data=${body}    headers=${headers}
+    Log    ${resp}
+    Should Be Equal As Strings    ${resp.status_code}    401
+    ${SQL_CandidateCountAfter}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidateCountAfter}    ${SQL_CandidateCountAfter}
+    ${SQL_NUM}=    Evaluate    ${SQL_CandidateCountBefore}+0
+    Log    ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidateCountAfter}'=='${SQL_NUM}'    Utility Set Test Message    The ${SQL_CandidateCountAfter} matches with ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidateCountAfter}'<>'${SQL_NUM}'    Fail    The ${SQL_CandidateCountAfter} did NOT matches with ${SQL_NUM}
 
 PUT_TalentPool_Rename_Access
     [Arguments]    ${SUBMITTED_TITLE}    ${KEY_NAME_JSON}    # SUBMITTED_TITLE = TalentPool Name and KEY_NAME_JSON = JSON keyname
@@ -1376,3 +1473,36 @@ PUT_TalentPool_Rename_Access_Not_Active
     ${response}=    Parse Json    ${resBody}
     ${responseDict}=    Convert To Dictionary    ${response}
     ${keyValue}=    Get From Dictionary    ${responseDict}    ${KEY_NAME_JSON}
+
+DELETE_TalentPool_Candidates_Remove_AlreadyRemoved_All
+    [Documentation]    *DELETE_TalentPool_Candidates_AlreadyRemoved_All:*
+    ...    This keyword is for http://laxqarexmt.office.cyberu.com/talentpool-api/swagger/ui/index#!/POST/TalentPool_AddCandidatesToTalentPool
+    ...
+    ...    *Arguments:*
+    ...    ${KEY_NAME_JSON} | ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE}
+    ...
+    ...    *Important:*
+    ...    This keyword needs to be run before using any end points since this end point is for authorization for the users that must be used before getting into any other end points.
+    ...
+    ...    *Note:*
+    ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
+    Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
+    ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id = ${SQL_GET_USERID} AND ou_id IN (SELECT ou_id FROM ou_user GROUP BY ou_id HAVING COUNT(ou_id) > 0) ORDER BY NEWID()
+    Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
+    ${SQL_UserToRemove1}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id NOT IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND user_id NOT IN (SELECT owner_id FROM ou WHERE ou_id = ${SQL_TalentPoolId}) AND status_id = 1 ORDER BY NEWID()
+    Set Suite Variable    ${SQL_UserToRemove1}    ${SQL_UserToRemove1}
+    ${SQL_UserToRemove2}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id NOT IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND user_id NOT IN (SELECT owner_id FROM ou WHERE ou_id = ${SQL_TalentPoolId}) AND status_id = 1 AND user_id <> ${SQL_UserToRemove1} ORDER BY NEWID()
+    Set Suite Variable    ${SQL_UserToRemove2}    ${SQL_UserToRemove2}
+    &{headers}=    Create Dictionary    Content-Type=application/json    X-CORP=${RNOAUTH_CUSTOM_CORP}    X-USERID=0${SQL_GET_USERID}    X-CULTUREID=0${SQL_GET_USER_CULTURE}
+    Create Session    http    ${HTTP_CONTEXT_NORMAL}    debug=3
+    Set Suite Variable    ${body}    [{"UserId": ${SQL_UserToRemove1}},{"UserId": ${SQL_UserToRemove2}}]
+    ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    ${resp}=    RequestsLibrary.Delete Request    http    /talentpools/${SQL_TalentPoolId}/candidates    data=${body}    headers=${headers}
+    Log    ${resp}
+    Should Be Equal As Strings    ${resp.status_code}    200
+    ${SQL_CandidateCountAfter}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
+    Set Suite Variable    ${SQL_CandidateCountAfter}    ${SQL_CandidateCountAfter}
+    ${SQL_NUM}=    Evaluate    ${SQL_CandidateCountBefore}+0
+    Log    ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidateCountAfter}'=='${SQL_NUM}'    Utility Set Test Message    The ${SQL_CandidateCountAfter} matches with ${SQL_NUM}
+    Run Keyword If    '${SQL_CandidateCountAfter}'<>'${SQL_NUM}'    Fail    The ${SQL_CandidateCountAfter} did NOT matches with ${SQL_NUM}

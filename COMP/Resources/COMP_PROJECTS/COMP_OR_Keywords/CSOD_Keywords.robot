@@ -244,8 +244,8 @@ Killall_Browser_Process
 
 Login_To_Portal
     Environment
-    Comment    Maximize Browser Window
-    Comment    Login_Page    QA052-AUTO-COMP2    ssmith    popeye123
+    Maximize Browser Window
+    Login_Page    QA052-AUTO-COMP2    ssmith    popeye123
 
 Navigate_To_Report
     Nav_Reports_Comp    ${lnkRepCompensation}
