@@ -1064,8 +1064,26 @@ Put Request With No Dictionary
     Should Be Equal As Strings    ${resp.status_code}    200
     Should Contain    ${resp.text}    ${data}
 
+Head Request
+    [Tags]    head
+    Create Session    httpbin    http://httpbin.org
+    ${resp}=    Head Request    httpbin    /headers
+    Should Be Equal As Strings    ${resp.status_code}    200
+
 DELETE-API_TPC_Remove0Users
-    [Tags]    put
+    [Documentation]    *Name:*
+    ...    Api_TPC_Remove_0Users
+    ...
+    ...    *Description:*
+    ...    Verify success when removing 0 users
+    ...
+    ...    *Run Arguments:*
+    ...    -d TestResults -v RNOAUTH_HOST:QA01
+    ...
+    ...
+    ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
+    ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
+    [Tags]    DELETE    NEGATIVE
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Remove_0User
@@ -1088,28 +1106,58 @@ DELETE-API_TPC_Remove0Users
     Comment    Log    END TEST
 
 DELETE-API_TPC_Remove1Users
-    [Tags]    put
+    [Documentation]    *Name:*
+    ...    Api_TPC_Remove_1Users
+    ...
+    ...    *Description:*
+    ...    Verify success when removing 1 user
+    ...
+    ...    *Run Arguments:*
+    ...    -d TestResults -v RNOAUTH_HOST:QA01
+    ...
+    ...
+    ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
+    ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
+    [Tags]    DELETE
     REST_NOAUTH
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Remove_1User
 
 DELETE-API_TPC_Remove_Access_DNE
-    [Tags]    put
+    [Documentation]    *Name:*
+    ...    Api_TPC_Remove_Access_DNE
+    ...
+    ...    *Description:*
+    ...    Verify failure when acting user does not exist
+    ...
+    ...    *Run Arguments:*
+    ...    -d TestResults -v RNOAUTH_HOST:QA01
+    ...
+    ...
+    ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
+    ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
+    [Tags]    DELETE    NEGATIVE
     REST_NOAUTH_NonExistentUser
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Remove_Access_DNE
 
 DELETE-API_TPC_Remove_Acc_NOT_TP_Owner
-    [Tags]    put
+    [Documentation]    *Name:*
+    ...    Api_TPC_Remove_Acc_NotTPOwner
+    ...
+    ...    *Description:*
+    ...    Verify failure when acting user is not the talent pool owner
+    ...
+    ...    *Run Arguments:*
+    ...    -d TestResults -v RNOAUTH_HOST:QA01
+    ...
+    ...
+    ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
+    ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
+    [Tags]    DELETE
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Remove_Not_TP_Owner
-
-Head Request
-    [Tags]    head
-    Create Session    httpbin    http://httpbin.org
-    ${resp}=    Head Request    httpbin    /headers
-    Should Be Equal As Strings    ${resp.status_code}    200
 
 DELETE-API_TPC_Remove_AlreadyRemoved_All
     [Documentation]    *Name:*
@@ -1124,7 +1172,187 @@ DELETE-API_TPC_Remove_AlreadyRemoved_All
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    put
+    [Tags]    DELETE
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Remove_AlreadyRemoved_All
+
+DELETE-API_TPC_Remove_AlreadyRemoved_Single
+    [Documentation]    *Name:*
+    ...    Api_TPC_Remove_AlreadyRemoved_Single
+    ...
+    ...    *Description:*
+    ...    Verify success when single removed user is already removed
+    ...
+    ...    *Run Arguments:*
+    ...    -d TestResults -v RNOAUTH_HOST:QA01
+    ...
+    ...
+    ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
+    ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
+    [Tags]    DELETE
+    REST_NOAUTH_Random_Users_with_Talent_Pools
+    REST_AuthToken_RequestsLibrary
+    DELETE_TalentPool_Candidates_Remove_AlreadyRemoved_Single
+
+DELETE-API_TPC_Remove_AlreadyRemoved_SubSet
+    [Documentation]    *Name:*
+    ...    Api_TPC_Remove_AlreadyRemoved_SubSet
+    ...
+    ...    *Description:*
+    ...    Verify success when subset of removed users are already removed
+    ...
+    ...    *Run Arguments:*
+    ...    -d TestResults -v RNOAUTH_HOST:QA01
+    ...
+    ...
+    ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
+    ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
+    [Tags]    DELETE
+    REST_NOAUTH_Random_Users_with_Talent_Pools
+    REST_AuthToken_RequestsLibrary
+    DELETE_TalentPool_Candidates_Remove_AlreadyRemoved_SubSet
+
+DELETE-APIi_TPC_Remove_BaseCase_InputVsDatabase
+    [Documentation]    *Name:*
+    ...    Api_TPC_Remove_AlreadyRemoved_SubSet
+    ...
+    ...    *Description:*
+    ...    Verify successful input user ends up in database
+    ...
+    ...    *Run Arguments:*
+    ...    -d TestResults -v RNOAUTH_HOST:QA01
+    ...
+    ...
+    ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
+    ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
+    [Tags]    DELETE
+    REST_NOAUTH_Random_Users_with_Talent_Pools
+    REST_AuthToken_RequestsLibrary
+    DELETE_TalentPool_Candidates_Remove_BaseCase_InputVsDatabase
+
+DELETE-API_TPC_Remove_BaseCase_InputVsOutput
+    [Documentation]    *Name:*
+    ...    Api_TPC_Remove_AlreadyRemoved_Single
+    ...
+    ...    *Description:*
+    ...    Verify success when single removed user is already removed
+    ...
+    ...    *Run Arguments:*
+    ...    -d TestResults -v RNOAUTH_HOST:QA01
+    ...
+    ...
+    ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
+    ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
+    [Tags]    DELETE    JSONVFY
+    REST_NOAUTH_Random_Users_with_Talent_Pools
+    REST_AuthToken_RequestsLibrary
+    DELETE_TalentPool_Candidates_Remove_BaseCase_InputVsOutput
+
+DELETE-API_TPC_Remove_DNEUser_All
+    [Documentation]    *Name:*
+    ...    Api_TPC_Remove_DNEUser_All
+    ...
+    ...    *Description:*
+    ...    Verify failure when multiple removed users do not exist
+    ...
+    ...    *Run Arguments:*
+    ...    -d TestResults -v RNOAUTH_HOST:QA01
+    ...
+    ...
+    ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
+    ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
+    [Tags]    DELETE
+    REST_NOAUTH_Random_Users_with_Talent_Pools
+    REST_AuthToken_RequestsLibrary
+    DELETE_TalentPool_Candidates_Remove_DNEUser_All
+
+DELETE-API_TPC_Remove_DNEUser_Single
+    [Documentation]    *Name:*
+    ...    Api_TPC_Remove_DNEUser_Single
+    ...
+    ...    *Description:*
+    ...    Verify failure when single removed user does not exist
+    ...
+    ...    *Run Arguments:*
+    ...    -d TestResults -v RNOAUTH_HOST:QA01
+    ...
+    ...
+    ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
+    ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
+    [Tags]    DELETE
+    REST_NOAUTH_Random_Users_with_Talent_Pools
+    REST_AuthToken_RequestsLibrary
+    DELETE_TalentPool_Candidates_Remove_DNEUser_Single
+
+DELETE-API_TPC_Remove_DNEUser_SubSet
+    [Documentation]    *Name:*
+    ...    Api_TPC_Remove_DNEUser_SubSet
+    ...
+    ...    *Description:*
+    ...    Verify failure when subset of removed users do not exist
+    ...
+    ...    *Run Arguments:*
+    ...    -d TestResults -v RNOAUTH_HOST:QA01
+    ...
+    ...
+    ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
+    ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
+    [Tags]    DELETE
+    REST_NOAUTH_Random_Users_with_Talent_Pools
+    REST_AuthToken_RequestsLibrary
+    DELETE_TalentPool_Candidates_Remove_DNEUser_SubSet
+
+DELETE-API_TP_Delete_Access_DoesNotExist
+    [Documentation]    *Name:*
+    ...    Api_TP_Delete_Access_DoesNotExist
+    ...
+    ...    *Description:*
+    ...    Access: Verify error when user id is not in database
+    ...
+    ...    *Run Arguments:*
+    ...    -d TestResults -v RNOAUTH_HOST:QA01
+    ...
+    ...
+    ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
+    ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
+    [Tags]    DELETE
+    REST_NOAUTH_NonExistentUser
+    REST_AuthToken_RequestsLibrary
+    DELETE_TalentPool_Candidates_Delete_Access_DoesNotExist    401
+
+DELETE-API_TP_Delete_Access_NotOwner
+    [Documentation]    *Name:*
+    ...    Api_TP_Delete_Access_NotOwner
+    ...
+    ...    *Description:*
+    ...    Access: Verify error when user id is not for talent pool owner
+    ...
+    ...    *Run Arguments:*
+    ...    -d TestResults -v RNOAUTH_HOST:QA01
+    ...
+    ...
+    ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
+    ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
+    [Tags]    DELETE
+    REST_NOAUTH_Random_Users_with_Talent_Pools
+    REST_AuthToken_RequestsLibrary
+    DELETE_TalentPool_Candidates_Delete_Access_NotOwner    401
+
+DELETE-API_TP_Del_Input_TPId_DoesNotExist
+    [Documentation]    *Name:*
+    ...    Api_TP_Del_Input_TPId_DoesNotExist
+    ...
+    ...    *Description:*
+    ...    Input: Verify error when talent pool id is not in database
+    ...
+    ...    *Run Arguments:*
+    ...    -d TestResults -v RNOAUTH_HOST:QA01
+    ...
+    ...
+    ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
+    ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
+    [Tags]    DELETE
+    REST_NOAUTH_Random_Users_with_Talent_Pools
+    REST_AuthToken_RequestsLibrary
+    DELETE_TalentPool_Candidates_Delete_Input_TPId_DoesNotExist    404
