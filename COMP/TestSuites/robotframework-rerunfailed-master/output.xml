@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20161125 23:33:33.284" generator="Robot 3.0 (Python 2.7.12 on win32)">
+<suite source="C:\Users\gfung\.jenkins\workspace\SMP-API-Talent_Pool\COMP\TestSuites\robotframework-rerunfailed-master\unstable_suite.robot" id="s1" name="Unstable Suite">
+<test id="s1-t1" name="stable_test">
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${True}</arg>
+</arguments>
+<status status="PASS" endtime="20161125 23:33:33.324" starttime="20161125 23:33:33.323"></status>
+</kw>
+<status status="PASS" endtime="20161125 23:33:33.324" critical="yes" starttime="20161125 23:33:33.323"></status>
+</test>
+<test id="s1-t2" name="unstable_test">
+<kw name="random_boolean">
+<assign>
+<var>${bool}</var>
+</assign>
+<kw name="Generate Random String" library="String">
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<arguments>
+<arg>1</arg>
+<arg>[NUMBERS]</arg>
+</arguments>
+<assign>
+<var>${nb_string}</var>
+</assign>
+<msg timestamp="20161125 23:33:33.327" level="INFO">${nb_string} = 8</msg>
+<status status="PASS" endtime="20161125 23:33:33.327" starttime="20161125 23:33:33.326"></status>
+</kw>
+<kw name="Convert To Integer" library="BuiltIn">
+<doc>Converts the given item to an integer number.</doc>
+<arguments>
+<arg>${nb_string}</arg>
+</arguments>
+<assign>
+<var>${nb_int}</var>
+</assign>
+<msg timestamp="20161125 23:33:33.327" level="INFO">${nb_int} = 8</msg>
+<status status="PASS" endtime="20161125 23:33:33.329" starttime="20161125 23:33:33.327"></status>
+</kw>
+<kw name="Run Keyword And Return" library="BuiltIn">
+<doc>Runs the specified keyword and returns from the enclosing user keyword.</doc>
+<arguments>
+<arg>evaluate</arg>
+<arg>(${nb_int} % 2) == 0</arg>
+</arguments>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>(${nb_int} % 2) == 0</arg>
+</arguments>
+<status status="PASS" endtime="20161125 23:33:33.329" starttime="20161125 23:33:33.329"></status>
+</kw>
+<msg timestamp="20161125 23:33:33.329" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" endtime="20161125 23:33:33.329" starttime="20161125 23:33:33.329"></status>
+</kw>
+<msg timestamp="20161125 23:33:33.331" level="INFO">${bool} = True</msg>
+<status status="PASS" endtime="20161125 23:33:33.331" starttime="20161125 23:33:33.326"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${bool}</arg>
+</arguments>
+<status status="PASS" endtime="20161125 23:33:33.331" starttime="20161125 23:33:33.331"></status>
+</kw>
+<status status="PASS" endtime="20161125 23:33:33.331" critical="yes" starttime="20161125 23:33:33.326"></status>
+</test>
+<metadata>
+<item name="Log of First Run">[first_run_log.html|first_run_log.html]</item>
+<item name="Log of Second Run">[second_run_log.html|second_run_log.html]</item>
+</metadata>
+<status status="PASS" endtime="20161125 23:33:33.332" starttime="20161125 23:33:33.287"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="2">Critical Tests</stat>
+<stat fail="0" pass="2">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Unstable Suite" pass="2">Unstable Suite</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
