@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20161126 21:50:58.986" generator="Robot 3.0 (Python 2.7.12 on win32)">
+<robot generated="20161129 11:29:25.208" generator="Robot 3.0 (Python 2.7.12 on win32)">
 <suite source="C:\Users\gfung\.jenkins\workspace\COMP-Smoketest-Admin-Side\COMP\TestSuites\robotframework-rerunfailed-master\unstable_suite.robot" id="s1" name="Unstable Suite">
 <test id="s1-t1" name="stable_test">
 <kw name="Should Be True" library="BuiltIn">
@@ -7,9 +7,9 @@
 <arguments>
 <arg>${True}</arg>
 </arguments>
-<status status="PASS" endtime="20161126 21:50:59.024" starttime="20161126 21:50:59.024"></status>
+<status status="PASS" endtime="20161129 11:29:25.246" starttime="20161129 11:29:25.246"></status>
 </kw>
-<status status="PASS" endtime="20161126 21:50:59.025" critical="yes" starttime="20161126 21:50:59.023"></status>
+<status status="PASS" endtime="20161129 11:29:25.246" critical="yes" starttime="20161129 11:29:25.245"></status>
 </test>
 <test id="s1-t2" name="unstable_test">
 <kw name="random_boolean">
@@ -25,8 +25,8 @@
 <assign>
 <var>${nb_string}</var>
 </assign>
-<msg timestamp="20161126 21:50:59.029" level="INFO">${nb_string} = 0</msg>
-<status status="PASS" endtime="20161126 21:50:59.029" starttime="20161126 21:50:59.028"></status>
+<msg timestamp="20161129 11:29:25.249" level="INFO">${nb_string} = 8</msg>
+<status status="PASS" endtime="20161129 11:29:25.249" starttime="20161129 11:29:25.249"></status>
 </kw>
 <kw name="Convert To Integer" library="BuiltIn">
 <doc>Converts the given item to an integer number.</doc>
@@ -36,8 +36,8 @@
 <assign>
 <var>${nb_int}</var>
 </assign>
-<msg timestamp="20161126 21:50:59.029" level="INFO">${nb_int} = 0</msg>
-<status status="PASS" endtime="20161126 21:50:59.030" starttime="20161126 21:50:59.029"></status>
+<msg timestamp="20161129 11:29:25.250" level="INFO">${nb_int} = 8</msg>
+<status status="PASS" endtime="20161129 11:29:25.250" starttime="20161129 11:29:25.249"></status>
 </kw>
 <kw name="Run Keyword And Return" library="BuiltIn">
 <doc>Runs the specified keyword and returns from the enclosing user keyword.</doc>
@@ -50,28 +50,28 @@
 <arguments>
 <arg>(${nb_int} % 2) == 0</arg>
 </arguments>
-<status status="PASS" endtime="20161126 21:50:59.031" starttime="20161126 21:50:59.030"></status>
+<status status="PASS" endtime="20161129 11:29:25.252" starttime="20161129 11:29:25.251"></status>
 </kw>
-<msg timestamp="20161126 21:50:59.031" level="INFO">Returning from the enclosing user keyword.</msg>
-<status status="PASS" endtime="20161126 21:50:59.032" starttime="20161126 21:50:59.030"></status>
+<msg timestamp="20161129 11:29:25.252" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" endtime="20161129 11:29:25.252" starttime="20161129 11:29:25.250"></status>
 </kw>
-<msg timestamp="20161126 21:50:59.032" level="INFO">${bool} = True</msg>
-<status status="PASS" endtime="20161126 21:50:59.032" starttime="20161126 21:50:59.028"></status>
+<msg timestamp="20161129 11:29:25.252" level="INFO">${bool} = True</msg>
+<status status="PASS" endtime="20161129 11:29:25.252" starttime="20161129 11:29:25.248"></status>
 </kw>
 <kw name="Should Be True" library="BuiltIn">
 <doc>Fails if the given condition is not true.</doc>
 <arguments>
 <arg>${bool}</arg>
 </arguments>
-<status status="PASS" endtime="20161126 21:50:59.033" starttime="20161126 21:50:59.032"></status>
+<status status="PASS" endtime="20161129 11:29:25.253" starttime="20161129 11:29:25.253"></status>
 </kw>
-<status status="PASS" endtime="20161126 21:50:59.033" critical="yes" starttime="20161126 21:50:59.027"></status>
+<status status="PASS" endtime="20161129 11:29:25.253" critical="yes" starttime="20161129 11:29:25.248"></status>
 </test>
 <metadata>
 <item name="Log of First Run">[first_run_log.html|first_run_log.html]</item>
 <item name="Log of Second Run">[second_run_log.html|second_run_log.html]</item>
 </metadata>
-<status status="PASS" endtime="20161126 21:50:59.035" starttime="20161126 21:50:58.990"></status>
+<status status="PASS" endtime="20161129 11:29:25.255" starttime="20161129 11:29:25.212"></status>
 </suite>
 <statistics>
 <total>
