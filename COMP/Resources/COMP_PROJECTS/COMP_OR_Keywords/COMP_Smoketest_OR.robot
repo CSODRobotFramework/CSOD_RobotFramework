@@ -2,7 +2,7 @@
 ${comp_smoke_admin_tab}    xpath=//label[.='Admin']    #css=label[id*='ctl10']
 ${comp_smoke_compensation_link}    xpath=//a[.='Compensation']//self::a[@title='Compensation']
 ${comp_smoke_adjustment_guidelines}    css=div a[title='Adjustment Guidelines']
-${comp_smoke_create_new_adj_guideline}    css=span.text
+${comp_smoke_create_new_adj_guideline}    id=ctl00_ContentPlaceHolder1_createNewMatrix
 ${comp_smoke_name}    id=ctl00_ContentPlaceHolder1_matrixName
 ${comp_smoke_name_value}    Comp_Smoketest
 ${comp_smoke_component_type}    id=ctl00_ContentPlaceHolder1_templateSelect
@@ -91,7 +91,7 @@ ${comp_smoke_custom_fields_select_criteria}    id=ctl00_ctl00_ContentPlaceHolder
 ${comp_smoke_custom_field_add_btn}    id=ctl00_ctl00_ContentPlaceHolder1_insidepanel_ouFilter_ouFilterSelector_btnAddEverybody
 ${comp_smoke_custom_field_save}    id=ctl00_ctl00_ContentPlaceHolder1_insidepanel_btnSave
 ${comp_smoke_custom_statements}    css=div a[title='Custom Statements']
-${comp_smoke_cust_stmts_createlink}    css=span.text
+${comp_smoke_cust_stmts_createlink}    css=.cso-text.cso-vlgn-m
 ${comp_smoke_cust_stmts_name_field}    id=ctl00_ContentPlaceHolder1_txtName
 ${comp_smoke_AddSectionbtn}    id=ctl00_ContentPlaceHolder1_btnAddSection
 ${comp_smoke_cust_stmts_rad_editor}    id=ctl00_ContentPlaceHolder1_CsodRadEditor1_contentIframe    # ctl00_ContentPlaceHolder1_CsodRadEditor1Center
@@ -107,7 +107,7 @@ ${comp_smoke_tags_verify_tag_amount}    css=#ctl00_ContentPlaceHolder1_rptType_c
 ${comp_smoke_tags_collapse}    id=ctl00_ContentPlaceHolder1_rptType_ctl01_pnlType_lnkExpandCollapse
 ${comp_smoke_tags_backBtn}    xpath=//b[.='« Back']
 ${comp_smoke_tasks}    css=div a[title='Tasks']
-${comp_smoke_tasks_create_comp_plan}    css=span.text
+${comp_smoke_tasks_create_comp_plan}    xpath=//span[.='Create Compensation Task']
 ${comp_smoke_tasks_txtTitle}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_txtTitle
 ${comp_smoke_tasks_desc}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_txtDescription
 ${comp_smoke_tasks_inst}    id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_txtInstructions_viewEditTextBox

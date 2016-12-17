@@ -569,14 +569,14 @@ GET_TalentPool_Title_Char_Extended1
     ...    *Note:*
     ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
     Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
-    ${SQL_TalentPoolIdToGet}=    Execute Raw    \ SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id=${SQL_GET_USERID} AND title LIKE '%☺%' ORDER BY newid()
+    ${SQL_TalentPoolIdToGet}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id=${SQL_GET_USERID} AND title LIKE '%☺%' ORDER BY newid()
     Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
     ${SQL_TalentPoolTitleById}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
     Create Http Context    ${HTTP_CONTEXT}    http
     Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
     Set Request Header    X-USERID    ${SQL_GET_USERID}
     Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
-    Set Request Header    content-type    \ application/json
+    Set Request Header    content-type    application/json
     HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
     Response Status Code Should Equal    ${RESPONSE_POST}
     ${resBody}=    Get Response Body
@@ -1320,7 +1320,7 @@ DELETE_TalentPool_Candidates_Remove_Access_DNE
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
     ${resp}=    RequestsLibrary.Delete Request    http    /talentpools/${SQL_TalentPoolId}/candidates    data=${body}    headers=${headers}
     Log    ${resp}
-    Should Be Equal As Strings    ${resp.status_code}    400
+    Should Be Equal As Strings    ${resp.status_code}    401
     ${SQL_CandidateCountAfter}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
     Set Suite Variable    ${SQL_CandidateCountAfter}    ${SQL_CandidateCountAfter}
     ${SQL_NUM}=    Evaluate    ${SQL_CandidateCountBefore}+0
@@ -1807,7 +1807,7 @@ PUT_TalentPool_Rename_Access_Not_Active
     Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
     Set Request Header    X-USERID    ${SQL_GET_USERID}
     Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
-    Set Request Header    content-type    \ application/json
+    Set Request Header    content-type    application/json
     Set Request Body    { \"Title\":\"${SUBMITTED_TITLE}\"}
     HttpLibrary.HTTP.PUT    /talentpool-api/talentpools/${SQL_TalentPoolId}
     Response Status Code Should Equal    ${RESPONSE_POST}

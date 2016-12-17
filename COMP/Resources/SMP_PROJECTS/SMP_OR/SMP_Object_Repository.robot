@@ -12,3 +12,4 @@ ${smp.corpname_qa052}    qa052-auto-smp-api    # Release Corp Portal Name
 ${smp.corpname_qa01}    qa01-auto-smp-api    # Patch Corp Portal Name
 ${smp.corpname_qa03}    qa03-auto-smp-api    # Next Release Corp Portal Name
 ${smp.randomTitle}    ${EMPTY}
+${smp_suite_title}    SMP API TEST SUITE
