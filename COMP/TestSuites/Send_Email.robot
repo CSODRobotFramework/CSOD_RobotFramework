@@ -1,4 +1,5 @@
 *** Settings ***
+Force Tags
 Resource          ../Resources/COMP_PROJECTS/COMP_OR_Keywords/COMP_Smoketest_OR.robot    # Test Teardown | Global Test Fixture Test Teardown
 Resource          ../Resources/COMP_PROJECTS/COMP_OR_Keywords/CSOD_Locators.robot
 Resource          ../Resources/COMP_PROJECTS/COMP_OR_Keywords/CSOD_Keywords.robot
@@ -9,6 +10,7 @@ Resource          ../../../SMP-API-Talent_Pool/COMP/Resources/SMP_PROJECTS/SMP_O
 
 *** Test Cases ***
 Send Email Has Attachment Test
+    [Tags]    EMAILRESULTS
     Comment    Send Mail With Attachment    geeslimmy@gmail.com    popeye123    geefung@gmail.com    Python Email Test    This is python test
     ...    C:\\Users\\gfung\\.jenkins\\workspace\\COMP\\report.html
     Comment    Send Mail With Attachment    geeslimmy@gmail.com    popeye123    gfung@csod.com    Python Email Test    This is python test

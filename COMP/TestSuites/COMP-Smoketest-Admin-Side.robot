@@ -10,6 +10,7 @@ Resource          ../Resources/COMP_PROJECTS/COMP_ObjectsResources.robot
 
 *** Test Cases ***
 Compensation_Admin_Side
+    [Documentation]    -d TestResults -v cfg_global_login_profile:autoqadef
     [Tags]    ADMINPHANTOM
     Maximize Browser Window
     comp_nav_to    ${comp_smoke_adjustment_guidelines}

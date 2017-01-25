@@ -45,10 +45,19 @@ class TestRailListener(object):
         _run_id -  the ID of the test run;
         _update_ - indicator to update test case in TestRail; if exist, then test will be updated.
         """
-
-        user = 'ryuen@csod.com'
-        password = '4VgTx7uruK9kguL.3SSt-wG0TlIFRf8DyJNhWwBOX'
-        url = 'https://csod.testrail.net'
+        
+        # User Email from TestRail
+        ###user = 'gfung@csod.com'
+        user = 'geefung@gmail.com'
+        # API Keys from TestRail
+        # password = 'HLa6QfHpueEzDhYLY5Oq-fbUWd5O7zW3wvH6wYKvX'
+        ## password = '/fNBl.J9swDUdaHSSRd3-ELYLU7IEN0fAO0oUs05u' use this
+        #password = 'I2byC0nRVV1VkG9rPmKM-DtTeIHlDImtZhvnoXgdWo' trial account
+        password = 'UAp55m5viJR9s26BVo3X' #password that testrail emailed to me.
+        #password = 'DPFCNNRScX6kaipmRk4A-l1Ty6mMGCItp0LfuJEiY'
+        ## url = 'http://testrail/testrail/'
+        url = 'https://geeslimmy.testrail.net'
+        #run_id = '1'  # trying to hardcode run_id
 
         testrail_url = url
         self.client = APIClient(testrail_url)
@@ -61,6 +70,7 @@ class TestRailListener(object):
         logger.info('[TestRailListener] user: ' + user)
         logger.info('[TestRailListener] password: ' + password)
         logger.info('[TestRailListener] the ID of the test run: ' + run_id)
+        print logger.info('[TestRailListener] the ID of the test run: ' + run_id)
 
     def end_test(self, name, attrs):
         """
@@ -100,6 +110,13 @@ class TestRailListener(object):
         """
 
         self.client.send_post('add_results_for_cases/' + self.run_id, { 'results':self.results })
+        #case = self.client.send_get('get_case/2')
+        #print (case)
+        # result = self.client.send_post(
+        # 'add_result_for_case/1/2',
+        # {'status_id': 1, 'comment': 'This test case 2 worked fine! GeeSlimmy you da'' man 2!'})
+
+        #print (result)
 
     def _getTagsValue (self, tags):
         """

@@ -19,7 +19,7 @@ POST-API_Talent_Pool_Create_Succ_Return_Name
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    testrailid=5
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create    InnocentName    Title    200
@@ -37,7 +37,7 @@ POST-API_Talent_Pool_Success_NewEntryExist
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=6
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create_Random_Title    Title
@@ -55,7 +55,7 @@ POST-API_TPC_Length_0
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST    NEGATIVETEST
+    [Tags]    POST    NEGATIVETEST    testrailid=7
     REST_NOAUTH_Shared_TalentPools
     REST_AuthToken
     POST_TalentPool_Create_Empty_String    ${EMPTY}    Title    400
@@ -870,6 +870,24 @@ POST-API_TPC_Add_BaseCase_Input_Vs_Output_Value
     REST_AuthToken
     POST_TalentPool_BaseCase_InputVsDataBase_Value    Title    200
 
+POST-API_TP_Grp_Create_UseCase_Elab_AlreadyExists
+    [Documentation]    *Name:*
+    ...    API_TPC_Add_BC_InputVsOutput_Value
+    ...
+    ...    *Description:*
+    ...    Verify successful input user ends up in output
+    ...
+    ...    *Run Arguments:*
+    ...    -d TestResults -v RNOAUTH_HOST:QA01
+    ...
+    ...
+    ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
+    ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
+    [Tags]    POST
+    REST_NOAUTH_Random_Active_Owner_OR_Shared
+    REST_AuthToken
+    POST_TalentPool_Group_Create    400
+
 PUT-API_TPC_Rename
     [Documentation]    *Name:*
     ...    PUT-TP_Rename_Access.
@@ -995,6 +1013,16 @@ PUT-API_TalentPool_Candidate_Status_Set_UseCase_Base_InputVsUserDatabase
     REST_NOAUTH_Random_Active_Owner_OR_Shared
     REST_AuthToken
     PUT_TalentPool_Candidate_Status_Set    test 2    Title
+
+PUT-API_TPC_Status_Set_UC_Elaborate_Status_Value_Placed
+    REST_NOAUTH_Random_Active_Owner_OR_Shared
+    REST_AuthToken
+    PUT_TalentPool_Candidate_Status_Set_Value_Placed    1024    200
+
+PUT-API_TPC_Status_Set_UC_Elab_Users_2
+    REST_NOAUTH_Random_Active_Owner_OR_Shared_With_2_Candidates
+    REST_AuthToken
+    PUT_TalentPool_Candidate_Status_Set_Value_Placed    1024    200
 
 DELETE-API_TPC_Remove0Users
     [Documentation]    *Name:*
@@ -1282,3 +1310,21 @@ DELETE-API_TP_Del_Input_TPId_DoesNotExist
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Delete_Input_TPId_DoesNotExist    404
+
+DELETE-API_TPC_Remove_BaseCase_InputVsOutput_Value
+    [Documentation]    *Name:*
+    ...    API_TPC_Add_BC_InputVsOutput_Value
+    ...
+    ...    *Description:*
+    ...    Verify successful input user ends up in output
+    ...
+    ...    *Run Arguments:*
+    ...    -d TestResults -v RNOAUTH_HOST:QA01
+    ...
+    ...
+    ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
+    ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
+    [Tags]    DBV    testrailid=77
+    REST_NOAUTH_Random_Active_Owner_OR_Shared_With_Candidates
+    REST_AuthToken_RequestsLibrary
+    DELETE_TalentPool_Candidates_Remove_2    200

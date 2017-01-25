@@ -1,0 +1,3 @@
+COMP-Smoketest-Admin-Side - Build # 21 - Fixed:
+
+Check console output at http://localhost:8080/job/COMP-Smoketest-Admin-Side/21/ to view the results.
