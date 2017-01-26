@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20170124 21:56:58.861" generator="Robot 3.0 (Python 2.7.12 on win32)">
+<robot generated="20170125 23:22:20.925" generator="Robot 3.0 (Python 2.7.12 on win32)">
 <suite source="C:\Users\gfung\.jenkins\workspace\COMP-Smoketest-Admin-Side\COMP" id="s1" name="COMP">
 <suite source="C:\Users\gfung\.jenkins\workspace\COMP-Smoketest-Admin-Side\COMP\TestSuites" id="s1-s1" name="TestSuites">
 <suite source="C:\Users\gfung\.jenkins\workspace\COMP-Smoketest-Admin-Side\COMP\TestSuites\SMP-API-Talent_Pool.robot" id="s1-s1-s1" name="SMP-API-Talent Pool">
-<test id="s1-s1-s1-t1" name="POST-API_Talent_Pool_Create_Succ_Return_Name">
-<kw name="REST_NOAUTH" library="SMP_Keywords">
+<test id="s1-s1-s1-t1" name="POST-API_TP_Grp_Create_UseCase_Elab_AlreadyExists">
+<kw name="REST_NOAUTH_Random_Active_Owner_OR_Shared" library="SMP_Keywords">
 <doc>*REST_NOAUTH:*</doc>
 <kw name="Connect" library="SQLlibrary">
 <arguments>
 <arg>${RNOAUTH_CUSTOM_SERVER}</arg>
 <arg>${SQL_DB}</arg>
 </arguments>
-<status status="PASS" endtime="20170124 21:56:59.532" starttime="20170124 21:56:59.437"></status>
+<status status="PASS" endtime="20170125 23:22:23.708" starttime="20170125 23:22:23.412"></status>
 </kw>
 <kw name="Execute Raw" library="SQLlibrary">
 <arguments>
-<arg>SELECT TOP 1 owner_id FROM ou JOIN users ON owner_id = user_id WHERE users.culture_lang_id IS NOT NULL AND users.status_id = 1 AND ou.type_id = 131072 AND culture_lang_id = 1 GROUP BY owner_id HAVING COUNT(*) &gt; 1 ORDER BY NEWID()</arg>
+<arg>SELECT TOP 1 user_id FROM users WHERE culture_lang_id IS NOT NULL AND status_id = 1 AND (user_id IN (SELECT DISTINCT owner_id FROM ou WHERE type_id = 131072) OR user_id IN (SELECT DISTINCT user_id FROM talent_pool_shared_user)) ORDER BY NEWID()</arg>
 </arguments>
 <assign>
 <var>${SQL_GET_USERID}</var>
 </assign>
-<msg timestamp="20170124 21:56:59.546" level="INFO">${SQL_GET_USERID} = 43</msg>
-<status status="PASS" endtime="20170124 21:56:59.547" starttime="20170124 21:56:59.533"></status>
+<msg timestamp="20170125 23:22:23.799" level="INFO">${SQL_GET_USERID} = 43</msg>
+<status status="PASS" endtime="20170125 23:22:23.799" starttime="20170125 23:22:23.709"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
 <arg>${SQL_GET_USERID}</arg>
 </arguments>
-<msg timestamp="20170124 21:56:59.548" level="INFO">43</msg>
-<status status="PASS" endtime="20170124 21:56:59.549" starttime="20170124 21:56:59.547"></status>
+<msg timestamp="20170125 23:22:23.801" level="INFO">43</msg>
+<status status="PASS" endtime="20170125 23:22:23.801" starttime="20170125 23:22:23.800"></status>
 </kw>
 <kw name="Execute Raw" library="SQLlibrary">
 <arguments>
@@ -38,8 +38,8 @@
 <assign>
 <var>${SQL_GET_USER_CULTURE}</var>
 </assign>
-<msg timestamp="20170124 21:56:59.552" level="INFO">${SQL_GET_USER_CULTURE} = 1</msg>
-<status status="PASS" endtime="20170124 21:56:59.552" starttime="20170124 21:56:59.550"></status>
+<msg timestamp="20170125 23:22:23.804" level="INFO">${SQL_GET_USER_CULTURE} = 1</msg>
+<status status="PASS" endtime="20170125 23:22:23.804" starttime="20170125 23:22:23.801"></status>
 </kw>
 <kw name="Set Suite Variable" library="BuiltIn">
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
@@ -47,8 +47,8 @@
 <arg>${SQL_GET_USERID}</arg>
 <arg>${SQL_GET_USERID}</arg>
 </arguments>
-<msg timestamp="20170124 21:56:59.554" level="INFO">${SQL_GET_USERID} = 43</msg>
-<status status="PASS" endtime="20170124 21:56:59.554" starttime="20170124 21:56:59.553"></status>
+<msg timestamp="20170125 23:22:23.805" level="INFO">${SQL_GET_USERID} = 43</msg>
+<status status="PASS" endtime="20170125 23:22:23.806" starttime="20170125 23:22:23.805"></status>
 </kw>
 <kw name="Set Suite Variable" library="BuiltIn">
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
@@ -56,16 +56,16 @@
 <arg>${SQL_GET_USER_CULTURE}</arg>
 <arg>${SQL_GET_USER_CULTURE}</arg>
 </arguments>
-<msg timestamp="20170124 21:56:59.555" level="INFO">${SQL_GET_USER_CULTURE} = 1</msg>
-<status status="PASS" endtime="20170124 21:56:59.556" starttime="20170124 21:56:59.554"></status>
+<msg timestamp="20170125 23:22:23.807" level="INFO">${SQL_GET_USER_CULTURE} = 1</msg>
+<status status="PASS" endtime="20170125 23:22:23.808" starttime="20170125 23:22:23.806"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
 <arg>${SQL_GET_USER_CULTURE}</arg>
 </arguments>
-<msg timestamp="20170124 21:56:59.557" level="INFO">1</msg>
-<status status="PASS" endtime="20170124 21:56:59.557" starttime="20170124 21:56:59.556"></status>
+<msg timestamp="20170125 23:22:23.809" level="INFO">1</msg>
+<status status="PASS" endtime="20170125 23:22:23.809" starttime="20170125 23:22:23.808"></status>
 </kw>
 <kw name="Create Http Context" library="HttpLibrary.HTTP">
 <doc>Sets the HTTP host to use for future requests. You must call this</doc>
@@ -73,9 +73,9 @@
 <arg>${HTTP_CONTEXT}</arg>
 <arg>http</arg>
 </arguments>
-<msg timestamp="20170124 21:56:59.558" level="INFO">Host for next HTTP request set to 'laxqapexmt.office.cyberu.com'</msg>
-<msg timestamp="20170124 21:56:59.558" level="INFO">Scheme for next HTTP request set to 'http'</msg>
-<status status="PASS" endtime="20170124 21:56:59.559" starttime="20170124 21:56:59.557"></status>
+<msg timestamp="20170125 23:22:23.810" level="INFO">Host for next HTTP request set to 'laxqapexmt.office.cyberu.com'</msg>
+<msg timestamp="20170125 23:22:23.810" level="INFO">Scheme for next HTTP request set to 'http'</msg>
+<status status="PASS" endtime="20170125 23:22:23.810" starttime="20170125 23:22:23.810"></status>
 </kw>
 <kw name="Set Request Header" library="HttpLibrary.HTTP">
 <doc>Sets a request header for the next request.</doc>
@@ -83,8 +83,8 @@
 <arg>X-CORP</arg>
 <arg>${RNOAUTH_CUSTOM_CORP}</arg>
 </arguments>
-<msg timestamp="20170124 21:56:59.560" level="INFO">Set request header "X-CORP" to "qa01-auto-smp-api"</msg>
-<status status="PASS" endtime="20170124 21:56:59.560" starttime="20170124 21:56:59.559"></status>
+<msg timestamp="20170125 23:22:23.812" level="INFO">Set request header "X-CORP" to "qa01-auto-smp-api"</msg>
+<status status="PASS" endtime="20170125 23:22:23.812" starttime="20170125 23:22:23.812"></status>
 </kw>
 <kw name="Set Request Header" library="HttpLibrary.HTTP">
 <doc>Sets a request header for the next request.</doc>
@@ -92,8 +92,8 @@
 <arg>X-USERID</arg>
 <arg>${SQL_GET_USERID}</arg>
 </arguments>
-<msg timestamp="20170124 21:56:59.562" level="INFO">Set request header "X-USERID" to "43"</msg>
-<status status="PASS" endtime="20170124 21:56:59.562" starttime="20170124 21:56:59.561"></status>
+<msg timestamp="20170125 23:22:23.813" level="INFO">Set request header "X-USERID" to "43"</msg>
+<status status="PASS" endtime="20170125 23:22:23.813" starttime="20170125 23:22:23.813"></status>
 </kw>
 <kw name="Set Request Header" library="HttpLibrary.HTTP">
 <doc>Sets a request header for the next request.</doc>
@@ -101,10 +101,10 @@
 <arg>X-CULTUREID</arg>
 <arg>${SQL_GET_USER_CULTURE}</arg>
 </arguments>
-<msg timestamp="20170124 21:56:59.564" level="INFO">Set request header "X-CULTUREID" to "1"</msg>
-<status status="PASS" endtime="20170124 21:56:59.564" starttime="20170124 21:56:59.563"></status>
+<msg timestamp="20170125 23:22:23.815" level="INFO">Set request header "X-CULTUREID" to "1"</msg>
+<status status="PASS" endtime="20170125 23:22:23.815" starttime="20170125 23:22:23.814"></status>
 </kw>
-<status status="PASS" endtime="20170124 21:56:59.565" starttime="20170124 21:56:59.436"></status>
+<status status="PASS" endtime="20170125 23:22:23.815" starttime="20170125 23:22:23.411"></status>
 </kw>
 <kw name="REST_AuthToken" library="SMP_Keywords">
 <doc>*REST_AuthToken:*</doc>
@@ -114,356 +114,78 @@
 <arg>content-type</arg>
 <arg>\ application/json</arg>
 </arguments>
-<msg timestamp="20170124 21:56:59.567" level="INFO">Set request header "content-type" to " application/json"</msg>
-<status status="PASS" endtime="20170124 21:56:59.567" starttime="20170124 21:56:59.566"></status>
+<msg timestamp="20170125 23:22:23.818" level="INFO">Set request header "content-type" to " application/json"</msg>
+<status status="PASS" endtime="20170125 23:22:23.819" starttime="20170125 23:22:23.817"></status>
 </kw>
 <kw name="Set Request Body" library="HttpLibrary.HTTP">
 <doc>Set the request body for the next HTTP request.</doc>
 <arguments>
 <arg>{ \ \ \"UserId\": ${SQL_GET_USERID}, \ \ \"CorpName\": \"${RNOAUTH_CUSTOM_CORP}\", \ \ \"Permissions\": [ \ \ \ \ { \ \ \ \ \ \ \"Id\": -157, \ \ \ \ \ \ \"Constraints\": [ \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 73, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 2, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": true \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 87, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 32, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 111, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 4, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 150, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 8, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ } \ \ \ \ \ \ ] \ \ \ \ } \ \ ], \ \ \"Token\": \"${RNOAUTH_CUSTOM_CORP}_${SQL_GET_USERID}\", \ \ \"expDt\": \"2019-08-17T16:16:19.550Z\", \ \ \"CultureId\": 0 }</arg>
 </arguments>
-<msg timestamp="20170124 21:56:59.571" level="INFO">Request body set to "{   "UserId": 43,   "CorpName": "qa01-auto-smp-api",   "Permissions": [     {       "Id": -157,       "Constraints": [         {           "m_Item1": 73,           "m_Item2": 2,           "m_Item3": true         },         {           "m_Item1": 87,           "m_Item2": 32,           "m_Item3": false         },         {           "m_Item1": 111,           "m_Item2": 4,           "m_Item3": false         },         {           "m_Item1": 150,           "m_Item2": 8,           "m_Item3": false         }       ]     }   ],   "Token": "qa01-auto-smp-api_43",   "expDt": "2019-08-17T16:16:19.550Z",   "CultureId": 0 }".</msg>
-<status status="PASS" endtime="20170124 21:56:59.571" starttime="20170124 21:56:59.568"></status>
+<msg timestamp="20170125 23:22:23.824" level="INFO">Request body set to "{   "UserId": 43,   "CorpName": "qa01-auto-smp-api",   "Permissions": [     {       "Id": -157,       "Constraints": [         {           "m_Item1": 73,           "m_Item2": 2,           "m_Item3": true         },         {           "m_Item1": 87,           "m_Item2": 32,           "m_Item3": false         },         {           "m_Item1": 111,           "m_Item2": 4,           "m_Item3": false         },         {           "m_Item1": 150,           "m_Item2": 8,           "m_Item3": false         }       ]     }   ],   "Token": "qa01-auto-smp-api_43",   "expDt": "2019-08-17T16:16:19.550Z",   "CultureId": 0 }".</msg>
+<status status="PASS" endtime="20170125 23:22:23.825" starttime="20170125 23:22:23.819"></status>
 </kw>
 <kw name="PUT" library="HttpLibrary.HTTP">
 <doc>Issues a HTTP PUT request.</doc>
 <arguments>
 <arg>/cornerstone-auth-api/v1</arg>
 </arguments>
-<status status="PASS" endtime="20170124 21:56:59.591" starttime="20170124 21:56:59.572"></status>
+<status status="PASS" endtime="20170125 23:22:23.862" starttime="20170125 23:22:23.825"></status>
 </kw>
 <kw name="Response Status Code Should Equal" library="HttpLibrary.HTTP">
 <doc>Fails if the response status code of the previous request was not the</doc>
 <arguments>
 <arg>204</arg>
 </arguments>
-<status status="PASS" endtime="20170124 21:56:59.593" starttime="20170124 21:56:59.592"></status>
+<status status="PASS" endtime="20170125 23:22:23.864" starttime="20170125 23:22:23.863"></status>
 </kw>
 <kw name="Get Response Body" library="HttpLibrary.HTTP">
 <doc>Get the response body.</doc>
 <assign>
 <var>${resBody}</var>
 </assign>
-<msg timestamp="20170124 21:56:59.594" level="INFO">${resBody} = </msg>
-<status status="PASS" endtime="20170124 21:56:59.595" starttime="20170124 21:56:59.593"></status>
+<msg timestamp="20170125 23:22:23.865" level="INFO">${resBody} = </msg>
+<status status="PASS" endtime="20170125 23:22:23.865" starttime="20170125 23:22:23.864"></status>
 </kw>
 <kw name="Comment" library="BuiltIn">
 <doc>Displays the given messages in the log file as keyword arguments.</doc>
 <arguments>
 <arg>Close</arg>
 </arguments>
-<status status="PASS" endtime="20170124 21:56:59.596" starttime="20170124 21:56:59.596"></status>
+<status status="PASS" endtime="20170125 23:22:23.866" starttime="20170125 23:22:23.866"></status>
 </kw>
-<status status="PASS" endtime="20170124 21:56:59.597" starttime="20170124 21:56:59.566"></status>
+<status status="PASS" endtime="20170125 23:22:23.867" starttime="20170125 23:22:23.816"></status>
 </kw>
-<kw name="POST_TalentPool_Create" library="SMP_Keywords">
-<doc>*POST_TalentPool_Create:*</doc>
+<kw name="POST_TalentPool_Group_Create" library="SMP_Keywords">
+<doc>*POST_TalentPool_Candidates_Add:*</doc>
 <arguments>
-<arg>InnocentName</arg>
-<arg>Title</arg>
-<arg>200</arg>
-</arguments>
-<kw name="Create Http Context" library="HttpLibrary.HTTP">
-<doc>Sets the HTTP host to use for future requests. You must call this</doc>
-<arguments>
-<arg>${HTTP_CONTEXT}</arg>
-<arg>http</arg>
-</arguments>
-<msg timestamp="20170124 21:56:59.609" level="INFO">Host for next HTTP request set to 'laxqapexmt.office.cyberu.com'</msg>
-<msg timestamp="20170124 21:56:59.609" level="INFO">Scheme for next HTTP request set to 'http'</msg>
-<status status="PASS" endtime="20170124 21:56:59.610" starttime="20170124 21:56:59.608"></status>
-</kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>X-CORP</arg>
-<arg>${RNOAUTH_CUSTOM_CORP}</arg>
-</arguments>
-<msg timestamp="20170124 21:56:59.611" level="INFO">Set request header "X-CORP" to "qa01-auto-smp-api"</msg>
-<status status="PASS" endtime="20170124 21:56:59.611" starttime="20170124 21:56:59.610"></status>
-</kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>X-USERID</arg>
-<arg>${SQL_GET_USERID}</arg>
-</arguments>
-<msg timestamp="20170124 21:56:59.613" level="INFO">Set request header "X-USERID" to "43"</msg>
-<status status="PASS" endtime="20170124 21:56:59.613" starttime="20170124 21:56:59.612"></status>
-</kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>X-CULTUREID</arg>
-<arg>${SQL_GET_USER_CULTURE}</arg>
-</arguments>
-<msg timestamp="20170124 21:56:59.615" level="INFO">Set request header "X-CULTUREID" to "1"</msg>
-<status status="PASS" endtime="20170124 21:56:59.615" starttime="20170124 21:56:59.614"></status>
-</kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>content-type</arg>
-<arg>\ application/json</arg>
-</arguments>
-<msg timestamp="20170124 21:56:59.617" level="INFO">Set request header "content-type" to " application/json"</msg>
-<status status="PASS" endtime="20170124 21:56:59.617" starttime="20170124 21:56:59.616"></status>
-</kw>
-<kw name="Set Request Body" library="HttpLibrary.HTTP">
-<doc>Set the request body for the next HTTP request.</doc>
-<arguments>
-<arg>{ \"Title\":\"${SUBMITTED_TITLE}\"}</arg>
-</arguments>
-<msg timestamp="20170124 21:56:59.619" level="INFO">Request body set to "{ "Title":"InnocentName"}".</msg>
-<status status="PASS" endtime="20170124 21:56:59.619" starttime="20170124 21:56:59.618"></status>
-</kw>
-<kw name="POST" library="HttpLibrary.HTTP">
-<doc>Issues a HTTP POST request.</doc>
-<arguments>
-<arg>/talentpool-api/talentpools</arg>
-</arguments>
-<status status="PASS" endtime="20170124 21:56:59.818" starttime="20170124 21:56:59.620"></status>
-</kw>
-<kw name="Response Status Code Should Equal" library="HttpLibrary.HTTP">
-<doc>Fails if the response status code of the previous request was not the</doc>
-<arguments>
-<arg>${RESPONSE_POST}</arg>
-</arguments>
-<status status="PASS" endtime="20170124 21:56:59.819" starttime="20170124 21:56:59.818"></status>
-</kw>
-<kw name="Get Response Body" library="HttpLibrary.HTTP">
-<doc>Get the response body.</doc>
-<assign>
-<var>${resBody}</var>
-</assign>
-<msg timestamp="20170124 21:56:59.820" level="INFO">${resBody} = {"TalentpoolId":2908,"Title":"InnocentName","Owner":{"UserId":43,"FirstName":"Smokey","LastName":"Bear"},"CreatedDate":"2017-01-25T05:56:59.06","ModifierId":1,"ModifiedDate":"2017-01-25T05:56:59.06","...</msg>
-<status status="PASS" endtime="20170124 21:56:59.821" starttime="20170124 21:56:59.820"></status>
-</kw>
-<kw name="Log" library="BuiltIn">
-<doc>Logs the given message with the given level.</doc>
-<arguments>
-<arg>${resBody}</arg>
-</arguments>
-<msg timestamp="20170124 21:56:59.822" level="INFO">{"TalentpoolId":2908,"Title":"InnocentName","Owner":{"UserId":43,"FirstName":"Smokey","LastName":"Bear"},"CreatedDate":"2017-01-25T05:56:59.06","ModifierId":1,"ModifiedDate":"2017-01-25T05:56:59.06","IsShared":false,"UserCount":0,"LatestUsers":[]}</msg>
-<status status="PASS" endtime="20170124 21:56:59.822" starttime="20170124 21:56:59.821"></status>
-</kw>
-<kw name="Parse Json" library="HttpLibrary.HTTP">
-<doc>Parses the JSON document `json_string` and returns a data structure.</doc>
-<arguments>
-<arg>${resBody}</arg>
-</arguments>
-<assign>
-<var>${response}</var>
-</assign>
-<msg timestamp="20170124 21:56:59.823" level="INFO">${response} = {u'LatestUsers': [], u'Title': u'InnocentName', u'TalentpoolId': 2908, u'ModifiedDate': u'2017-01-25T05:56:59.06', u'CreatedDate': u'2017-01-25T05:56:59.06', u'Owner': {u'LastName': u'Bear', u'UserId'...</msg>
-<status status="PASS" endtime="20170124 21:56:59.823" starttime="20170124 21:56:59.822"></status>
-</kw>
-<kw name="Convert To Dictionary" library="Collections">
-<doc>Converts the given ``item`` to a Python ``dict`` type.</doc>
-<arguments>
-<arg>${response}</arg>
-</arguments>
-<assign>
-<var>${responseDict}</var>
-</assign>
-<msg timestamp="20170124 21:56:59.824" level="INFO">${responseDict} = {u'LatestUsers': [], u'Title': u'InnocentName', u'CreatedDate': u'2017-01-25T05:56:59.06', u'ModifiedDate': u'2017-01-25T05:56:59.06', u'TalentpoolId': 2908, u'Owner': {u'LastName': u'Bear', u'UserId'...</msg>
-<status status="PASS" endtime="20170124 21:56:59.825" starttime="20170124 21:56:59.824"></status>
-</kw>
-<kw name="Get From Dictionary" library="Collections">
-<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<arguments>
-<arg>${responseDict}</arg>
-<arg>${KEY_NAME_JSON}</arg>
-</arguments>
-<assign>
-<var>${keyValue}</var>
-</assign>
-<msg timestamp="20170124 21:56:59.826" level="INFO">${keyValue} = InnocentName</msg>
-<status status="PASS" endtime="20170124 21:56:59.826" starttime="20170124 21:56:59.825"></status>
-</kw>
-<status status="PASS" endtime="20170124 21:56:59.827" starttime="20170124 21:56:59.607"></status>
-</kw>
-<doc>*Name:*
-API_Talent_Pool_Create_Success_Return_Name.
-
-*Description:*
-verify new talent pool returns correct name
-
-*Run Arguments:*
--d TestResults -v RNOAUTH_HOST:QA01
-
-
-*NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
--d TestResults will put the output report.html and log.html in a folder named TestResults.</doc>
-<tags>
-<tag>testrailid=5</tag>
-</tags>
-<status status="PASS" endtime="20170124 21:56:59.827" critical="yes" starttime="20170124 21:56:59.423"></status>
-</test>
-<test id="s1-s1-s1-t2" name="POST-API_Talent_Pool_Success_NewEntryExist">
-<kw name="REST_NOAUTH" library="SMP_Keywords">
-<doc>*REST_NOAUTH:*</doc>
-<kw name="Connect" library="SQLlibrary">
-<arguments>
-<arg>${RNOAUTH_CUSTOM_SERVER}</arg>
-<arg>${SQL_DB}</arg>
-</arguments>
-<status status="PASS" endtime="20170124 21:56:59.875" starttime="20170124 21:56:59.834"></status>
-</kw>
-<kw name="Execute Raw" library="SQLlibrary">
-<arguments>
-<arg>SELECT TOP 1 owner_id FROM ou JOIN users ON owner_id = user_id WHERE users.culture_lang_id IS NOT NULL AND users.status_id = 1 AND ou.type_id = 131072 AND culture_lang_id = 1 GROUP BY owner_id HAVING COUNT(*) &gt; 1 ORDER BY NEWID()</arg>
-</arguments>
-<assign>
-<var>${SQL_GET_USERID}</var>
-</assign>
-<msg timestamp="20170124 21:56:59.896" level="INFO">${SQL_GET_USERID} = 1</msg>
-<status status="PASS" endtime="20170124 21:56:59.896" starttime="20170124 21:56:59.876"></status>
-</kw>
-<kw name="Log" library="BuiltIn">
-<doc>Logs the given message with the given level.</doc>
-<arguments>
-<arg>${SQL_GET_USERID}</arg>
-</arguments>
-<msg timestamp="20170124 21:56:59.898" level="INFO">1</msg>
-<status status="PASS" endtime="20170124 21:56:59.898" starttime="20170124 21:56:59.897"></status>
-</kw>
-<kw name="Execute Raw" library="SQLlibrary">
-<arguments>
-<arg>SELECT culture_lang_id FROM users WHERE user_id = ${SQL_GET_USERID}</arg>
-</arguments>
-<assign>
-<var>${SQL_GET_USER_CULTURE}</var>
-</assign>
-<msg timestamp="20170124 21:56:59.901" level="INFO">${SQL_GET_USER_CULTURE} = 1</msg>
-<status status="PASS" endtime="20170124 21:56:59.901" starttime="20170124 21:56:59.899"></status>
-</kw>
-<kw name="Set Suite Variable" library="BuiltIn">
-<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<arguments>
-<arg>${SQL_GET_USERID}</arg>
-<arg>${SQL_GET_USERID}</arg>
-</arguments>
-<msg timestamp="20170124 21:56:59.902" level="INFO">${SQL_GET_USERID} = 1</msg>
-<status status="PASS" endtime="20170124 21:56:59.905" starttime="20170124 21:56:59.902"></status>
-</kw>
-<kw name="Set Suite Variable" library="BuiltIn">
-<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<arguments>
-<arg>${SQL_GET_USER_CULTURE}</arg>
-<arg>${SQL_GET_USER_CULTURE}</arg>
-</arguments>
-<msg timestamp="20170124 21:56:59.908" level="INFO">${SQL_GET_USER_CULTURE} = 1</msg>
-<status status="PASS" endtime="20170124 21:56:59.908" starttime="20170124 21:56:59.906"></status>
-</kw>
-<kw name="Log" library="BuiltIn">
-<doc>Logs the given message with the given level.</doc>
-<arguments>
-<arg>${SQL_GET_USER_CULTURE}</arg>
-</arguments>
-<msg timestamp="20170124 21:56:59.909" level="INFO">1</msg>
-<status status="PASS" endtime="20170124 21:56:59.910" starttime="20170124 21:56:59.909"></status>
-</kw>
-<kw name="Create Http Context" library="HttpLibrary.HTTP">
-<doc>Sets the HTTP host to use for future requests. You must call this</doc>
-<arguments>
-<arg>${HTTP_CONTEXT}</arg>
-<arg>http</arg>
-</arguments>
-<msg timestamp="20170124 21:56:59.911" level="INFO">Host for next HTTP request set to 'laxqapexmt.office.cyberu.com'</msg>
-<msg timestamp="20170124 21:56:59.911" level="INFO">Scheme for next HTTP request set to 'http'</msg>
-<status status="PASS" endtime="20170124 21:56:59.912" starttime="20170124 21:56:59.910"></status>
-</kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>X-CORP</arg>
-<arg>${RNOAUTH_CUSTOM_CORP}</arg>
-</arguments>
-<msg timestamp="20170124 21:56:59.913" level="INFO">Set request header "X-CORP" to "qa01-auto-smp-api"</msg>
-<status status="PASS" endtime="20170124 21:56:59.913" starttime="20170124 21:56:59.912"></status>
-</kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>X-USERID</arg>
-<arg>${SQL_GET_USERID}</arg>
-</arguments>
-<msg timestamp="20170124 21:56:59.914" level="INFO">Set request header "X-USERID" to "1"</msg>
-<status status="PASS" endtime="20170124 21:56:59.914" starttime="20170124 21:56:59.914"></status>
-</kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>X-CULTUREID</arg>
-<arg>${SQL_GET_USER_CULTURE}</arg>
-</arguments>
-<msg timestamp="20170124 21:56:59.916" level="INFO">Set request header "X-CULTUREID" to "1"</msg>
-<status status="PASS" endtime="20170124 21:56:59.916" starttime="20170124 21:56:59.915"></status>
-</kw>
-<status status="PASS" endtime="20170124 21:56:59.916" starttime="20170124 21:56:59.834"></status>
-</kw>
-<kw name="REST_AuthToken" library="SMP_Keywords">
-<doc>*REST_AuthToken:*</doc>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>content-type</arg>
-<arg>\ application/json</arg>
-</arguments>
-<msg timestamp="20170124 21:56:59.920" level="INFO">Set request header "content-type" to " application/json"</msg>
-<status status="PASS" endtime="20170124 21:56:59.920" starttime="20170124 21:56:59.919"></status>
-</kw>
-<kw name="Set Request Body" library="HttpLibrary.HTTP">
-<doc>Set the request body for the next HTTP request.</doc>
-<arguments>
-<arg>{ \ \ \"UserId\": ${SQL_GET_USERID}, \ \ \"CorpName\": \"${RNOAUTH_CUSTOM_CORP}\", \ \ \"Permissions\": [ \ \ \ \ { \ \ \ \ \ \ \"Id\": -157, \ \ \ \ \ \ \"Constraints\": [ \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 73, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 2, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": true \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 87, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 32, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 111, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 4, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 150, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 8, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ } \ \ \ \ \ \ ] \ \ \ \ } \ \ ], \ \ \"Token\": \"${RNOAUTH_CUSTOM_CORP}_${SQL_GET_USERID}\", \ \ \"expDt\": \"2019-08-17T16:16:19.550Z\", \ \ \"CultureId\": 0 }</arg>
-</arguments>
-<msg timestamp="20170124 21:56:59.925" level="INFO">Request body set to "{   "UserId": 1,   "CorpName": "qa01-auto-smp-api",   "Permissions": [     {       "Id": -157,       "Constraints": [         {           "m_Item1": 73,           "m_Item2": 2,           "m_Item3": true         },         {           "m_Item1": 87,           "m_Item2": 32,           "m_Item3": false         },         {           "m_Item1": 111,           "m_Item2": 4,           "m_Item3": false         },         {           "m_Item1": 150,           "m_Item2": 8,           "m_Item3": false         }       ]     }   ],   "Token": "qa01-auto-smp-api_1",   "expDt": "2019-08-17T16:16:19.550Z",   "CultureId": 0 }".</msg>
-<status status="PASS" endtime="20170124 21:56:59.926" starttime="20170124 21:56:59.921"></status>
-</kw>
-<kw name="PUT" library="HttpLibrary.HTTP">
-<doc>Issues a HTTP PUT request.</doc>
-<arguments>
-<arg>/cornerstone-auth-api/v1</arg>
-</arguments>
-<status status="PASS" endtime="20170124 21:56:59.946" starttime="20170124 21:56:59.927"></status>
-</kw>
-<kw name="Response Status Code Should Equal" library="HttpLibrary.HTTP">
-<doc>Fails if the response status code of the previous request was not the</doc>
-<arguments>
-<arg>204</arg>
-</arguments>
-<status status="PASS" endtime="20170124 21:56:59.947" starttime="20170124 21:56:59.946"></status>
-</kw>
-<kw name="Get Response Body" library="HttpLibrary.HTTP">
-<doc>Get the response body.</doc>
-<assign>
-<var>${resBody}</var>
-</assign>
-<msg timestamp="20170124 21:56:59.949" level="INFO">${resBody} = </msg>
-<status status="PASS" endtime="20170124 21:56:59.949" starttime="20170124 21:56:59.948"></status>
-</kw>
-<kw name="Comment" library="BuiltIn">
-<doc>Displays the given messages in the log file as keyword arguments.</doc>
-<arguments>
-<arg>Close</arg>
-</arguments>
-<status status="PASS" endtime="20170124 21:56:59.950" starttime="20170124 21:56:59.949"></status>
-</kw>
-<status status="PASS" endtime="20170124 21:56:59.951" starttime="20170124 21:56:59.918"></status>
-</kw>
-<kw name="POST_TalentPool_Create_Random_Title" library="SMP_Keywords">
-<doc>*POST_TalentPool_Create:*</doc>
-<arguments>
-<arg>Title</arg>
+<arg>400</arg>
 </arguments>
 <kw name="Connect" library="SQLlibrary">
 <arguments>
 <arg>${RNOAUTH_CUSTOM_SERVER}</arg>
 <arg>${SQL_DB}</arg>
 </arguments>
-<status status="PASS" endtime="20170124 21:56:59.976" starttime="20170124 21:56:59.962"></status>
+<status status="PASS" endtime="20170125 23:22:23.905" starttime="20170125 23:22:23.873"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT TOP 1 ou_id FROM ou WHERE (owner_id = ${SQL_GET_USERID} OR ou_id IN (SELECT ou_id FROM talent_pool_shared_user WHERE user_id = ${SQL_GET_USERID})) AND ou.type_id = 131072 AND ou_id IN (SELECT related_ou_id FROM ou_relation WHERE type_id = 16) ORDER BY NEWID()</arg>
+</arguments>
+<assign>
+<var>${SQL_TalentPoolId}</var>
+</assign>
+<msg timestamp="20170125 23:22:23.945" level="INFO">${SQL_TalentPoolId} = 222</msg>
+<status status="PASS" endtime="20170125 23:22:23.946" starttime="20170125 23:22:23.906"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SQL_TalentPoolId}</arg>
+<arg>${SQL_TalentPoolId}</arg>
+</arguments>
+<msg timestamp="20170125 23:22:23.948" level="INFO">${SQL_TalentPoolId} = 222</msg>
+<status status="PASS" endtime="20170125 23:22:23.949" starttime="20170125 23:22:23.947"></status>
 </kw>
 <kw name="Execute Raw" library="SQLlibrary">
 <arguments>
@@ -472,24 +194,17 @@ verify new talent pool returns correct name
 <assign>
 <var>${SQL_RandomName}</var>
 </assign>
-<msg timestamp="20170124 21:56:59.978" level="INFO">${SQL_RandomName} = 4E4AE08C-71CA-4093-B234-F964E2C66861</msg>
-<status status="PASS" endtime="20170124 21:56:59.979" starttime="20170124 21:56:59.977"></status>
+<msg timestamp="20170125 23:22:23.950" level="INFO">${SQL_RandomName} = 1E703BE9-7F8C-4AD1-AA7D-E345ADAE251B</msg>
+<status status="PASS" endtime="20170125 23:22:23.950" starttime="20170125 23:22:23.949"></status>
 </kw>
 <kw name="Set Suite Variable" library="BuiltIn">
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
 <arguments>
 <arg>${SQL_RandomName}</arg>
-</arguments>
-<msg timestamp="20170124 21:56:59.980" level="INFO">${SQL_RandomName} = 4E4AE08C-71CA-4093-B234-F964E2C66861</msg>
-<status status="PASS" endtime="20170124 21:56:59.980" starttime="20170124 21:56:59.979"></status>
-</kw>
-<kw name="Log" library="BuiltIn">
-<doc>Logs the given message with the given level.</doc>
-<arguments>
 <arg>${SQL_RandomName}</arg>
 </arguments>
-<msg timestamp="20170124 21:56:59.981" level="INFO">4E4AE08C-71CA-4093-B234-F964E2C66861</msg>
-<status status="PASS" endtime="20170124 21:56:59.981" starttime="20170124 21:56:59.981"></status>
+<msg timestamp="20170125 23:22:23.952" level="INFO">${SQL_RandomName} = 1E703BE9-7F8C-4AD1-AA7D-E345ADAE251B</msg>
+<status status="PASS" endtime="20170125 23:22:23.952" starttime="20170125 23:22:23.951"></status>
 </kw>
 <kw name="Create Http Context" library="HttpLibrary.HTTP">
 <doc>Sets the HTTP host to use for future requests. You must call this</doc>
@@ -497,9 +212,9 @@ verify new talent pool returns correct name
 <arg>${HTTP_CONTEXT}</arg>
 <arg>http</arg>
 </arguments>
-<msg timestamp="20170124 21:56:59.983" level="INFO">Host for next HTTP request set to 'laxqapexmt.office.cyberu.com'</msg>
-<msg timestamp="20170124 21:56:59.984" level="INFO">Scheme for next HTTP request set to 'http'</msg>
-<status status="PASS" endtime="20170124 21:56:59.984" starttime="20170124 21:56:59.982"></status>
+<msg timestamp="20170125 23:22:23.954" level="INFO">Host for next HTTP request set to 'laxqapexmt.office.cyberu.com'</msg>
+<msg timestamp="20170125 23:22:23.954" level="INFO">Scheme for next HTTP request set to 'http'</msg>
+<status status="PASS" endtime="20170125 23:22:23.954" starttime="20170125 23:22:23.953"></status>
 </kw>
 <kw name="Set Request Header" library="HttpLibrary.HTTP">
 <doc>Sets a request header for the next request.</doc>
@@ -507,8 +222,8 @@ verify new talent pool returns correct name
 <arg>X-CORP</arg>
 <arg>${RNOAUTH_CUSTOM_CORP}</arg>
 </arguments>
-<msg timestamp="20170124 21:56:59.986" level="INFO">Set request header "X-CORP" to "qa01-auto-smp-api"</msg>
-<status status="PASS" endtime="20170124 21:56:59.986" starttime="20170124 21:56:59.985"></status>
+<msg timestamp="20170125 23:22:23.955" level="INFO">Set request header "X-CORP" to "qa01-auto-smp-api"</msg>
+<status status="PASS" endtime="20170125 23:22:23.955" starttime="20170125 23:22:23.954"></status>
 </kw>
 <kw name="Set Request Header" library="HttpLibrary.HTTP">
 <doc>Sets a request header for the next request.</doc>
@@ -516,8 +231,8 @@ verify new talent pool returns correct name
 <arg>X-USERID</arg>
 <arg>${SQL_GET_USERID}</arg>
 </arguments>
-<msg timestamp="20170124 21:56:59.988" level="INFO">Set request header "X-USERID" to "1"</msg>
-<status status="PASS" endtime="20170124 21:56:59.988" starttime="20170124 21:56:59.987"></status>
+<msg timestamp="20170125 23:22:23.956" level="INFO">Set request header "X-USERID" to "43"</msg>
+<status status="PASS" endtime="20170125 23:22:23.957" starttime="20170125 23:22:23.956"></status>
 </kw>
 <kw name="Set Request Header" library="HttpLibrary.HTTP">
 <doc>Sets a request header for the next request.</doc>
@@ -525,295 +240,8 @@ verify new talent pool returns correct name
 <arg>X-CULTUREID</arg>
 <arg>${SQL_GET_USER_CULTURE}</arg>
 </arguments>
-<msg timestamp="20170124 21:56:59.990" level="INFO">Set request header "X-CULTUREID" to "1"</msg>
-<status status="PASS" endtime="20170124 21:56:59.990" starttime="20170124 21:56:59.989"></status>
-</kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>content-type</arg>
-<arg>\ application/json</arg>
-</arguments>
-<msg timestamp="20170124 21:56:59.992" level="INFO">Set request header "content-type" to " application/json"</msg>
-<status status="PASS" endtime="20170124 21:56:59.993" starttime="20170124 21:56:59.991"></status>
-</kw>
-<kw name="Set Request Body" library="HttpLibrary.HTTP">
-<doc>Set the request body for the next HTTP request.</doc>
-<arguments>
-<arg>{ \"Title\":\"${SQL_RandomName}\"}</arg>
-</arguments>
-<msg timestamp="20170124 21:56:59.994" level="INFO">Request body set to "{ "Title":"4E4AE08C-71CA-4093-B234-F964E2C66861"}".</msg>
-<status status="PASS" endtime="20170124 21:56:59.995" starttime="20170124 21:56:59.993"></status>
-</kw>
-<kw name="POST" library="HttpLibrary.HTTP">
-<doc>Issues a HTTP POST request.</doc>
-<arguments>
-<arg>/talentpool-api/talentpools</arg>
-</arguments>
-<status status="PASS" endtime="20170124 21:57:00.040" starttime="20170124 21:56:59.995"></status>
-</kw>
-<kw name="Response Status Code Should Equal" library="HttpLibrary.HTTP">
-<doc>Fails if the response status code of the previous request was not the</doc>
-<arguments>
-<arg>200</arg>
-</arguments>
-<status status="PASS" endtime="20170124 21:57:00.041" starttime="20170124 21:57:00.041"></status>
-</kw>
-<kw name="Execute Raw" library="SQLlibrary">
-<arguments>
-<arg>SELECT TOP 1 title FROM ou WHERE ou.type_id = 131072 AND title = '${SQL_RandomName}'</arg>
-</arguments>
-<assign>
-<var>${SQL_GetTalentPoolIdByName}</var>
-</assign>
-<msg timestamp="20170124 21:57:00.047" level="INFO">${SQL_GetTalentPoolIdByName} = 4E4AE08C-71CA-4093-B234-F964E2C66861</msg>
-<status status="PASS" endtime="20170124 21:57:00.048" starttime="20170124 21:57:00.042"></status>
-</kw>
-<kw name="Log" library="BuiltIn">
-<doc>Logs the given message with the given level.</doc>
-<arguments>
-<arg>${SQL_GetTalentPoolIdByName}</arg>
-</arguments>
-<msg timestamp="20170124 21:57:00.050" level="INFO">4E4AE08C-71CA-4093-B234-F964E2C66861</msg>
-<status status="PASS" endtime="20170124 21:57:00.051" starttime="20170124 21:57:00.049"></status>
-</kw>
-<kw name="Run Keyword If" library="BuiltIn">
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<arguments>
-<arg>"${SQL_GetTalentPoolIdByName}==${SQL_RandomName}"</arg>
-<arg>Set Test Message</arg>
-<arg>Passed Random Name was matched with Database entry.</arg>
-</arguments>
-<kw name="Set Test Message" library="BuiltIn">
-<doc>Sets message for the current test case.</doc>
-<arguments>
-<arg>Passed Random Name was matched with Database entry.</arg>
-</arguments>
-<msg timestamp="20170124 21:57:00.056" level="INFO">Set test message to:
-Passed Random Name was matched with Database entry.</msg>
-<status status="PASS" endtime="20170124 21:57:00.056" starttime="20170124 21:57:00.055"></status>
-</kw>
-<status status="PASS" endtime="20170124 21:57:00.056" starttime="20170124 21:57:00.052"></status>
-</kw>
-<kw name="Close" library="SQLlibrary">
-<status status="PASS" endtime="20170124 21:57:00.059" starttime="20170124 21:57:00.057"></status>
-</kw>
-<status status="PASS" endtime="20170124 21:57:00.059" starttime="20170124 21:56:59.960"></status>
-</kw>
-<doc>*Name:*
-API_Talent_Pool_Success_NewEntryExist.
-
-*Description:*
-verify new talent pool in data base
-
-*Run Arguments:*
--d TestResults -v RNOAUTH_HOST:QA01
-
-
-*NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
--d TestResults will put the output report.html and log.html in a folder named TestResults.</doc>
-<tags>
-<tag>POST</tag>
-<tag>testrailid=6</tag>
-</tags>
-<status status="PASS" endtime="20170124 21:57:00.060" critical="yes" starttime="20170124 21:56:59.832">Passed Random Name was matched with Database entry.</status>
-</test>
-<test id="s1-s1-s1-t3" name="POST-API_TPC_Length_0">
-<kw name="REST_NOAUTH_Shared_TalentPools" library="SMP_Keywords">
-<doc>*REST_NOAUTH:*</doc>
-<kw name="Connect" library="SQLlibrary">
-<arguments>
-<arg>${RNOAUTH_CUSTOM_SERVER}</arg>
-<arg>${SQL_DB}</arg>
-</arguments>
-<status status="PASS" endtime="20170124 21:57:00.073" starttime="20170124 21:57:00.064"></status>
-</kw>
-<kw name="Execute Raw" library="SQLlibrary">
-<arguments>
-<arg>SELECT TOP 1 talent_pool_shared_user.user_id FROM talent_pool_shared_user JOIN users ON talent_pool_shared_user.user_id = users.user_id WHERE users.culture_lang_id IS NOT NULL GROUP BY talent_pool_shared_user.user_id ORDER BY newid()</arg>
-</arguments>
-<assign>
-<var>${SQL_GET_USERID}</var>
-</assign>
-<msg timestamp="20170124 21:57:00.083" level="INFO">${SQL_GET_USERID} = 35</msg>
-<status status="PASS" endtime="20170124 21:57:00.084" starttime="20170124 21:57:00.074"></status>
-</kw>
-<kw name="Log" library="BuiltIn">
-<doc>Logs the given message with the given level.</doc>
-<arguments>
-<arg>${SQL_GET_USERID}</arg>
-</arguments>
-<msg timestamp="20170124 21:57:00.086" level="INFO">35</msg>
-<status status="PASS" endtime="20170124 21:57:00.087" starttime="20170124 21:57:00.085"></status>
-</kw>
-<kw name="Execute Raw" library="SQLlibrary">
-<arguments>
-<arg>SELECT culture_lang_id FROM users WHERE user_id = ${SQL_GET_USERID}</arg>
-</arguments>
-<assign>
-<var>${SQL_GET_USER_CULTURE}</var>
-</assign>
-<msg timestamp="20170124 21:57:00.091" level="INFO">${SQL_GET_USER_CULTURE} = 1</msg>
-<status status="PASS" endtime="20170124 21:57:00.092" starttime="20170124 21:57:00.088"></status>
-</kw>
-<kw name="Set Suite Variable" library="BuiltIn">
-<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<arguments>
-<arg>${SQL_GET_USERID}</arg>
-<arg>${SQL_GET_USERID}</arg>
-</arguments>
-<msg timestamp="20170124 21:57:00.094" level="INFO">${SQL_GET_USERID} = 35</msg>
-<status status="PASS" endtime="20170124 21:57:00.094" starttime="20170124 21:57:00.093"></status>
-</kw>
-<kw name="Set Suite Variable" library="BuiltIn">
-<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<arguments>
-<arg>${SQL_GET_USER_CULTURE}</arg>
-<arg>${SQL_GET_USER_CULTURE}</arg>
-</arguments>
-<msg timestamp="20170124 21:57:00.096" level="INFO">${SQL_GET_USER_CULTURE} = 1</msg>
-<status status="PASS" endtime="20170124 21:57:00.097" starttime="20170124 21:57:00.095"></status>
-</kw>
-<kw name="Log" library="BuiltIn">
-<doc>Logs the given message with the given level.</doc>
-<arguments>
-<arg>${SQL_GET_USER_CULTURE}</arg>
-</arguments>
-<msg timestamp="20170124 21:57:00.098" level="INFO">1</msg>
-<status status="PASS" endtime="20170124 21:57:00.098" starttime="20170124 21:57:00.097"></status>
-</kw>
-<kw name="Create Http Context" library="HttpLibrary.HTTP">
-<doc>Sets the HTTP host to use for future requests. You must call this</doc>
-<arguments>
-<arg>${HTTP_CONTEXT}</arg>
-<arg>http</arg>
-</arguments>
-<msg timestamp="20170124 21:57:00.100" level="INFO">Host for next HTTP request set to 'laxqapexmt.office.cyberu.com'</msg>
-<msg timestamp="20170124 21:57:00.100" level="INFO">Scheme for next HTTP request set to 'http'</msg>
-<status status="PASS" endtime="20170124 21:57:00.101" starttime="20170124 21:57:00.099"></status>
-</kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>X-CORP</arg>
-<arg>${RNOAUTH_CUSTOM_CORP}</arg>
-</arguments>
-<msg timestamp="20170124 21:57:00.102" level="INFO">Set request header "X-CORP" to "qa01-auto-smp-api"</msg>
-<status status="PASS" endtime="20170124 21:57:00.102" starttime="20170124 21:57:00.101"></status>
-</kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>X-USERID</arg>
-<arg>${SQL_GET_USERID}</arg>
-</arguments>
-<msg timestamp="20170124 21:57:00.104" level="INFO">Set request header "X-USERID" to "35"</msg>
-<status status="PASS" endtime="20170124 21:57:00.104" starttime="20170124 21:57:00.103"></status>
-</kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>X-CULTUREID</arg>
-<arg>${SQL_GET_USER_CULTURE}</arg>
-</arguments>
-<msg timestamp="20170124 21:57:00.106" level="INFO">Set request header "X-CULTUREID" to "1"</msg>
-<status status="PASS" endtime="20170124 21:57:00.107" starttime="20170124 21:57:00.105"></status>
-</kw>
-<status status="PASS" endtime="20170124 21:57:00.107" starttime="20170124 21:57:00.063"></status>
-</kw>
-<kw name="REST_AuthToken" library="SMP_Keywords">
-<doc>*REST_AuthToken:*</doc>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>content-type</arg>
-<arg>\ application/json</arg>
-</arguments>
-<msg timestamp="20170124 21:57:00.111" level="INFO">Set request header "content-type" to " application/json"</msg>
-<status status="PASS" endtime="20170124 21:57:00.111" starttime="20170124 21:57:00.110"></status>
-</kw>
-<kw name="Set Request Body" library="HttpLibrary.HTTP">
-<doc>Set the request body for the next HTTP request.</doc>
-<arguments>
-<arg>{ \ \ \"UserId\": ${SQL_GET_USERID}, \ \ \"CorpName\": \"${RNOAUTH_CUSTOM_CORP}\", \ \ \"Permissions\": [ \ \ \ \ { \ \ \ \ \ \ \"Id\": -157, \ \ \ \ \ \ \"Constraints\": [ \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 73, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 2, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": true \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 87, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 32, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 111, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 4, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 150, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 8, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ } \ \ \ \ \ \ ] \ \ \ \ } \ \ ], \ \ \"Token\": \"${RNOAUTH_CUSTOM_CORP}_${SQL_GET_USERID}\", \ \ \"expDt\": \"2019-08-17T16:16:19.550Z\", \ \ \"CultureId\": 0 }</arg>
-</arguments>
-<msg timestamp="20170124 21:57:00.118" level="INFO">Request body set to "{   "UserId": 35,   "CorpName": "qa01-auto-smp-api",   "Permissions": [     {       "Id": -157,       "Constraints": [         {           "m_Item1": 73,           "m_Item2": 2,           "m_Item3": true         },         {           "m_Item1": 87,           "m_Item2": 32,           "m_Item3": false         },         {           "m_Item1": 111,           "m_Item2": 4,           "m_Item3": false         },         {           "m_Item1": 150,           "m_Item2": 8,           "m_Item3": false         }       ]     }   ],   "Token": "qa01-auto-smp-api_35",   "expDt": "2019-08-17T16:16:19.550Z",   "CultureId": 0 }".</msg>
-<status status="PASS" endtime="20170124 21:57:00.118" starttime="20170124 21:57:00.111"></status>
-</kw>
-<kw name="PUT" library="HttpLibrary.HTTP">
-<doc>Issues a HTTP PUT request.</doc>
-<arguments>
-<arg>/cornerstone-auth-api/v1</arg>
-</arguments>
-<status status="PASS" endtime="20170124 21:57:00.500" starttime="20170124 21:57:00.119"></status>
-</kw>
-<kw name="Response Status Code Should Equal" library="HttpLibrary.HTTP">
-<doc>Fails if the response status code of the previous request was not the</doc>
-<arguments>
-<arg>204</arg>
-</arguments>
-<status status="PASS" endtime="20170124 21:57:00.502" starttime="20170124 21:57:00.501"></status>
-</kw>
-<kw name="Get Response Body" library="HttpLibrary.HTTP">
-<doc>Get the response body.</doc>
-<assign>
-<var>${resBody}</var>
-</assign>
-<msg timestamp="20170124 21:57:00.503" level="INFO">${resBody} = </msg>
-<status status="PASS" endtime="20170124 21:57:00.503" starttime="20170124 21:57:00.502"></status>
-</kw>
-<kw name="Comment" library="BuiltIn">
-<doc>Displays the given messages in the log file as keyword arguments.</doc>
-<arguments>
-<arg>Close</arg>
-</arguments>
-<status status="PASS" endtime="20170124 21:57:00.504" starttime="20170124 21:57:00.504"></status>
-</kw>
-<status status="PASS" endtime="20170124 21:57:00.504" starttime="20170124 21:57:00.109"></status>
-</kw>
-<kw name="POST_TalentPool_Create_Empty_String" library="SMP_Keywords">
-<doc>*POST_TalentPool_Create:*</doc>
-<arguments>
-<arg>${EMPTY}</arg>
-<arg>Title</arg>
-<arg>400</arg>
-</arguments>
-<kw name="Create Http Context" library="HttpLibrary.HTTP">
-<doc>Sets the HTTP host to use for future requests. You must call this</doc>
-<arguments>
-<arg>${HTTP_CONTEXT}</arg>
-<arg>http</arg>
-</arguments>
-<msg timestamp="20170124 21:57:00.513" level="INFO">Host for next HTTP request set to 'laxqapexmt.office.cyberu.com'</msg>
-<msg timestamp="20170124 21:57:00.513" level="INFO">Scheme for next HTTP request set to 'http'</msg>
-<status status="PASS" endtime="20170124 21:57:00.513" starttime="20170124 21:57:00.512"></status>
-</kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>X-CORP</arg>
-<arg>${RNOAUTH_CUSTOM_CORP}</arg>
-</arguments>
-<msg timestamp="20170124 21:57:00.514" level="INFO">Set request header "X-CORP" to "qa01-auto-smp-api"</msg>
-<status status="PASS" endtime="20170124 21:57:00.515" starttime="20170124 21:57:00.514"></status>
-</kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>X-USERID</arg>
-<arg>${SQL_GET_USERID}</arg>
-</arguments>
-<msg timestamp="20170124 21:57:00.516" level="INFO">Set request header "X-USERID" to "35"</msg>
-<status status="PASS" endtime="20170124 21:57:00.516" starttime="20170124 21:57:00.515"></status>
-</kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>X-CULTUREID</arg>
-<arg>${SQL_GET_USER_CULTURE}</arg>
-</arguments>
-<msg timestamp="20170124 21:57:00.517" level="INFO">Set request header "X-CULTUREID" to "1"</msg>
-<status status="PASS" endtime="20170124 21:57:00.518" starttime="20170124 21:57:00.517"></status>
+<msg timestamp="20170125 23:22:23.958" level="INFO">Set request header "X-CULTUREID" to "1"</msg>
+<status status="PASS" endtime="20170125 23:22:23.958" starttime="20170125 23:22:23.957"></status>
 </kw>
 <kw name="Set Request Header" library="HttpLibrary.HTTP">
 <doc>Sets a request header for the next request.</doc>
@@ -821,59 +249,173 @@ verify new talent pool in data base
 <arg>content-type</arg>
 <arg>application/json</arg>
 </arguments>
-<msg timestamp="20170124 21:57:00.519" level="INFO">Set request header "content-type" to "application/json"</msg>
-<status status="PASS" endtime="20170124 21:57:00.519" starttime="20170124 21:57:00.518"></status>
-</kw>
-<kw name="Next Request May Not Succeed" library="HttpLibrary.HTTP">
-<doc>Don't fail the next request if it's status code is &gt;= 400</doc>
-<status status="PASS" endtime="20170124 21:57:00.520" starttime="20170124 21:57:00.519"></status>
+<msg timestamp="20170125 23:22:23.959" level="INFO">Set request header "content-type" to "application/json"</msg>
+<status status="PASS" endtime="20170125 23:22:23.959" starttime="20170125 23:22:23.959"></status>
 </kw>
 <kw name="Set Request Body" library="HttpLibrary.HTTP">
 <doc>Set the request body for the next HTTP request.</doc>
 <arguments>
-<arg>{ \"${KEY_NAME_JSON}\":\"${SUBMITTED_TITLE}\"}</arg>
+<arg>{"Title": '${SQL_RandomName}'}</arg>
 </arguments>
-<msg timestamp="20170124 21:57:00.521" level="INFO">Request body set to "{ "Title":""}".</msg>
-<status status="PASS" endtime="20170124 21:57:00.521" starttime="20170124 21:57:00.520"></status>
+<msg timestamp="20170125 23:22:23.960" level="INFO">Request body set to "{"Title": '1E703BE9-7F8C-4AD1-AA7D-E345ADAE251B'}".</msg>
+<status status="PASS" endtime="20170125 23:22:23.961" starttime="20170125 23:22:23.960"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT COUNT(ou_id) FROM ou_relation WHERE type_id = 16 AND ou_id = ${SQL_TalentPoolId}</arg>
+</arguments>
+<assign>
+<var>${SQL_CountBefore}</var>
+</assign>
+<msg timestamp="20170125 23:22:23.967" level="INFO">${SQL_CountBefore} = 0</msg>
+<status status="PASS" endtime="20170125 23:22:23.967" starttime="20170125 23:22:23.961"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SQL_CountBefore}</arg>
+<arg>${SQL_CountBefore}</arg>
+</arguments>
+<msg timestamp="20170125 23:22:23.969" level="INFO">${SQL_CountBefore} = 0</msg>
+<status status="PASS" endtime="20170125 23:22:23.969" starttime="20170125 23:22:23.968"></status>
+</kw>
+<kw name="Next Request May Not Succeed" library="HttpLibrary.HTTP">
+<doc>Don't fail the next request if it's status code is &gt;= 400</doc>
+<status status="PASS" endtime="20170125 23:22:23.970" starttime="20170125 23:22:23.970"></status>
 </kw>
 <kw name="POST" library="HttpLibrary.HTTP">
 <doc>Issues a HTTP POST request.</doc>
 <arguments>
-<arg>/talentpool-api/talentpools</arg>
+<arg>/talentpool-api/talentpools/${SQL_TalentPoolId}/groups</arg>
 </arguments>
-<status status="PASS" endtime="20170124 21:57:00.567" starttime="20170124 21:57:00.522"></status>
+<status status="PASS" endtime="20170125 23:22:24.460" starttime="20170125 23:22:23.970"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>/talentpool-api/talentpools/${SQL_TalentPoolId}/groups</arg>
+</arguments>
+<msg timestamp="20170125 23:22:24.461" level="INFO">/talentpool-api/talentpools/222/groups</msg>
+<status status="PASS" endtime="20170125 23:22:24.461" starttime="20170125 23:22:24.460"></status>
 </kw>
 <kw name="Response Status Code Should Equal" library="HttpLibrary.HTTP">
 <doc>Fails if the response status code of the previous request was not the</doc>
 <arguments>
 <arg>${RESPONSE_POST}</arg>
 </arguments>
-<status status="PASS" endtime="20170124 21:57:00.568" starttime="20170124 21:57:00.567"></status>
+<status status="PASS" endtime="20170125 23:22:24.462" starttime="20170125 23:22:24.462"></status>
 </kw>
 <kw name="Get Response Body" library="HttpLibrary.HTTP">
 <doc>Get the response body.</doc>
 <assign>
 <var>${resBody}</var>
 </assign>
-<msg timestamp="20170124 21:57:00.570" level="INFO">${resBody} = {"Message":"Title cannot be empty."}</msg>
-<status status="PASS" endtime="20170124 21:57:00.570" starttime="20170124 21:57:00.569"></status>
+<msg timestamp="20170125 23:22:24.463" level="INFO">${resBody} = {"Message":"A group for this talentpool or nominationlist already exists!"}</msg>
+<status status="PASS" endtime="20170125 23:22:24.463" starttime="20170125 23:22:24.463"></status>
 </kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${resBody}</arg>
+</arguments>
+<msg timestamp="20170125 23:22:24.465" level="INFO">{"Message":"A group for this talentpool or nominationlist already exists!"}</msg>
+<status status="PASS" endtime="20170125 23:22:24.465" starttime="20170125 23:22:24.464"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT COUNT(ou_id) FROM ou_relation WHERE type_id = 16 AND ou_id = ${SQL_TalentPoolId}</arg>
+</arguments>
+<assign>
+<var>${SQL_CountAfter}</var>
+</assign>
+<msg timestamp="20170125 23:22:24.471" level="INFO">${SQL_CountAfter} = 0</msg>
+<status status="PASS" endtime="20170125 23:22:24.471" starttime="20170125 23:22:24.466"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SQL_CountAfter}</arg>
+<arg>${SQL_CountAfter}</arg>
+</arguments>
+<msg timestamp="20170125 23:22:24.473" level="INFO">${SQL_CountAfter} = 0</msg>
+<status status="PASS" endtime="20170125 23:22:24.473" starttime="20170125 23:22:24.472"></status>
+</kw>
+<kw name="Comment" library="BuiltIn">
+<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<arguments>
+<arg>${CountAdjustment}=</arg>
+<arg>0</arg>
+</arguments>
+<status status="PASS" endtime="20170125 23:22:24.474" starttime="20170125 23:22:24.473"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT ${SQL_CountBefore}+0</arg>
+</arguments>
+<assign>
+<var>${SQL_CountExpected}</var>
+</assign>
+<msg timestamp="20170125 23:22:24.480" level="INFO">${SQL_CountExpected} = 0</msg>
+<status status="PASS" endtime="20170125 23:22:24.480" starttime="20170125 23:22:24.474"></status>
+</kw>
+<kw name="Comment" library="BuiltIn">
+<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<arguments>
+<arg>${SQL_NUM}=</arg>
+<arg>Evaluate</arg>
+<arg>${SQL_CountBefore}+0</arg>
+</arguments>
+<status status="PASS" endtime="20170125 23:22:24.481" starttime="20170125 23:22:24.481"></status>
+</kw>
+<kw name="Comment" library="BuiltIn">
+<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<arguments>
+<arg>Log</arg>
+<arg>${SQL_NUM}</arg>
+</arguments>
+<status status="PASS" endtime="20170125 23:22:24.482" starttime="20170125 23:22:24.482"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${SQL_CountAfter}'== '${SQL_CountExpected}'</arg>
+<arg>Utility Set Test Message</arg>
+<arg>The ${SQL_CountAfter} matches with ${SQL_CountExpected}</arg>
+</arguments>
+<kw name="Utility Set Test Message" library="UtilityKeywords">
+<arguments>
+<arg>The ${SQL_CountAfter} matches with ${SQL_CountExpected}</arg>
+</arguments>
 <kw name="Set Test Message" library="BuiltIn">
 <doc>Sets message for the current test case.</doc>
 <arguments>
-<arg>The ${resBody} message from the API Negative Test Passed.</arg>
+<arg>${testMsg}</arg>
+<arg>${append}</arg>
 </arguments>
-<msg timestamp="20170124 21:57:00.572" level="INFO">Set test message to:
-The {"Message":"Title cannot be empty."} message from the API Negative Test Passed.</msg>
-<status status="PASS" endtime="20170124 21:57:00.572" starttime="20170124 21:57:00.571"></status>
+<msg timestamp="20170125 23:22:24.488" level="INFO">Set test message to:
+The 0 matches with 0</msg>
+<status status="PASS" endtime="20170125 23:22:24.488" starttime="20170125 23:22:24.487"></status>
 </kw>
-<status status="PASS" endtime="20170124 21:57:00.573" starttime="20170124 21:57:00.511"></status>
+<status status="PASS" endtime="20170125 23:22:24.488" starttime="20170125 23:22:24.486"></status>
+</kw>
+<status status="PASS" endtime="20170125 23:22:24.489" starttime="20170125 23:22:24.483"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${SQL_CountAfter}'&lt;&gt; '${SQL_CountExpected}'</arg>
+<arg>Fail</arg>
+<arg>The ${SQL_CountAfter} did not match ${SQL_CountExpected}</arg>
+</arguments>
+<status status="PASS" endtime="20170125 23:22:24.492" starttime="20170125 23:22:24.489"></status>
+</kw>
+<status status="PASS" endtime="20170125 23:22:24.493" starttime="20170125 23:22:23.872"></status>
 </kw>
 <doc>*Name:*
-Api_TPC_Length_0.
+API_TPC_Add_BC_InputVsOutput_Value
 
 *Description:*
-verify failure when title length is 0
+Verify successful input user ends up in output
 
 *Run Arguments:*
 -d TestResults -v RNOAUTH_HOST:QA01
@@ -882,34 +424,30 @@ verify failure when title length is 0
 *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
 -d TestResults will put the output report.html and log.html in a folder named TestResults.</doc>
 <tags>
-<tag>NEGATIVETEST</tag>
 <tag>POST</tag>
-<tag>testrailid=7</tag>
+<tag>testrailid=24450</tag>
 </tags>
-<status status="PASS" endtime="20170124 21:57:00.573" critical="yes" starttime="20170124 21:57:00.061">The {"Message":"Title cannot be empty."} message from the API Negative Test Passed.</status>
+<status status="PASS" endtime="20170125 23:22:24.493" critical="yes" starttime="20170125 23:22:23.401">The 0 matches with 0</status>
 </test>
-<status status="PASS" endtime="20170124 21:57:00.575" starttime="20170124 21:56:58.928"></status>
+<status status="PASS" endtime="20170125 23:22:24.495" starttime="20170125 23:22:21.162"></status>
 </suite>
-<status status="PASS" endtime="20170124 21:57:00.582" starttime="20170124 21:56:58.926"></status>
+<status status="PASS" endtime="20170125 23:22:24.497" starttime="20170125 23:22:21.159"></status>
 </suite>
-<status status="PASS" endtime="20170124 21:57:00.584" starttime="20170124 21:56:58.888"></status>
+<status status="PASS" endtime="20170125 23:22:24.499" starttime="20170125 23:22:21.081"></status>
 </suite>
 <statistics>
 <total>
-<stat fail="0" pass="3">Critical Tests</stat>
-<stat fail="0" pass="3">All Tests</stat>
+<stat fail="0" pass="1">Critical Tests</stat>
+<stat fail="0" pass="1">All Tests</stat>
 </total>
 <tag>
-<stat fail="0" pass="1">NEGATIVETEST</stat>
-<stat fail="0" pass="2">POST</stat>
-<stat fail="0" pass="1">testrailid=5</stat>
-<stat fail="0" pass="1">testrailid=6</stat>
-<stat fail="0" pass="1">testrailid=7</stat>
+<stat fail="0" pass="1">POST</stat>
+<stat fail="0" pass="1">testrailid=24450</stat>
 </tag>
 <suite>
-<stat fail="0" id="s1" name="COMP" pass="3">COMP</stat>
-<stat fail="0" id="s1-s1" name="TestSuites" pass="3">COMP.TestSuites</stat>
-<stat fail="0" id="s1-s1-s1" name="SMP-API-Talent Pool" pass="3">COMP.TestSuites.SMP-API-Talent Pool</stat>
+<stat fail="0" id="s1" name="COMP" pass="1">COMP</stat>
+<stat fail="0" id="s1-s1" name="TestSuites" pass="1">COMP.TestSuites</stat>
+<stat fail="0" id="s1-s1-s1" name="SMP-API-Talent Pool" pass="1">COMP.TestSuites.SMP-API-Talent Pool</stat>
 </suite>
 </statistics>
 <errors>

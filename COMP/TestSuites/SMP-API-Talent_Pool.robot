@@ -19,7 +19,7 @@ POST-API_Talent_Pool_Create_Succ_Return_Name
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    testrailid=5
+    [Tags]    testrailid=24402
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create    InnocentName    Title    200
@@ -37,7 +37,7 @@ POST-API_Talent_Pool_Success_NewEntryExist
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST    testrailid=6
+    [Tags]    POST    testrailid=24403
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create_Random_Title    Title
@@ -55,7 +55,7 @@ POST-API_TPC_Length_0
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST    NEGATIVETEST    testrailid=7
+    [Tags]    POST    NEGATIVETEST    testrailid=24404
     REST_NOAUTH_Shared_TalentPools
     REST_AuthToken
     POST_TalentPool_Create_Empty_String    ${EMPTY}    Title    400
@@ -73,7 +73,7 @@ POST-API_TPC_Length_1
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24405
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create    1    Title    200
@@ -91,7 +91,7 @@ POST-API_TPC_Length_50
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24406
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create    12345678901234567890123456789012345678901234567890    Title    200
@@ -109,7 +109,7 @@ POST-API_TPC_Length_51
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST    NEGATIVETEST
+    [Tags]    POST    NEGATIVETEST    testrailid=24407
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create_Over_Max_Count    123456789012345678901234567890123456789012345678901    Title
@@ -127,7 +127,7 @@ POST-API_TPC_Trim_Space
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST    NEGATIVETEST
+    [Tags]    POST    NEGATIVETEST    testrailid=24408
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create_Empty_String    ${SPACE * 3}    Title    400
@@ -145,7 +145,7 @@ POST-API_TPC_Trim_TabSpace
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST    NEGATIVETEST
+    [Tags]    POST    NEGATIVETEST    testrailid=24409
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create_Empty_String    ${EMPTY}    Title    400
@@ -163,7 +163,7 @@ POST-API_TPC_Trim_Leading
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24410
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create    ${SPACE * 2}Leading    Title    200
@@ -181,7 +181,7 @@ POST-API_TPC_Trim_Trailing
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24411
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create    Trailing${SPACE * 2}    Title    200
@@ -199,7 +199,7 @@ POST-API_TPC_Trim_Middle
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24412
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create    space between    Title    200
@@ -217,7 +217,7 @@ POST-API_TPC_Trim_SpaceAnd50
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24413
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create    12345678901234567890123456789012345678901234567890${SPACE}    Title    200
@@ -235,7 +235,7 @@ POST-API_TPC_Security_Script
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24414
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create    <script>alert(123)</script>    Title    200
@@ -253,7 +253,7 @@ POST-API_TPC_Security_SQL
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24415
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create    SELECT * FROM Users    Title    200
@@ -271,7 +271,7 @@ POST-API_TPC_Characters_Extended2
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    ASCII
+    [Tags]    ASCII    testrailid=24416
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create    <=>?@^_`{|}~⌂ÇüéâäàåçêëèïîìæÆôöòûùÿ¢£¥₧ƒáíóúñÑª    Title    200
@@ -289,7 +289,7 @@ POST-API_TPC_Characters_Extended3
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST    ASCII
+    [Tags]    POST    ASCII    testrailid=24417
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create    \ º¿¬¬½¼¡«»¦¦¦¦¦¦¦++¦¦++++++--+-+¦¦++--¦-+----++++++    Title    200
@@ -307,7 +307,7 @@ POST-API_TPC_Characters_Extended4
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST    ASCII
+    [Tags]    POST    ASCII    testrailid=24418
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create    ++¦_¦¦¯aßGpSsµtFTOd8fen=±==()÷˜°•·vn²¦€„…†‡ˆ‰Š‹ŒŽ    Title    200
@@ -325,7 +325,7 @@ POST-API_TPC_Characters_Extended5
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST    ASCII
+    [Tags]    POST    ASCII    testrailid=24419
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create    ‘’“”–—˜™š›œžŸ¤¦¨©®¯³´¸U¾ÀÁÂÃÄÅÈÉÊËÌÍÎÏÐÒÓÔÕÖ×ØÙÚÛÜ    Title    200
@@ -343,7 +343,7 @@ POST-API_TPC_Characters_Extended6
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST    ASCII
+    [Tags]    POST    ASCII    testrailid=24420
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create    ÝÞãðýþ    Title    200
@@ -361,7 +361,7 @@ POST-API_TPC_Foreign_Russian
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST    ASCII
+    [Tags]    POST    ASCII    testrailid=24421
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create    ёъяшертыуиопющэасдфгчйкльжзхцвбнмЁЪЯШЕРТЫУИОПЮЩЭЖЬ    Title    200
@@ -379,7 +379,7 @@ POST-API_TPC_Foreign_Arabic
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST    ASCII
+    [Tags]    POST    ASCII    testrailid=24422
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create    غظضذخثتشرقصفعسنملكيطحزوهدجباشغظذخثتسرقضفعصنملكيطحز    Title    200
@@ -397,7 +397,7 @@ POST-API_TPC_Access_Does_Not_Exist
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST    NEGATIVETEST
+    [Tags]    POST    NEGATIVETEST    testrailid=24423
     REST_NOAUTH_NonExistentUser
     REST_AuthToken
     POST_TalentPool_Create_Empty_String    InnocentName    Title    500
@@ -415,7 +415,7 @@ GET-API_TPC_GET_Return_ID_Expected
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24424
     REST_NOAUTH
     REST_AuthToken
     GET_TalentPool    TalentpoolId    200
@@ -433,7 +433,7 @@ GET-API_TPC_GET_Return_Title_Happy
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24425
     REST_NOAUTH
     REST_AuthToken
     GET_TalentPool_Title_Happy    Title    200
@@ -451,7 +451,7 @@ GET-API_TPC_GET_Return_Title_Length_1
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24426
     REST_NOAUTH_User_With_Most_Talent_Pools
     REST_AuthToken
     GET_TalentPool_Title_Length_1    Title    200
@@ -469,7 +469,7 @@ GET-API_TPC_GET_Return_Title_Length_50
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24427
     REST_NOAUTH_User_With_Most_Talent_Pools
     REST_AuthToken
     GET_TalentPool_Title_Length_50    Title    200
@@ -487,7 +487,7 @@ GET-API_TPC_GET_Return_Title_SQL
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24428
     REST_NOAUTH_User_With_Most_Talent_Pools
     REST_AuthToken
     GET_TalentPool_Title_Char_Securit_SQL    Title    200
@@ -505,7 +505,7 @@ GET-API_TPC_GET_Return_Title_Security_Script
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24429
     REST_NOAUTH_User_With_Most_Talent_Pools
     REST_AuthToken
     GET_TalentPool_Title_Char_Securit_Script    Title    200
@@ -523,7 +523,7 @@ GET-API_TPC_GET_Return_Title_Extended1
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24430
     REST_NOAUTH_User_With_Most_Talent_Pools
     REST_AuthToken
     GET_TalentPool_Title_Char_Extended1    Title    200
@@ -541,7 +541,7 @@ GET-API_TPC_GET_Return_Title_Extended2
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24431
     REST_NOAUTH_User_With_Most_Talent_Pools
     REST_AuthToken
     GET_TalentPool_Title_Char_Extended2    Title    200
@@ -559,7 +559,7 @@ GET-API_TPC_GET_Return_Title_Extended3
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24432
     REST_NOAUTH_User_With_Most_Talent_Pools
     REST_AuthToken
     GET_TalentPool_Title_Char_Extended3    Title    200
@@ -577,7 +577,7 @@ GET-API_TPC_GET_Return_Title_Extended5
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24433
     REST_NOAUTH_User_With_Most_Talent_Pools
     REST_AuthToken
     GET_TalentPool_Title_Char_Extended5    Title    200
@@ -595,7 +595,7 @@ GET-API_TPC_GET_Return_Title_Extended6
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24434
     REST_NOAUTH_User_With_Most_Talent_Pools
     REST_AuthToken
     GET_TalentPool_Title_Char_Extended6    Title    200
@@ -613,7 +613,7 @@ GET-API_TPC_GET_Return_Title_Char_Foreign_Russian
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24435
     REST_NOAUTH_User_With_Most_Talent_Pools
     REST_AuthToken
     GET_TalentPool_Title_Char_Foreign_Russian    Title    200
@@ -631,7 +631,7 @@ GET-API_TPC_GET_Return_Title_Char_Foreign_Arabic
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24436
     REST_NOAUTH_User_With_Most_Talent_Pools
     REST_AuthToken
     GET_TalentPool_Title_Char_Foreign_Arabic    Title    200
@@ -649,7 +649,7 @@ GET-API_TPC_GET_Input_TP_Does_Not_Exist
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24437
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken
     GET_TalentPool_Does_Not_Exist    Title    404
@@ -667,7 +667,7 @@ GET-API_TPC_GET_Input_User_Does_Not_Exist
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24438
     REST_NOAUTH_NonExistentUser
     REST_AuthToken
     GET_User_Does_Not_Exist    Title    401
@@ -685,7 +685,7 @@ GET-API_TPC_GET_Input_User_Did_Not_Create
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24439
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken
     GET_User_Did_Not_Create    Title    401
@@ -703,7 +703,7 @@ POST-API_TPC_Add_Security_Script
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24440
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken
     POST_TalentPool_Candidates_Add    Title    200
@@ -721,7 +721,7 @@ POST-API_TPC_Add_Already_Added_Subset
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24441
     REST_NOAUTH_User_With_Most_Talent_Pools
     REST_AuthToken
     POST_TalentPool_Candidates_Add_SubSet    Title    200
@@ -739,7 +739,7 @@ POST-API_TPC_Add_Already_Added_Single
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24442
     REST_NOAUTH_User_With_Most_Talent_Pools
     REST_AuthToken
     POST_TalentPool_Candidates_Already_Added_Single    Title    200
@@ -757,7 +757,7 @@ POST-API_TPC_Add_Already_Added_All
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST3
+    [Tags]    POST3    testrailid=24443
     REST_NOAUTH_User_With_Most_Talent_Pools
     REST_AuthToken
     POST_TalentPool_Candidates_Already_Added_All    Title    200
@@ -775,7 +775,7 @@ POST-API_TPC_Add_Access_No_Visibility_Subset
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST3
+    [Tags]    POST3    testrailid=24444
     REST_NOAUTH_User_With_Most_Talent_Pools
     REST_AuthToken
     Comment    POST_TalentPool_Candidates_Already_Added_All    Title    200
@@ -793,7 +793,7 @@ POST-API_TPC_Add_2Users
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    USER
+    [Tags]    USER    testrailid=24445
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken
     POST_TalentPool_Candidates_Add_2Users    Title    200
@@ -811,7 +811,7 @@ POST-API_TPC_Add_1Users
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    USER11
+    [Tags]    USER11    testrailid=24446
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken
     POST_TalentPool_Add_1Users    Title    200
@@ -829,7 +829,7 @@ POST-API_TPC_Add_0Users
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    USER12
+    [Tags]    USER12    testrailid=24447
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken
     POST_TalentPool_Add_0Users    Title    200
@@ -847,7 +847,7 @@ POST-API_TPC_Add_BaseCase_Input_Vs_Database
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    DB
+    [Tags]    DB    testrailid=24448
     REST_NOAUTH_User_With_Most_Talent_Pools
     REST_AuthToken
     POST_TalentPool_BaseCase_InputVsDataBase    Title    200
@@ -865,7 +865,7 @@ POST-API_TPC_Add_BaseCase_Input_Vs_Output_Value
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    DBV
+    [Tags]    DBV    testrailid=24449
     REST_NOAUTH_User_With_Most_Talent_Pools
     REST_AuthToken
     POST_TalentPool_BaseCase_InputVsDataBase_Value    Title    200
@@ -883,7 +883,7 @@ POST-API_TP_Grp_Create_UseCase_Elab_AlreadyExists
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    POST
+    [Tags]    POST    testrailid=24450
     REST_NOAUTH_Random_Active_Owner_OR_Shared
     REST_AuthToken
     POST_TalentPool_Group_Create    400
@@ -901,7 +901,7 @@ PUT-API_TPC_Rename
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    PUT
+    [Tags]    PUT    testrailid=24451
     REST_NOAUTH_Random_Active_Shared
     REST_AuthToken
     PUT_TalentPool_Rename_Access    test 2    Title
@@ -919,7 +919,7 @@ PUT-API_Talent_Pool_Candidate_Search_Set_UseCase_Base_InputVsStatusDatabase
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    PUT
+    [Tags]    PUT    testrailid=24452
     REST_NOAUTH_Random_Active_Shared
     REST_AuthToken
     PUT_TalentPool_Candidate_Status_Set    Title    200
@@ -937,7 +937,7 @@ PUT-API_TalentPool_Candidate_Status_Set_UseCase_Elaborate_Users_1
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    PUT
+    [Tags]    PUT    testrailid=24453
     REST_NOAUTH_Random_Active_Owner_OR_Shared
     REST_AuthToken
     PUT_TalentPool_Candidate_Status_Set    Title    200
@@ -955,7 +955,7 @@ PUT-API_TPC_Rename_Access_Owner
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    PUT
+    [Tags]    PUT    testrailid=24454
     REST_NOAUTH_Random_Active_Owner
     REST_AuthToken
     PUT_TalentPool_Rename_Access_Owner    SimpleName    Title
@@ -973,7 +973,7 @@ PUT-API_TalentPool_Rename_Access_Not_Active
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    PUT
+    [Tags]    PUT    testrailid=24455
     REST_NOAUTH_Random_Active_Owner_OR_Shared
     REST_AuthToken
     PUT_TalentPool_Candidate_Status_Set    Title    200
@@ -991,7 +991,7 @@ PUT-API_TalentPool_Rename_Not_Active
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    PUT
+    [Tags]    PUT    testrailid=24456
     REST_NOAUTH_Random_Not_Active_Owner_OR_Shared
     REST_AuthToken
     PUT_TalentPool_Rename_Access_Not_Active    test 2    Title    200
@@ -1009,17 +1009,19 @@ PUT-API_TalentPool_Candidate_Status_Set_UseCase_Base_InputVsUserDatabase
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    PUT
+    [Tags]    PUT    testrailid=24457
     REST_NOAUTH_Random_Active_Owner_OR_Shared
     REST_AuthToken
     PUT_TalentPool_Candidate_Status_Set    test 2    Title
 
 PUT-API_TPC_Status_Set_UC_Elaborate_Status_Value_Placed
+    [Tags]    PUT    testrailid=24458
     REST_NOAUTH_Random_Active_Owner_OR_Shared
     REST_AuthToken
     PUT_TalentPool_Candidate_Status_Set_Value_Placed    1024    200
 
 PUT-API_TPC_Status_Set_UC_Elab_Users_2
+    [Tags]    PUT    testrailid=24475
     REST_NOAUTH_Random_Active_Owner_OR_Shared_With_2_Candidates
     REST_AuthToken
     PUT_TalentPool_Candidate_Status_Set_Value_Placed    1024    200
@@ -1037,7 +1039,7 @@ DELETE-API_TPC_Remove0Users
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    DELETE    NEGATIVE
+    [Tags]    DELETE    NEGATIVE    testrailid=24459
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Remove_0User
@@ -1072,7 +1074,7 @@ DELETE-API_TPC_Remove1Users
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    DELETE
+    [Tags]    DELETE    testrailid=24460
     REST_NOAUTH
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Remove_1User
@@ -1090,7 +1092,7 @@ DELETE-API_TPC_Remove_Access_DNE
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    DELETE    NEGATIVE
+    [Tags]    DELETE    NEGATIVE    testrailid=24461
     REST_NOAUTH_NonExistentUser
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Remove_Access_DNE
@@ -1108,7 +1110,7 @@ DELETE-API_TPC_Remove_Acc_NOT_TP_Owner
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    DELETE
+    [Tags]    DELETE    testrailid=24462
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Remove_Not_TP_Owner
@@ -1126,7 +1128,7 @@ DELETE-API_TPC_Remove_AlreadyRemoved_All
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    DELETE
+    [Tags]    DELETE    testrailid=24463
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Remove_AlreadyRemoved_All
@@ -1144,7 +1146,7 @@ DELETE-API_TPC_Remove_AlreadyRemoved_Single
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    DELETE
+    [Tags]    DELETE    testrailid=24464
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Remove_AlreadyRemoved_Single
@@ -1162,7 +1164,7 @@ DELETE-API_TPC_Remove_AlreadyRemoved_SubSet
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    DELETE
+    [Tags]    DELETE    testrailid=24465
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Remove_AlreadyRemoved_SubSet
@@ -1180,7 +1182,7 @@ DELETE-APIi_TPC_Remove_BaseCase_InputVsDatabase
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    DELETE
+    [Tags]    DELETE    testrailid=24466
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Remove_BaseCase_InputVsDatabase
@@ -1198,7 +1200,7 @@ DELETE-API_TPC_Remove_BaseCase_InputVsOutput
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    DELETE    JSONVFY
+    [Tags]    DELETE    JSONVFY    testrailid=24467
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Remove_BaseCase_InputVsOutput
@@ -1216,7 +1218,7 @@ DELETE-API_TPC_Remove_DNEUser_All
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    DELETE
+    [Tags]    DELETE    testrailid=24468
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Remove_DNEUser_All
@@ -1234,7 +1236,7 @@ DELETE-API_TPC_Remove_DNEUser_Single
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    DELETE
+    [Tags]    DELETE    testrailid=24469
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Remove_DNEUser_Single
@@ -1252,7 +1254,7 @@ DELETE-API_TPC_Remove_DNEUser_SubSet
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    DELETE
+    [Tags]    DELETE    testrailid=24470
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Remove_DNEUser_SubSet
@@ -1270,7 +1272,7 @@ DELETE-API_TP_Delete_Access_DoesNotExist
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    DELETE
+    [Tags]    DELETE    testrailid=24471
     REST_NOAUTH_NonExistentUser
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Delete_Access_DoesNotExist    401
@@ -1288,7 +1290,7 @@ DELETE-API_TP_Delete_Access_NotOwner
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    DELETE
+    [Tags]    DELETE    testrailid=24472
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Delete_Access_NotOwner    401
@@ -1306,7 +1308,7 @@ DELETE-API_TP_Del_Input_TPId_DoesNotExist
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    DELETE
+    [Tags]    DELETE    testrailid=24473
     REST_NOAUTH_Random_Users_with_Talent_Pools
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Delete_Input_TPId_DoesNotExist    404
@@ -1324,7 +1326,7 @@ DELETE-API_TPC_Remove_BaseCase_InputVsOutput_Value
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    DBV    testrailid=77
+    [Tags]    DBV    testrailid=24474
     REST_NOAUTH_Random_Active_Owner_OR_Shared_With_Candidates
     REST_AuthToken_RequestsLibrary
     DELETE_TalentPool_Candidates_Remove_2    200
