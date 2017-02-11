@@ -75,3 +75,43 @@ ${cfg_global_login_corp_autoqadef}    QA012-AUTO-QADEF    # QA-LD4STG-COMP1, QA-
 ${cfg_global_login_username_autoqadef}    jhennessy
 ${cfg_global_login_password_autoqadef}    popeye123
 ${cfg_global_login_url_autoqadef}    https://qa01.csod.com/
+${cfg_global_login_corp_autocvqa01}    QA01-AUTO-CV    # QA01-AUTO-CV, QA01-AUTO-CV1, QA01-AUTO-CV3, QA01-AUTO-CV4, QA052-AUTO-CV, QA052-AUTO-CV1, QA052-AUTO-CV3, QA052-AUTO-CV4, QA052-AUTO-CV5, QA03-AUTO-CV5
+${cfg_global_login_username_autocvqa01}    jhennessy
+${cfg_global_login_password_autocvqa01}    popeye123
+${cfg_global_login_url_autocvqa01}    https://qa01.csod.com/
+${cfg_global_login_corp_autocv1qa01}    QA01-AUTO-CV1    # QA01-AUTO-CV, QA01-AUTO-CV1, QA01-AUTO-CV3, QA01-AUTO-CV4, QA052-AUTO-CV, QA052-AUTO-CV1, QA052-AUTO-CV3, QA052-AUTO-CV4, QA052-AUTO-CV5, QA03-AUTO-CV5
+${cfg_global_login_username_autocv1qa01}    jhennessy
+${cfg_global_login_password_autocv1qa01}    popeye123
+${cfg_global_login_url_autocv1qa01}    https://qa01.csod.com/
+${cfg_global_login_corp_autocv3qa01}    QA01-AUTO-CV3    # QA01-AUTO-CV, QA01-AUTO-CV1, QA01-AUTO-CV3, QA01-AUTO-CV4, QA052-AUTO-CV, QA052-AUTO-CV1, QA052-AUTO-CV3, QA052-AUTO-CV4, QA052-AUTO-CV5, QA03-AUTO-CV5
+${cfg_global_login_username_autocv3qa01}    jhennessy
+${cfg_global_login_password_autocv3qa01}    popeye123
+${cfg_global_login_url_autocv3qa01}    https://qa01.csod.com/
+${cfg_global_login_corp_autocv4qa01}    QA01-AUTO-CV4    # QA01-AUTO-CV, QA01-AUTO-CV1, QA01-AUTO-CV3, QA01-AUTO-CV4, QA052-AUTO-CV, QA052-AUTO-CV1, QA052-AUTO-CV3, QA052-AUTO-CV4, QA052-AUTO-CV5, QA03-AUTO-CV5
+${cfg_global_login_username_autocv4qa01}    jhennessy
+${cfg_global_login_password_autocv4qa01}    popeye123
+${cfg_global_login_url_autocv4qa01}    https://qa01.csod.com/
+${cfg_global_login_corp_autocvqa052}    QA052-AUTO-CV    # QA01-AUTO-CV, QA01-AUTO-CV1, QA01-AUTO-CV3, QA01-AUTO-CV4, QA052-AUTO-CV, QA052-AUTO-CV1, QA052-AUTO-CV3, QA052-AUTO-CV4, QA052-AUTO-CV5, QA03-AUTO-CV5
+${cfg_global_login_username_autocvqa052}    jhennessy
+${cfg_global_login_password_autocvqa052}    popeye123
+${cfg_global_login_url_autocvqa052}    https://qa05.csod.com/
+${cfg_global_login_corp_autocv1qa052}    QA052-AUTO-CV1    # QA01-AUTO-CV, QA01-AUTO-CV1, QA01-AUTO-CV3, QA01-AUTO-CV4, QA052-AUTO-CV, QA052-AUTO-CV1, QA052-AUTO-CV3, QA052-AUTO-CV4, QA052-AUTO-CV5, QA03-AUTO-CV5
+${cfg_global_login_username_autocv1qa052}    jhennessy
+${cfg_global_login_password_autocv1qa052}    popeye123
+${cfg_global_login_url_autocv1qa052}    https://qa05.csod.com/
+${cfg_global_login_corp_autocv3qa052}    QA052-AUTO-CV3    # QA01-AUTO-CV, QA01-AUTO-CV1, QA01-AUTO-CV3, QA01-AUTO-CV4, QA052-AUTO-CV, QA052-AUTO-CV1, QA052-AUTO-CV3, QA052-AUTO-CV4, QA052-AUTO-CV5, QA03-AUTO-CV5
+${cfg_global_login_username_autocv3qa052}    jhennessy
+${cfg_global_login_password_autocv3qa052}    popeye123
+${cfg_global_login_url_autocv3qa052}    https://qa05.csod.com/
+${cfg_global_login_corp_autocv4qa052}    QA052-AUTO-CV4    # QA01-AUTO-CV, QA01-AUTO-CV1, QA01-AUTO-CV3, QA01-AUTO-CV4, QA052-AUTO-CV, QA052-AUTO-CV1, QA052-AUTO-CV3, QA052-AUTO-CV4, QA052-AUTO-CV5, QA03-AUTO-CV5
+${cfg_global_login_username_autocv4qa052}    jhennessy
+${cfg_global_login_password_autocv4qa052}    popeye123
+${cfg_global_login_url_autocv4qa052}    https://qa05.csod.com/
+${cfg_global_login_corp_autocv5qa052}    QA052-AUTO-CV5    # QA01-AUTO-CV, QA01-AUTO-CV1, QA01-AUTO-CV3, QA01-AUTO-CV4, QA052-AUTO-CV, QA052-AUTO-CV1, QA052-AUTO-CV3, QA052-AUTO-CV4, QA052-AUTO-CV5, QA03-AUTO-CV5
+${cfg_global_login_username_autocv5qa052}    jhennessy
+${cfg_global_login_password_autocv5qa052}    popeye123
+${cfg_global_login_url_autocv5qa052}    https://qa05.csod.com/
+${cfg_global_login_corp_autocv5qa03}    QA03-AUTO-CV5    # QA01-AUTO-CV, QA01-AUTO-CV1, QA01-AUTO-CV3, QA01-AUTO-CV4, QA052-AUTO-CV, QA052-AUTO-CV1, QA052-AUTO-CV3, QA052-AUTO-CV4, QA052-AUTO-CV5, QA03-AUTO-CV5
+${cfg_global_login_username_autocv5qa03}    jhennessy
+${cfg_global_login_password_autocv5qa03}    popeye123
+${cfg_global_login_url_autocv5qa03}    https://qa03.csod.com/

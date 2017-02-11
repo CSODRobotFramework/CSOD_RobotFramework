@@ -80,7 +80,7 @@ Global Test Fixture Suite Teardown with Email Attachment
     Close All Browsers
     ${comp_status}=    Set Variable    ${SUITE_STATUS}
     ${comp_suite_name}=    Set Variable    ${SUITE_NAME}
-    Send Mail With Attachment    geefung@gmail.com    popeye123    gfung@csod.com    ${comp_smoke_test_status} ${comp_suite_name} ${cfg_global_login_profile} ${comp_status}    This is the Compensation Smoketest please take the time to review the Test Suite results attached html file.    C:\\Users\\gfung\\Documents\\RobotFrameworkTeam\\CSOD_RobotFramework\\COMP\\TestResults\\report.html
+    Send Mail With Attachment    smp.qa.team@gmail.com    Testsmp12    gfung@csod.com    ${comp_smoke_test_status} ${comp_suite_name} ${cfg_global_login_profile} ${comp_status}    This is the Compensation Smoketest please take the time to review the Test Suite results attached html file.    C:\\Users\\gfung\\Documents\\RobotFrameworkTeam\\CSOD_RobotFramework\\COMP\\TestResults\\report.html
 
 Global Test Fixture Go To URL Teardown
     Run Keyword If    '${TEST_STATUS}'=='FAIL'    Log Source

@@ -1,4 +1,7 @@
 *** Settings ***
+Documentation     *INSTRUCTIONS: To Run this dynamically add the following line to the Run tab arguments text box area.*
+...
+...               -d TestResults -v RNOAUTH_HOST:QA01 --listener TestRailListener:479
 Library           SQLlibrary
 Library           HttpLibrary.HTTP
 Resource          ../Resources/SMP_PROJECTS/SMP_Resources.robot

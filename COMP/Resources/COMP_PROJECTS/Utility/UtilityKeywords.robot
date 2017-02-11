@@ -190,3 +190,21 @@ Utility Select Window and Close Window
     Comment    ${windowTitles}=    Run Keyword If    '${selectWindowReturn1}'=='None'    Get Window Titles
     Comment    Run Keyword If    '${selectWindowReturn1}'=='None'    Fail    Select Window FAILED. \ ${locator} was not found.
     Close Window
+
+Utility Cal Handler
+    [Arguments]    ${locator}
+    ${d}=    Get Current Date    result_format=%m/%d/%Y
+    log    ${d}
+    Set Suite Variable    ${d}    ${d}
+    Utility Sync Element    ${locator}
+    Input Text    ${locator}    ${d}
+
+Utility Cal Handler Plus Number
+    [Arguments]    ${locator}    ${plusNumber}=+ 1 days
+    ${d}=    Get Current Date    result_format=%m/%d/%Y
+    log    ${d}
+    Set Suite Variable    ${d}    ${d}
+    Utility Sync Element    ${locator}
+    ${d1}=    Get Current Date    UTC    ${plusNumber}    result_format=%m/%d/%Y
+    log    ${d1}
+    Input Text    ${locator}    ${d1}

@@ -1,439 +1,3646 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20170125 23:22:20.925" generator="Robot 3.0 (Python 2.7.12 on win32)">
+<robot generated="20170210 23:47:52.927" generator="Robot 3.0 (Python 2.7.12 on win32)">
 <suite source="C:\Users\gfung\.jenkins\workspace\COMP-Smoketest-Admin-Side\COMP" id="s1" name="COMP">
 <suite source="C:\Users\gfung\.jenkins\workspace\COMP-Smoketest-Admin-Side\COMP\TestSuites" id="s1-s1" name="TestSuites">
-<suite source="C:\Users\gfung\.jenkins\workspace\COMP-Smoketest-Admin-Side\COMP\TestSuites\SMP-API-Talent_Pool.robot" id="s1-s1-s1" name="SMP-API-Talent Pool">
-<test id="s1-s1-s1-t1" name="POST-API_TP_Grp_Create_UseCase_Elab_AlreadyExists">
-<kw name="REST_NOAUTH_Random_Active_Owner_OR_Shared" library="SMP_Keywords">
-<doc>*REST_NOAUTH:*</doc>
-<kw name="Connect" library="SQLlibrary">
+<suite source="C:\Users\gfung\.jenkins\workspace\COMP-Smoketest-Admin-Side\COMP\TestSuites\SMP-Manager-Task_1.robot" id="s1-s1-s1" name="SMP-Manager-Task 1">
+<kw type="setup" name="Global Test Fixture Suite Setup" library="GlobalKeywords">
+<doc>Test fixture that handles suite setup</doc>
+<kw name="Append To Environment Variable" library="OperatingSystem">
+<doc>Appends given ``values`` to environment variable ``name``.</doc>
 <arguments>
-<arg>${RNOAUTH_CUSTOM_SERVER}</arg>
-<arg>${SQL_DB}</arg>
+<arg>PATH</arg>
+<arg>${cfg_global_resource_webdrivers}</arg>
 </arguments>
-<status status="PASS" endtime="20170125 23:22:23.708" starttime="20170125 23:22:23.412"></status>
+<msg timestamp="20170210 23:47:55.653" level="INFO">Environment variable 'PATH' set to value 'C:\Windows\System32\;C:\ProgramData\Oracle\Java\javapath;C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows\SysWOW64;C:\Users\gfung\.jenkins\workspace\COMP-Smoketest-Admin-Side\COMP\Resources\WebDrivers\'.</msg>
+<status status="PASS" endtime="20170210 23:47:55.654" starttime="20170210 23:47:55.652"></status>
 </kw>
-<kw name="Execute Raw" library="SQLlibrary">
+<kw name="Global Open Application" library="GlobalKeywords">
+<doc>Opens a browser session in the specified browser, navigates to the specified URL, and maximizes the browser window.  http://robotframework.org/Selenium2Library/doc/Selenium2Library.html#Open%20Browser</doc>
 <arguments>
-<arg>SELECT TOP 1 user_id FROM users WHERE culture_lang_id IS NOT NULL AND status_id = 1 AND (user_id IN (SELECT DISTINCT owner_id FROM ou WHERE type_id = 131072) OR user_id IN (SELECT DISTINCT user_id FROM talent_pool_shared_user)) ORDER BY NEWID()</arg>
+<arg>${cfg_global_login_url}</arg>
+<arg>${cfg_global_login_browser}</arg>
+</arguments>
+<kw name="Open Browser" library="Selenium2Library">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<arg>remote_url=${cfg_sauceLabs_remoteUrl}</arg>
+<arg>desired_capabilities=${cfg_sauceLabs_desiredCapabilities}</arg>
+</arguments>
+<msg timestamp="20170210 23:47:55.658" level="INFO">Opening browser 'chrome' to base url 'https://qa03.csod.com/'</msg>
+<status status="PASS" endtime="20170210 23:47:57.910" starttime="20170210 23:47:55.657"></status>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" endtime="20170210 23:47:59.067" starttime="20170210 23:47:57.912"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:47:59.068" starttime="20170210 23:47:55.655"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:47:59.068" starttime="20170210 23:47:55.651"></status>
+</kw>
+<test id="s1-s1-s1-t1" name="Admin_Creates_SMP_MGR_Task">
+<kw type="setup" name="Global Test Fixture Test Setup" library="GlobalKeywords">
+<doc>Test fixture that handles test setup</doc>
+<kw name="Global Login" library="GlobalKeywords">
+<doc>Log into the CSOD application</doc>
+<arguments>
+<arg>${cfg_global_login_corp}</arg>
+<arg>${cfg_global_login_username}</arg>
+<arg>${cfg_global_login_password}</arg>
+</arguments>
+<kw name="Utility Input Text" library="UtilityKeywords">
+<arguments>
+<arg>${obj_global_login_corp}</arg>
+<arg>${corp}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
 </arguments>
 <assign>
-<var>${SQL_GET_USERID}</var>
+<var>${syncElementReturn1}</var>
 </assign>
-<msg timestamp="20170125 23:22:23.799" level="INFO">${SQL_GET_USERID} = 43</msg>
-<status status="PASS" endtime="20170125 23:22:23.799" starttime="20170125 23:22:23.709"></status>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:47:59.107" starttime="20170210 23:47:59.075"></status>
+</kw>
+<msg timestamp="20170210 23:47:59.108" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:47:59.108" starttime="20170210 23:47:59.074"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:47:59.120" starttime="20170210 23:47:59.108"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:47:59.120" starttime="20170210 23:47:59.073"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${inputText}</arg>
+</arguments>
+<msg timestamp="20170210 23:47:59.122" level="INFO">Typing text 'QA03-AUTO-CV5' into text field 'id=corpBox'</msg>
+<status status="PASS" endtime="20170210 23:47:59.210" starttime="20170210 23:47:59.121"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:47:59.211" starttime="20170210 23:47:59.071"></status>
+</kw>
+<kw name="Utility Input Text" library="UtilityKeywords">
+<arguments>
+<arg>${obj_global_login_username}</arg>
+<arg>${username}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:47:59.245" starttime="20170210 23:47:59.216"></status>
+</kw>
+<msg timestamp="20170210 23:47:59.245" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:47:59.245" starttime="20170210 23:47:59.215"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:47:59.259" starttime="20170210 23:47:59.246"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:47:59.259" starttime="20170210 23:47:59.213"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${inputText}</arg>
+</arguments>
+<msg timestamp="20170210 23:47:59.260" level="INFO">Typing text 'jhennessy' into text field 'id=userNameBox'</msg>
+<status status="PASS" endtime="20170210 23:47:59.338" starttime="20170210 23:47:59.260"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:47:59.339" starttime="20170210 23:47:59.211"></status>
+</kw>
+<kw name="Utility Input Text" library="UtilityKeywords">
+<arguments>
+<arg>${obj_global_login_password}</arg>
+<arg>${password}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:47:59.384" starttime="20170210 23:47:59.342"></status>
+</kw>
+<msg timestamp="20170210 23:47:59.385" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:47:59.385" starttime="20170210 23:47:59.341"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:47:59.398" starttime="20170210 23:47:59.385"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:47:59.399" starttime="20170210 23:47:59.340"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${inputText}</arg>
+</arguments>
+<msg timestamp="20170210 23:47:59.402" level="INFO">Typing text 'popeye123' into text field 'id=passWordBox'</msg>
+<status status="PASS" endtime="20170210 23:47:59.482" starttime="20170210 23:47:59.400"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:47:59.483" starttime="20170210 23:47:59.339"></status>
+</kw>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${obj_global_login_loginButton}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:47:59.513" starttime="20170210 23:47:59.486"></status>
+</kw>
+<msg timestamp="20170210 23:47:59.514" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:47:59.514" starttime="20170210 23:47:59.485"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:47:59.526" starttime="20170210 23:47:59.515"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:47:59.527" starttime="20170210 23:47:59.484"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:47:59.529" level="INFO">Clicking element 'id=submit'.</msg>
+<status status="PASS" endtime="20170210 23:48:03.984" starttime="20170210 23:47:59.528"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:03.985" starttime="20170210 23:47:59.528"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:03.986" starttime="20170210 23:47:59.483"></status>
+</kw>
+<kw name="Utility Page Should Contain" library="UtilityKeywords">
+<arguments>
+<arg>${cfg_global_home_pagesync}</arg>
+</arguments>
+<kw name="Wait Until Page Contains" library="Selenium2Library">
+<doc>Waits until `text` appears on current page.</doc>
+<arguments>
+<arg>${text}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${pgShouldContainRet1}</var>
+</assign>
+<msg timestamp="20170210 23:48:04.271" level="INFO">${pgShouldContainRet1} = None</msg>
+<status status="PASS" endtime="20170210 23:48:04.271" starttime="20170210 23:48:03.989"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:04.272" starttime="20170210 23:48:03.987"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:04.272" starttime="20170210 23:47:59.070"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:04.273" starttime="20170210 23:47:59.070"></status>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" endtime="20170210 23:48:04.287" starttime="20170210 23:48:04.274"></status>
+</kw>
+<kw name="smp_navigate_to_succession_management" library="SMP_GUI_Keywords">
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${comp_smoke_admin_tab}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:04.587" starttime="20170210 23:48:04.294"></status>
+</kw>
+<msg timestamp="20170210 23:48:04.588" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:04.588" starttime="20170210 23:48:04.293"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:05.547" starttime="20170210 23:48:04.589"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:05.548" starttime="20170210 23:48:04.291"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:05.550" level="INFO">Clicking element 'xpath=//label[.='Admin']'.</msg>
+<status status="PASS" endtime="20170210 23:48:06.957" starttime="20170210 23:48:05.550"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:06.958" starttime="20170210 23:48:05.548"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:06.958" starttime="20170210 23:48:04.289"></status>
+</kw>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${smp_succession_management}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:07.584" starttime="20170210 23:48:06.963"></status>
+</kw>
+<msg timestamp="20170210 23:48:07.585" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:07.585" starttime="20170210 23:48:06.962"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:07.675" starttime="20170210 23:48:07.585"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:07.676" starttime="20170210 23:48:06.961"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:07.678" level="INFO">Clicking element 'css=div a[title='Succession Management']'.</msg>
+<status status="PASS" endtime="20170210 23:48:08.185" starttime="20170210 23:48:07.678"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:08.186" starttime="20170210 23:48:07.676"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:08.186" starttime="20170210 23:48:06.959"></status>
+</kw>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${smp_tasks_link}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:08.271" starttime="20170210 23:48:08.191"></status>
+</kw>
+<msg timestamp="20170210 23:48:08.272" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:08.272" starttime="20170210 23:48:08.190"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:08.528" starttime="20170210 23:48:08.273"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:08.528" starttime="20170210 23:48:08.188"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:08.530" level="INFO">Clicking element 'css=div a[title='Tasks']'.</msg>
+<status status="PASS" endtime="20170210 23:48:10.030" starttime="20170210 23:48:08.530"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:10.031" starttime="20170210 23:48:08.529"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:10.031" starttime="20170210 23:48:08.187"></status>
+</kw>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${smp_add_smp_task_link}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:10.346" starttime="20170210 23:48:10.035"></status>
+</kw>
+<msg timestamp="20170210 23:48:10.347" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:10.347" starttime="20170210 23:48:10.034"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:10.497" starttime="20170210 23:48:10.350"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:10.498" starttime="20170210 23:48:10.033"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:10.500" level="INFO">Clicking element 'css=a[data-tag='addTaskBtn']'.</msg>
+<status status="PASS" endtime="20170210 23:48:11.690" starttime="20170210 23:48:10.499"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:11.700" starttime="20170210 23:48:10.498"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:11.700" starttime="20170210 23:48:10.032"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:11.701" starttime="20170210 23:48:04.288"></status>
+</kw>
+<kw name="smp_create_smp_task" library="SMP_GUI_Keywords">
+<doc>*smp_create_smp_task*</doc>
+<arguments>
+<arg>SMP-Based Competency</arg>
+</arguments>
+<kw name="Utility Get Date Time Stamp" library="UtilityKeywords">
+<doc>Generates and returns a unique date time stamp</doc>
+<assign>
+<var>${smp_date_stamp}</var>
+</assign>
+<kw name="Get Time" library="BuiltIn">
+<doc>Returns the given time in the requested format.</doc>
+<arguments>
+<arg>epoch</arg>
+<arg>NOW</arg>
+</arguments>
+<assign>
+<var>${dateTimeStamp}</var>
+</assign>
+<msg timestamp="20170210 23:48:11.750" level="INFO">${dateTimeStamp} = 1486799291</msg>
+<status status="PASS" endtime="20170210 23:48:11.750" starttime="20170210 23:48:11.749"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${dateTimeStamp}</arg>
+</arguments>
+<assign>
+<var>${dateTimeStamp}</var>
+</assign>
+<msg timestamp="20170210 23:48:11.752" level="INFO">${dateTimeStamp} = 1486799291</msg>
+<status status="PASS" endtime="20170210 23:48:11.752" starttime="20170210 23:48:11.751"></status>
+</kw>
+<msg timestamp="20170210 23:48:11.753" level="INFO">${smp_date_stamp} = 1486799291</msg>
+<status status="PASS" endtime="20170210 23:48:11.754" starttime="20170210 23:48:11.748"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${smp_date_stamp}</arg>
+<arg>${smp_date_stamp}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:11.756" level="INFO">${smp_date_stamp} = 1486799291</msg>
+<status status="PASS" endtime="20170210 23:48:11.756" starttime="20170210 23:48:11.755"></status>
+</kw>
+<kw name="csodUtilInputText" library="CSOD_Keywords">
+<arguments>
+<arg>${smp_task_title}</arg>
+<arg>SMP_NEW_UI_MGR_1_${smp_date_stamp}</arg>
+</arguments>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Selenium2Library.Input Text</arg>
+<arg>${locator}</arg>
+<arg>${input}</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${input}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:11.761" level="INFO">Typing text 'SMP_NEW_UI_MGR_1_1486799291' into text field 'id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_txtTitle'</msg>
+<status status="PASS" endtime="20170210 23:48:12.755" starttime="20170210 23:48:11.760"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:12.755" starttime="20170210 23:48:11.759"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:12.756" starttime="20170210 23:48:11.757"></status>
+</kw>
+<kw name="csodUtilInputText" library="CSOD_Keywords">
+<arguments>
+<arg>${smp_task_desc}</arg>
+<arg>SMP_NEW_UI_DESC_${smp_date_stamp}</arg>
+</arguments>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Selenium2Library.Input Text</arg>
+<arg>${locator}</arg>
+<arg>${input}</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${input}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:12.762" level="INFO">Typing text 'SMP_NEW_UI_DESC_1486799291' into text field 'id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_txtDescription'</msg>
+<status status="PASS" endtime="20170210 23:48:12.889" starttime="20170210 23:48:12.761"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:12.890" starttime="20170210 23:48:12.759"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:12.890" starttime="20170210 23:48:12.757"></status>
+</kw>
+<kw name="Utility Cal Handler" library="UtilityKeywords">
+<arguments>
+<arg>${smp_from_datefield}</arg>
+</arguments>
+<kw name="Get Current Date" library="DateTime">
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<arguments>
+<arg>result_format=%m/%d/%Y</arg>
+</arguments>
+<assign>
+<var>${d}</var>
+</assign>
+<msg timestamp="20170210 23:48:12.892" level="INFO">${d} = 02/10/2017</msg>
+<status status="PASS" endtime="20170210 23:48:12.892" starttime="20170210 23:48:12.892"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
-<arg>${SQL_GET_USERID}</arg>
+<arg>${d}</arg>
 </arguments>
-<msg timestamp="20170125 23:22:23.801" level="INFO">43</msg>
-<status status="PASS" endtime="20170125 23:22:23.801" starttime="20170125 23:22:23.800"></status>
+<msg timestamp="20170210 23:48:12.893" level="INFO">02/10/2017</msg>
+<status status="PASS" endtime="20170210 23:48:12.895" starttime="20170210 23:48:12.893"></status>
 </kw>
-<kw name="Execute Raw" library="SQLlibrary">
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
 <arguments>
-<arg>SELECT culture_lang_id FROM users WHERE user_id = ${SQL_GET_USERID}</arg>
+<arg>${d}</arg>
+<arg>${d}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:12.895" level="INFO">${d} = 02/10/2017</msg>
+<status status="PASS" endtime="20170210 23:48:12.895" starttime="20170210 23:48:12.895"></status>
+</kw>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
 </arguments>
 <assign>
-<var>${SQL_GET_USER_CULTURE}</var>
+<var>${syncElementReturn1}</var>
 </assign>
-<msg timestamp="20170125 23:22:23.804" level="INFO">${SQL_GET_USER_CULTURE} = 1</msg>
-<status status="PASS" endtime="20170125 23:22:23.804" starttime="20170125 23:22:23.801"></status>
-</kw>
-<kw name="Set Suite Variable" library="BuiltIn">
-<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
 <arguments>
-<arg>${SQL_GET_USERID}</arg>
-<arg>${SQL_GET_USERID}</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
 </arguments>
-<msg timestamp="20170125 23:22:23.805" level="INFO">${SQL_GET_USERID} = 43</msg>
-<status status="PASS" endtime="20170125 23:22:23.806" starttime="20170125 23:22:23.805"></status>
+<status status="PASS" endtime="20170210 23:48:12.928" starttime="20170210 23:48:12.897"></status>
 </kw>
-<kw name="Set Suite Variable" library="BuiltIn">
-<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20170210 23:48:12.928" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:12.929" starttime="20170210 23:48:12.897"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
 <arguments>
-<arg>${SQL_GET_USER_CULTURE}</arg>
-<arg>${SQL_GET_USER_CULTURE}</arg>
+<arg>${locator}</arg>
 </arguments>
-<msg timestamp="20170125 23:22:23.807" level="INFO">${SQL_GET_USER_CULTURE} = 1</msg>
-<status status="PASS" endtime="20170125 23:22:23.808" starttime="20170125 23:22:23.806"></status>
+<status status="PASS" endtime="20170210 23:48:12.943" starttime="20170210 23:48:12.929"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:12.944" starttime="20170210 23:48:12.896"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${d}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:12.945" level="INFO">Typing text '02/10/2017' into text field 'id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_dtFromTaskPeriod_textboxDate'</msg>
+<status status="PASS" endtime="20170210 23:48:13.019" starttime="20170210 23:48:12.944"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:13.019" starttime="20170210 23:48:12.890"></status>
+</kw>
+<kw name="Utility Cal Handler Plus Number" library="UtilityKeywords">
+<arguments>
+<arg>${smp_to_datefield}</arg>
+</arguments>
+<kw name="Get Current Date" library="DateTime">
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<arguments>
+<arg>result_format=%m/%d/%Y</arg>
+</arguments>
+<assign>
+<var>${d}</var>
+</assign>
+<msg timestamp="20170210 23:48:13.022" level="INFO">${d} = 02/10/2017</msg>
+<status status="PASS" endtime="20170210 23:48:13.022" starttime="20170210 23:48:13.021"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
-<arg>${SQL_GET_USER_CULTURE}</arg>
+<arg>${d}</arg>
 </arguments>
-<msg timestamp="20170125 23:22:23.809" level="INFO">1</msg>
-<status status="PASS" endtime="20170125 23:22:23.809" starttime="20170125 23:22:23.808"></status>
-</kw>
-<kw name="Create Http Context" library="HttpLibrary.HTTP">
-<doc>Sets the HTTP host to use for future requests. You must call this</doc>
-<arguments>
-<arg>${HTTP_CONTEXT}</arg>
-<arg>http</arg>
-</arguments>
-<msg timestamp="20170125 23:22:23.810" level="INFO">Host for next HTTP request set to 'laxqapexmt.office.cyberu.com'</msg>
-<msg timestamp="20170125 23:22:23.810" level="INFO">Scheme for next HTTP request set to 'http'</msg>
-<status status="PASS" endtime="20170125 23:22:23.810" starttime="20170125 23:22:23.810"></status>
-</kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>X-CORP</arg>
-<arg>${RNOAUTH_CUSTOM_CORP}</arg>
-</arguments>
-<msg timestamp="20170125 23:22:23.812" level="INFO">Set request header "X-CORP" to "qa01-auto-smp-api"</msg>
-<status status="PASS" endtime="20170125 23:22:23.812" starttime="20170125 23:22:23.812"></status>
-</kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>X-USERID</arg>
-<arg>${SQL_GET_USERID}</arg>
-</arguments>
-<msg timestamp="20170125 23:22:23.813" level="INFO">Set request header "X-USERID" to "43"</msg>
-<status status="PASS" endtime="20170125 23:22:23.813" starttime="20170125 23:22:23.813"></status>
-</kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>X-CULTUREID</arg>
-<arg>${SQL_GET_USER_CULTURE}</arg>
-</arguments>
-<msg timestamp="20170125 23:22:23.815" level="INFO">Set request header "X-CULTUREID" to "1"</msg>
-<status status="PASS" endtime="20170125 23:22:23.815" starttime="20170125 23:22:23.814"></status>
-</kw>
-<status status="PASS" endtime="20170125 23:22:23.815" starttime="20170125 23:22:23.411"></status>
-</kw>
-<kw name="REST_AuthToken" library="SMP_Keywords">
-<doc>*REST_AuthToken:*</doc>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>content-type</arg>
-<arg>\ application/json</arg>
-</arguments>
-<msg timestamp="20170125 23:22:23.818" level="INFO">Set request header "content-type" to " application/json"</msg>
-<status status="PASS" endtime="20170125 23:22:23.819" starttime="20170125 23:22:23.817"></status>
-</kw>
-<kw name="Set Request Body" library="HttpLibrary.HTTP">
-<doc>Set the request body for the next HTTP request.</doc>
-<arguments>
-<arg>{ \ \ \"UserId\": ${SQL_GET_USERID}, \ \ \"CorpName\": \"${RNOAUTH_CUSTOM_CORP}\", \ \ \"Permissions\": [ \ \ \ \ { \ \ \ \ \ \ \"Id\": -157, \ \ \ \ \ \ \"Constraints\": [ \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 73, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 2, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": true \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 87, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 32, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 111, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 4, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 150, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 8, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ } \ \ \ \ \ \ ] \ \ \ \ } \ \ ], \ \ \"Token\": \"${RNOAUTH_CUSTOM_CORP}_${SQL_GET_USERID}\", \ \ \"expDt\": \"2019-08-17T16:16:19.550Z\", \ \ \"CultureId\": 0 }</arg>
-</arguments>
-<msg timestamp="20170125 23:22:23.824" level="INFO">Request body set to "{   "UserId": 43,   "CorpName": "qa01-auto-smp-api",   "Permissions": [     {       "Id": -157,       "Constraints": [         {           "m_Item1": 73,           "m_Item2": 2,           "m_Item3": true         },         {           "m_Item1": 87,           "m_Item2": 32,           "m_Item3": false         },         {           "m_Item1": 111,           "m_Item2": 4,           "m_Item3": false         },         {           "m_Item1": 150,           "m_Item2": 8,           "m_Item3": false         }       ]     }   ],   "Token": "qa01-auto-smp-api_43",   "expDt": "2019-08-17T16:16:19.550Z",   "CultureId": 0 }".</msg>
-<status status="PASS" endtime="20170125 23:22:23.825" starttime="20170125 23:22:23.819"></status>
-</kw>
-<kw name="PUT" library="HttpLibrary.HTTP">
-<doc>Issues a HTTP PUT request.</doc>
-<arguments>
-<arg>/cornerstone-auth-api/v1</arg>
-</arguments>
-<status status="PASS" endtime="20170125 23:22:23.862" starttime="20170125 23:22:23.825"></status>
-</kw>
-<kw name="Response Status Code Should Equal" library="HttpLibrary.HTTP">
-<doc>Fails if the response status code of the previous request was not the</doc>
-<arguments>
-<arg>204</arg>
-</arguments>
-<status status="PASS" endtime="20170125 23:22:23.864" starttime="20170125 23:22:23.863"></status>
-</kw>
-<kw name="Get Response Body" library="HttpLibrary.HTTP">
-<doc>Get the response body.</doc>
-<assign>
-<var>${resBody}</var>
-</assign>
-<msg timestamp="20170125 23:22:23.865" level="INFO">${resBody} = </msg>
-<status status="PASS" endtime="20170125 23:22:23.865" starttime="20170125 23:22:23.864"></status>
-</kw>
-<kw name="Comment" library="BuiltIn">
-<doc>Displays the given messages in the log file as keyword arguments.</doc>
-<arguments>
-<arg>Close</arg>
-</arguments>
-<status status="PASS" endtime="20170125 23:22:23.866" starttime="20170125 23:22:23.866"></status>
-</kw>
-<status status="PASS" endtime="20170125 23:22:23.867" starttime="20170125 23:22:23.816"></status>
-</kw>
-<kw name="POST_TalentPool_Group_Create" library="SMP_Keywords">
-<doc>*POST_TalentPool_Candidates_Add:*</doc>
-<arguments>
-<arg>400</arg>
-</arguments>
-<kw name="Connect" library="SQLlibrary">
-<arguments>
-<arg>${RNOAUTH_CUSTOM_SERVER}</arg>
-<arg>${SQL_DB}</arg>
-</arguments>
-<status status="PASS" endtime="20170125 23:22:23.905" starttime="20170125 23:22:23.873"></status>
-</kw>
-<kw name="Execute Raw" library="SQLlibrary">
-<arguments>
-<arg>SELECT TOP 1 ou_id FROM ou WHERE (owner_id = ${SQL_GET_USERID} OR ou_id IN (SELECT ou_id FROM talent_pool_shared_user WHERE user_id = ${SQL_GET_USERID})) AND ou.type_id = 131072 AND ou_id IN (SELECT related_ou_id FROM ou_relation WHERE type_id = 16) ORDER BY NEWID()</arg>
-</arguments>
-<assign>
-<var>${SQL_TalentPoolId}</var>
-</assign>
-<msg timestamp="20170125 23:22:23.945" level="INFO">${SQL_TalentPoolId} = 222</msg>
-<status status="PASS" endtime="20170125 23:22:23.946" starttime="20170125 23:22:23.906"></status>
+<msg timestamp="20170210 23:48:13.023" level="INFO">02/10/2017</msg>
+<status status="PASS" endtime="20170210 23:48:13.024" starttime="20170210 23:48:13.022"></status>
 </kw>
 <kw name="Set Suite Variable" library="BuiltIn">
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
 <arguments>
-<arg>${SQL_TalentPoolId}</arg>
-<arg>${SQL_TalentPoolId}</arg>
+<arg>${d}</arg>
+<arg>${d}</arg>
 </arguments>
-<msg timestamp="20170125 23:22:23.948" level="INFO">${SQL_TalentPoolId} = 222</msg>
-<status status="PASS" endtime="20170125 23:22:23.949" starttime="20170125 23:22:23.947"></status>
+<msg timestamp="20170210 23:48:13.025" level="INFO">${d} = 02/10/2017</msg>
+<status status="PASS" endtime="20170210 23:48:13.025" starttime="20170210 23:48:13.024"></status>
 </kw>
-<kw name="Execute Raw" library="SQLlibrary">
+<kw name="Utility Sync Element" library="UtilityKeywords">
 <arguments>
-<arg>SELECT CONVERT(varchar(255), NEWID())</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
 </arguments>
 <assign>
-<var>${SQL_RandomName}</var>
+<var>${syncElementReturn1}</var>
 </assign>
-<msg timestamp="20170125 23:22:23.950" level="INFO">${SQL_RandomName} = 1E703BE9-7F8C-4AD1-AA7D-E345ADAE251B</msg>
-<status status="PASS" endtime="20170125 23:22:23.950" starttime="20170125 23:22:23.949"></status>
-</kw>
-<kw name="Set Suite Variable" library="BuiltIn">
-<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
 <arguments>
-<arg>${SQL_RandomName}</arg>
-<arg>${SQL_RandomName}</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
 </arguments>
-<msg timestamp="20170125 23:22:23.952" level="INFO">${SQL_RandomName} = 1E703BE9-7F8C-4AD1-AA7D-E345ADAE251B</msg>
-<status status="PASS" endtime="20170125 23:22:23.952" starttime="20170125 23:22:23.951"></status>
+<status status="PASS" endtime="20170210 23:48:13.060" starttime="20170210 23:48:13.027"></status>
 </kw>
-<kw name="Create Http Context" library="HttpLibrary.HTTP">
-<doc>Sets the HTTP host to use for future requests. You must call this</doc>
+<msg timestamp="20170210 23:48:13.061" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:13.061" starttime="20170210 23:48:13.027"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
 <arguments>
-<arg>${HTTP_CONTEXT}</arg>
-<arg>http</arg>
+<arg>${locator}</arg>
 </arguments>
-<msg timestamp="20170125 23:22:23.954" level="INFO">Host for next HTTP request set to 'laxqapexmt.office.cyberu.com'</msg>
-<msg timestamp="20170125 23:22:23.954" level="INFO">Scheme for next HTTP request set to 'http'</msg>
-<status status="PASS" endtime="20170125 23:22:23.954" starttime="20170125 23:22:23.953"></status>
+<status status="PASS" endtime="20170210 23:48:13.077" starttime="20170210 23:48:13.061"></status>
 </kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>X-CORP</arg>
-<arg>${RNOAUTH_CUSTOM_CORP}</arg>
-</arguments>
-<msg timestamp="20170125 23:22:23.955" level="INFO">Set request header "X-CORP" to "qa01-auto-smp-api"</msg>
-<status status="PASS" endtime="20170125 23:22:23.955" starttime="20170125 23:22:23.954"></status>
+<status status="PASS" endtime="20170210 23:48:13.077" starttime="20170210 23:48:13.026"></status>
 </kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
+<kw name="Get Current Date" library="DateTime">
+<doc>Returns current local or UTC time with an optional increment.</doc>
 <arguments>
-<arg>X-USERID</arg>
-<arg>${SQL_GET_USERID}</arg>
-</arguments>
-<msg timestamp="20170125 23:22:23.956" level="INFO">Set request header "X-USERID" to "43"</msg>
-<status status="PASS" endtime="20170125 23:22:23.957" starttime="20170125 23:22:23.956"></status>
-</kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>X-CULTUREID</arg>
-<arg>${SQL_GET_USER_CULTURE}</arg>
-</arguments>
-<msg timestamp="20170125 23:22:23.958" level="INFO">Set request header "X-CULTUREID" to "1"</msg>
-<status status="PASS" endtime="20170125 23:22:23.958" starttime="20170125 23:22:23.957"></status>
-</kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
-<arguments>
-<arg>content-type</arg>
-<arg>application/json</arg>
-</arguments>
-<msg timestamp="20170125 23:22:23.959" level="INFO">Set request header "content-type" to "application/json"</msg>
-<status status="PASS" endtime="20170125 23:22:23.959" starttime="20170125 23:22:23.959"></status>
-</kw>
-<kw name="Set Request Body" library="HttpLibrary.HTTP">
-<doc>Set the request body for the next HTTP request.</doc>
-<arguments>
-<arg>{"Title": '${SQL_RandomName}'}</arg>
-</arguments>
-<msg timestamp="20170125 23:22:23.960" level="INFO">Request body set to "{"Title": '1E703BE9-7F8C-4AD1-AA7D-E345ADAE251B'}".</msg>
-<status status="PASS" endtime="20170125 23:22:23.961" starttime="20170125 23:22:23.960"></status>
-</kw>
-<kw name="Execute Raw" library="SQLlibrary">
-<arguments>
-<arg>SELECT COUNT(ou_id) FROM ou_relation WHERE type_id = 16 AND ou_id = ${SQL_TalentPoolId}</arg>
+<arg>UTC</arg>
+<arg>${plusNumber}</arg>
+<arg>result_format=%m/%d/%Y</arg>
 </arguments>
 <assign>
-<var>${SQL_CountBefore}</var>
+<var>${d1}</var>
 </assign>
-<msg timestamp="20170125 23:22:23.967" level="INFO">${SQL_CountBefore} = 0</msg>
-<status status="PASS" endtime="20170125 23:22:23.967" starttime="20170125 23:22:23.961"></status>
-</kw>
-<kw name="Set Suite Variable" library="BuiltIn">
-<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<arguments>
-<arg>${SQL_CountBefore}</arg>
-<arg>${SQL_CountBefore}</arg>
-</arguments>
-<msg timestamp="20170125 23:22:23.969" level="INFO">${SQL_CountBefore} = 0</msg>
-<status status="PASS" endtime="20170125 23:22:23.969" starttime="20170125 23:22:23.968"></status>
-</kw>
-<kw name="Next Request May Not Succeed" library="HttpLibrary.HTTP">
-<doc>Don't fail the next request if it's status code is &gt;= 400</doc>
-<status status="PASS" endtime="20170125 23:22:23.970" starttime="20170125 23:22:23.970"></status>
-</kw>
-<kw name="POST" library="HttpLibrary.HTTP">
-<doc>Issues a HTTP POST request.</doc>
-<arguments>
-<arg>/talentpool-api/talentpools/${SQL_TalentPoolId}/groups</arg>
-</arguments>
-<status status="PASS" endtime="20170125 23:22:24.460" starttime="20170125 23:22:23.970"></status>
+<msg timestamp="20170210 23:48:13.079" level="INFO">${d1} = 02/12/2017</msg>
+<status status="PASS" endtime="20170210 23:48:13.079" starttime="20170210 23:48:13.078"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
-<arg>/talentpool-api/talentpools/${SQL_TalentPoolId}/groups</arg>
+<arg>${d1}</arg>
 </arguments>
-<msg timestamp="20170125 23:22:24.461" level="INFO">/talentpool-api/talentpools/222/groups</msg>
-<status status="PASS" endtime="20170125 23:22:24.461" starttime="20170125 23:22:24.460"></status>
+<msg timestamp="20170210 23:48:13.080" level="INFO">02/12/2017</msg>
+<status status="PASS" endtime="20170210 23:48:13.081" starttime="20170210 23:48:13.079"></status>
 </kw>
-<kw name="Response Status Code Should Equal" library="HttpLibrary.HTTP">
-<doc>Fails if the response status code of the previous request was not the</doc>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
 <arguments>
-<arg>${RESPONSE_POST}</arg>
+<arg>${locator}</arg>
+<arg>${d1}</arg>
 </arguments>
-<status status="PASS" endtime="20170125 23:22:24.462" starttime="20170125 23:22:24.462"></status>
+<msg timestamp="20170210 23:48:13.082" level="INFO">Typing text '02/12/2017' into text field 'id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_dtToTaskPeriod_textboxDate'</msg>
+<status status="PASS" endtime="20170210 23:48:13.149" starttime="20170210 23:48:13.081"></status>
 </kw>
-<kw name="Get Response Body" library="HttpLibrary.HTTP">
-<doc>Get the response body.</doc>
+<status status="PASS" endtime="20170210 23:48:13.150" starttime="20170210 23:48:13.020"></status>
+</kw>
+<kw name="smp_select_plan_type" library="SMP_GUI_Keywords">
+<doc>*Plan type arguments: *</doc>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on given items.</doc>
 <assign>
-<var>${resBody}</var>
+<var>${SMPPlanTypeDictionary}</var>
 </assign>
-<msg timestamp="20170125 23:22:24.463" level="INFO">${resBody} = {"Message":"A group for this talentpool or nominationlist already exists!"}</msg>
-<status status="PASS" endtime="20170125 23:22:24.463" starttime="20170125 23:22:24.463"></status>
+<msg timestamp="20170210 23:48:13.152" level="INFO">${SMPPlanTypeDictionary} = {}</msg>
+<status status="PASS" endtime="20170210 23:48:13.152" starttime="20170210 23:48:13.152"></status>
+</kw>
+<kw name="Comment" library="BuiltIn">
+<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<arguments>
+<arg>Adds the given key_value_pairs and items to the dictionary</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:13.153" starttime="20170210 23:48:13.153"></status>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<arguments>
+<arg>${SMPPlanTypeDictionary}</arg>
+<arg>SMP Manager Task</arg>
+<arg>SMP Manager Task</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:13.155" starttime="20170210 23:48:13.154"></status>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<arguments>
+<arg>${SMPPlanTypeDictionary}</arg>
+<arg>SMP Assessor Task</arg>
+<arg>SMP Assessor Task</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:13.156" starttime="20170210 23:48:13.155"></status>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<arguments>
+<arg>${SMPPlanTypeDictionary}</arg>
+<arg>SMP Job Pool Task</arg>
+<arg>SMP Job Pool Task</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:13.157" starttime="20170210 23:48:13.156"></status>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<arguments>
+<arg>${SMPPlanTypeDictionary}</arg>
+<arg>SMP Talent Conference Task</arg>
+<arg>SMP Talent Conference Task</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:13.158" starttime="20170210 23:48:13.158"></status>
+</kw>
+<kw name="Comment" library="BuiltIn">
+<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<arguments>
+<arg>Returns a value from the given dictionary based on the given key</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:13.159" starttime="20170210 23:48:13.159"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${SMPPlanTypeDictionary}</arg>
+<arg>${SMPTaskType}</arg>
+</arguments>
+<assign>
+<var>${keyValue}</var>
+</assign>
+<msg timestamp="20170210 23:48:13.161" level="INFO">${keyValue} = SMP Manager Task</msg>
+<status status="PASS" endtime="20170210 23:48:13.161" starttime="20170210 23:48:13.160"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
-<arg>${resBody}</arg>
+<arg>${keyValue}</arg>
 </arguments>
-<msg timestamp="20170125 23:22:24.465" level="INFO">{"Message":"A group for this talentpool or nominationlist already exists!"}</msg>
-<status status="PASS" endtime="20170125 23:22:24.465" starttime="20170125 23:22:24.464"></status>
+<msg timestamp="20170210 23:48:13.162" level="INFO">SMP Manager Task</msg>
+<status status="PASS" endtime="20170210 23:48:13.162" starttime="20170210 23:48:13.162"></status>
 </kw>
-<kw name="Execute Raw" library="SQLlibrary">
+<kw name="csodUtilComboBox" library="CSOD_Keywords">
 <arguments>
-<arg>SELECT COUNT(ou_id) FROM ou_relation WHERE type_id = 16 AND ou_id = ${SQL_TalentPoolId}</arg>
+<arg>${smp_plan_type}</arg>
+<arg>${keyValue}</arg>
+</arguments>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Selenium2Library.Select From List By Label</arg>
+<arg>${Locator}</arg>
+<arg>${OUType}</arg>
+</arguments>
+<kw name="Select From List By Label" library="Selenium2Library">
+<doc>Selects `*labels` from list identified by `locator`</doc>
+<arguments>
+<arg>${Locator}</arg>
+<arg>${OUType}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:13.165" level="INFO">Selecting label(s) 'SMP Manager Task' from list 'id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_ddlComponent'.</msg>
+<status status="PASS" endtime="20170210 23:48:13.224" starttime="20170210 23:48:13.165"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:13.224" starttime="20170210 23:48:13.164"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:13.225" starttime="20170210 23:48:13.163"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:13.225" starttime="20170210 23:48:13.150"></status>
+</kw>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${smp_search_template_btn}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
 </arguments>
 <assign>
-<var>${SQL_CountAfter}</var>
+<var>${syncElementReturn1}</var>
 </assign>
-<msg timestamp="20170125 23:22:24.471" level="INFO">${SQL_CountAfter} = 0</msg>
-<status status="PASS" endtime="20170125 23:22:24.471" starttime="20170125 23:22:24.466"></status>
-</kw>
-<kw name="Set Suite Variable" library="BuiltIn">
-<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
 <arguments>
-<arg>${SQL_CountAfter}</arg>
-<arg>${SQL_CountAfter}</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
 </arguments>
-<msg timestamp="20170125 23:22:24.473" level="INFO">${SQL_CountAfter} = 0</msg>
-<status status="PASS" endtime="20170125 23:22:24.473" starttime="20170125 23:22:24.472"></status>
+<status status="PASS" endtime="20170210 23:48:13.258" starttime="20170210 23:48:13.229"></status>
 </kw>
-<kw name="Comment" library="BuiltIn">
-<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<msg timestamp="20170210 23:48:13.258" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:13.258" starttime="20170210 23:48:13.228"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
 <arguments>
-<arg>${CountAdjustment}=</arg>
-<arg>0</arg>
+<arg>${locator}</arg>
 </arguments>
-<status status="PASS" endtime="20170125 23:22:24.474" starttime="20170125 23:22:24.473"></status>
+<status status="PASS" endtime="20170210 23:48:13.276" starttime="20170210 23:48:13.259"></status>
 </kw>
-<kw name="Execute Raw" library="SQLlibrary">
+<status status="PASS" endtime="20170210 23:48:13.277" starttime="20170210 23:48:13.227"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
 <arguments>
-<arg>SELECT ${SQL_CountBefore}+0</arg>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:13.279" level="INFO">Clicking element 'id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_template_csSelect_button'.</msg>
+<status status="PASS" endtime="20170210 23:48:13.337" starttime="20170210 23:48:13.277"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:13.337" starttime="20170210 23:48:13.277"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:13.338" starttime="20170210 23:48:13.227"></status>
+</kw>
+<kw name="Utility Input Text" library="UtilityKeywords">
+<arguments>
+<arg>${smp_by_name_field_input}</arg>
+<arg>${SMP_TEMPLATE_NAME}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
 </arguments>
 <assign>
-<var>${SQL_CountExpected}</var>
+<var>${syncElementReturn1}</var>
 </assign>
-<msg timestamp="20170125 23:22:24.480" level="INFO">${SQL_CountExpected} = 0</msg>
-<status status="PASS" endtime="20170125 23:22:24.480" starttime="20170125 23:22:24.474"></status>
-</kw>
-<kw name="Comment" library="BuiltIn">
-<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
 <arguments>
-<arg>${SQL_NUM}=</arg>
-<arg>Evaluate</arg>
-<arg>${SQL_CountBefore}+0</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
 </arguments>
-<status status="PASS" endtime="20170125 23:22:24.481" starttime="20170125 23:22:24.481"></status>
+<status status="PASS" endtime="20170210 23:48:13.390" starttime="20170210 23:48:13.341"></status>
 </kw>
-<kw name="Comment" library="BuiltIn">
-<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<msg timestamp="20170210 23:48:13.390" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:13.391" starttime="20170210 23:48:13.340"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
 <arguments>
-<arg>Log</arg>
-<arg>${SQL_NUM}</arg>
+<arg>${locator}</arg>
 </arguments>
-<status status="PASS" endtime="20170125 23:22:24.482" starttime="20170125 23:22:24.482"></status>
+<status status="PASS" endtime="20170210 23:48:13.410" starttime="20170210 23:48:13.391"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:13.411" starttime="20170210 23:48:13.339"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${inputText}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:13.412" level="INFO">Typing text 'SMP-Based Competency' into text field 'id=ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_template_dlgTemplate_txtSearch'</msg>
+<status status="PASS" endtime="20170210 23:48:13.520" starttime="20170210 23:48:13.412"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:13.521" starttime="20170210 23:48:13.338"></status>
+</kw>
+<kw name="Utility Sleep" library="UtilityKeywords">
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>${time}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:16.523" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" endtime="20170210 23:48:16.523" starttime="20170210 23:48:13.522"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:16.524" starttime="20170210 23:48:13.521"></status>
+</kw>
+<kw name="Utility Click Element If Exist" library="UtilityKeywords">
+<arguments>
+<arg>${smp_search_link}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Utility Page Should Contain Element</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${elementFound}</var>
+</assign>
+<kw name="Utility Page Should Contain Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${pgShouldContainEleRet1}</var>
+</assign>
+<msg timestamp="20170210 23:48:16.545" level="INFO">${pgShouldContainEleRet1} = None</msg>
+<status status="PASS" endtime="20170210 23:48:16.545" starttime="20170210 23:48:16.527"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:16.546" starttime="20170210 23:48:16.526"></status>
+</kw>
+<msg timestamp="20170210 23:48:16.546" level="INFO">${elementFound} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:16.546" starttime="20170210 23:48:16.525"></status>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
 <arguments>
-<arg>'${SQL_CountAfter}'== '${SQL_CountExpected}'</arg>
-<arg>Utility Set Test Message</arg>
-<arg>The ${SQL_CountAfter} matches with ${SQL_CountExpected}</arg>
+<arg>'${elementFound[0]}'=='PASS'</arg>
+<arg>Utility Click Element</arg>
+<arg>${locator}</arg>
 </arguments>
-<kw name="Utility Set Test Message" library="UtilityKeywords">
+<kw name="Utility Click Element" library="UtilityKeywords">
 <arguments>
-<arg>The ${SQL_CountAfter} matches with ${SQL_CountExpected}</arg>
+<arg>${locator}</arg>
 </arguments>
-<kw name="Set Test Message" library="BuiltIn">
-<doc>Sets message for the current test case.</doc>
+<kw name="Utility Sync Element" library="UtilityKeywords">
 <arguments>
-<arg>${testMsg}</arg>
-<arg>${append}</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
 </arguments>
-<msg timestamp="20170125 23:22:24.488" level="INFO">Set test message to:
-The 0 matches with 0</msg>
-<status status="PASS" endtime="20170125 23:22:24.488" starttime="20170125 23:22:24.487"></status>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:16.581" starttime="20170210 23:48:16.560"></status>
 </kw>
-<status status="PASS" endtime="20170125 23:22:24.488" starttime="20170125 23:22:24.486"></status>
+<msg timestamp="20170210 23:48:16.581" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:16.581" starttime="20170210 23:48:16.559"></status>
 </kw>
-<status status="PASS" endtime="20170125 23:22:24.489" starttime="20170125 23:22:24.483"></status>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:16.597" starttime="20170210 23:48:16.582"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:16.597" starttime="20170210 23:48:16.558"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:16.599" level="INFO">Clicking element 'css=a[id*='_template_dlgTemplate_btnSearch']'.</msg>
+<status status="PASS" endtime="20170210 23:48:16.651" starttime="20170210 23:48:16.599"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:16.652" starttime="20170210 23:48:16.598"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:16.652" starttime="20170210 23:48:16.557"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:16.652" starttime="20170210 23:48:16.547"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:16.653" starttime="20170210 23:48:16.524"></status>
+</kw>
+<kw name="Utility Sleep" library="UtilityKeywords">
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>${time}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:19.655" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" endtime="20170210 23:48:19.655" starttime="20170210 23:48:16.654"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:19.656" starttime="20170210 23:48:16.653"></status>
+</kw>
+<kw name="Utility Click Element If Exist" library="UtilityKeywords">
+<arguments>
+<arg>${smp_template_name_link}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Utility Page Should Contain Element</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${elementFound}</var>
+</assign>
+<kw name="Utility Page Should Contain Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${pgShouldContainEleRet1}</var>
+</assign>
+<msg timestamp="20170210 23:48:19.679" level="INFO">${pgShouldContainEleRet1} = None</msg>
+<status status="PASS" endtime="20170210 23:48:19.679" starttime="20170210 23:48:19.659"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:19.679" starttime="20170210 23:48:19.658"></status>
+</kw>
+<msg timestamp="20170210 23:48:19.680" level="INFO">${elementFound} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:19.680" starttime="20170210 23:48:19.657"></status>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
 <arguments>
-<arg>'${SQL_CountAfter}'&lt;&gt; '${SQL_CountExpected}'</arg>
-<arg>Fail</arg>
-<arg>The ${SQL_CountAfter} did not match ${SQL_CountExpected}</arg>
+<arg>'${elementFound[0]}'=='PASS'</arg>
+<arg>Utility Click Element</arg>
+<arg>${locator}</arg>
 </arguments>
-<status status="PASS" endtime="20170125 23:22:24.492" starttime="20170125 23:22:24.489"></status>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:19.726" starttime="20170210 23:48:19.695"></status>
 </kw>
-<status status="PASS" endtime="20170125 23:22:24.493" starttime="20170125 23:22:23.872"></status>
+<msg timestamp="20170210 23:48:19.727" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:19.727" starttime="20170210 23:48:19.695"></status>
 </kw>
-<doc>*Name:*
-API_TPC_Add_BC_InputVsOutput_Value
-
-*Description:*
-Verify successful input user ends up in output
-
-*Run Arguments:*
--d TestResults -v RNOAUTH_HOST:QA01
-
-
-*NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
--d TestResults will put the output report.html and log.html in a folder named TestResults.</doc>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:19.752" starttime="20170210 23:48:19.728"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:19.753" starttime="20170210 23:48:19.694"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:19.756" level="INFO">Clicking element 'css=a[id*='_rptTemplate_ctl01_lnkSelect']'.</msg>
+<status status="PASS" endtime="20170210 23:48:19.807" starttime="20170210 23:48:19.755"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:19.808" starttime="20170210 23:48:19.754"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:19.808" starttime="20170210 23:48:19.692"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:19.809" starttime="20170210 23:48:19.681"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:19.809" starttime="20170210 23:48:19.656"></status>
+</kw>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${smp_prepopulate_task_chkbox}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:19.850" starttime="20170210 23:48:19.813"></status>
+</kw>
+<msg timestamp="20170210 23:48:19.850" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:19.850" starttime="20170210 23:48:19.812"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:19.868" starttime="20170210 23:48:19.851"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:19.868" starttime="20170210 23:48:19.811"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:19.871" level="INFO">Clicking element 'css=input[id*='_chkPrePopluate']'.</msg>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20170210 23:48:20.168" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20170210 23:48:20.168" starttime="20170210 23:48:19.933"></status>
+</kw>
+<msg timestamp="20170210 23:48:20.171" level="FAIL">WebDriverException: Message: unknown error: Element is not clickable at point (438, 553). Other element would receive the click: &lt;td id="content" class="CsDialog_contentTable_content" style="height: 400px;"&gt;...&lt;/td&gt;
+  (Session info: chrome=56.0.2924.87)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.3.9600 x86_64)
+</msg>
+<status status="FAIL" endtime="20170210 23:48:20.171" starttime="20170210 23:48:19.870"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:25.173" level="INFO">Clicking element 'css=input[id*='_chkPrePopluate']'.</msg>
+<status status="PASS" endtime="20170210 23:48:25.198" starttime="20170210 23:48:25.172"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:25.199" starttime="20170210 23:48:19.869"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:25.199" starttime="20170210 23:48:19.810"></status>
+</kw>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${smp_display_inactive_successors}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:25.234" starttime="20170210 23:48:25.202"></status>
+</kw>
+<msg timestamp="20170210 23:48:25.235" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:25.235" starttime="20170210 23:48:25.202"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:25.248" starttime="20170210 23:48:25.236"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:25.249" starttime="20170210 23:48:25.201"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:25.251" level="INFO">Clicking element 'css=input[id*='_chkDisplayInactive']'.</msg>
+<status status="PASS" endtime="20170210 23:48:25.287" starttime="20170210 23:48:25.250"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:25.287" starttime="20170210 23:48:25.249"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:25.288" starttime="20170210 23:48:25.200"></status>
+</kw>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${smp_incorporate_comptency_task}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:25.321" starttime="20170210 23:48:25.292"></status>
+</kw>
+<msg timestamp="20170210 23:48:25.321" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:25.321" starttime="20170210 23:48:25.291"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:25.333" starttime="20170210 23:48:25.322"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:25.334" starttime="20170210 23:48:25.290"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:25.336" level="INFO">Clicking element 'css=span[id*='_selTask_button']'.</msg>
+<status status="PASS" endtime="20170210 23:48:25.370" starttime="20170210 23:48:25.335"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:25.371" starttime="20170210 23:48:25.335"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:25.371" starttime="20170210 23:48:25.289"></status>
+</kw>
+<kw name="smp_search_competency_based_task_popup" library="SMP_GUI_Keywords">
+<arguments>
+<arg>*M-25:</arg>
+</arguments>
+<kw name="Get Window Titles" library="Selenium2Library">
+<doc>Returns and logs titles of all windows known to the browser.</doc>
+<assign>
+<var>${ID_Titles}</var>
+</assign>
+<msg timestamp="20170210 23:48:26.487" level="INFO">Altogether 2 items.
+1: Realize Your Potential: qa03-auto-cv5
+2: SearchTask</msg>
+<msg timestamp="20170210 23:48:26.488" level="INFO">${ID_Titles} = [u'Realize Your Potential: qa03-auto-cv5', u'SearchTask']</msg>
+<status status="PASS" endtime="20170210 23:48:26.488" starttime="20170210 23:48:25.373"></status>
+</kw>
+<kw name="Select Window" library="Selenium2Library">
+<doc>Selects the window matching locator and return previous window handle.</doc>
+<arguments>
+<arg>title=${ID_Titles[1]}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:26.509" starttime="20170210 23:48:26.489"></status>
+</kw>
+<kw name="Utility Input Text" library="UtilityKeywords">
+<arguments>
+<arg>${smp_title_comp_based_task}</arg>
+<arg>${smp_competency_based_task_title}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:26.543" starttime="20170210 23:48:26.512"></status>
+</kw>
+<msg timestamp="20170210 23:48:26.544" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:26.544" starttime="20170210 23:48:26.512"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:26.561" starttime="20170210 23:48:26.545"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:26.562" starttime="20170210 23:48:26.511"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${inputText}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:26.564" level="INFO">Typing text '*M-25:' into text field 'id=SearchText'</msg>
+<status status="PASS" endtime="20170210 23:48:26.646" starttime="20170210 23:48:26.563"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:26.646" starttime="20170210 23:48:26.510"></status>
+</kw>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${smp_search_button}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:26.679" starttime="20170210 23:48:26.649"></status>
+</kw>
+<msg timestamp="20170210 23:48:26.680" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:26.680" starttime="20170210 23:48:26.649"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:26.697" starttime="20170210 23:48:26.681"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:26.697" starttime="20170210 23:48:26.648"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:26.699" level="INFO">Clicking element 'id=SearchButton'.</msg>
+<status status="PASS" endtime="20170210 23:48:26.858" starttime="20170210 23:48:26.699"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:26.858" starttime="20170210 23:48:26.698"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:26.859" starttime="20170210 23:48:26.647"></status>
+</kw>
+<kw name="Utility Click Element If Exist" library="UtilityKeywords">
+<arguments>
+<arg>${smp_task_name_link}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Utility Page Should Contain Element</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${elementFound}</var>
+</assign>
+<kw name="Utility Page Should Contain Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${pgShouldContainEleRet1}</var>
+</assign>
+<msg timestamp="20170210 23:48:26.890" level="INFO">${pgShouldContainEleRet1} = None</msg>
+<status status="PASS" endtime="20170210 23:48:26.890" starttime="20170210 23:48:26.862"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:26.890" starttime="20170210 23:48:26.861"></status>
+</kw>
+<msg timestamp="20170210 23:48:26.891" level="INFO">${elementFound} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:26.891" starttime="20170210 23:48:26.860"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${elementFound[0]}'=='PASS'</arg>
+<arg>Utility Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:26.941" starttime="20170210 23:48:26.905"></status>
+</kw>
+<msg timestamp="20170210 23:48:26.942" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:26.942" starttime="20170210 23:48:26.904"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:26.964" starttime="20170210 23:48:26.943"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:26.965" starttime="20170210 23:48:26.903"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:26.968" level="INFO">Clicking element 'xpath=//a[contains(text(),'*M-25: Comp SMP Based :English (US)')]'.</msg>
+<status status="PASS" endtime="20170210 23:48:27.689" starttime="20170210 23:48:26.967"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:27.690" starttime="20170210 23:48:26.966"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:27.690" starttime="20170210 23:48:26.902"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:27.690" starttime="20170210 23:48:26.892"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:27.691" starttime="20170210 23:48:26.859"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:27.691" starttime="20170210 23:48:25.372"></status>
+</kw>
+<kw name="Select_Browser_Window_Comp" library="CSOD_Keywords">
+<arguments>
+<arg>${smp_next_button}</arg>
+<arg>title=Realize Your Potential:</arg>
+</arguments>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3 seconds</arg>
+</arguments>
+<msg timestamp="20170210 23:48:30.693" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" endtime="20170210 23:48:30.693" starttime="20170210 23:48:27.693"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>${Window_Title_No_Corp}</arg>
+<arg>${cfg_global_login_corp}</arg>
+</arguments>
+<assign>
+<var>${str}</var>
+</assign>
+<msg timestamp="20170210 23:48:30.695" level="INFO">${str} = title=Realize Your Potential: QA03-AUTO-CV5</msg>
+<status status="PASS" endtime="20170210 23:48:30.695" starttime="20170210 23:48:30.694"></status>
+</kw>
+<kw name="Select Window" library="Selenium2Library">
+<doc>Selects the window matching locator and return previous window handle.</doc>
+<arguments>
+<arg>${str}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:31.205" starttime="20170210 23:48:30.695"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${Wait_For_Locator_Visible}</arg>
+<arg>timeout=5s</arg>
+<arg>error=Could not find the page.</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:31.234" starttime="20170210 23:48:31.206"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:31.235" starttime="20170210 23:48:27.692"></status>
+</kw>
+<kw name="Utility Click Element If Exist" library="UtilityKeywords">
+<arguments>
+<arg>${smp_next_button}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Utility Page Should Contain Element</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${elementFound}</var>
+</assign>
+<kw name="Utility Page Should Contain Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${pgShouldContainEleRet1}</var>
+</assign>
+<msg timestamp="20170210 23:48:31.244" level="INFO">${pgShouldContainEleRet1} = None</msg>
+<status status="PASS" endtime="20170210 23:48:31.245" starttime="20170210 23:48:31.238"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:31.245" starttime="20170210 23:48:31.237"></status>
+</kw>
+<msg timestamp="20170210 23:48:31.246" level="INFO">${elementFound} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:31.246" starttime="20170210 23:48:31.236"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${elementFound[0]}'=='PASS'</arg>
+<arg>Utility Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:31.273" starttime="20170210 23:48:31.259"></status>
+</kw>
+<msg timestamp="20170210 23:48:31.274" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:31.274" starttime="20170210 23:48:31.259"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:31.294" starttime="20170210 23:48:31.275"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:31.295" starttime="20170210 23:48:31.258"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:31.297" level="INFO">Clicking element 'css=a[id*='_btnNext']'.</msg>
+<status status="PASS" endtime="20170210 23:48:31.766" starttime="20170210 23:48:31.297"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:31.767" starttime="20170210 23:48:31.296"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:31.767" starttime="20170210 23:48:31.257"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:31.768" starttime="20170210 23:48:31.246"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:31.768" starttime="20170210 23:48:31.235"></status>
+</kw>
+<kw name="smp_create_smp_task_avail_page" library="SMP_GUI_Keywords">
+<kw name="Utility Wait Until Element Is Visible" library="UtilityKeywords">
+<arguments>
+<arg>${smp_availability}</arg>
+</arguments>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${waitUntilElementIsVisibleRet}</var>
+</assign>
+<msg timestamp="20170210 23:48:32.235" level="INFO">${waitUntilElementIsVisibleRet} = None</msg>
+<status status="PASS" endtime="20170210 23:48:32.236" starttime="20170210 23:48:31.770"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:32.236" starttime="20170210 23:48:31.769"></status>
+</kw>
+<kw name="csodUtilComboBox" library="CSOD_Keywords">
+<arguments>
+<arg>${smp_availability}</arg>
+<arg>${OU_Criteria}</arg>
+</arguments>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Selenium2Library.Select From List By Label</arg>
+<arg>${Locator}</arg>
+<arg>${OUType}</arg>
+</arguments>
+<kw name="Select From List By Label" library="Selenium2Library">
+<doc>Selects `*labels` from list identified by `locator`</doc>
+<arguments>
+<arg>${Locator}</arg>
+<arg>${OUType}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:32.240" level="INFO">Selecting label(s) 'Division' from list 'css=select[id*='_userFilter_OrgUnitTypeList']'.</msg>
+<status status="PASS" endtime="20170210 23:48:32.837" starttime="20170210 23:48:32.239"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:32.838" starttime="20170210 23:48:32.238"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:32.838" starttime="20170210 23:48:32.237"></status>
+</kw>
+<kw name="Utility Wait Until Element Is Visible" library="UtilityKeywords">
+<arguments>
+<arg>${smp_search_ou_button}</arg>
+</arguments>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${waitUntilElementIsVisibleRet}</var>
+</assign>
+<msg timestamp="20170210 23:48:33.089" level="INFO">${waitUntilElementIsVisibleRet} = None</msg>
+<status status="PASS" endtime="20170210 23:48:33.089" starttime="20170210 23:48:32.841"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:33.090" starttime="20170210 23:48:32.839"></status>
+</kw>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${smp_search_ou_button}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:33.112" starttime="20170210 23:48:33.095"></status>
+</kw>
+<msg timestamp="20170210 23:48:33.112" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:33.113" starttime="20170210 23:48:33.094"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:33.131" starttime="20170210 23:48:33.113"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:33.131" starttime="20170210 23:48:33.092"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:33.133" level="INFO">Clicking element 'id=selectOrgUnitHref'.</msg>
+<status status="PASS" endtime="20170210 23:48:33.201" starttime="20170210 23:48:33.133"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:33.202" starttime="20170210 23:48:33.132"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:33.204" starttime="20170210 23:48:33.091"></status>
+</kw>
+<kw name="smp_search_ou_popup" library="SMP_GUI_Keywords">
+<arguments>
+<arg>Fire</arg>
+</arguments>
+<kw name="Get Window Names" library="Selenium2Library">
+<doc>Returns and logs names of all windows known to the browser.</doc>
+<assign>
+<var>${ID_Url}</var>
+</assign>
+<msg timestamp="20170210 23:48:34.241" level="INFO">Altogether 2 items.
+1: selenium_main_app_window
+2: Search</msg>
+<msg timestamp="20170210 23:48:34.241" level="INFO">${ID_Url} = ['selenium_main_app_window', u'Search']</msg>
+<status status="PASS" endtime="20170210 23:48:34.242" starttime="20170210 23:48:33.208"></status>
+</kw>
+<kw name="Select Window" library="Selenium2Library">
+<doc>Selects the window matching locator and return previous window handle.</doc>
+<arguments>
+<arg>name=Search</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:34.268" starttime="20170210 23:48:34.242"></status>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" endtime="20170210 23:48:34.404" starttime="20170210 23:48:34.269"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${smp_namefield_popup}</arg>
+<arg>timeout=10 Sec</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:34.437" starttime="20170210 23:48:34.404"></status>
+</kw>
+<kw name="Utility Input Text" library="UtilityKeywords">
+<arguments>
+<arg>${smp_namefield_popup}</arg>
+<arg>${OU_Title}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:34.452" starttime="20170210 23:48:34.440"></status>
+</kw>
+<msg timestamp="20170210 23:48:34.453" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:34.453" starttime="20170210 23:48:34.440"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:34.470" starttime="20170210 23:48:34.454"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:34.471" starttime="20170210 23:48:34.439"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${inputText}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:34.473" level="INFO">Typing text 'Fire' into text field 'id=NameField'</msg>
+<status status="PASS" endtime="20170210 23:48:34.546" starttime="20170210 23:48:34.472"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:34.547" starttime="20170210 23:48:34.437"></status>
+</kw>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${smp_select_ou_searchPopup_btn}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:34.580" starttime="20170210 23:48:34.551"></status>
+</kw>
+<msg timestamp="20170210 23:48:34.581" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:34.581" starttime="20170210 23:48:34.550"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:34.596" starttime="20170210 23:48:34.581"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:34.596" starttime="20170210 23:48:34.549"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:34.598" level="INFO">Clicking element 'id=cmdSearch'.</msg>
+<status status="PASS" endtime="20170210 23:48:34.788" starttime="20170210 23:48:34.598"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:34.788" starttime="20170210 23:48:34.597"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:34.788" starttime="20170210 23:48:34.548"></status>
+</kw>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${smp_add_btn_popup}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:35.270" starttime="20170210 23:48:34.792"></status>
+</kw>
+<msg timestamp="20170210 23:48:35.271" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:35.271" starttime="20170210 23:48:34.791"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:35.292" starttime="20170210 23:48:35.271"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:35.293" starttime="20170210 23:48:34.790"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:35.295" level="INFO">Clicking element 'css=input[id*='_ctl01_SelectResultsItem']'.</msg>
+<status status="PASS" endtime="20170210 23:48:35.774" starttime="20170210 23:48:35.294"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:35.775" starttime="20170210 23:48:35.293"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:35.776" starttime="20170210 23:48:34.789"></status>
+</kw>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${smp_done_btn_popup}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:36.024" starttime="20170210 23:48:35.783"></status>
+</kw>
+<msg timestamp="20170210 23:48:36.025" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:36.025" starttime="20170210 23:48:35.780"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:36.504" starttime="20170210 23:48:36.026"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:36.505" starttime="20170210 23:48:35.778"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:36.507" level="INFO">Clicking element 'id=DoneButton'.</msg>
+<status status="PASS" endtime="20170210 23:48:36.779" starttime="20170210 23:48:36.506"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:36.779" starttime="20170210 23:48:36.505"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:36.780" starttime="20170210 23:48:35.777"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:36.780" starttime="20170210 23:48:33.204"></status>
+</kw>
+<kw name="Comment" library="BuiltIn">
+<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<arguments>
+<arg>Utility Input Text</arg>
+<arg>${smp_title_comp_based_task}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:36.782" starttime="20170210 23:48:36.781"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:36.782" starttime="20170210 23:48:31.769"></status>
+</kw>
+<kw name="Select_Browser_Window_Comp" library="CSOD_Keywords">
+<arguments>
+<arg>${smp_next_button}</arg>
+<arg>title=Realize Your Potential:</arg>
+</arguments>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3 seconds</arg>
+</arguments>
+<msg timestamp="20170210 23:48:39.784" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" endtime="20170210 23:48:39.784" starttime="20170210 23:48:36.784"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>${Window_Title_No_Corp}</arg>
+<arg>${cfg_global_login_corp}</arg>
+</arguments>
+<assign>
+<var>${str}</var>
+</assign>
+<msg timestamp="20170210 23:48:39.787" level="INFO">${str} = title=Realize Your Potential: QA03-AUTO-CV5</msg>
+<status status="PASS" endtime="20170210 23:48:39.787" starttime="20170210 23:48:39.785"></status>
+</kw>
+<kw name="Select Window" library="Selenium2Library">
+<doc>Selects the window matching locator and return previous window handle.</doc>
+<arguments>
+<arg>${str}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:39.805" starttime="20170210 23:48:39.788"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${Wait_For_Locator_Visible}</arg>
+<arg>timeout=5s</arg>
+<arg>error=Could not find the page.</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:39.839" starttime="20170210 23:48:39.806"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:39.839" starttime="20170210 23:48:36.783"></status>
+</kw>
+<kw name="Utility Click Element If Exist" library="UtilityKeywords">
+<arguments>
+<arg>${smp_next_button}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Utility Page Should Contain Element</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${elementFound}</var>
+</assign>
+<kw name="Utility Page Should Contain Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${pgShouldContainEleRet1}</var>
+</assign>
+<msg timestamp="20170210 23:48:39.851" level="INFO">${pgShouldContainEleRet1} = None</msg>
+<status status="PASS" endtime="20170210 23:48:39.851" starttime="20170210 23:48:39.843"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:39.851" starttime="20170210 23:48:39.842"></status>
+</kw>
+<msg timestamp="20170210 23:48:39.852" level="INFO">${elementFound} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:39.852" starttime="20170210 23:48:39.841"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${elementFound[0]}'=='PASS'</arg>
+<arg>Utility Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:39.883" starttime="20170210 23:48:39.869"></status>
+</kw>
+<msg timestamp="20170210 23:48:39.883" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:39.883" starttime="20170210 23:48:39.869"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:39.899" starttime="20170210 23:48:39.884"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:39.900" starttime="20170210 23:48:39.867"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:39.902" level="INFO">Clicking element 'css=a[id*='_btnNext']'.</msg>
+<status status="PASS" endtime="20170210 23:48:40.301" starttime="20170210 23:48:39.901"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:40.302" starttime="20170210 23:48:39.900"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:40.302" starttime="20170210 23:48:39.866"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:40.303" starttime="20170210 23:48:39.853"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:40.303" starttime="20170210 23:48:39.840"></status>
+</kw>
+<kw name="Utility Sleep" library="UtilityKeywords">
+<arguments>
+<arg>2s</arg>
+</arguments>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>${time}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:42.306" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20170210 23:48:42.306" starttime="20170210 23:48:40.304"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:42.307" starttime="20170210 23:48:40.304"></status>
+</kw>
+<kw name="smp_co_planners" library="SMP_GUI_Keywords">
+<arguments>
+<arg>mables</arg>
+</arguments>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${smp_select_coplanners}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:42.341" starttime="20170210 23:48:42.311"></status>
+</kw>
+<msg timestamp="20170210 23:48:42.341" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:42.341" starttime="20170210 23:48:42.310"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:42.357" starttime="20170210 23:48:42.342"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:42.358" starttime="20170210 23:48:42.309"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:42.361" level="INFO">Clicking element 'css=input[id*='_chkCoPlanner']'.</msg>
+<status status="PASS" endtime="20170210 23:48:42.401" starttime="20170210 23:48:42.360"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:42.401" starttime="20170210 23:48:42.359"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:42.402" starttime="20170210 23:48:42.308"></status>
+</kw>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${smp_add_default_coplanner}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:42.439" starttime="20170210 23:48:42.405"></status>
+</kw>
+<msg timestamp="20170210 23:48:42.439" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:42.439" starttime="20170210 23:48:42.404"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:42.456" starttime="20170210 23:48:42.440"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:42.456" starttime="20170210 23:48:42.403"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:42.459" level="INFO">Clicking element 'css=a[id*='_shCoPlanner_lnkAdd']'.</msg>
+<status status="PASS" endtime="20170210 23:48:42.508" starttime="20170210 23:48:42.459"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:42.509" starttime="20170210 23:48:42.457"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:42.510" starttime="20170210 23:48:42.402"></status>
+</kw>
+<kw name="smp_add_coPlanner_Avail" library="SMP_GUI_Keywords">
+<arguments>
+<arg>All employees</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on given items.</doc>
+<assign>
+<var>${SMPAddCoPlannerDictionary}</var>
+</assign>
+<msg timestamp="20170210 23:48:42.514" level="INFO">${SMPAddCoPlannerDictionary} = {}</msg>
+<status status="PASS" endtime="20170210 23:48:42.514" starttime="20170210 23:48:42.513"></status>
+</kw>
+<kw name="Comment" library="BuiltIn">
+<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<arguments>
+<arg>Adds the given key_value_pairs and items to the dictionary</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:42.515" starttime="20170210 23:48:42.514"></status>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<arguments>
+<arg>${SMPAddCoPlannerDictionary}</arg>
+<arg>All employees</arg>
+<arg>All employees</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:42.516" starttime="20170210 23:48:42.515"></status>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<arguments>
+<arg>${SMPAddCoPlannerDictionary}</arg>
+<arg>Division</arg>
+<arg>Division</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:42.518" starttime="20170210 23:48:42.517"></status>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<arguments>
+<arg>${SMPAddCoPlannerDictionary}</arg>
+<arg>Position</arg>
+<arg>Position</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:42.519" starttime="20170210 23:48:42.518"></status>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<arguments>
+<arg>${SMPAddCoPlannerDictionary}</arg>
+<arg>Grade</arg>
+<arg>Grade</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:42.520" starttime="20170210 23:48:42.519"></status>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<arguments>
+<arg>${SMPAddCoPlannerDictionary}</arg>
+<arg>Cost Center</arg>
+<arg>Cost Center</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:42.521" starttime="20170210 23:48:42.521"></status>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<arguments>
+<arg>${SMPAddCoPlannerDictionary}</arg>
+<arg>Location</arg>
+<arg>Location</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:42.523" starttime="20170210 23:48:42.522"></status>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<arguments>
+<arg>${SMPAddCoPlannerDictionary}</arg>
+<arg>Group</arg>
+<arg>Group</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:42.524" starttime="20170210 23:48:42.523"></status>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<arguments>
+<arg>${SMPAddCoPlannerDictionary}</arg>
+<arg>Users</arg>
+<arg>Users</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:42.525" starttime="20170210 23:48:42.524"></status>
+</kw>
+<kw name="Comment" library="BuiltIn">
+<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<arguments>
+<arg>Returns a value from the given dictionary based on the given key</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:42.526" starttime="20170210 23:48:42.526"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${SMPAddCoPlannerDictionary}</arg>
+<arg>${OU_AVAIL_POPUP}</arg>
+</arguments>
+<assign>
+<var>${keyValue}</var>
+</assign>
+<msg timestamp="20170210 23:48:42.527" level="INFO">${keyValue} = All employees</msg>
+<status status="PASS" endtime="20170210 23:48:42.528" starttime="20170210 23:48:42.527"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${keyValue}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:42.529" level="INFO">All employees</msg>
+<status status="PASS" endtime="20170210 23:48:42.529" starttime="20170210 23:48:42.528"></status>
+</kw>
+<kw name="csodUtilComboBox" library="CSOD_Keywords">
+<arguments>
+<arg>${smp_avaiability_list_popup}</arg>
+<arg>${keyValue}</arg>
+</arguments>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Selenium2Library.Select From List By Label</arg>
+<arg>${Locator}</arg>
+<arg>${OUType}</arg>
+</arguments>
+<kw name="Select From List By Label" library="Selenium2Library">
+<doc>Selects `*labels` from list identified by `locator`</doc>
+<arguments>
+<arg>${Locator}</arg>
+<arg>${OUType}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:42.532" level="INFO">Selecting label(s) 'All employees' from list 'css=select[id*='_availability_OrgUnitTypeList']'.</msg>
+<status status="PASS" endtime="20170210 23:48:42.630" starttime="20170210 23:48:42.531"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:42.631" starttime="20170210 23:48:42.530"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:42.631" starttime="20170210 23:48:42.529"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:42.631" starttime="20170210 23:48:42.512"></status>
+</kw>
+<kw name="Utility Click Element If Visible" library="UtilityKeywords">
+<arguments>
+<arg>${smp_add_btn_coplanner_popup}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${elementFound}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:42.873" starttime="20170210 23:48:42.634"></status>
+</kw>
+<msg timestamp="20170210 23:48:42.873" level="INFO">${elementFound} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:42.873" starttime="20170210 23:48:42.633"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${elementFound[0]}'=='PASS'</arg>
+<arg>Utility Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:42.914" starttime="20170210 23:48:42.894"></status>
+</kw>
+<msg timestamp="20170210 23:48:42.915" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:42.915" starttime="20170210 23:48:42.893"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:42.933" starttime="20170210 23:48:42.916"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:42.934" starttime="20170210 23:48:42.891"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:42.937" level="INFO">Clicking element 'css=a[id*='_dlgCoPlanner_availability_AddItem']'.</msg>
+<status status="PASS" endtime="20170210 23:48:42.990" starttime="20170210 23:48:42.936"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:42.990" starttime="20170210 23:48:42.935"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:42.991" starttime="20170210 23:48:42.890"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:42.991" starttime="20170210 23:48:42.874"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:42.992" starttime="20170210 23:48:42.632"></status>
+</kw>
+<kw name="Utility Click Element If Visible" library="UtilityKeywords">
+<arguments>
+<arg>${smp_add_coplanner_btn_popup}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${elementFound}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:43.029" starttime="20170210 23:48:42.994"></status>
+</kw>
+<msg timestamp="20170210 23:48:43.030" level="INFO">${elementFound} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:43.030" starttime="20170210 23:48:42.993"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${elementFound[0]}'=='PASS'</arg>
+<arg>Utility Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:43.060" starttime="20170210 23:48:43.046"></status>
+</kw>
+<msg timestamp="20170210 23:48:43.060" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:43.061" starttime="20170210 23:48:43.045"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:43.078" starttime="20170210 23:48:43.061"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:43.079" starttime="20170210 23:48:43.044"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:43.082" level="INFO">Clicking element 'css=span[id*='_coPlannerSelector_csSelect_button']'.</msg>
+<status status="PASS" endtime="20170210 23:48:43.151" starttime="20170210 23:48:43.081"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:43.151" starttime="20170210 23:48:43.080"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:43.152" starttime="20170210 23:48:43.043"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:43.152" starttime="20170210 23:48:43.031"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:43.153" starttime="20170210 23:48:42.992"></status>
+</kw>
+<kw name="Utility Wait Until Element Is Visible" library="UtilityKeywords">
+<arguments>
+<arg>${smp_id_field_popup}</arg>
+</arguments>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${waitUntilElementIsVisibleRet}</var>
+</assign>
+<msg timestamp="20170210 23:48:43.397" level="INFO">${waitUntilElementIsVisibleRet} = None</msg>
+<status status="PASS" endtime="20170210 23:48:43.398" starttime="20170210 23:48:43.154"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:43.398" starttime="20170210 23:48:43.153"></status>
+</kw>
+<kw name="Utility Input Text" library="UtilityKeywords">
+<arguments>
+<arg>${smp_id_field_popup}</arg>
+<arg>${smp_default_coplannername}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:43.412" starttime="20170210 23:48:43.401"></status>
+</kw>
+<msg timestamp="20170210 23:48:43.413" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:43.413" starttime="20170210 23:48:43.400"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:43.426" starttime="20170210 23:48:43.413"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:43.427" starttime="20170210 23:48:43.400"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${inputText}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:43.428" level="INFO">Typing text 'mables' into text field 'css=input[id*='_ouSearchControl_txtRefID']'</msg>
+<status status="PASS" endtime="20170210 23:48:43.515" starttime="20170210 23:48:43.427"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:43.515" starttime="20170210 23:48:43.398"></status>
+</kw>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${smp_datatag_search_btn}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:43.554" starttime="20170210 23:48:43.520"></status>
+</kw>
+<msg timestamp="20170210 23:48:43.555" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:43.555" starttime="20170210 23:48:43.519"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:43.571" starttime="20170210 23:48:43.555"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:43.571" starttime="20170210 23:48:43.518"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:43.573" level="INFO">Clicking element 'css=a[data-tag='btnSearch']'.</msg>
+<status status="PASS" endtime="20170210 23:48:43.614" starttime="20170210 23:48:43.573"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:43.615" starttime="20170210 23:48:43.572"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:43.615" starttime="20170210 23:48:43.516"></status>
+</kw>
+<kw name="Utility Click Element If Visible" library="UtilityKeywords">
+<arguments>
+<arg>${smp_datatag_name_link}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${elementFound}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:43.654" starttime="20170210 23:48:43.618"></status>
+</kw>
+<msg timestamp="20170210 23:48:43.655" level="INFO">${elementFound} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:43.655" starttime="20170210 23:48:43.617"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${elementFound[0]}'=='PASS'</arg>
+<arg>Utility Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:43.684" starttime="20170210 23:48:43.669"></status>
+</kw>
+<msg timestamp="20170210 23:48:43.684" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:43.684" starttime="20170210 23:48:43.669"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:43.700" starttime="20170210 23:48:43.685"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:43.701" starttime="20170210 23:48:43.668"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:43.703" level="INFO">Clicking element 'css=a[data-tag='lnkOUName']'.</msg>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20170210 23:48:43.869" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20170210 23:48:43.870" starttime="20170210 23:48:43.760"></status>
+</kw>
+<msg timestamp="20170210 23:48:43.871" level="FAIL">StaleElementReferenceException: Message: stale element reference: element is not attached to the page document
+  (Session info: chrome=56.0.2924.87)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.3.9600 x86_64)
+</msg>
+<status status="FAIL" endtime="20170210 23:48:43.871" starttime="20170210 23:48:43.702"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:48.873" level="INFO">Clicking element 'css=a[data-tag='lnkOUName']'.</msg>
+<status status="PASS" endtime="20170210 23:48:48.918" starttime="20170210 23:48:48.872"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:48.919" starttime="20170210 23:48:43.702"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:48.919" starttime="20170210 23:48:43.667"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:48.919" starttime="20170210 23:48:43.656"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:48.920" starttime="20170210 23:48:43.616"></status>
+</kw>
+<kw name="Comment" library="BuiltIn">
+<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<arguments>
+<arg>Utility Click Element</arg>
+<arg>${smp_datatag_name_link}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:48.921" starttime="20170210 23:48:48.920"></status>
+</kw>
+<kw name="Utility Sleep" library="UtilityKeywords">
+<arguments>
+<arg>1s</arg>
+</arguments>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>${time}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:49.925" level="INFO">Slept 1 second</msg>
+<status status="PASS" endtime="20170210 23:48:49.925" starttime="20170210 23:48:48.922"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:49.926" starttime="20170210 23:48:48.921"></status>
+</kw>
+<kw name="Utility Click Element If Visible" library="UtilityKeywords">
+<arguments>
+<arg>${smp_datatag_save_btn}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${elementFound}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:49.954" starttime="20170210 23:48:49.928"></status>
+</kw>
+<msg timestamp="20170210 23:48:49.955" level="INFO">${elementFound} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:49.955" starttime="20170210 23:48:49.927"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${elementFound[0]}'=='PASS'</arg>
+<arg>Utility Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:49.981" starttime="20170210 23:48:49.969"></status>
+</kw>
+<msg timestamp="20170210 23:48:49.981" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:49.982" starttime="20170210 23:48:49.968"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:49.996" starttime="20170210 23:48:49.982"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:49.997" starttime="20170210 23:48:49.967"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:49.999" level="INFO">Clicking element 'css=a[data-tag='btnSave']'.</msg>
+<status status="PASS" endtime="20170210 23:48:50.038" starttime="20170210 23:48:49.998"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:50.038" starttime="20170210 23:48:49.998"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:50.038" starttime="20170210 23:48:49.966"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:50.039" starttime="20170210 23:48:49.956"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:50.039" starttime="20170210 23:48:49.926"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:50.041" starttime="20170210 23:48:42.307"></status>
+</kw>
+<kw name="Utility Click Element If Exist" library="UtilityKeywords">
+<arguments>
+<arg>${smp_next_button}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Utility Page Should Contain Element</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${elementFound}</var>
+</assign>
+<kw name="Utility Page Should Contain Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${pgShouldContainEleRet1}</var>
+</assign>
+<msg timestamp="20170210 23:48:50.054" level="INFO">${pgShouldContainEleRet1} = None</msg>
+<status status="PASS" endtime="20170210 23:48:50.054" starttime="20170210 23:48:50.046"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:50.055" starttime="20170210 23:48:50.045"></status>
+</kw>
+<msg timestamp="20170210 23:48:50.055" level="INFO">${elementFound} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:50.055" starttime="20170210 23:48:50.044"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${elementFound[0]}'=='PASS'</arg>
+<arg>Utility Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:50.090" starttime="20170210 23:48:50.069"></status>
+</kw>
+<msg timestamp="20170210 23:48:50.090" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:50.090" starttime="20170210 23:48:50.069"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:50.115" starttime="20170210 23:48:50.091"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:50.115" starttime="20170210 23:48:50.068"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:50.117" level="INFO">Clicking element 'css=a[id*='_btnNext']'.</msg>
+<status status="PASS" endtime="20170210 23:48:50.555" starttime="20170210 23:48:50.117"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:50.555" starttime="20170210 23:48:50.116"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:50.556" starttime="20170210 23:48:50.067"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:50.556" starttime="20170210 23:48:50.056"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:50.557" starttime="20170210 23:48:50.042"></status>
+</kw>
+<kw name="Utility Sleep" library="UtilityKeywords">
+<arguments>
+<arg>2s</arg>
+</arguments>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>${time}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:52.560" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20170210 23:48:52.560" starttime="20170210 23:48:50.558"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:52.561" starttime="20170210 23:48:50.557"></status>
+</kw>
+<kw name="Utility Click Element If Exist" library="UtilityKeywords">
+<arguments>
+<arg>${smp_next_button}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Utility Page Should Contain Element</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${elementFound}</var>
+</assign>
+<kw name="Utility Page Should Contain Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${pgShouldContainEleRet1}</var>
+</assign>
+<msg timestamp="20170210 23:48:52.574" level="INFO">${pgShouldContainEleRet1} = None</msg>
+<status status="PASS" endtime="20170210 23:48:52.575" starttime="20170210 23:48:52.564"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:52.575" starttime="20170210 23:48:52.563"></status>
+</kw>
+<msg timestamp="20170210 23:48:52.575" level="INFO">${elementFound} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:52.576" starttime="20170210 23:48:52.562"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${elementFound[0]}'=='PASS'</arg>
+<arg>Utility Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:52.609" starttime="20170210 23:48:52.590"></status>
+</kw>
+<msg timestamp="20170210 23:48:52.610" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:52.610" starttime="20170210 23:48:52.589"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:52.622" starttime="20170210 23:48:52.611"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:52.623" starttime="20170210 23:48:52.588"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:52.625" level="INFO">Clicking element 'css=a[id*='_btnNext']'.</msg>
+<status status="PASS" endtime="20170210 23:48:52.961" starttime="20170210 23:48:52.624"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:52.964" starttime="20170210 23:48:52.623"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:52.965" starttime="20170210 23:48:52.587"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:52.965" starttime="20170210 23:48:52.576"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:52.965" starttime="20170210 23:48:52.561"></status>
+</kw>
+<kw name="Utility Sleep" library="UtilityKeywords">
+<arguments>
+<arg>2s</arg>
+</arguments>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>${time}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:54.967" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20170210 23:48:54.967" starttime="20170210 23:48:52.967"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:54.968" starttime="20170210 23:48:52.966"></status>
+</kw>
+<kw name="Utility Click Element If Exist" library="UtilityKeywords">
+<arguments>
+<arg>${smp_datatag_save_btn}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Utility Page Should Contain Element</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${elementFound}</var>
+</assign>
+<kw name="Utility Page Should Contain Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${pgShouldContainEleRet1}</var>
+</assign>
+<msg timestamp="20170210 23:48:54.988" level="INFO">${pgShouldContainEleRet1} = None</msg>
+<status status="PASS" endtime="20170210 23:48:54.988" starttime="20170210 23:48:54.971"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:54.989" starttime="20170210 23:48:54.970"></status>
+</kw>
+<msg timestamp="20170210 23:48:54.989" level="INFO">${elementFound} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:54.989" starttime="20170210 23:48:54.970"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${elementFound[0]}'=='PASS'</arg>
+<arg>Utility Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Utility Click Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Utility Sync Element" library="UtilityKeywords">
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<assign>
+<var>${syncElementReturn1}</var>
+</assign>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${locator}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:55.022" starttime="20170210 23:48:55.003"></status>
+</kw>
+<msg timestamp="20170210 23:48:55.022" level="INFO">${syncElementReturn1} = ('PASS', None)</msg>
+<status status="PASS" endtime="20170210 23:48:55.022" starttime="20170210 23:48:55.002"></status>
+</kw>
+<kw name="Focus" library="Selenium2Library">
+<doc>Sets focus to element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:55.038" starttime="20170210 23:48:55.023"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:55.039" starttime="20170210 23:48:55.001"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 x</arg>
+<arg>5s</arg>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:55.041" level="INFO">Clicking element 'css=a[data-tag='btnSave']'.</msg>
+<status status="PASS" endtime="20170210 23:48:58.634" starttime="20170210 23:48:55.040"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:58.634" starttime="20170210 23:48:55.039"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:58.635" starttime="20170210 23:48:55.000"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:58.636" starttime="20170210 23:48:54.990"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:58.636" starttime="20170210 23:48:54.968"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:58.637" starttime="20170210 23:48:11.746"></status>
+</kw>
+<kw type="teardown" name="Global Test Fixture Go To URL Teardown" library="GlobalKeywords">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${TEST_STATUS}'=='FAIL'</arg>
+<arg>Log Source</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:58.649" starttime="20170210 23:48:58.639"></status>
+</kw>
+<kw name="Utility Go To URL" library="UtilityKeywords">
+<arguments>
+<arg>${cfg_global_login_url}</arg>
+</arguments>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Go To</arg>
+<arg>${GoToURL}</arg>
+</arguments>
+<kw name="Go To" library="Selenium2Library">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${GoToURL}</arg>
+</arguments>
+<msg timestamp="20170210 23:48:58.652" level="INFO">Opening url 'https://qa03.csod.com/'</msg>
+<status status="PASS" endtime="20170210 23:48:58.955" starttime="20170210 23:48:58.651"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:58.955" starttime="20170210 23:48:58.651"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:58.956" starttime="20170210 23:48:58.650"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${TEST_STATUS}'=='FAIL'</arg>
+<arg>Global Test Fixture Suite Teardown</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:58.967" starttime="20170210 23:48:58.957"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${TEST_STATUS}'=='FAIL'</arg>
+<arg>Global Test Fixture Suite Setup</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:48:58.980" starttime="20170210 23:48:58.968"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:48:58.980" starttime="20170210 23:48:58.638"></status>
+</kw>
 <tags>
-<tag>POST</tag>
-<tag>testrailid=24450</tag>
+<tag>SMPMGR1</tag>
 </tags>
-<status status="PASS" endtime="20170125 23:22:24.493" critical="yes" starttime="20170125 23:22:23.401">The 0 matches with 0</status>
+<status status="PASS" endtime="20170210 23:48:58.980" critical="yes" starttime="20170210 23:47:59.068"></status>
 </test>
-<status status="PASS" endtime="20170125 23:22:24.495" starttime="20170125 23:22:21.162"></status>
+<kw type="teardown" name="Global Test Fixture Suite Teardown" library="GlobalKeywords">
+<doc>Test fixture that handles suite teardown</doc>
+<kw name="Close All Browsers" library="Selenium2Library">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" endtime="20170210 23:49:01.285" starttime="20170210 23:48:58.982"></status>
+</kw>
+<kw name="Comment" library="BuiltIn">
+<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<arguments>
+<arg>Send Mail With Attachment</arg>
+<arg>geeslimmy@gmail.com</arg>
+<arg>popeye123</arg>
+<arg>gfung@csod.com</arg>
+<arg>Compensation Smoke Test</arg>
+<arg>This is the Compensation Smoketest please take the time to review the Test Suite results</arg>
+<arg>C:\\Users\\gfung\\.jenkins\\workspace\\COMP\\report.html</arg>
+</arguments>
+<status status="PASS" endtime="20170210 23:49:01.287" starttime="20170210 23:49:01.286"></status>
+</kw>
+<status status="PASS" endtime="20170210 23:49:01.288" starttime="20170210 23:48:58.982"></status>
+</kw>
+<doc>This is an end to end SMP Manager Task for the new ui may release 2017
+
+*INSTRUCTIONS: To Run this dynamically add the following line to the Run tab arguments text box area.*
+
+
+-d TestResults -v cfg_global_login_profile:autocv5qa03</doc>
+<status status="PASS" endtime="20170210 23:49:01.288" starttime="20170210 23:47:53.114"></status>
 </suite>
-<status status="PASS" endtime="20170125 23:22:24.497" starttime="20170125 23:22:21.159"></status>
+<status status="PASS" endtime="20170210 23:49:01.293" starttime="20170210 23:47:53.111"></status>
 </suite>
-<status status="PASS" endtime="20170125 23:22:24.499" starttime="20170125 23:22:21.081"></status>
+<status status="PASS" endtime="20170210 23:49:01.297" starttime="20170210 23:47:53.028"></status>
 </suite>
 <statistics>
 <total>
@@ -441,13 +3648,12 @@ Verify successful input user ends up in output
 <stat fail="0" pass="1">All Tests</stat>
 </total>
 <tag>
-<stat fail="0" pass="1">POST</stat>
-<stat fail="0" pass="1">testrailid=24450</stat>
+<stat fail="0" pass="1">SMPMGR1</stat>
 </tag>
 <suite>
 <stat fail="0" id="s1" name="COMP" pass="1">COMP</stat>
 <stat fail="0" id="s1-s1" name="TestSuites" pass="1">COMP.TestSuites</stat>
-<stat fail="0" id="s1-s1-s1" name="SMP-API-Talent Pool" pass="1">COMP.TestSuites.SMP-API-Talent Pool</stat>
+<stat fail="0" id="s1-s1-s1" name="SMP-Manager-Task 1" pass="1">COMP.TestSuites.SMP-Manager-Task 1</stat>
 </suite>
 </statistics>
 <errors>
