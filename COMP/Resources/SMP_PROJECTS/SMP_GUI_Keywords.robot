@@ -3,6 +3,7 @@ smp_navigate_to_succession_management
     Utility Click Element    ${comp_smoke_admin_tab}
     Utility Click Element    ${smp_succession_management}
     Utility Click Element    ${smp_tasks_link}
+    Utility Wait Until Element Is Visible    ${smp_add_smp_task_link}
     Utility Click Element    ${smp_add_smp_task_link}
 
 smp_create_smp_task
@@ -33,10 +34,10 @@ smp_create_smp_task
     Utility Click Element    ${smp_display_inactive_successors}
     Utility Click Element    ${smp_incorporate_comptency_task}
     smp_search_competency_based_task_popup    *M-25:
-    Select_Browser_Window_Comp    ${smp_next_button}    title=Realize Your Potential:
+    Select_Browser_Window_Comp    ${smp_next_button}    Realize Your Potential:
     Utility Click Element If Exist    ${smp_next_button}
     smp_create_smp_task_avail_page
-    Select_Browser_Window_Comp    ${smp_next_button}    title=Realize Your Potential:
+    Select_Browser_Window_Comp    ${smp_next_button}    Realize Your Potential:
     Utility Click Element If Exist    ${smp_next_button}
     Utility Sleep    2s
     smp_co_planners    mables
@@ -45,6 +46,10 @@ smp_create_smp_task
     Utility Click Element If Exist    ${smp_next_button}
     Utility Sleep    2s
     Utility Click Element If Exist    ${smp_datatag_save_btn}
+    Utility Sleep    2s
+    csodUtilInputText    ${smp_task_admin_name_field_input}    SMP_NEW_UI_MGR_1_${smp_date_stamp}
+    Utility Click Element    ${smp_task_admin_search_btn}
+    smp_refresh_admin_page
 
 smp_select_plan_type
     [Arguments]    ${SMPTaskType}=SMP Manager Task    # Default Plan Type is SMP Manager Task
@@ -81,7 +86,6 @@ smp_create_smp_task_avail_page
     Utility Wait Until Element Is Visible    ${smp_search_ou_button}
     Utility Click Element    ${smp_search_ou_button}
     smp_search_ou_popup    Fire
-    Comment    Utility Input Text    ${smp_title_comp_based_task}
 
 smp_create_smp_task_filter_avail_page
     [Arguments]    ${OU_Criteria}=Division
@@ -110,8 +114,8 @@ smp_co_planners
     Utility Wait Until Element Is Visible    ${smp_id_field_popup}
     Utility Input Text    ${smp_id_field_popup}    ${smp_default_coplannername}
     Utility Click Element    ${smp_datatag_search_btn}
+    Utility Sleep    2s
     Utility Click Element If Visible    ${smp_datatag_name_link}
-    Comment    Utility Click Element    ${smp_datatag_name_link}
     Utility Sleep    1s
     Utility Click Element If Visible    ${smp_datatag_save_btn}
 
@@ -137,3 +141,12 @@ smp_task_review_page
 
 smp_task_admin_search_status
     [Arguments]    ${smp_task_name}
+
+smp_refresh_admin_page
+    : FOR    ${INDEX}    IN RANGE    1    25
+    \    ${status}    ${value}=    Run Keyword And Ignore Error    Element Should Contain    ${smp_task_status}    Not Started
+    \    log    ${INDEX}
+    \    log    ${status}
+    \    Utility Sleep    1s
+    \    Utility Click Element    ${smp_task_admin_search_btn}
+    \    Run Keyword If    '${status}'=='PASS'    Element Should Contain    ${smp_task_status}    Not Started

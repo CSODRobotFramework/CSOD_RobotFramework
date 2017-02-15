@@ -18,6 +18,7 @@ Resource          ../Resources/SMP_PROJECTS/SMP_OR/SMP_Object_Repository.robot
 
 *** Test Cases ***
 Admin_Creates_SMP_MGR_Task
+    [Tags]    testrailid=30401
     Maximize Browser Window
     smp_navigate_to_succession_management
     smp_create_smp_task    SMP-Based Competency

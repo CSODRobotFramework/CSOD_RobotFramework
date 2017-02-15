@@ -37,3 +37,5 @@ ${smp_datatag_name_link}    css=a[data-tag='lnkOUName']
 ${smp_datatag_save_btn}    css=a[data-tag='btnSave']
 ${smp_datatag_add_task_review_btn}    css=a[data-tag='btnTaskReviewAdd']
 ${smp_task_admin_name_field_input}    id=ctl00_ContentPlaceHolder1_SearchText
+${smp_task_admin_search_btn}    css=[data-tag='SearchButton']
+${smp_task_status}    css=table.CsList > tbody > tr:nth-of-type(2) > td:nth-of-type(5)
