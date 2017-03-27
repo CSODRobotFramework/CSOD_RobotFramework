@@ -13,3 +13,6 @@ ${smp.corpname_qa01}    qa01-auto-smp-api    # Patch Corp Portal Name
 ${smp.corpname_qa03}    qa03-auto-smp-api    # Next Release Corp Portal Name
 ${smp.randomTitle}    ${EMPTY}
 ${smp_suite_title}    SMP API TEST SUITE
+${CorporationIdentifier}    x-csod-corp-id    # New API Parameters 3/27/2017
+${UserIdentifier}    x-csod-user-id    # New API Parameters 3/27/2017
+${CultureIdentifier}    x-csod-default-culture-id    # New API Parameters 3/27/2017

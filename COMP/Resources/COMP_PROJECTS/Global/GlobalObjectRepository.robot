@@ -6,5 +6,5 @@ ${obj_global_login_corp}    id=corpBox
 ${obj_global_login_loginButton}    id=submit
 ${obj_global_login_password}    id=passWordBox
 ${obj_global_login_username}    id=userNameBox
-${obj_global_logout_button}    id=optionsbtn    # css=#optionsbtn
-${obj_global_link_logout}    xpath=//span[.='Log Out']/ancestor::a[1]
+${obj_global_logout_button}    css=#optionsbtn > span:nth-of-type(1)    # css=#optionsbtn #optionsbtn > span:nth-of-type(1) id=optionsbtn
+${obj_global_link_logout}    css=a[href="../../Logout.aspx"] > span    # xpath=//span[.='Log Out']/ancestor::a[1]

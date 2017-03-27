@@ -115,3 +115,7 @@ ${cfg_global_login_corp_autocv5qa03}    QA03-AUTO-CV5    # QA01-AUTO-CV, QA01-AU
 ${cfg_global_login_username_autocv5qa03}    jhennessy
 ${cfg_global_login_password_autocv5qa03}    popeye123
 ${cfg_global_login_url_autocv5qa03}    https://qa03.csod.com/
+${cfg_global_login_corp_pkautocv5qa03}    QA03-AUTO-CV5    # QA01-AUTO-CV, QA01-AUTO-CV1, QA01-AUTO-CV3, QA01-AUTO-CV4, QA052-AUTO-CV, QA052-AUTO-CV1, QA052-AUTO-CV3, QA052-AUTO-CV4, QA052-AUTO-CV5, QA03-AUTO-CV5
+${cfg_global_login_username_pkautocv5qa03}    pkelly
+${cfg_global_login_password_pkautocv5qa03}    popeye123
+${cfg_global_login_url_pkautocv5qa03}    https://qa03.csod.com/
