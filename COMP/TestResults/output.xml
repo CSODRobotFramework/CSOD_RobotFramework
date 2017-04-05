@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20170327 15:12:37.332" generator="Robot 3.0 (Python 2.7.12 on win32)">
-<suite source="C:\Users\gfung\.jenkins\workspace\COMP-Smoketest-Admin-Side\COMP" id="s1" name="COMP">
-<suite source="C:\Users\gfung\.jenkins\workspace\COMP-Smoketest-Admin-Side\COMP\TestSuites" id="s1-s1" name="TestSuites">
-<suite source="C:\Users\gfung\.jenkins\workspace\COMP-Smoketest-Admin-Side\COMP\TestSuites\SMP-API-Talent_Pool.robot" id="s1-s1-s1" name="SMP-API-Talent Pool">
-<test id="s1-s1-s1-t1" name="DELETE-API_TPC_Remove_BaseCase_InputVsOutput_Value">
-<kw name="REST_NOAUTH_Random_Active_Owner_OR_Shared_With_Candidates" library="SMP_Keywords">
+<robot generated="20170404 21:39:00.641" generator="Robot 3.0 (Python 2.7.12 on win32)">
+<suite source="C:\Users\gfung\.jenkins\workspace\SMP-API-Talent_Pool_QA052\COMP" id="s1" name="COMP">
+<suite source="C:\Users\gfung\.jenkins\workspace\SMP-API-Talent_Pool_QA052\COMP\TestSuites" id="s1-s1" name="TestSuites">
+<suite source="C:\Users\gfung\.jenkins\workspace\SMP-API-Talent_Pool_QA052\COMP\TestSuites\SMP-API-Talent_Pool.robot" id="s1-s1-s1" name="SMP-API-Talent Pool">
+<test id="s1-s1-s1-t1" name="POST-API_TP_Grp_Create_UseCase_Elab_AlreadyExists">
+<kw name="REST_NOAUTH_Random_Active_Owner_OR_Shared" library="SMP_Keywords">
 <doc>*REST_NOAUTH:*</doc>
 <kw name="Connect" library="SQLlibrary">
 <arguments>
 <arg>${RNOAUTH_CUSTOM_SERVER}</arg>
 <arg>${SQL_DB}</arg>
 </arguments>
-<status status="PASS" endtime="20170327 15:12:38.035" starttime="20170327 15:12:37.895"></status>
+<status status="PASS" endtime="20170404 21:39:01.471" starttime="20170404 21:39:01.359"></status>
 </kw>
 <kw name="Execute Raw" library="SQLlibrary">
 <arguments>
-<arg>SELECT TOP 1 user_id FROM users WHERE culture_lang_id IS NOT NULL AND status_id = 1 AND (user_id IN (SELECT DISTINCT owner_id FROM ou WHERE type_id = 131072 AND ou_id IN (SELECT ou_id FROM ou_user GROUP BY ou_id HAVING COUNT(ou_id) &gt;= 1)) OR user_id IN (SELECT DISTINCT user_id FROM talent_pool_shared_user WHERE ou_id IN (SELECT ou_id FROM ou_user GROUP BY ou_id HAVING COUNT(ou_id) &gt;= 1))) ORDER BY NEWID()</arg>
+<arg>SELECT TOP 1 user_id FROM users WHERE culture_lang_id IS NOT NULL AND status_id = 1 AND (user_id IN (SELECT DISTINCT owner_id FROM ou WHERE type_id = 131072) OR user_id IN (SELECT DISTINCT user_id FROM talent_pool_shared_user)) ORDER BY NEWID()</arg>
 </arguments>
 <assign>
 <var>${SQL_GET_USERID}</var>
 </assign>
-<msg timestamp="20170327 15:12:38.114" level="INFO">${SQL_GET_USERID} = 1338</msg>
-<status status="PASS" endtime="20170327 15:12:38.114" starttime="20170327 15:12:38.035"></status>
+<msg timestamp="20170404 21:39:01.500" level="INFO">${SQL_GET_USERID} = 415</msg>
+<status status="PASS" endtime="20170404 21:39:01.500" starttime="20170404 21:39:01.471"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
 <arg>${SQL_GET_USERID}</arg>
 </arguments>
-<msg timestamp="20170327 15:12:38.114" level="INFO">1338</msg>
-<status status="PASS" endtime="20170327 15:12:38.114" starttime="20170327 15:12:38.114"></status>
+<msg timestamp="20170404 21:39:01.500" level="INFO">415</msg>
+<status status="PASS" endtime="20170404 21:39:01.500" starttime="20170404 21:39:01.500"></status>
 </kw>
 <kw name="Execute Raw" library="SQLlibrary">
 <arguments>
@@ -38,8 +38,8 @@
 <assign>
 <var>${SQL_GET_USER_CULTURE}</var>
 </assign>
-<msg timestamp="20170327 15:12:38.114" level="INFO">${SQL_GET_USER_CULTURE} = 1</msg>
-<status status="PASS" endtime="20170327 15:12:38.114" starttime="20170327 15:12:38.114"></status>
+<msg timestamp="20170404 21:39:01.516" level="INFO">${SQL_GET_USER_CULTURE} = 1</msg>
+<status status="PASS" endtime="20170404 21:39:01.516" starttime="20170404 21:39:01.516"></status>
 </kw>
 <kw name="Set Suite Variable" library="BuiltIn">
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
@@ -47,8 +47,8 @@
 <arg>${SQL_GET_USERID}</arg>
 <arg>${SQL_GET_USERID}</arg>
 </arguments>
-<msg timestamp="20170327 15:12:38.114" level="INFO">${SQL_GET_USERID} = 1338</msg>
-<status status="PASS" endtime="20170327 15:12:38.114" starttime="20170327 15:12:38.114"></status>
+<msg timestamp="20170404 21:39:01.516" level="INFO">${SQL_GET_USERID} = 415</msg>
+<status status="PASS" endtime="20170404 21:39:01.516" starttime="20170404 21:39:01.516"></status>
 </kw>
 <kw name="Set Suite Variable" library="BuiltIn">
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
@@ -56,16 +56,16 @@
 <arg>${SQL_GET_USER_CULTURE}</arg>
 <arg>${SQL_GET_USER_CULTURE}</arg>
 </arguments>
-<msg timestamp="20170327 15:12:38.129" level="INFO">${SQL_GET_USER_CULTURE} = 1</msg>
-<status status="PASS" endtime="20170327 15:12:38.129" starttime="20170327 15:12:38.114"></status>
+<msg timestamp="20170404 21:39:01.516" level="INFO">${SQL_GET_USER_CULTURE} = 1</msg>
+<status status="PASS" endtime="20170404 21:39:01.516" starttime="20170404 21:39:01.516"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
 <arg>${SQL_GET_USER_CULTURE}</arg>
 </arguments>
-<msg timestamp="20170327 15:12:38.129" level="INFO">1</msg>
-<status status="PASS" endtime="20170327 15:12:38.129" starttime="20170327 15:12:38.129"></status>
+<msg timestamp="20170404 21:39:01.516" level="INFO">1</msg>
+<status status="PASS" endtime="20170404 21:39:01.516" starttime="20170404 21:39:01.516"></status>
 </kw>
 <kw name="Create Http Context" library="HttpLibrary.HTTP">
 <doc>Sets the HTTP host to use for future requests. You must call this</doc>
@@ -73,9 +73,9 @@
 <arg>${HTTP_CONTEXT}</arg>
 <arg>http</arg>
 </arguments>
-<msg timestamp="20170327 15:12:38.129" level="INFO">Host for next HTTP request set to 'laxqarexmt.office.cyberu.com'</msg>
-<msg timestamp="20170327 15:12:38.129" level="INFO">Scheme for next HTTP request set to 'http'</msg>
-<status status="PASS" endtime="20170327 15:12:38.129" starttime="20170327 15:12:38.129"></status>
+<msg timestamp="20170404 21:39:01.516" level="INFO">Host for next HTTP request set to 'laxqarexmt.office.cyberu.com'</msg>
+<msg timestamp="20170404 21:39:01.516" level="INFO">Scheme for next HTTP request set to 'http'</msg>
+<status status="PASS" endtime="20170404 21:39:01.516" starttime="20170404 21:39:01.516"></status>
 </kw>
 <kw name="Set Request Header" library="HttpLibrary.HTTP">
 <doc>Sets a request header for the next request.</doc>
@@ -83,8 +83,8 @@
 <arg>X-CORP</arg>
 <arg>${RNOAUTH_CUSTOM_CORP}</arg>
 </arguments>
-<msg timestamp="20170327 15:12:38.129" level="INFO">Set request header "X-CORP" to "qa052-auto-smp-api"</msg>
-<status status="PASS" endtime="20170327 15:12:38.129" starttime="20170327 15:12:38.129"></status>
+<msg timestamp="20170404 21:39:01.531" level="INFO">Set request header "X-CORP" to "qa052-auto-smp-api"</msg>
+<status status="PASS" endtime="20170404 21:39:01.531" starttime="20170404 21:39:01.516"></status>
 </kw>
 <kw name="Set Request Header" library="HttpLibrary.HTTP">
 <doc>Sets a request header for the next request.</doc>
@@ -92,8 +92,8 @@
 <arg>X-USERID</arg>
 <arg>${SQL_GET_USERID}</arg>
 </arguments>
-<msg timestamp="20170327 15:12:38.129" level="INFO">Set request header "X-USERID" to "1338"</msg>
-<status status="PASS" endtime="20170327 15:12:38.129" starttime="20170327 15:12:38.129"></status>
+<msg timestamp="20170404 21:39:01.531" level="INFO">Set request header "X-USERID" to "415"</msg>
+<status status="PASS" endtime="20170404 21:39:01.531" starttime="20170404 21:39:01.531"></status>
 </kw>
 <kw name="Set Request Header" library="HttpLibrary.HTTP">
 <doc>Sets a request header for the next request.</doc>
@@ -101,10 +101,797 @@
 <arg>X-CULTUREID</arg>
 <arg>${SQL_GET_USER_CULTURE}</arg>
 </arguments>
-<msg timestamp="20170327 15:12:38.129" level="INFO">Set request header "X-CULTUREID" to "1"</msg>
-<status status="PASS" endtime="20170327 15:12:38.129" starttime="20170327 15:12:38.129"></status>
+<msg timestamp="20170404 21:39:01.531" level="INFO">Set request header "X-CULTUREID" to "1"</msg>
+<status status="PASS" endtime="20170404 21:39:01.531" starttime="20170404 21:39:01.531"></status>
 </kw>
-<status status="PASS" endtime="20170327 15:12:38.129" starttime="20170327 15:12:37.895"></status>
+<status status="PASS" endtime="20170404 21:39:01.531" starttime="20170404 21:39:01.359"></status>
+</kw>
+<kw name="REST_AuthToken" library="SMP_Keywords">
+<doc>*REST_AuthToken:*</doc>
+<kw name="Set Request Header" library="HttpLibrary.HTTP">
+<doc>Sets a request header for the next request.</doc>
+<arguments>
+<arg>content-type</arg>
+<arg>\ application/json</arg>
+</arguments>
+<msg timestamp="20170404 21:39:01.531" level="INFO">Set request header "content-type" to " application/json"</msg>
+<status status="PASS" endtime="20170404 21:39:01.531" starttime="20170404 21:39:01.531"></status>
+</kw>
+<kw name="Set Request Body" library="HttpLibrary.HTTP">
+<doc>Set the request body for the next HTTP request.</doc>
+<arguments>
+<arg>{ \ \ \"UserId\": ${SQL_GET_USERID}, \ \ \"CorpName\": \"${RNOAUTH_CUSTOM_CORP}\", \ \ \"Permissions\": [ \ \ \ \ { \ \ \ \ \ \ \"Id\": -157, \ \ \ \ \ \ \"Constraints\": [ \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 73, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 2, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": true \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 87, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 32, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 111, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 4, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 150, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 8, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ } \ \ \ \ \ \ ] \ \ \ \ } \ \ ], \ \ \"Token\": \"${RNOAUTH_CUSTOM_CORP}_${SQL_GET_USERID}\", \ \ \"expDt\": \"2019-08-17T16:16:19.550Z\", \ \ \"CultureId\": 0 }</arg>
+</arguments>
+<msg timestamp="20170404 21:39:01.531" level="INFO">Request body set to "{   "UserId": 415,   "CorpName": "qa052-auto-smp-api",   "Permissions": [     {       "Id": -157,       "Constraints": [         {           "m_Item1": 73,           "m_Item2": 2,           "m_Item3": true         },         {           "m_Item1": 87,           "m_Item2": 32,           "m_Item3": false         },         {           "m_Item1": 111,           "m_Item2": 4,           "m_Item3": false         },         {           "m_Item1": 150,           "m_Item2": 8,           "m_Item3": false         }       ]     }   ],   "Token": "qa052-auto-smp-api_415",   "expDt": "2019-08-17T16:16:19.550Z",   "CultureId": 0 }".</msg>
+<status status="PASS" endtime="20170404 21:39:01.531" starttime="20170404 21:39:01.531"></status>
+</kw>
+<kw name="PUT" library="HttpLibrary.HTTP">
+<doc>Issues a HTTP PUT request.</doc>
+<arguments>
+<arg>/cornerstone-auth-api/v1</arg>
+</arguments>
+<status status="PASS" endtime="20170404 21:39:01.547" starttime="20170404 21:39:01.531"></status>
+</kw>
+<kw name="Response Status Code Should Equal" library="HttpLibrary.HTTP">
+<doc>Fails if the response status code of the previous request was not the</doc>
+<arguments>
+<arg>204</arg>
+</arguments>
+<status status="PASS" endtime="20170404 21:39:01.547" starttime="20170404 21:39:01.547"></status>
+</kw>
+<kw name="Get Response Body" library="HttpLibrary.HTTP">
+<doc>Get the response body.</doc>
+<assign>
+<var>${resBody}</var>
+</assign>
+<msg timestamp="20170404 21:39:01.547" level="INFO">${resBody} = </msg>
+<status status="PASS" endtime="20170404 21:39:01.547" starttime="20170404 21:39:01.547"></status>
+</kw>
+<kw name="Comment" library="BuiltIn">
+<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<arguments>
+<arg>Close</arg>
+</arguments>
+<status status="PASS" endtime="20170404 21:39:01.562" starttime="20170404 21:39:01.547"></status>
+</kw>
+<status status="PASS" endtime="20170404 21:39:01.562" starttime="20170404 21:39:01.531"></status>
+</kw>
+<kw name="POST_TalentPool_Group_Create" library="SMP_Keywords">
+<doc>*POST_TalentPool_Candidates_Add:*</doc>
+<arguments>
+<arg>400</arg>
+</arguments>
+<kw name="Connect" library="SQLlibrary">
+<arguments>
+<arg>${RNOAUTH_CUSTOM_SERVER}</arg>
+<arg>${SQL_DB}</arg>
+</arguments>
+<status status="PASS" endtime="20170404 21:39:01.609" starttime="20170404 21:39:01.562"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT TOP 1 ou_id FROM ou WHERE (owner_id = ${SQL_GET_USERID} OR ou_id IN (SELECT ou_id FROM talent_pool_shared_user WHERE user_id = ${SQL_GET_USERID})) AND ou.type_id = 131072 AND ou_id IN (SELECT related_ou_id FROM ou_relation WHERE type_id = 16) ORDER BY NEWID()</arg>
+</arguments>
+<assign>
+<var>${SQL_TalentPoolId}</var>
+</assign>
+<msg timestamp="20170404 21:39:01.656" level="INFO">${SQL_TalentPoolId} = 2232</msg>
+<status status="PASS" endtime="20170404 21:39:01.656" starttime="20170404 21:39:01.609"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SQL_TalentPoolId}</arg>
+<arg>${SQL_TalentPoolId}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:01.656" level="INFO">${SQL_TalentPoolId} = 2232</msg>
+<status status="PASS" endtime="20170404 21:39:01.656" starttime="20170404 21:39:01.656"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT CONVERT(varchar(255), NEWID())</arg>
+</arguments>
+<assign>
+<var>${SQL_RandomName}</var>
+</assign>
+<msg timestamp="20170404 21:39:01.656" level="INFO">${SQL_RandomName} = 7D8703EF-B8D4-4020-A99C-3229920639C8</msg>
+<status status="PASS" endtime="20170404 21:39:01.656" starttime="20170404 21:39:01.656"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SQL_RandomName}</arg>
+<arg>${SQL_RandomName}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:01.672" level="INFO">${SQL_RandomName} = 7D8703EF-B8D4-4020-A99C-3229920639C8</msg>
+<status status="PASS" endtime="20170404 21:39:01.672" starttime="20170404 21:39:01.656"></status>
+</kw>
+<kw name="Create Http Context" library="HttpLibrary.HTTP">
+<doc>Sets the HTTP host to use for future requests. You must call this</doc>
+<arguments>
+<arg>${HTTP_CONTEXT}</arg>
+<arg>http</arg>
+</arguments>
+<msg timestamp="20170404 21:39:01.672" level="INFO">Host for next HTTP request set to 'laxqarexmt.office.cyberu.com'</msg>
+<msg timestamp="20170404 21:39:01.672" level="INFO">Scheme for next HTTP request set to 'http'</msg>
+<status status="PASS" endtime="20170404 21:39:01.672" starttime="20170404 21:39:01.672"></status>
+</kw>
+<kw name="Set Request Header" library="HttpLibrary.HTTP">
+<doc>Sets a request header for the next request.</doc>
+<arguments>
+<arg>${api_global_parameter_corpid}</arg>
+<arg>${RNOAUTH_CUSTOM_CORP}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:01.672" level="INFO">Set request header "x-csod-corp-id" to "qa052-auto-smp-api"</msg>
+<status status="PASS" endtime="20170404 21:39:01.672" starttime="20170404 21:39:01.672"></status>
+</kw>
+<kw name="Set Request Header" library="HttpLibrary.HTTP">
+<doc>Sets a request header for the next request.</doc>
+<arguments>
+<arg>${api_global_parameter_userid}</arg>
+<arg>${SQL_GET_USERID}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:01.672" level="INFO">Set request header "x-csod-user-id" to "415"</msg>
+<status status="PASS" endtime="20170404 21:39:01.672" starttime="20170404 21:39:01.672"></status>
+</kw>
+<kw name="Set Request Header" library="HttpLibrary.HTTP">
+<doc>Sets a request header for the next request.</doc>
+<arguments>
+<arg>${api_global_parameter_cultureid}</arg>
+<arg>${SQL_GET_USER_CULTURE}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:01.672" level="INFO">Set request header "x-csod-default-culture-id" to "1"</msg>
+<status status="PASS" endtime="20170404 21:39:01.672" starttime="20170404 21:39:01.672"></status>
+</kw>
+<kw name="Set Request Header" library="HttpLibrary.HTTP">
+<doc>Sets a request header for the next request.</doc>
+<arguments>
+<arg>content-type</arg>
+<arg>application/json</arg>
+</arguments>
+<msg timestamp="20170404 21:39:01.672" level="INFO">Set request header "content-type" to "application/json"</msg>
+<status status="PASS" endtime="20170404 21:39:01.672" starttime="20170404 21:39:01.672"></status>
+</kw>
+<kw name="Set Request Body" library="HttpLibrary.HTTP">
+<doc>Set the request body for the next HTTP request.</doc>
+<arguments>
+<arg>{"Title": '${SQL_RandomName}'}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:01.672" level="INFO">Request body set to "{"Title": '7D8703EF-B8D4-4020-A99C-3229920639C8'}".</msg>
+<status status="PASS" endtime="20170404 21:39:01.672" starttime="20170404 21:39:01.672"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT COUNT(ou_id) FROM ou_relation WHERE type_id = 16 AND ou_id = ${SQL_TalentPoolId}</arg>
+</arguments>
+<assign>
+<var>${SQL_CountBefore}</var>
+</assign>
+<msg timestamp="20170404 21:39:01.687" level="INFO">${SQL_CountBefore} = 0</msg>
+<status status="PASS" endtime="20170404 21:39:01.687" starttime="20170404 21:39:01.672"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SQL_CountBefore}</arg>
+<arg>${SQL_CountBefore}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:01.687" level="INFO">${SQL_CountBefore} = 0</msg>
+<status status="PASS" endtime="20170404 21:39:01.687" starttime="20170404 21:39:01.687"></status>
+</kw>
+<kw name="Next Request May Not Succeed" library="HttpLibrary.HTTP">
+<doc>Don't fail the next request if it's status code is &gt;= 400</doc>
+<status status="PASS" endtime="20170404 21:39:01.687" starttime="20170404 21:39:01.687"></status>
+</kw>
+<kw name="POST" library="HttpLibrary.HTTP">
+<doc>Issues a HTTP POST request.</doc>
+<arguments>
+<arg>/talentpool-api/talentpools/${SQL_TalentPoolId}/groups</arg>
+</arguments>
+<status status="PASS" endtime="20170404 21:39:02.062" starttime="20170404 21:39:01.687"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>/talentpool-api/talentpools/${SQL_TalentPoolId}/groups</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.062" level="INFO">/talentpool-api/talentpools/2232/groups</msg>
+<status status="PASS" endtime="20170404 21:39:02.062" starttime="20170404 21:39:02.062"></status>
+</kw>
+<kw name="Response Status Code Should Equal" library="HttpLibrary.HTTP">
+<doc>Fails if the response status code of the previous request was not the</doc>
+<arguments>
+<arg>${RESPONSE_POST}</arg>
+</arguments>
+<status status="PASS" endtime="20170404 21:39:02.062" starttime="20170404 21:39:02.062"></status>
+</kw>
+<kw name="Get Response Body" library="HttpLibrary.HTTP">
+<doc>Get the response body.</doc>
+<assign>
+<var>${resBody}</var>
+</assign>
+<msg timestamp="20170404 21:39:02.062" level="INFO">${resBody} = {"Message":"A group for this talentpool or nominationlist already exists!"}</msg>
+<status status="PASS" endtime="20170404 21:39:02.062" starttime="20170404 21:39:02.062"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${resBody}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.078" level="INFO">{"Message":"A group for this talentpool or nominationlist already exists!"}</msg>
+<status status="PASS" endtime="20170404 21:39:02.078" starttime="20170404 21:39:02.078"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT COUNT(ou_id) FROM ou_relation WHERE type_id = 16 AND ou_id = ${SQL_TalentPoolId}</arg>
+</arguments>
+<assign>
+<var>${SQL_CountAfter}</var>
+</assign>
+<msg timestamp="20170404 21:39:02.078" level="INFO">${SQL_CountAfter} = 0</msg>
+<status status="PASS" endtime="20170404 21:39:02.078" starttime="20170404 21:39:02.078"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SQL_CountAfter}</arg>
+<arg>${SQL_CountAfter}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.078" level="INFO">${SQL_CountAfter} = 0</msg>
+<status status="PASS" endtime="20170404 21:39:02.078" starttime="20170404 21:39:02.078"></status>
+</kw>
+<kw name="Comment" library="BuiltIn">
+<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<arguments>
+<arg>${CountAdjustment}=</arg>
+<arg>0</arg>
+</arguments>
+<status status="PASS" endtime="20170404 21:39:02.078" starttime="20170404 21:39:02.078"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT ${SQL_CountBefore}+0</arg>
+</arguments>
+<assign>
+<var>${SQL_CountExpected}</var>
+</assign>
+<msg timestamp="20170404 21:39:02.094" level="INFO">${SQL_CountExpected} = 0</msg>
+<status status="PASS" endtime="20170404 21:39:02.094" starttime="20170404 21:39:02.078"></status>
+</kw>
+<kw name="Comment" library="BuiltIn">
+<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<arguments>
+<arg>${SQL_NUM}=</arg>
+<arg>Evaluate</arg>
+<arg>${SQL_CountBefore}+0</arg>
+</arguments>
+<status status="PASS" endtime="20170404 21:39:02.094" starttime="20170404 21:39:02.094"></status>
+</kw>
+<kw name="Comment" library="BuiltIn">
+<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<arguments>
+<arg>Log</arg>
+<arg>${SQL_NUM}</arg>
+</arguments>
+<status status="PASS" endtime="20170404 21:39:02.094" starttime="20170404 21:39:02.094"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${SQL_CountAfter}'== '${SQL_CountExpected}'</arg>
+<arg>Utility Set Test Message</arg>
+<arg>The ${SQL_CountAfter} matches with ${SQL_CountExpected}</arg>
+</arguments>
+<kw name="Utility Set Test Message" library="UtilityKeywords">
+<arguments>
+<arg>The ${SQL_CountAfter} matches with ${SQL_CountExpected}</arg>
+</arguments>
+<kw name="Set Test Message" library="BuiltIn">
+<doc>Sets message for the current test case.</doc>
+<arguments>
+<arg>${testMsg}</arg>
+<arg>${append}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.094" level="INFO">Set test message to:
+The 0 matches with 0</msg>
+<status status="PASS" endtime="20170404 21:39:02.094" starttime="20170404 21:39:02.094"></status>
+</kw>
+<status status="PASS" endtime="20170404 21:39:02.094" starttime="20170404 21:39:02.094"></status>
+</kw>
+<status status="PASS" endtime="20170404 21:39:02.094" starttime="20170404 21:39:02.094"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${SQL_CountAfter}'&lt;&gt; '${SQL_CountExpected}'</arg>
+<arg>Fail</arg>
+<arg>The ${SQL_CountAfter} did not match ${SQL_CountExpected}</arg>
+</arguments>
+<status status="PASS" endtime="20170404 21:39:02.109" starttime="20170404 21:39:02.094"></status>
+</kw>
+<status status="PASS" endtime="20170404 21:39:02.109" starttime="20170404 21:39:01.562"></status>
+</kw>
+<doc>*Name:*
+API_TPC_Add_BC_InputVsOutput_Value
+
+*Description:*
+Verify successful input user ends up in output
+
+*Run Arguments:*
+-d TestResults -v RNOAUTH_HOST:QA01
+
+
+*NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
+-d TestResults will put the output report.html and log.html in a folder named TestResults.</doc>
+<tags>
+<tag>POST</tag>
+<tag>testrailid=24450</tag>
+</tags>
+<status status="PASS" endtime="20170404 21:39:02.109" critical="yes" starttime="20170404 21:39:01.344">The 0 matches with 0</status>
+</test>
+<test id="s1-s1-s1-t2" name="PUT-API_TalentPool_Rename_Access_Not_Active">
+<kw name="REST_NOAUTH_Random_Active_Owner_OR_Shared" library="SMP_Keywords">
+<doc>*REST_NOAUTH:*</doc>
+<kw name="Connect" library="SQLlibrary">
+<arguments>
+<arg>${RNOAUTH_CUSTOM_SERVER}</arg>
+<arg>${SQL_DB}</arg>
+</arguments>
+<status status="PASS" endtime="20170404 21:39:02.219" starttime="20170404 21:39:02.109"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT TOP 1 user_id FROM users WHERE culture_lang_id IS NOT NULL AND status_id = 1 AND (user_id IN (SELECT DISTINCT owner_id FROM ou WHERE type_id = 131072) OR user_id IN (SELECT DISTINCT user_id FROM talent_pool_shared_user)) ORDER BY NEWID()</arg>
+</arguments>
+<assign>
+<var>${SQL_GET_USERID}</var>
+</assign>
+<msg timestamp="20170404 21:39:02.297" level="INFO">${SQL_GET_USERID} = 1338</msg>
+<status status="PASS" endtime="20170404 21:39:02.297" starttime="20170404 21:39:02.219"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${SQL_GET_USERID}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.297" level="INFO">1338</msg>
+<status status="PASS" endtime="20170404 21:39:02.297" starttime="20170404 21:39:02.297"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT culture_lang_id FROM users WHERE user_id = ${SQL_GET_USERID}</arg>
+</arguments>
+<assign>
+<var>${SQL_GET_USER_CULTURE}</var>
+</assign>
+<msg timestamp="20170404 21:39:02.312" level="INFO">${SQL_GET_USER_CULTURE} = 1</msg>
+<status status="PASS" endtime="20170404 21:39:02.312" starttime="20170404 21:39:02.297"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SQL_GET_USERID}</arg>
+<arg>${SQL_GET_USERID}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.312" level="INFO">${SQL_GET_USERID} = 1338</msg>
+<status status="PASS" endtime="20170404 21:39:02.312" starttime="20170404 21:39:02.312"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SQL_GET_USER_CULTURE}</arg>
+<arg>${SQL_GET_USER_CULTURE}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.312" level="INFO">${SQL_GET_USER_CULTURE} = 1</msg>
+<status status="PASS" endtime="20170404 21:39:02.312" starttime="20170404 21:39:02.312"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${SQL_GET_USER_CULTURE}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.312" level="INFO">1</msg>
+<status status="PASS" endtime="20170404 21:39:02.312" starttime="20170404 21:39:02.312"></status>
+</kw>
+<kw name="Create Http Context" library="HttpLibrary.HTTP">
+<doc>Sets the HTTP host to use for future requests. You must call this</doc>
+<arguments>
+<arg>${HTTP_CONTEXT}</arg>
+<arg>http</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.312" level="INFO">Host for next HTTP request set to 'laxqarexmt.office.cyberu.com'</msg>
+<msg timestamp="20170404 21:39:02.312" level="INFO">Scheme for next HTTP request set to 'http'</msg>
+<status status="PASS" endtime="20170404 21:39:02.312" starttime="20170404 21:39:02.312"></status>
+</kw>
+<kw name="Set Request Header" library="HttpLibrary.HTTP">
+<doc>Sets a request header for the next request.</doc>
+<arguments>
+<arg>X-CORP</arg>
+<arg>${RNOAUTH_CUSTOM_CORP}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.312" level="INFO">Set request header "X-CORP" to "qa052-auto-smp-api"</msg>
+<status status="PASS" endtime="20170404 21:39:02.312" starttime="20170404 21:39:02.312"></status>
+</kw>
+<kw name="Set Request Header" library="HttpLibrary.HTTP">
+<doc>Sets a request header for the next request.</doc>
+<arguments>
+<arg>X-USERID</arg>
+<arg>${SQL_GET_USERID}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.312" level="INFO">Set request header "X-USERID" to "1338"</msg>
+<status status="PASS" endtime="20170404 21:39:02.312" starttime="20170404 21:39:02.312"></status>
+</kw>
+<kw name="Set Request Header" library="HttpLibrary.HTTP">
+<doc>Sets a request header for the next request.</doc>
+<arguments>
+<arg>X-CULTUREID</arg>
+<arg>${SQL_GET_USER_CULTURE}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.328" level="INFO">Set request header "X-CULTUREID" to "1"</msg>
+<status status="PASS" endtime="20170404 21:39:02.328" starttime="20170404 21:39:02.312"></status>
+</kw>
+<status status="PASS" endtime="20170404 21:39:02.328" starttime="20170404 21:39:02.109"></status>
+</kw>
+<kw name="REST_AuthToken" library="SMP_Keywords">
+<doc>*REST_AuthToken:*</doc>
+<kw name="Set Request Header" library="HttpLibrary.HTTP">
+<doc>Sets a request header for the next request.</doc>
+<arguments>
+<arg>content-type</arg>
+<arg>\ application/json</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.328" level="INFO">Set request header "content-type" to " application/json"</msg>
+<status status="PASS" endtime="20170404 21:39:02.328" starttime="20170404 21:39:02.328"></status>
+</kw>
+<kw name="Set Request Body" library="HttpLibrary.HTTP">
+<doc>Set the request body for the next HTTP request.</doc>
+<arguments>
+<arg>{ \ \ \"UserId\": ${SQL_GET_USERID}, \ \ \"CorpName\": \"${RNOAUTH_CUSTOM_CORP}\", \ \ \"Permissions\": [ \ \ \ \ { \ \ \ \ \ \ \"Id\": -157, \ \ \ \ \ \ \"Constraints\": [ \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 73, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 2, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": true \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 87, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 32, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 111, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 4, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 150, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 8, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ } \ \ \ \ \ \ ] \ \ \ \ } \ \ ], \ \ \"Token\": \"${RNOAUTH_CUSTOM_CORP}_${SQL_GET_USERID}\", \ \ \"expDt\": \"2019-08-17T16:16:19.550Z\", \ \ \"CultureId\": 0 }</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.328" level="INFO">Request body set to "{   "UserId": 1338,   "CorpName": "qa052-auto-smp-api",   "Permissions": [     {       "Id": -157,       "Constraints": [         {           "m_Item1": 73,           "m_Item2": 2,           "m_Item3": true         },         {           "m_Item1": 87,           "m_Item2": 32,           "m_Item3": false         },         {           "m_Item1": 111,           "m_Item2": 4,           "m_Item3": false         },         {           "m_Item1": 150,           "m_Item2": 8,           "m_Item3": false         }       ]     }   ],   "Token": "qa052-auto-smp-api_1338",   "expDt": "2019-08-17T16:16:19.550Z",   "CultureId": 0 }".</msg>
+<status status="PASS" endtime="20170404 21:39:02.328" starttime="20170404 21:39:02.328"></status>
+</kw>
+<kw name="PUT" library="HttpLibrary.HTTP">
+<doc>Issues a HTTP PUT request.</doc>
+<arguments>
+<arg>/cornerstone-auth-api/v1</arg>
+</arguments>
+<status status="PASS" endtime="20170404 21:39:02.344" starttime="20170404 21:39:02.328"></status>
+</kw>
+<kw name="Response Status Code Should Equal" library="HttpLibrary.HTTP">
+<doc>Fails if the response status code of the previous request was not the</doc>
+<arguments>
+<arg>204</arg>
+</arguments>
+<status status="PASS" endtime="20170404 21:39:02.344" starttime="20170404 21:39:02.344"></status>
+</kw>
+<kw name="Get Response Body" library="HttpLibrary.HTTP">
+<doc>Get the response body.</doc>
+<assign>
+<var>${resBody}</var>
+</assign>
+<msg timestamp="20170404 21:39:02.344" level="INFO">${resBody} = </msg>
+<status status="PASS" endtime="20170404 21:39:02.344" starttime="20170404 21:39:02.344"></status>
+</kw>
+<kw name="Comment" library="BuiltIn">
+<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<arguments>
+<arg>Close</arg>
+</arguments>
+<status status="PASS" endtime="20170404 21:39:02.344" starttime="20170404 21:39:02.344"></status>
+</kw>
+<status status="PASS" endtime="20170404 21:39:02.344" starttime="20170404 21:39:02.328"></status>
+</kw>
+<kw name="PUT_TalentPool_Candidate_Status_Set" library="SMP_Keywords">
+<doc>*POST_TalentPool_Create:*</doc>
+<arguments>
+<arg>Title</arg>
+<arg>200</arg>
+</arguments>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT TOP 1 ou_id FROM ou WHERE (owner_id = ${SQL_GET_USERID} OR ou_id IN (SELECT ou_id FROM talent_pool_shared_user WHERE user_id = ${SQL_GET_USERID})) AND ou_id IN (SELECT ou_id FROM ou_user GROUP BY ou_id HAVING COUNT(ou_id) &gt;= 1) AND ou.type_id = 131072 ORDER BY NEWID()</arg>
+</arguments>
+<assign>
+<var>${SQL_TalentPoolId}</var>
+</assign>
+<msg timestamp="20170404 21:39:02.422" level="INFO">${SQL_TalentPoolId} = 1961</msg>
+<status status="PASS" endtime="20170404 21:39:02.422" starttime="20170404 21:39:02.360"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SQL_TalentPoolId}</arg>
+<arg>${SQL_TalentPoolId}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.422" level="INFO">${SQL_TalentPoolId} = 1961</msg>
+<status status="PASS" endtime="20170404 21:39:02.422" starttime="20170404 21:39:02.422"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT TOP 1 user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId} ORDER BY NEWID()</arg>
+</arguments>
+<assign>
+<var>${SQL_GetCandidateId1}</var>
+</assign>
+<msg timestamp="20170404 21:39:02.438" level="INFO">${SQL_GetCandidateId1} = 7</msg>
+<status status="PASS" endtime="20170404 21:39:02.438" starttime="20170404 21:39:02.422"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SQL_GetCandidateId1}</arg>
+<arg>${SQL_GetCandidateId1}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.438" level="INFO">${SQL_GetCandidateId1} = 7</msg>
+<status status="PASS" endtime="20170404 21:39:02.438" starttime="20170404 21:39:02.438"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT TOP 1 status_id FROM ou_user_status WHERE culture_id = 1 AND status_id IN (128,256,512,1024) ORDER BY NEWID()</arg>
+</arguments>
+<assign>
+<var>${SQL_GetCandidateId1Status}</var>
+</assign>
+<msg timestamp="20170404 21:39:02.438" level="INFO">${SQL_GetCandidateId1Status} = 1024</msg>
+<status status="PASS" endtime="20170404 21:39:02.438" starttime="20170404 21:39:02.438"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SQL_GetCandidateId1Status}</arg>
+<arg>${SQL_GetCandidateId1Status}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.453" level="INFO">${SQL_GetCandidateId1Status} = 1024</msg>
+<status status="PASS" endtime="20170404 21:39:02.453" starttime="20170404 21:39:02.438"></status>
+</kw>
+<kw name="Create Http Context" library="HttpLibrary.HTTP">
+<doc>Sets the HTTP host to use for future requests. You must call this</doc>
+<arguments>
+<arg>${HTTP_CONTEXT}</arg>
+<arg>http</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.453" level="INFO">Host for next HTTP request set to 'laxqarexmt.office.cyberu.com'</msg>
+<msg timestamp="20170404 21:39:02.453" level="INFO">Scheme for next HTTP request set to 'http'</msg>
+<status status="PASS" endtime="20170404 21:39:02.453" starttime="20170404 21:39:02.453"></status>
+</kw>
+<kw name="Set Request Header" library="HttpLibrary.HTTP">
+<doc>Sets a request header for the next request.</doc>
+<arguments>
+<arg>${api_global_parameter_corpid}</arg>
+<arg>${RNOAUTH_CUSTOM_CORP}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.453" level="INFO">Set request header "x-csod-corp-id" to "qa052-auto-smp-api"</msg>
+<status status="PASS" endtime="20170404 21:39:02.453" starttime="20170404 21:39:02.453"></status>
+</kw>
+<kw name="Set Request Header" library="HttpLibrary.HTTP">
+<doc>Sets a request header for the next request.</doc>
+<arguments>
+<arg>${api_global_parameter_userid}</arg>
+<arg>${SQL_GET_USERID}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.453" level="INFO">Set request header "x-csod-user-id" to "1338"</msg>
+<status status="PASS" endtime="20170404 21:39:02.453" starttime="20170404 21:39:02.453"></status>
+</kw>
+<kw name="Set Request Header" library="HttpLibrary.HTTP">
+<doc>Sets a request header for the next request.</doc>
+<arguments>
+<arg>${api_global_parameter_cultureid}</arg>
+<arg>${SQL_GET_USER_CULTURE}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.453" level="INFO">Set request header "x-csod-default-culture-id" to "1"</msg>
+<status status="PASS" endtime="20170404 21:39:02.453" starttime="20170404 21:39:02.453"></status>
+</kw>
+<kw name="Set Request Header" library="HttpLibrary.HTTP">
+<doc>Sets a request header for the next request.</doc>
+<arguments>
+<arg>content-type</arg>
+<arg>\ application/json</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.453" level="INFO">Set request header "content-type" to " application/json"</msg>
+<status status="PASS" endtime="20170404 21:39:02.453" starttime="20170404 21:39:02.453"></status>
+</kw>
+<kw name="Set Request Body" library="HttpLibrary.HTTP">
+<doc>Set the request body for the next HTTP request.</doc>
+<arguments>
+<arg>[{"UserId": ${SQL_GetCandidateId1},"Status": ${SQL_GetCandidateId1Status}}]</arg>
+</arguments>
+<msg timestamp="20170404 21:39:02.453" level="INFO">Request body set to "[{"UserId": 7,"Status": 1024}]".</msg>
+<status status="PASS" endtime="20170404 21:39:02.453" starttime="20170404 21:39:02.453"></status>
+</kw>
+<kw name="PUT" library="HttpLibrary.HTTP">
+<doc>Issues a HTTP PUT request.</doc>
+<arguments>
+<arg>/talentpool-api/talentpools/${SQL_TalentPoolId}/candidates/status</arg>
+</arguments>
+<status status="PASS" endtime="20170404 21:39:04.016" starttime="20170404 21:39:02.453"></status>
+</kw>
+<kw name="Get Response Body" library="HttpLibrary.HTTP">
+<doc>Get the response body.</doc>
+<assign>
+<var>${resBody}</var>
+</assign>
+<msg timestamp="20170404 21:39:04.031" level="INFO">${resBody} = [{"UserId":7,"FirstName":"Al","LastName":"Canarry","Ref":"ACanarry","TypeId":0,"UserStatusId":0,"CandidateStatusId":1024,"CandidateStatus":null,"Position":null,"Division":null,"ManagerName":null,"Crea...</msg>
+<status status="PASS" endtime="20170404 21:39:04.031" starttime="20170404 21:39:04.031"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT status_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId} AND user_id = ${SQL_GetCandidateId1} ORDER BY NEWID()</arg>
+</arguments>
+<assign>
+<var>${SQL_GetCandidate1Status_After}</var>
+</assign>
+<msg timestamp="20170404 21:39:04.203" level="INFO">${SQL_GetCandidate1Status_After} = 1024</msg>
+<status status="PASS" endtime="20170404 21:39:04.203" starttime="20170404 21:39:04.031"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SQL_GetCandidate1Status_After}</arg>
+<arg>${SQL_GetCandidate1Status_After}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.203" level="INFO">${SQL_GetCandidate1Status_After} = 1024</msg>
+<status status="PASS" endtime="20170404 21:39:04.203" starttime="20170404 21:39:04.203"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${SQL_GetCandidate1Status_After}'== '${SQL_GetCandidateId1Status}'</arg>
+<arg>Utility Set Test Message</arg>
+<arg>The ${SQL_GetCandidate1Status_After} matches with ${SQL_GetCandidateId1Status}</arg>
+</arguments>
+<kw name="Utility Set Test Message" library="UtilityKeywords">
+<arguments>
+<arg>The ${SQL_GetCandidate1Status_After} matches with ${SQL_GetCandidateId1Status}</arg>
+</arguments>
+<kw name="Set Test Message" library="BuiltIn">
+<doc>Sets message for the current test case.</doc>
+<arguments>
+<arg>${testMsg}</arg>
+<arg>${append}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.219" level="INFO">Set test message to:
+The 1024 matches with 1024</msg>
+<status status="PASS" endtime="20170404 21:39:04.219" starttime="20170404 21:39:04.219"></status>
+</kw>
+<status status="PASS" endtime="20170404 21:39:04.219" starttime="20170404 21:39:04.219"></status>
+</kw>
+<status status="PASS" endtime="20170404 21:39:04.219" starttime="20170404 21:39:04.203"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${SQL_GetCandidate1Status_After}'&lt;&gt; '${SQL_GetCandidateId1Status}'</arg>
+<arg>Fail</arg>
+<arg>The ${SQL_GetCandidate1Status_After} did not match ${SQL_GetCandidateId1Status}</arg>
+</arguments>
+<status status="PASS" endtime="20170404 21:39:04.219" starttime="20170404 21:39:04.219"></status>
+</kw>
+<kw name="Close" library="SQLlibrary">
+<status status="PASS" endtime="20170404 21:39:04.234" starttime="20170404 21:39:04.219"></status>
+</kw>
+<status status="PASS" endtime="20170404 21:39:04.234" starttime="20170404 21:39:02.360"></status>
+</kw>
+<doc>*Name:*
+PUT-API_TP_Rename_Access_NotActive
+
+*Description:*
+Access: Verify failure when actor not active
+
+*Run Arguments:*
+-d TestResults -v RNOAUTH_HOST:QA01
+
+
+*NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
+-d TestResults will put the output report.html and log.html in a folder named TestResults.</doc>
+<tags>
+<tag>PUT</tag>
+<tag>testrailid=24455</tag>
+</tags>
+<status status="PASS" endtime="20170404 21:39:04.234" critical="yes" starttime="20170404 21:39:02.109">The 1024 matches with 1024</status>
+</test>
+<test id="s1-s1-s1-t3" name="DELETE-API_TPC_Remove_AlreadyRemoved_Single">
+<kw name="REST_NOAUTH_Random_Users_with_Talent_Pools" library="SMP_Keywords">
+<doc>*REST_NOAUTH:*</doc>
+<kw name="Connect" library="SQLlibrary">
+<arguments>
+<arg>${RNOAUTH_CUSTOM_SERVER}</arg>
+<arg>${SQL_DB}</arg>
+</arguments>
+<status status="PASS" endtime="20170404 21:39:04.250" starttime="20170404 21:39:04.234"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT TOP 1 owner_id FROM ou JOIN users ON owner_id = user_id WHERE users.culture_lang_id IS NOT NULL AND ou.type_id = 131072 AND culture_lang_id = 1 GROUP BY owner_id HAVING COUNT(*) &gt; 1 ORDER BY NEWID()</arg>
+</arguments>
+<assign>
+<var>${SQL_GET_USERID}</var>
+</assign>
+<msg timestamp="20170404 21:39:04.281" level="INFO">${SQL_GET_USERID} = 1336</msg>
+<status status="PASS" endtime="20170404 21:39:04.281" starttime="20170404 21:39:04.250"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${SQL_GET_USERID}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.281" level="INFO">1336</msg>
+<status status="PASS" endtime="20170404 21:39:04.281" starttime="20170404 21:39:04.281"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT culture_lang_id FROM users WHERE user_id = ${SQL_GET_USERID}</arg>
+</arguments>
+<assign>
+<var>${SQL_GET_USER_CULTURE}</var>
+</assign>
+<msg timestamp="20170404 21:39:04.281" level="INFO">${SQL_GET_USER_CULTURE} = 1</msg>
+<status status="PASS" endtime="20170404 21:39:04.281" starttime="20170404 21:39:04.281"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SQL_GET_USERID}</arg>
+<arg>${SQL_GET_USERID}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.281" level="INFO">${SQL_GET_USERID} = 1336</msg>
+<status status="PASS" endtime="20170404 21:39:04.281" starttime="20170404 21:39:04.281"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SQL_GET_USER_CULTURE}</arg>
+<arg>${SQL_GET_USER_CULTURE}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.297" level="INFO">${SQL_GET_USER_CULTURE} = 1</msg>
+<status status="PASS" endtime="20170404 21:39:04.297" starttime="20170404 21:39:04.297"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${SQL_GET_USER_CULTURE}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.297" level="INFO">1</msg>
+<status status="PASS" endtime="20170404 21:39:04.297" starttime="20170404 21:39:04.297"></status>
+</kw>
+<kw name="Create Http Context" library="HttpLibrary.HTTP">
+<doc>Sets the HTTP host to use for future requests. You must call this</doc>
+<arguments>
+<arg>${HTTP_CONTEXT}</arg>
+<arg>http</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.297" level="INFO">Host for next HTTP request set to 'laxqarexmt.office.cyberu.com'</msg>
+<msg timestamp="20170404 21:39:04.297" level="INFO">Scheme for next HTTP request set to 'http'</msg>
+<status status="PASS" endtime="20170404 21:39:04.297" starttime="20170404 21:39:04.297"></status>
+</kw>
+<kw name="Set Request Header" library="HttpLibrary.HTTP">
+<doc>Sets a request header for the next request.</doc>
+<arguments>
+<arg>X-CORP</arg>
+<arg>${RNOAUTH_CUSTOM_CORP}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.297" level="INFO">Set request header "X-CORP" to "qa052-auto-smp-api"</msg>
+<status status="PASS" endtime="20170404 21:39:04.297" starttime="20170404 21:39:04.297"></status>
+</kw>
+<kw name="Set Request Header" library="HttpLibrary.HTTP">
+<doc>Sets a request header for the next request.</doc>
+<arguments>
+<arg>X-USERID</arg>
+<arg>${SQL_GET_USERID}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.297" level="INFO">Set request header "X-USERID" to "1336"</msg>
+<status status="PASS" endtime="20170404 21:39:04.297" starttime="20170404 21:39:04.297"></status>
+</kw>
+<kw name="Set Request Header" library="HttpLibrary.HTTP">
+<doc>Sets a request header for the next request.</doc>
+<arguments>
+<arg>X-CULTUREID</arg>
+<arg>${SQL_GET_USER_CULTURE}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.297" level="INFO">Set request header "X-CULTUREID" to "1"</msg>
+<status status="PASS" endtime="20170404 21:39:04.297" starttime="20170404 21:39:04.297"></status>
+</kw>
+<status status="PASS" endtime="20170404 21:39:04.297" starttime="20170404 21:39:04.234"></status>
 </kw>
 <kw name="REST_AuthToken_RequestsLibrary" library="SMP_Keywords">
 <doc>*REST_AuthToken_RequestsLibrary:*</doc>
@@ -115,8 +902,8 @@
 <arg>${HTTP_CONTEXT_CSOD_AUTH}</arg>
 <arg>debug=3</arg>
 </arguments>
-<msg timestamp="20170327 15:12:38.129" level="INFO">Creating Session using : alias=http, url=http://laxqarexmt.office.cyberu.com/cornerstone-auth-api/v1, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=3 </msg>
-<status status="PASS" endtime="20170327 15:12:38.129" starttime="20170327 15:12:38.129"></status>
+<msg timestamp="20170404 21:39:04.297" level="INFO">Creating Session using : alias=http, url=http://laxqarexmt.office.cyberu.com/cornerstone-auth-api/v1, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=3 </msg>
+<status status="PASS" endtime="20170404 21:39:04.297" starttime="20170404 21:39:04.297"></status>
 </kw>
 <kw name="Comment" library="BuiltIn">
 <doc>Displays the given messages in the log file as keyword arguments.</doc>
@@ -126,7 +913,7 @@
 <arg>${HTTP_CONTEXT}</arg>
 <arg>debug=3</arg>
 </arguments>
-<status status="PASS" endtime="20170327 15:12:38.129" starttime="20170327 15:12:38.129"></status>
+<status status="PASS" endtime="20170404 21:39:04.312" starttime="20170404 21:39:04.312"></status>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <doc>Creates and returns a dictionary based on given items.</doc>
@@ -136,8 +923,8 @@
 <assign>
 <var>&amp;{headers}</var>
 </assign>
-<msg timestamp="20170327 15:12:38.129" level="INFO">&amp;{headers} = { Content-Type=application/json }</msg>
-<status status="PASS" endtime="20170327 15:12:38.129" starttime="20170327 15:12:38.129"></status>
+<msg timestamp="20170404 21:39:04.312" level="INFO">&amp;{headers} = { Content-Type=application/json }</msg>
+<status status="PASS" endtime="20170404 21:39:04.312" starttime="20170404 21:39:04.312"></status>
 </kw>
 <kw name="Set Test Variable" library="BuiltIn">
 <doc>Makes a variable available everywhere within the scope of the current test.</doc>
@@ -145,8 +932,8 @@
 <arg>${body}</arg>
 <arg>{ \ \ \"UserId\": ${SQL_GET_USERID}, \ \ \"CorpName\": \"${RNOAUTH_CUSTOM_CORP}\", \ \ \"Permissions\": [ \ \ \ \ { \ \ \ \ \ \ \"Id\": -157, \ \ \ \ \ \ \"Constraints\": [ \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 73, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 2, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": true \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 87, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 32, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 111, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 4, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 150, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 8, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ } \ \ \ \ \ \ ] \ \ \ \ } \ \ ], \ \ \"Token\": \"${RNOAUTH_CUSTOM_CORP}_${SQL_GET_USERID}\", \ \ \"expDt\": \"2019-08-17T16:16:19.550Z\", \ \ \"CultureId\": 0 }</arg>
 </arguments>
-<msg timestamp="20170327 15:12:38.145" level="INFO">${body} = {   "UserId": 1338,   "CorpName": "qa052-auto-smp-api",   "Permissions": [     {       "Id": -157,       "Constraints": [         {           "m_Item1": 73,           "m_Item2": 2,           "m_Item3"...</msg>
-<status status="PASS" endtime="20170327 15:12:38.145" starttime="20170327 15:12:38.129"></status>
+<msg timestamp="20170404 21:39:04.328" level="INFO">${body} = {   "UserId": 1336,   "CorpName": "qa052-auto-smp-api",   "Permissions": [     {       "Id": -157,       "Constraints": [         {           "m_Item1": 73,           "m_Item2": 2,           "m_Item3"...</msg>
+<status status="PASS" endtime="20170404 21:39:04.328" starttime="20170404 21:39:04.312"></status>
 </kw>
 <kw name="Put Request" library="RequestsLibrary">
 <doc>Send a PUT request on the session object found using the</doc>
@@ -159,18 +946,18 @@
 <assign>
 <var>${resp}</var>
 </assign>
-<msg timestamp="20170327 15:12:38.145" level="INFO">Starting new HTTP connection (1): laxqarexmt.office.cyberu.com</msg>
-<msg timestamp="20170327 15:12:38.160" level="INFO">Put Request using : alias=http, uri=/, data={   "UserId": 1338,   "CorpName": "qa052-auto-smp-api",   "Permissions": [     {       "Id": -157,       "Constraints": [         {           "m_Item1": 73,           "m_Item2": 2,           "m_Item3": true         },         {           "m_Item1": 87,           "m_Item2": 32,           "m_Item3": false         },         {           "m_Item1": 111,           "m_Item2": 4,           "m_Item3": false         },         {           "m_Item1": 150,           "m_Item2": 8,           "m_Item3": false         }       ]     }   ],   "Token": "qa052-auto-smp-api_1338",   "expDt": "2019-08-17T16:16:19.550Z",   "CultureId": 0 },                     headers={u'Content-Type': u'application/json'}, allow_redirects=True </msg>
-<msg timestamp="20170327 15:12:38.160" level="INFO">${resp} = &lt;Response [204]&gt;</msg>
-<status status="PASS" endtime="20170327 15:12:38.160" starttime="20170327 15:12:38.145"></status>
+<msg timestamp="20170404 21:39:04.328" level="INFO">Starting new HTTP connection (1): laxqarexmt.office.cyberu.com</msg>
+<msg timestamp="20170404 21:39:04.344" level="INFO">Put Request using : alias=http, uri=/, data={   "UserId": 1336,   "CorpName": "qa052-auto-smp-api",   "Permissions": [     {       "Id": -157,       "Constraints": [         {           "m_Item1": 73,           "m_Item2": 2,           "m_Item3": true         },         {           "m_Item1": 87,           "m_Item2": 32,           "m_Item3": false         },         {           "m_Item1": 111,           "m_Item2": 4,           "m_Item3": false         },         {           "m_Item1": 150,           "m_Item2": 8,           "m_Item3": false         }       ]     }   ],   "Token": "qa052-auto-smp-api_1336",   "expDt": "2019-08-17T16:16:19.550Z",   "CultureId": 0 },                     headers={u'Content-Type': u'application/json'}, allow_redirects=True </msg>
+<msg timestamp="20170404 21:39:04.344" level="INFO">${resp} = &lt;Response [204]&gt;</msg>
+<status status="PASS" endtime="20170404 21:39:04.344" starttime="20170404 21:39:04.328"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
 <arg>${resp}</arg>
 </arguments>
-<msg timestamp="20170327 15:12:38.160" level="INFO">&lt;Response [204]&gt;</msg>
-<status status="PASS" endtime="20170327 15:12:38.160" starttime="20170327 15:12:38.160"></status>
+<msg timestamp="20170404 21:39:04.344" level="INFO">&lt;Response [204]&gt;</msg>
+<status status="PASS" endtime="20170404 21:39:04.344" starttime="20170404 21:39:04.344"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -178,34 +965,31 @@
 <arg>${resp.status_code}</arg>
 <arg>204</arg>
 </arguments>
-<msg timestamp="20170327 15:12:38.160" level="INFO">Argument types are:
+<msg timestamp="20170404 21:39:04.344" level="INFO">Argument types are:
 &lt;type 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" endtime="20170327 15:12:38.160" starttime="20170327 15:12:38.160"></status>
+<status status="PASS" endtime="20170404 21:39:04.344" starttime="20170404 21:39:04.344"></status>
 </kw>
-<status status="PASS" endtime="20170327 15:12:38.160" starttime="20170327 15:12:38.129"></status>
+<status status="PASS" endtime="20170404 21:39:04.344" starttime="20170404 21:39:04.297"></status>
 </kw>
-<kw name="DELETE_TalentPool_Candidates_Remove_2" library="SMP_Keywords">
-<doc>*POST_TalentPool_Candidates_Add:*</doc>
-<arguments>
-<arg>200</arg>
-</arguments>
+<kw name="DELETE_TalentPool_Candidates_Remove_AlreadyRemoved_Single" library="SMP_Keywords">
+<doc>*DELETE_TalentPool_Candidates_AlreadyRemoved_Single:*</doc>
 <kw name="Connect" library="SQLlibrary">
 <arguments>
 <arg>${RNOAUTH_CUSTOM_SERVER}</arg>
 <arg>${SQL_DB}</arg>
 </arguments>
-<status status="PASS" endtime="20170327 15:12:38.192" starttime="20170327 15:12:38.160"></status>
+<status status="PASS" endtime="20170404 21:39:04.359" starttime="20170404 21:39:04.344"></status>
 </kw>
 <kw name="Execute Raw" library="SQLlibrary">
 <arguments>
-<arg>SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND ou_id IN (SELECT ou_id FROM ou_user GROUP BY ou_id HAVING COUNT(ou_id) &gt; 0) ORDER BY NEWID()</arg>
+<arg>SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id = ${SQL_GET_USERID} AND ou_id IN (SELECT ou_id FROM ou_user GROUP BY ou_id HAVING COUNT(ou_id) &gt; 0) ORDER BY NEWID()</arg>
 </arguments>
 <assign>
 <var>${SQL_TalentPoolId}</var>
 </assign>
-<msg timestamp="20170327 15:12:38.207" level="INFO">${SQL_TalentPoolId} = 2654</msg>
-<status status="PASS" endtime="20170327 15:12:38.207" starttime="20170327 15:12:38.192"></status>
+<msg timestamp="20170404 21:39:04.391" level="INFO">${SQL_TalentPoolId} = 10558</msg>
+<status status="PASS" endtime="20170404 21:39:04.391" starttime="20170404 21:39:04.359"></status>
 </kw>
 <kw name="Set Suite Variable" library="BuiltIn">
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
@@ -213,18 +997,18 @@
 <arg>${SQL_TalentPoolId}</arg>
 <arg>${SQL_TalentPoolId}</arg>
 </arguments>
-<msg timestamp="20170327 15:12:38.207" level="INFO">${SQL_TalentPoolId} = 2654</msg>
-<status status="PASS" endtime="20170327 15:12:38.207" starttime="20170327 15:12:38.207"></status>
+<msg timestamp="20170404 21:39:04.391" level="INFO">${SQL_TalentPoolId} = 10558</msg>
+<status status="PASS" endtime="20170404 21:39:04.391" starttime="20170404 21:39:04.391"></status>
 </kw>
 <kw name="Execute Raw" library="SQLlibrary">
 <arguments>
-<arg>SELECT TOP 1 ou_user.user_id FROM ou_user LEFT JOIN users ON ou_user.user_id = users.user_id WHERE users.user_id &gt; 0 AND ou_user.ou_id = ${SQL_TalentPoolId} AND users.user_id NOT IN (SELECT owner_id FROM ou WHERE ou_id = ${SQL_TalentPoolId}) AND users.status_id = 1 ORDER BY NEWID()</arg>
+<arg>SELECT TOP 1 user_id FROM users WHERE user_id &gt; 0 AND user_id NOT IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND user_id NOT IN (SELECT owner_id FROM ou WHERE ou_id = ${SQL_TalentPoolId}) AND status_id = 1 ORDER BY NEWID()</arg>
 </arguments>
 <assign>
 <var>${SQL_UserToRemove1}</var>
 </assign>
-<msg timestamp="20170327 15:12:38.223" level="INFO">${SQL_UserToRemove1} = 773</msg>
-<status status="PASS" endtime="20170327 15:12:38.223" starttime="20170327 15:12:38.207"></status>
+<msg timestamp="20170404 21:39:04.422" level="INFO">${SQL_UserToRemove1} = 778</msg>
+<status status="PASS" endtime="20170404 21:39:04.422" starttime="20170404 21:39:04.391"></status>
 </kw>
 <kw name="Set Suite Variable" library="BuiltIn">
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
@@ -232,22 +1016,22 @@
 <arg>${SQL_UserToRemove1}</arg>
 <arg>${SQL_UserToRemove1}</arg>
 </arguments>
-<msg timestamp="20170327 15:12:38.223" level="INFO">${SQL_UserToRemove1} = 773</msg>
-<status status="PASS" endtime="20170327 15:12:38.223" starttime="20170327 15:12:38.223"></status>
+<msg timestamp="20170404 21:39:04.422" level="INFO">${SQL_UserToRemove1} = 778</msg>
+<status status="PASS" endtime="20170404 21:39:04.422" starttime="20170404 21:39:04.422"></status>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <doc>Creates and returns a dictionary based on given items.</doc>
 <arguments>
 <arg>Content-Type=application/json</arg>
-<arg>${CorporationIdentifier}=${RNOAUTH_CUSTOM_CORP}</arg>
-<arg>${UserIdentifier}=0${SQL_GET_USERID}</arg>
-<arg>${CultureIdentifier}=0${SQL_GET_USER_CULTURE}</arg>
+<arg>${api_global_parameter_corpid}=${RNOAUTH_CUSTOM_CORP}</arg>
+<arg>${api_global_parameter_userid}=0${SQL_GET_USERID}</arg>
+<arg>${api_global_parameter_cultureid}=0${SQL_GET_USER_CULTURE}</arg>
 </arguments>
 <assign>
 <var>&amp;{headers}</var>
 </assign>
-<msg timestamp="20170327 15:12:38.239" level="INFO">&amp;{headers} = { Content-Type=application/json | x-csod-corp-id=qa052-auto-smp-api | x-csod-user-id=01338 | x-csod-default-culture-id=01 }</msg>
-<status status="PASS" endtime="20170327 15:12:38.239" starttime="20170327 15:12:38.223"></status>
+<msg timestamp="20170404 21:39:04.422" level="INFO">&amp;{headers} = { Content-Type=application/json | x-csod-corp-id=qa052-auto-smp-api | x-csod-user-id=01336 | x-csod-default-culture-id=01 }</msg>
+<status status="PASS" endtime="20170404 21:39:04.422" starttime="20170404 21:39:04.422"></status>
 </kw>
 <kw name="Create Session" library="RequestsLibrary">
 <doc>Create Session: create a HTTP session to a server</doc>
@@ -256,17 +1040,27 @@
 <arg>${HTTP_CONTEXT_NORMAL}</arg>
 <arg>debug=3</arg>
 </arguments>
-<msg timestamp="20170327 15:12:38.239" level="INFO">Creating Session using : alias=http, url=http://laxqarexmt.office.cyberu.com/talentpool-api, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=3 </msg>
-<status status="PASS" endtime="20170327 15:12:38.239" starttime="20170327 15:12:38.239"></status>
+<msg timestamp="20170404 21:39:04.422" level="INFO">Creating Session using : alias=http, url=http://laxqarexmt.office.cyberu.com/talentpool-api, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=3 </msg>
+<status status="PASS" endtime="20170404 21:39:04.422" starttime="20170404 21:39:04.422"></status>
 </kw>
 <kw name="Set Suite Variable" library="BuiltIn">
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
 <arguments>
 <arg>${body}</arg>
-<arg>[{\"UserId\": ${SQL_UserToRemove1}}]</arg>
+<arg>[{"UserId": ${SQL_UserToRemove1}}]</arg>
 </arguments>
-<msg timestamp="20170327 15:12:38.239" level="INFO">${body} = [{"UserId": 773}]</msg>
-<status status="PASS" endtime="20170327 15:12:38.239" starttime="20170327 15:12:38.239"></status>
+<msg timestamp="20170404 21:39:04.422" level="INFO">${body} = [{"UserId": 778}]</msg>
+<status status="PASS" endtime="20170404 21:39:04.422" starttime="20170404 21:39:04.422"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}</arg>
+</arguments>
+<assign>
+<var>${SQL_CandidateCountBefore}</var>
+</assign>
+<msg timestamp="20170404 21:39:04.437" level="INFO">${SQL_CandidateCountBefore} = 2</msg>
+<status status="PASS" endtime="20170404 21:39:04.437" starttime="20170404 21:39:04.422"></status>
 </kw>
 <kw name="Delete Request" library="RequestsLibrary">
 <doc>Send a DELETE request on the session object found using the</doc>
@@ -279,18 +1073,410 @@
 <assign>
 <var>${resp}</var>
 </assign>
-<msg timestamp="20170327 15:12:38.239" level="INFO">Starting new HTTP connection (1): laxqarexmt.office.cyberu.com</msg>
-<msg timestamp="20170327 15:12:38.270" level="INFO">Delete Request using : alias=http, uri=/talentpools/2654/candidates, data=[{"UserId": 773}],                     headers={u'Content-Type': u'application/json', u'x-csod-corp-id': u'qa052-auto-smp-api', u'x-csod-user-id': u'01338', u'x-csod-default-culture-id': u'01'}, allow_redirects=True </msg>
-<msg timestamp="20170327 15:12:38.270" level="INFO">${resp} = &lt;Response [401]&gt;</msg>
-<status status="PASS" endtime="20170327 15:12:38.270" starttime="20170327 15:12:38.239"></status>
+<msg timestamp="20170404 21:39:04.437" level="INFO">Starting new HTTP connection (1): laxqarexmt.office.cyberu.com</msg>
+<msg timestamp="20170404 21:39:04.547" level="INFO">Delete Request using : alias=http, uri=/talentpools/10558/candidates, data=[{"UserId": 778}],                     headers={u'Content-Type': u'application/json', u'x-csod-corp-id': u'qa052-auto-smp-api', u'x-csod-user-id': u'01336', u'x-csod-default-culture-id': u'01'}, allow_redirects=True </msg>
+<msg timestamp="20170404 21:39:04.547" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20170404 21:39:04.547" starttime="20170404 21:39:04.437"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
 <arg>${resp}</arg>
 </arguments>
-<msg timestamp="20170327 15:12:38.270" level="INFO">&lt;Response [401]&gt;</msg>
-<status status="PASS" endtime="20170327 15:12:38.270" starttime="20170327 15:12:38.270"></status>
+<msg timestamp="20170404 21:39:04.547" level="INFO">&lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20170404 21:39:04.547" starttime="20170404 21:39:04.547"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.547" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20170404 21:39:04.547" starttime="20170404 21:39:04.547"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}</arg>
+</arguments>
+<assign>
+<var>${SQL_CandidateCountAfter}</var>
+</assign>
+<msg timestamp="20170404 21:39:04.547" level="INFO">${SQL_CandidateCountAfter} = 2</msg>
+<status status="PASS" endtime="20170404 21:39:04.547" starttime="20170404 21:39:04.547"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SQL_CandidateCountAfter}</arg>
+<arg>${SQL_CandidateCountAfter}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.547" level="INFO">${SQL_CandidateCountAfter} = 2</msg>
+<status status="PASS" endtime="20170404 21:39:04.547" starttime="20170404 21:39:04.547"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${SQL_CandidateCountBefore}+0</arg>
+</arguments>
+<assign>
+<var>${SQL_NUM}</var>
+</assign>
+<msg timestamp="20170404 21:39:04.547" level="INFO">${SQL_NUM} = 2</msg>
+<status status="PASS" endtime="20170404 21:39:04.547" starttime="20170404 21:39:04.547"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${SQL_NUM}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.562" level="INFO">2</msg>
+<status status="PASS" endtime="20170404 21:39:04.562" starttime="20170404 21:39:04.547"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${SQL_CandidateCountAfter}'=='${SQL_NUM}'</arg>
+<arg>Utility Set Test Message</arg>
+<arg>The ${SQL_CandidateCountAfter} matches with ${SQL_NUM}</arg>
+</arguments>
+<kw name="Utility Set Test Message" library="UtilityKeywords">
+<arguments>
+<arg>The ${SQL_CandidateCountAfter} matches with ${SQL_NUM}</arg>
+</arguments>
+<kw name="Set Test Message" library="BuiltIn">
+<doc>Sets message for the current test case.</doc>
+<arguments>
+<arg>${testMsg}</arg>
+<arg>${append}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.562" level="INFO">Set test message to:
+The 2 matches with 2</msg>
+<status status="PASS" endtime="20170404 21:39:04.562" starttime="20170404 21:39:04.562"></status>
+</kw>
+<status status="PASS" endtime="20170404 21:39:04.562" starttime="20170404 21:39:04.562"></status>
+</kw>
+<status status="PASS" endtime="20170404 21:39:04.562" starttime="20170404 21:39:04.562"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${SQL_CandidateCountAfter}'&lt;&gt;'${SQL_NUM}'</arg>
+<arg>Fail</arg>
+<arg>The ${SQL_CandidateCountAfter} did NOT matches with ${SQL_NUM}</arg>
+</arguments>
+<status status="PASS" endtime="20170404 21:39:04.562" starttime="20170404 21:39:04.562"></status>
+</kw>
+<status status="PASS" endtime="20170404 21:39:04.562" starttime="20170404 21:39:04.344"></status>
+</kw>
+<doc>*Name:*
+Api_TPC_Remove_AlreadyRemoved_Single
+
+*Description:*
+Verify success when single removed user is already removed
+
+*Run Arguments:*
+-d TestResults -v RNOAUTH_HOST:QA01
+
+
+*NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
+-d TestResults will put the output report.html and log.html in a folder named TestResults.</doc>
+<tags>
+<tag>DELETE</tag>
+<tag>testrailid=24464</tag>
+</tags>
+<status status="PASS" endtime="20170404 21:39:04.562" critical="yes" starttime="20170404 21:39:04.234">The 2 matches with 2</status>
+</test>
+<test id="s1-s1-s1-t4" name="DELETE-API_TPC_Remove_BaseCase_InputVsOutput_Value">
+<kw name="REST_NOAUTH_Random_Active_Owner_OR_Shared_With_Candidates" library="SMP_Keywords">
+<doc>*REST_NOAUTH:*</doc>
+<kw name="Connect" library="SQLlibrary">
+<arguments>
+<arg>${RNOAUTH_CUSTOM_SERVER}</arg>
+<arg>${SQL_DB}</arg>
+</arguments>
+<status status="PASS" endtime="20170404 21:39:04.594" starttime="20170404 21:39:04.578"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT TOP 1 user_id FROM users WHERE culture_lang_id IS NOT NULL AND status_id = 1 AND (user_id IN (SELECT DISTINCT owner_id FROM ou WHERE type_id = 131072 AND ou_id IN (SELECT ou_id FROM ou_user GROUP BY ou_id HAVING COUNT(ou_id) &gt;= 1)) OR user_id IN (SELECT DISTINCT user_id FROM talent_pool_shared_user WHERE ou_id IN (SELECT ou_id FROM ou_user GROUP BY ou_id HAVING COUNT(ou_id) &gt;= 1))) ORDER BY NEWID()</arg>
+</arguments>
+<assign>
+<var>${SQL_GET_USERID}</var>
+</assign>
+<msg timestamp="20170404 21:39:04.703" level="INFO">${SQL_GET_USERID} = 415</msg>
+<status status="PASS" endtime="20170404 21:39:04.703" starttime="20170404 21:39:04.594"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${SQL_GET_USERID}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.703" level="INFO">415</msg>
+<status status="PASS" endtime="20170404 21:39:04.703" starttime="20170404 21:39:04.703"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT culture_lang_id FROM users WHERE user_id = ${SQL_GET_USERID}</arg>
+</arguments>
+<assign>
+<var>${SQL_GET_USER_CULTURE}</var>
+</assign>
+<msg timestamp="20170404 21:39:04.703" level="INFO">${SQL_GET_USER_CULTURE} = 1</msg>
+<status status="PASS" endtime="20170404 21:39:04.703" starttime="20170404 21:39:04.703"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SQL_GET_USERID}</arg>
+<arg>${SQL_GET_USERID}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.703" level="INFO">${SQL_GET_USERID} = 415</msg>
+<status status="PASS" endtime="20170404 21:39:04.703" starttime="20170404 21:39:04.703"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SQL_GET_USER_CULTURE}</arg>
+<arg>${SQL_GET_USER_CULTURE}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.703" level="INFO">${SQL_GET_USER_CULTURE} = 1</msg>
+<status status="PASS" endtime="20170404 21:39:04.703" starttime="20170404 21:39:04.703"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${SQL_GET_USER_CULTURE}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.719" level="INFO">1</msg>
+<status status="PASS" endtime="20170404 21:39:04.719" starttime="20170404 21:39:04.719"></status>
+</kw>
+<kw name="Create Http Context" library="HttpLibrary.HTTP">
+<doc>Sets the HTTP host to use for future requests. You must call this</doc>
+<arguments>
+<arg>${HTTP_CONTEXT}</arg>
+<arg>http</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.719" level="INFO">Host for next HTTP request set to 'laxqarexmt.office.cyberu.com'</msg>
+<msg timestamp="20170404 21:39:04.719" level="INFO">Scheme for next HTTP request set to 'http'</msg>
+<status status="PASS" endtime="20170404 21:39:04.719" starttime="20170404 21:39:04.719"></status>
+</kw>
+<kw name="Set Request Header" library="HttpLibrary.HTTP">
+<doc>Sets a request header for the next request.</doc>
+<arguments>
+<arg>X-CORP</arg>
+<arg>${RNOAUTH_CUSTOM_CORP}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.719" level="INFO">Set request header "X-CORP" to "qa052-auto-smp-api"</msg>
+<status status="PASS" endtime="20170404 21:39:04.719" starttime="20170404 21:39:04.719"></status>
+</kw>
+<kw name="Set Request Header" library="HttpLibrary.HTTP">
+<doc>Sets a request header for the next request.</doc>
+<arguments>
+<arg>X-USERID</arg>
+<arg>${SQL_GET_USERID}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.719" level="INFO">Set request header "X-USERID" to "415"</msg>
+<status status="PASS" endtime="20170404 21:39:04.719" starttime="20170404 21:39:04.719"></status>
+</kw>
+<kw name="Set Request Header" library="HttpLibrary.HTTP">
+<doc>Sets a request header for the next request.</doc>
+<arguments>
+<arg>X-CULTUREID</arg>
+<arg>${SQL_GET_USER_CULTURE}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.719" level="INFO">Set request header "X-CULTUREID" to "1"</msg>
+<status status="PASS" endtime="20170404 21:39:04.719" starttime="20170404 21:39:04.719"></status>
+</kw>
+<status status="PASS" endtime="20170404 21:39:04.719" starttime="20170404 21:39:04.578"></status>
+</kw>
+<kw name="REST_AuthToken_RequestsLibrary" library="SMP_Keywords">
+<doc>*REST_AuthToken_RequestsLibrary:*</doc>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>http</arg>
+<arg>${HTTP_CONTEXT_CSOD_AUTH}</arg>
+<arg>debug=3</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.719" level="INFO">Creating Session using : alias=http, url=http://laxqarexmt.office.cyberu.com/cornerstone-auth-api/v1, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=3 </msg>
+<status status="PASS" endtime="20170404 21:39:04.719" starttime="20170404 21:39:04.719"></status>
+</kw>
+<kw name="Comment" library="BuiltIn">
+<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<arguments>
+<arg>Create Session</arg>
+<arg>http</arg>
+<arg>${HTTP_CONTEXT}</arg>
+<arg>debug=3</arg>
+</arguments>
+<status status="PASS" endtime="20170404 21:39:04.719" starttime="20170404 21:39:04.719"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on given items.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+</arguments>
+<assign>
+<var>&amp;{headers}</var>
+</assign>
+<msg timestamp="20170404 21:39:04.719" level="INFO">&amp;{headers} = { Content-Type=application/json }</msg>
+<status status="PASS" endtime="20170404 21:39:04.719" starttime="20170404 21:39:04.719"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${body}</arg>
+<arg>{ \ \ \"UserId\": ${SQL_GET_USERID}, \ \ \"CorpName\": \"${RNOAUTH_CUSTOM_CORP}\", \ \ \"Permissions\": [ \ \ \ \ { \ \ \ \ \ \ \"Id\": -157, \ \ \ \ \ \ \"Constraints\": [ \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 73, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 2, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": true \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 87, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 32, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 111, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 4, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ }, \ \ \ \ \ \ \ \ { \ \ \ \ \ \ \ \ \ \ \"m_Item1\": 150, \ \ \ \ \ \ \ \ \ \ \"m_Item2\": 8, \ \ \ \ \ \ \ \ \ \ \"m_Item3\": false \ \ \ \ \ \ \ \ } \ \ \ \ \ \ ] \ \ \ \ } \ \ ], \ \ \"Token\": \"${RNOAUTH_CUSTOM_CORP}_${SQL_GET_USERID}\", \ \ \"expDt\": \"2019-08-17T16:16:19.550Z\", \ \ \"CultureId\": 0 }</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.734" level="INFO">${body} = {   "UserId": 415,   "CorpName": "qa052-auto-smp-api",   "Permissions": [     {       "Id": -157,       "Constraints": [         {           "m_Item1": 73,           "m_Item2": 2,           "m_Item3":...</msg>
+<status status="PASS" endtime="20170404 21:39:04.734" starttime="20170404 21:39:04.719"></status>
+</kw>
+<kw name="Put Request" library="RequestsLibrary">
+<doc>Send a PUT request on the session object found using the</doc>
+<arguments>
+<arg>http</arg>
+<arg>/</arg>
+<arg>data=${body}</arg>
+<arg>headers=${headers}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20170404 21:39:04.734" level="INFO">Starting new HTTP connection (1): laxqarexmt.office.cyberu.com</msg>
+<msg timestamp="20170404 21:39:04.750" level="INFO">Put Request using : alias=http, uri=/, data={   "UserId": 415,   "CorpName": "qa052-auto-smp-api",   "Permissions": [     {       "Id": -157,       "Constraints": [         {           "m_Item1": 73,           "m_Item2": 2,           "m_Item3": true         },         {           "m_Item1": 87,           "m_Item2": 32,           "m_Item3": false         },         {           "m_Item1": 111,           "m_Item2": 4,           "m_Item3": false         },         {           "m_Item1": 150,           "m_Item2": 8,           "m_Item3": false         }       ]     }   ],   "Token": "qa052-auto-smp-api_415",   "expDt": "2019-08-17T16:16:19.550Z",   "CultureId": 0 },                     headers={u'Content-Type': u'application/json'}, allow_redirects=True </msg>
+<msg timestamp="20170404 21:39:04.750" level="INFO">${resp} = &lt;Response [204]&gt;</msg>
+<status status="PASS" endtime="20170404 21:39:04.750" starttime="20170404 21:39:04.734"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${resp}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.750" level="INFO">&lt;Response [204]&gt;</msg>
+<status status="PASS" endtime="20170404 21:39:04.750" starttime="20170404 21:39:04.750"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>204</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.750" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20170404 21:39:04.750" starttime="20170404 21:39:04.750"></status>
+</kw>
+<status status="PASS" endtime="20170404 21:39:04.750" starttime="20170404 21:39:04.719"></status>
+</kw>
+<kw name="DELETE_TalentPool_Candidates_Remove_2" library="SMP_Keywords">
+<doc>*POST_TalentPool_Candidates_Add:*</doc>
+<arguments>
+<arg>200</arg>
+</arguments>
+<kw name="Connect" library="SQLlibrary">
+<arguments>
+<arg>${RNOAUTH_CUSTOM_SERVER}</arg>
+<arg>${SQL_DB}</arg>
+</arguments>
+<status status="PASS" endtime="20170404 21:39:04.766" starttime="20170404 21:39:04.750"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND ou_id IN (SELECT ou_id FROM ou_user GROUP BY ou_id HAVING COUNT(ou_id) &gt; 0) ORDER BY NEWID()</arg>
+</arguments>
+<assign>
+<var>${SQL_TalentPoolId}</var>
+</assign>
+<msg timestamp="20170404 21:39:04.797" level="INFO">${SQL_TalentPoolId} = 3119</msg>
+<status status="PASS" endtime="20170404 21:39:04.797" starttime="20170404 21:39:04.781"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SQL_TalentPoolId}</arg>
+<arg>${SQL_TalentPoolId}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.797" level="INFO">${SQL_TalentPoolId} = 3119</msg>
+<status status="PASS" endtime="20170404 21:39:04.797" starttime="20170404 21:39:04.797"></status>
+</kw>
+<kw name="Execute Raw" library="SQLlibrary">
+<arguments>
+<arg>SELECT TOP 1 ou_user.user_id FROM ou_user LEFT JOIN users ON ou_user.user_id = users.user_id WHERE users.user_id &gt; 0 AND ou_user.ou_id = ${SQL_TalentPoolId} AND users.user_id NOT IN (SELECT owner_id FROM ou WHERE ou_id = ${SQL_TalentPoolId}) AND users.status_id = 1 ORDER BY NEWID()</arg>
+</arguments>
+<assign>
+<var>${SQL_UserToRemove1}</var>
+</assign>
+<msg timestamp="20170404 21:39:04.815" level="INFO">${SQL_UserToRemove1} = 608</msg>
+<status status="PASS" endtime="20170404 21:39:04.815" starttime="20170404 21:39:04.797"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SQL_UserToRemove1}</arg>
+<arg>${SQL_UserToRemove1}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.815" level="INFO">${SQL_UserToRemove1} = 608</msg>
+<status status="PASS" endtime="20170404 21:39:04.815" starttime="20170404 21:39:04.815"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on given items.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+<arg>${api_global_parameter_corpid}=${RNOAUTH_CUSTOM_CORP}</arg>
+<arg>${api_global_parameter_userid}=0${SQL_GET_USERID}</arg>
+<arg>${api_global_parameter_cultureid}=0${SQL_GET_USER_CULTURE}</arg>
+</arguments>
+<assign>
+<var>&amp;{headers}</var>
+</assign>
+<msg timestamp="20170404 21:39:04.815" level="INFO">&amp;{headers} = { Content-Type=application/json | x-csod-corp-id=qa052-auto-smp-api | x-csod-user-id=0415 | x-csod-default-culture-id=01 }</msg>
+<status status="PASS" endtime="20170404 21:39:04.815" starttime="20170404 21:39:04.815"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>http</arg>
+<arg>${HTTP_CONTEXT_NORMAL}</arg>
+<arg>debug=3</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.828" level="INFO">Creating Session using : alias=http, url=http://laxqarexmt.office.cyberu.com/talentpool-api, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=3 </msg>
+<status status="PASS" endtime="20170404 21:39:04.828" starttime="20170404 21:39:04.815"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${body}</arg>
+<arg>[{\"UserId\": ${SQL_UserToRemove1}}]</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.828" level="INFO">${body} = [{"UserId": 608}]</msg>
+<status status="PASS" endtime="20170404 21:39:04.828" starttime="20170404 21:39:04.828"></status>
+</kw>
+<kw name="Delete Request" library="RequestsLibrary">
+<doc>Send a DELETE request on the session object found using the</doc>
+<arguments>
+<arg>http</arg>
+<arg>/talentpools/${SQL_TalentPoolId}/candidates</arg>
+<arg>data=${body}</arg>
+<arg>headers=${headers}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20170404 21:39:04.828" level="INFO">Starting new HTTP connection (1): laxqarexmt.office.cyberu.com</msg>
+<msg timestamp="20170404 21:39:04.859" level="INFO">Delete Request using : alias=http, uri=/talentpools/3119/candidates, data=[{"UserId": 608}],                     headers={u'Content-Type': u'application/json', u'x-csod-corp-id': u'qa052-auto-smp-api', u'x-csod-user-id': u'0415', u'x-csod-default-culture-id': u'01'}, allow_redirects=True </msg>
+<msg timestamp="20170404 21:39:04.859" level="INFO">${resp} = &lt;Response [401]&gt;</msg>
+<status status="PASS" endtime="20170404 21:39:04.859" starttime="20170404 21:39:04.828"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${resp}</arg>
+</arguments>
+<msg timestamp="20170404 21:39:04.859" level="INFO">&lt;Response [401]&gt;</msg>
+<status status="PASS" endtime="20170404 21:39:04.859" starttime="20170404 21:39:04.859"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -298,13 +1484,13 @@
 <arg>${resp.status_code}</arg>
 <arg>${RESPONSE_POST}</arg>
 </arguments>
-<msg timestamp="20170327 15:12:38.285" level="INFO">Argument types are:
+<msg timestamp="20170404 21:39:04.859" level="INFO">Argument types are:
 &lt;type 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<msg timestamp="20170327 15:12:38.285" level="FAIL">401 != 200</msg>
-<status status="FAIL" endtime="20170327 15:12:38.285" starttime="20170327 15:12:38.270"></status>
+<msg timestamp="20170404 21:39:04.859" level="FAIL">401 != 200</msg>
+<status status="FAIL" endtime="20170404 21:39:04.875" starttime="20170404 21:39:04.859"></status>
 </kw>
-<status status="FAIL" endtime="20170327 15:12:38.285" starttime="20170327 15:12:38.160"></status>
+<status status="FAIL" endtime="20170404 21:39:04.875" starttime="20170404 21:39:04.750"></status>
 </kw>
 <doc>*Name:*
 API_TPC_Add_BC_InputVsOutput_Value
@@ -322,7 +1508,7 @@ Verify successful input user ends up in output
 <tag>DBV</tag>
 <tag>testrailid=24474</tag>
 </tags>
-<status status="FAIL" endtime="20170327 15:12:38.285" critical="yes" starttime="20170327 15:12:37.879">401 != 200</status>
+<status status="FAIL" endtime="20170404 21:39:04.875" critical="yes" starttime="20170404 21:39:04.562">401 != 200</status>
 </test>
 <doc>*INSTRUCTIONS: To Run this dynamically add the following line to the Run tab arguments text box area.*
 
@@ -331,32 +1517,40 @@ Verify successful input user ends up in output
 *To Use with TestRail use the following:*
 
 *Patch*
--d TestResults -v RNOAUTH_HOST:QA01 --listener TestRailListener:479
+-d TestResults -v RNOAUTH_HOST:QA01 --listener TestRailListener:2386
+-d TestResults -v RNOAUTH_HOST:QA01 -v api_global_parameter_profile:qa01  --listener TestRailListener:2386
 
 *Release*
 -d TestResults -v RNOAUTH_HOST:QA052 --listener TestRailListener:479
+-d TestResults -v RNOAUTH_HOST:QA052_RL -v api_global_parameter_profile:qa052  --listener TestRailListener:479
 
 *Next Release*
 -d TestResults -v RNOAUTH_HOST:QA03 --listener TestRailListener:479</doc>
-<status status="FAIL" endtime="20170327 15:12:38.285" starttime="20170327 15:12:37.395"></status>
+<status status="FAIL" endtime="20170404 21:39:04.875" starttime="20170404 21:39:00.703"></status>
 </suite>
-<status status="FAIL" endtime="20170327 15:12:38.285" starttime="20170327 15:12:37.395"></status>
+<status status="FAIL" endtime="20170404 21:39:04.875" starttime="20170404 21:39:00.703"></status>
 </suite>
-<status status="FAIL" endtime="20170327 15:12:38.285" starttime="20170327 15:12:37.363"></status>
+<status status="FAIL" endtime="20170404 21:39:04.891" starttime="20170404 21:39:00.672"></status>
 </suite>
 <statistics>
 <total>
-<stat fail="1" pass="0">Critical Tests</stat>
-<stat fail="1" pass="0">All Tests</stat>
+<stat fail="1" pass="3">Critical Tests</stat>
+<stat fail="1" pass="3">All Tests</stat>
 </total>
 <tag>
 <stat fail="1" pass="0">DBV</stat>
+<stat fail="0" pass="1">DELETE</stat>
+<stat fail="0" pass="1">POST</stat>
+<stat fail="0" pass="1">PUT</stat>
+<stat fail="0" pass="1">testrailid=24450</stat>
+<stat fail="0" pass="1">testrailid=24455</stat>
+<stat fail="0" pass="1">testrailid=24464</stat>
 <stat fail="1" pass="0">testrailid=24474</stat>
 </tag>
 <suite>
-<stat fail="1" id="s1" name="COMP" pass="0">COMP</stat>
-<stat fail="1" id="s1-s1" name="TestSuites" pass="0">COMP.TestSuites</stat>
-<stat fail="1" id="s1-s1-s1" name="SMP-API-Talent Pool" pass="0">COMP.TestSuites.SMP-API-Talent Pool</stat>
+<stat fail="1" id="s1" name="COMP" pass="3">COMP</stat>
+<stat fail="1" id="s1-s1" name="TestSuites" pass="3">COMP.TestSuites</stat>
+<stat fail="1" id="s1-s1-s1" name="SMP-API-Talent Pool" pass="3">COMP.TestSuites.SMP-API-Talent Pool</stat>
 </suite>
 </statistics>
 <errors>

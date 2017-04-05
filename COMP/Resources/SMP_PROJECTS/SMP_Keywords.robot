@@ -309,9 +309,9 @@ POST_TalentPool_Create
     ...    *Note:*
     ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Set Request Body    { \"Title\":\"${SUBMITTED_TITLE}\"}
     HttpLibrary.HTTP.POST    /talentpool-api/talentpools
@@ -340,9 +340,9 @@ POST_TalentPool_Create_Random_Title
     Set Suite Variable    ${SQL_RandomName}
     Log    ${SQL_RandomName}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Set Request Body    { \"Title\":\"${SQL_RandomName}\"}
     HttpLibrary.HTTP.POST    /talentpool-api/talentpools
@@ -366,9 +366,9 @@ POST_TalentPool_Create_Empty_String
     ...    *Note:*
     ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    application/json
     Next Request May Not Succeed
     Set Request Body    { \"${KEY_NAME_JSON}\":\"${SUBMITTED_TITLE}\"}
@@ -391,9 +391,9 @@ POST_TalentPool_Create_Over_Max_Count
     ...    *Note:*
     ...    The arguments here like \ ${RNOAUTH_CUSTOM_CORP} | ${SQL_GET_USERID} | ${SQL_GET_USER_CULTURE} are captured during runtime.
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Next Request May Not Succeed
     Set Request Body    { \"Title\":\"${SUBMITTED_TITLE}\"}
@@ -417,9 +417,9 @@ GET_TalentPool
     Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
     ${SQL_TalentPoolIdToGet}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id=${SQL_GET_USERID} ORDER BY newid()
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
     Response Status Code Should Equal    ${RESPONSE_POST}
@@ -445,9 +445,9 @@ GET_TalentPool_Title_Happy
     Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
     ${SQL_TalentPoolIdToGet}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id=${SQL_GET_USERID} AND title LIKE '%InnocentName%' ORDER BY newid()
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
     Response Status Code Should Equal    ${RESPONSE_POST}
@@ -475,9 +475,9 @@ GET_TalentPool_Title_Length_1
     Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
     ${SQL_TalentPoolTitleById}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
     Response Status Code Should Equal    ${RESPONSE_POST}
@@ -505,9 +505,9 @@ GET_TalentPool_Title_Length_50
     Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
     ${SQL_TalentPoolTitleById}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
     Response Status Code Should Equal    ${RESPONSE_POST}
@@ -535,9 +535,9 @@ GET_TalentPool_Title_Char_Securit_SQL
     Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
     ${SQL_TalentPoolTitleById}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
     Response Status Code Should Equal    ${RESPONSE_POST}
@@ -565,9 +565,9 @@ GET_TalentPool_Title_Char_Securit_Script
     Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
     ${SQL_TalentPoolTitleById}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
     Response Status Code Should Equal    ${RESPONSE_POST}
@@ -595,9 +595,9 @@ GET_TalentPool_Title_Char_Extended1
     Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
     ${SQL_TalentPoolTitleById}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    application/json
     HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
     Response Status Code Should Equal    ${RESPONSE_POST}
@@ -625,9 +625,9 @@ GET_TalentPool_Title_Char_Extended2
     Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
     ${SQL_TalentPoolTitleById}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
     Response Status Code Should Equal    ${RESPONSE_POST}
@@ -655,9 +655,9 @@ GET_TalentPool_Title_Char_Extended3
     Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
     ${SQL_TalentPoolTitleById}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
     Response Status Code Should Equal    ${RESPONSE_POST}
@@ -685,9 +685,9 @@ GET_TalentPool_Title_Char_Extended5
     Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
     ${SQL_TalentPoolTitleById}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
     Response Status Code Should Equal    ${RESPONSE_POST}
@@ -715,9 +715,9 @@ GET_TalentPool_Title_Char_Extended6
     Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
     ${SQL_TalentPoolTitleById1}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
     Response Status Code Should Equal    ${RESPONSE_POST}
@@ -745,9 +745,9 @@ GET_TalentPool_Title_Char_Foreign_Russian
     Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
     ${SQL_TalentPoolTitleById1}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
     Response Status Code Should Equal    ${RESPONSE_POST}
@@ -775,9 +775,9 @@ GET_TalentPool_Title_Char_Foreign_Arabic
     Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
     ${SQL_TalentPoolTitleById1}=    Execute Raw    SELECT title FROM ou WHERE ou_id = ${SQL_TalentPoolIdToGet}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
     Response Status Code Should Equal    ${RESPONSE_POST}
@@ -804,9 +804,9 @@ GET_TalentPool_Does_Not_Exist
     ${SQL_TalentPoolIdToGet}=    Execute Raw    SELECT TOP 1 ou_id+1000 FROM ou WHERE ou.type_id = 131072 ORDER BY ou_id DESC
     Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Next Request May Not Succeed
     HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
@@ -831,9 +831,9 @@ GET_User_Does_Not_Exist
     ${SQL_TalentPoolIdToGet}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 ORDER BY newid()
     Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Next Request May Not Succeed
     HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
@@ -858,9 +858,9 @@ GET_User_Did_Not_Create
     ${SQL_TalentPoolIdToGet}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id<> ${SQL_GET_USERID} ORDER BY newid()
     Set Suite Variable    ${SQL_TalentPoolIdToGet}    ${SQL_TalentPoolIdToGet}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Next Request May Not Succeed
     HttpLibrary.HTTP.GET    /talentpool-api/talentpools/${SQL_TalentPoolIdToGet}
@@ -886,9 +886,9 @@ POST_TalentPool_Candidates_Add
     Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
     ${SQL_UserToAdd1}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id NOT IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND name_first LIKE '%<script>alert(123)</script>%' AND status_id = 1 ORDER BY NEWID()
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Set Request Body    [{ \"UserId\": ${SQL_UserToAdd1}, \"Status\": 128 }]
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
@@ -919,9 +919,9 @@ POST_TalentPool_Candidates_Add_SubSet
     Set Suite Variable    ${SQL_UserToAdd1}    ${SQL_UserToAdd1}
     ${SQL_UserToAdd2}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id NOT IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND user_id <> ${SQL_UserToAdd1} AND status_id = 1 ORDER BY NEWID()
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Set Request Body    [{\"UserId\": ${SQL_UserToAdd1}},{\"UserId\": ${SQL_UserToAdd2}}]
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
@@ -953,9 +953,9 @@ POST_TalentPool_Candidates_Already_Added_Single
     ${SQL_UserToAdd1}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND status_id = 1 ORDER BY NEWID()
     Set Suite Variable    ${SQL_UserToAdd1}    ${SQL_UserToAdd1}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Set Request Body    [{\"UserId\": ${SQL_UserToAdd1}}]
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
@@ -988,9 +988,9 @@ POST_TalentPool_Candidates_Already_Added_All
     Set Suite Variable    ${SQL_UserToAdd1}    ${SQL_UserToAdd1}
     ${SQL_UserToAdd2}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND user_id <> ${SQL_UserToAdd1} AND status_id = 1 ORDER BY NEWID()
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Set Request Body    [{\"UserId\": ${SQL_UserToAdd1}},{\"UserId\": ${SQL_UserToAdd2}}]
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
@@ -1024,9 +1024,9 @@ POST_TalentPool_Candidates_Add_2Users
     ${SQL_UserToAdd2}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id <> ${SQL_UserToAdd1} AND user_id NOT IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND status_id = 1 ORDER BY NEWID()
     Set Suite Variable    ${SQL_UserToAdd2}    ${SQL_UserToAdd2}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Set Request Body    [{"UserId": ${SQL_UserToAdd1}},{"UserId": ${SQL_UserToAdd2}}]
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
@@ -1063,9 +1063,9 @@ POST_TalentPool_Add_1Users
     ${SQL_UserToAdd2}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND status_id = 1 ORDER BY NEWID()
     Set Suite Variable    ${SQL_UserToAdd2}    ${SQL_UserToAdd2}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Set Request Body    [{"UserId": ${SQL_UserToAdd1}}]
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
@@ -1098,9 +1098,9 @@ POST_TalentPool_Add_0Users
     ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id = ${SQL_GET_USERID} ORDER BY NEWID()
     Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Set Request Body    [{}]
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
@@ -1135,9 +1135,9 @@ POST_TalentPool_BaseCase_InputVsDataBase
     ${SQL_UserToAdd1}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id NOT IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND status_id = 1 ORDER BY NEWID()
     Set Suite Variable    ${SQL_UserToAdd1}    ${SQL_UserToAdd1}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Set Request Body    [{"UserId": ${SQL_UserToAdd1}}]
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
@@ -1172,9 +1172,9 @@ POST_TalentPool_BaseCase_InputVsDataBase_Value
     ${SQL_UserToAdd1}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id NOT IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND status_id = 1 ORDER BY NEWID()
     Set Suite Variable    ${SQL_UserToAdd1}    ${SQL_UserToAdd1}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Set Request Body    [{"UserId": ${SQL_UserToAdd1}}]
     HttpLibrary.HTTP.POST    /talentpool-api/talentpools/${SQL_TalentPoolId}/candidates
@@ -1205,9 +1205,9 @@ POST_TalentPool_BaseCase_InputVsDataBase_Value_2
     ${SQL_UserToRemove1}=    Execute Raw    SELECT TOP 1 ou_user.user_id FROM ou_user LEFT JOIN users ON ou_user.user_id = users.user_id WHERE users.user_id > 0 AND ou_user.ou_id = ${SQL_TalentPoolId} AND users.user_id NOT IN (SELECT owner_id FROM ou WHERE ou_id = ${SQL_TalentPoolId}) AND users.status_id = 1 ORDER BY NEWID()
     Set Suite Variable    ${SQL_UserToRemove1}    ${SQL_UserToRemove1}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Set Request Body    [{"UserId": ${SQL_UserToRemove1}}]
     HttpLibrary.HTTP.POST    /talentpool-api/talentpools/${SQL_TalentPoolId}/candidates
@@ -1238,9 +1238,9 @@ POST_TalentPool_Group_Create
     ${SQL_RandomName}=    Execute Raw    SELECT CONVERT(varchar(255), NEWID())
     Set Suite Variable    ${SQL_RandomName}    ${SQL_RandomName}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    application/json
     Set Request Body    {"Title": '${SQL_RandomName}'}
     ${SQL_CountBefore}=    Execute Raw    SELECT COUNT(ou_id) FROM ou_relation WHERE type_id = 16 AND ou_id = ${SQL_TalentPoolId}
@@ -1277,9 +1277,9 @@ DELETE_TalentPool_Add_0Users
     ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id = ${SQL_GET_USERID} AND ou_id IN (SELECT ou_id FROM ou_user GROUP BY ou_id HAVING COUNT(ou_id) > 0) ORDER BY NEWID()
     Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    application/json
     Comment    Set Request Header    content-length    0
     Set Request Body    []
@@ -1315,9 +1315,9 @@ DELETE_TalentPool_Candidates_Remove
     ${SQL_UserToRemove1}=    Execute Raw    SELECT TOP 1 ou_user.user_id FROM ou_user LEFT JOIN users ON ou_user.user_id = users.user_id WHERE users.user_id > 0 AND ou_user.ou_id = ${SQL_TalentPoolId} AND users.user_id NOT IN (SELECT owner_id FROM ou WHERE ou_id = ${SQL_TalentPoolId}) AND users.status_id = 1 ORDER BY NEWID()
     Set Suite Variable    ${SQL_UserToRemove1}    ${SQL_UserToRemove1}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    application/json
     Set Request Header    content-length    0
     Next Request May Not Succeed
@@ -1350,7 +1350,7 @@ DELETE_TalentPool_Candidates_Remove_0User
     Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
     ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE ou.type_id = 131072 AND owner_id = ${SQL_GET_USERID} AND ou_id IN (SELECT ou_id FROM ou_user GROUP BY ou_id HAVING COUNT(ou_id) > 0) ORDER BY NEWID()
     Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
-    &{headers}=    Create Dictionary    Content-Type=application/json    ${CorporationIdentifier}=${RNOAUTH_CUSTOM_CORP}    ${UserIdentifier}=0${SQL_GET_USERID}    ${CultureIdentifier}=0${SQL_GET_USER_CULTURE}
+    &{headers}=    Create Dictionary    Content-Type=application/json    ${api_global_parameter_corpid}=${RNOAUTH_CUSTOM_CORP}    ${api_global_parameter_userid}=0${SQL_GET_USERID}    ${api_global_parameter_cultureid}=0${SQL_GET_USER_CULTURE}
     Create Session    http    ${HTTP_CONTEXT_NORMAL}    debug=3
     Set Suite Variable    ${body}    [{}]
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
@@ -1379,7 +1379,7 @@ DELETE_TalentPool_Candidates_Remove_1User
     Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
     ${SQL_UserToRemove1}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND user_id NOT IN (SELECT owner_id FROM ou WHERE ou_id = ${SQL_TalentPoolId}) AND status_id = 1 ORDER BY NEWID()
     Set Suite Variable    ${SQL_UserToRemove1}    ${SQL_UserToRemove1}
-    &{headers}=    Create Dictionary    Content-Type=application/json    ${CorporationIdentifier}=${RNOAUTH_CUSTOM_CORP}    ${UserIdentifier}=0${SQL_GET_USERID}    ${CultureIdentifier}=0${SQL_GET_USER_CULTURE}
+    &{headers}=    Create Dictionary    Content-Type=application/json    ${api_global_parameter_corpid}=${RNOAUTH_CUSTOM_CORP}    ${api_global_parameter_userid}=0${SQL_GET_USERID}    ${api_global_parameter_cultureid}=0${SQL_GET_USER_CULTURE}
     Create Session    http    ${HTTP_CONTEXT_NORMAL}    debug=3
     Set Suite Variable    ${body}    [{"UserId": ${SQL_UserToRemove1}}]
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
@@ -1410,7 +1410,7 @@ DELETE_TalentPool_Candidates_Remove_Access_DNE
     Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
     ${SQL_UserToRemove1}=    Execute Raw    SELECT TOP 1 ou_user.user_id FROM ou_user LEFT JOIN users ON ou_user.user_id = users.user_id WHERE users.user_id > 0 AND ou_user.ou_id = ${SQL_TalentPoolId} AND users.user_id NOT IN (SELECT owner_id FROM ou WHERE ou_id = ${SQL_TalentPoolId}) AND users.status_id = 1 ORDER BY NEWID()
     Set Suite Variable    ${SQL_UserToRemove1}    ${SQL_UserToRemove1}
-    &{headers}=    Create Dictionary    Content-Type=application/json    ${CorporationIdentifier}=${RNOAUTH_CUSTOM_CORP}    ${UserIdentifier}=0${SQL_GET_USERID}    ${CultureIdentifier}=0${SQL_GET_USER_CULTURE}
+    &{headers}=    Create Dictionary    Content-Type=application/json    ${api_global_parameter_corpid}=${RNOAUTH_CUSTOM_CORP}    ${api_global_parameter_userid}=0${SQL_GET_USERID}    ${api_global_parameter_cultureid}=0${SQL_GET_USER_CULTURE}
     Create Session    http    ${HTTP_CONTEXT_NORMAL}    debug=3
     Set Suite Variable    ${body}    [{"UserId": ${SQL_UserToRemove1}}]
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
@@ -1441,7 +1441,7 @@ DELETE_TalentPool_Candidates_Remove_Not_TP_Owner
     Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
     ${SQL_UserToRemove1}=    Execute Raw    SELECT TOP 1 ou_user.user_id FROM ou_user LEFT JOIN users ON ou_user.user_id = users.user_id WHERE users.user_id > 0 AND ou_user.ou_id = ${SQL_TalentPoolId} AND users.user_id NOT IN (SELECT owner_id FROM ou WHERE ou_id = ${SQL_TalentPoolId}) AND users.status_id = 1 ORDER BY NEWID()
     Set Suite Variable    ${SQL_UserToRemove1}    ${SQL_UserToRemove1}
-    &{headers}=    Create Dictionary    Content-Type=application/json    ${CorporationIdentifier}=${RNOAUTH_CUSTOM_CORP}    ${UserIdentifier}=0${SQL_GET_USERID}    ${CultureIdentifier}=0${SQL_GET_USER_CULTURE}
+    &{headers}=    Create Dictionary    Content-Type=application/json    ${api_global_parameter_corpid}=${RNOAUTH_CUSTOM_CORP}    ${api_global_parameter_userid}=0${SQL_GET_USERID}    ${api_global_parameter_cultureid}=0${SQL_GET_USER_CULTURE}
     Create Session    http    ${HTTP_CONTEXT_NORMAL}    debug=3
     Set Suite Variable    ${body}    [{"UserId": ${SQL_UserToRemove1}}]
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
@@ -1474,7 +1474,7 @@ DELETE_TalentPool_Candidates_Remove_AlreadyRemoved_All
     Set Suite Variable    ${SQL_UserToRemove1}    ${SQL_UserToRemove1}
     ${SQL_UserToRemove2}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id NOT IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND user_id NOT IN (SELECT owner_id FROM ou WHERE ou_id = ${SQL_TalentPoolId}) AND status_id = 1 AND user_id <> ${SQL_UserToRemove1} ORDER BY NEWID()
     Set Suite Variable    ${SQL_UserToRemove2}    ${SQL_UserToRemove2}
-    &{headers}=    Create Dictionary    Content-Type=application/json    ${CorporationIdentifier}=${RNOAUTH_CUSTOM_CORP}    ${UserIdentifier}=0${SQL_GET_USERID}    ${CultureIdentifier}=0${SQL_GET_USER_CULTURE}
+    &{headers}=    Create Dictionary    Content-Type=application/json    ${api_global_parameter_corpid}=${RNOAUTH_CUSTOM_CORP}    ${api_global_parameter_userid}=0${SQL_GET_USERID}    ${api_global_parameter_cultureid}=0${SQL_GET_USER_CULTURE}
     Create Session    http    ${HTTP_CONTEXT_NORMAL}    debug=3
     Set Suite Variable    ${body}    [{"UserId": ${SQL_UserToRemove1}},{"UserId": ${SQL_UserToRemove2}}]
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
@@ -1505,7 +1505,7 @@ DELETE_TalentPool_Candidates_Remove_AlreadyRemoved_Single
     Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
     ${SQL_UserToRemove1}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id NOT IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND user_id NOT IN (SELECT owner_id FROM ou WHERE ou_id = ${SQL_TalentPoolId}) AND status_id = 1 ORDER BY NEWID()
     Set Suite Variable    ${SQL_UserToRemove1}    ${SQL_UserToRemove1}
-    &{headers}=    Create Dictionary    Content-Type=application/json    ${CorporationIdentifier}=${RNOAUTH_CUSTOM_CORP}    ${UserIdentifier}=0${SQL_GET_USERID}    ${CultureIdentifier}=0${SQL_GET_USER_CULTURE}
+    &{headers}=    Create Dictionary    Content-Type=application/json    ${api_global_parameter_corpid}=${RNOAUTH_CUSTOM_CORP}    ${api_global_parameter_userid}=0${SQL_GET_USERID}    ${api_global_parameter_cultureid}=0${SQL_GET_USER_CULTURE}
     Create Session    http    ${HTTP_CONTEXT_NORMAL}    debug=3
     Set Suite Variable    ${body}    [{"UserId": ${SQL_UserToRemove1}}]
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
@@ -1538,7 +1538,7 @@ DELETE_TalentPool_Candidates_Remove_AlreadyRemoved_SubSet
     Set Suite Variable    ${SQL_UserToRemove1}    ${SQL_UserToRemove1}
     ${SQL_UserToRemove2}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND status_id = 1 ORDER BY NEWID()
     Set Suite Variable    ${SQL_UserToRemove2}    ${SQL_UserToRemove2}
-    &{headers}=    Create Dictionary    Content-Type=application/json    ${CorporationIdentifier}=${RNOAUTH_CUSTOM_CORP}    ${UserIdentifier}=0${SQL_GET_USERID}    ${CultureIdentifier}=0${SQL_GET_USER_CULTURE}
+    &{headers}=    Create Dictionary    Content-Type=application/json    ${api_global_parameter_corpid}=${RNOAUTH_CUSTOM_CORP}    ${api_global_parameter_userid}=0${SQL_GET_USERID}    ${api_global_parameter_cultureid}=0${SQL_GET_USER_CULTURE}
     Create Session    http    ${HTTP_CONTEXT_NORMAL}    debug=3
     Set Suite Variable    ${body}    [{"UserId": ${SQL_UserToRemove1}},{"UserId": ${SQL_UserToRemove2}}]
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
@@ -1569,7 +1569,7 @@ DELETE_TalentPool_Candidates_Remove_BaseCase_InputVsDatabase
     Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
     ${SQL_UserToRemove1}=    Execute Raw    SELECT TOP 1 ou_user.user_id FROM ou_user LEFT JOIN users ON ou_user.user_id = users.user_id WHERE users.user_id > 0 AND ou_user.ou_id = ${SQL_TalentPoolId} AND users.user_id NOT IN (SELECT owner_id FROM ou WHERE ou_id = ${SQL_TalentPoolId}) AND users.status_id = 1 ORDER BY NEWID()
     Set Suite Variable    ${SQL_UserToRemove1}    ${SQL_UserToRemove1}
-    &{headers}=    Create Dictionary    Content-Type=application/json    ${CorporationIdentifier}=${RNOAUTH_CUSTOM_CORP}    ${UserIdentifier}=0${SQL_GET_USERID}    ${CultureIdentifier}=0${SQL_GET_USER_CULTURE}
+    &{headers}=    Create Dictionary    Content-Type=application/json    ${api_global_parameter_corpid}=${RNOAUTH_CUSTOM_CORP}    ${api_global_parameter_userid}=0${SQL_GET_USERID}    ${api_global_parameter_cultureid}=0${SQL_GET_USER_CULTURE}
     Create Session    http    ${HTTP_CONTEXT_NORMAL}    debug=3
     Set Suite Variable    ${body}    [{"UserId": ${SQL_UserToRemove1}}]
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
@@ -1600,7 +1600,7 @@ DELETE_TalentPool_Candidates_Remove_BaseCase_InputVsOutput
     Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
     ${SQL_UserToRemove1}=    Execute Raw    SELECT TOP 1 ou_user.user_id FROM ou_user LEFT JOIN users ON ou_user.user_id = users.user_id WHERE users.user_id > 0 AND ou_user.ou_id = ${SQL_TalentPoolId} AND users.user_id NOT IN (SELECT owner_id FROM ou WHERE ou_id = ${SQL_TalentPoolId}) AND users.status_id = 1 ORDER BY NEWID()
     Set Suite Variable    ${SQL_UserToRemove1}    ${SQL_UserToRemove1}
-    &{headers}=    Create Dictionary    Content-Type=application/json    ${CorporationIdentifier}=${RNOAUTH_CUSTOM_CORP}    ${UserIdentifier}=0${SQL_GET_USERID}    ${CultureIdentifier}=0${SQL_GET_USER_CULTURE}
+    &{headers}=    Create Dictionary    Content-Type=application/json    ${api_global_parameter_corpid}=${RNOAUTH_CUSTOM_CORP}    ${api_global_parameter_userid}=0${SQL_GET_USERID}    ${api_global_parameter_cultureid}=0${SQL_GET_USER_CULTURE}
     Create Session    http    ${HTTP_CONTEXT_NORMAL}    debug=3
     Set Suite Variable    ${body}    [{"UserId": ${SQL_UserToRemove1}}]
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
@@ -1633,7 +1633,7 @@ DELETE_TalentPool_Candidates_Remove_DNEUser_All
     Set Suite Variable    ${SQL_UserToRemove1}    ${SQL_UserToRemove1}
     ${SQL_UserToRemove2}=    Execute Raw    SELECT MAX(user_id)+2000 FROM users
     Set Suite Variable    ${SQL_UserToRemove2}    ${SQL_UserToRemove2}
-    &{headers}=    Create Dictionary    Content-Type=application/json    ${CorporationIdentifier}=${RNOAUTH_CUSTOM_CORP}    ${UserIdentifier}=0${SQL_GET_USERID}    ${CultureIdentifier}=0${SQL_GET_USER_CULTURE}
+    &{headers}=    Create Dictionary    Content-Type=application/json    ${api_global_parameter_corpid}=${RNOAUTH_CUSTOM_CORP}    ${api_global_parameter_userid}=0${SQL_GET_USERID}    ${api_global_parameter_cultureid}=0${SQL_GET_USER_CULTURE}
     Create Session    http    ${HTTP_CONTEXT_NORMAL}    debug=3
     Set Suite Variable    ${body}    [{"UserId": ${SQL_UserToRemove1},{"UserId": ${SQL_UserToRemove2}}}]
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
@@ -1664,7 +1664,7 @@ DELETE_TalentPool_Candidates_Remove_DNEUser_Single
     Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
     ${SQL_UserToRemove1}=    Execute Raw    SELECT MAX(user_id)+1000 FROM users
     Set Suite Variable    ${SQL_UserToRemove1}    ${SQL_UserToRemove1}
-    &{headers}=    Create Dictionary    Content-Type=application/json    ${CorporationIdentifier}=${RNOAUTH_CUSTOM_CORP}    ${UserIdentifier}=0${SQL_GET_USERID}    ${CultureIdentifier}=0${SQL_GET_USER_CULTURE}
+    &{headers}=    Create Dictionary    Content-Type=application/json    ${api_global_parameter_corpid}=${RNOAUTH_CUSTOM_CORP}    ${api_global_parameter_userid}=0${SQL_GET_USERID}    ${api_global_parameter_cultureid}=0${SQL_GET_USER_CULTURE}
     Create Session    http    ${HTTP_CONTEXT_NORMAL}    debug=3
     Set Suite Variable    ${body}    {"UserId": ${SQL_UserToRemove1}}
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
@@ -1697,7 +1697,7 @@ DELETE_TalentPool_Candidates_Remove_DNEUser_SubSet
     Set Suite Variable    ${SQL_UserToRemove1}    ${SQL_UserToRemove1}
     ${SQL_UserToRemove2}=    Execute Raw    SELECT TOP 1 user_id FROM users WHERE user_id > 0 AND user_id IN (SELECT user_id FROM ou_user WHERE ou_id = ${SQL_TalentPoolId}) AND user_id NOT IN (SELECT owner_id FROM ou WHERE ou_id = ${SQL_TalentPoolId}) AND status_id = 1 ORDER BY NEWID()
     Set Suite Variable    ${SQL_UserToRemove2}    ${SQL_UserToRemove2}
-    &{headers}=    Create Dictionary    Content-Type=application/json    ${CorporationIdentifier}=${RNOAUTH_CUSTOM_CORP}    ${UserIdentifier}=0${SQL_GET_USERID}    ${CultureIdentifier}=0${SQL_GET_USER_CULTURE}
+    &{headers}=    Create Dictionary    Content-Type=application/json    ${api_global_parameter_corpid}=${RNOAUTH_CUSTOM_CORP}    ${api_global_parameter_userid}=0${SQL_GET_USERID}    ${api_global_parameter_cultureid}=0${SQL_GET_USER_CULTURE}
     Create Session    http    ${HTTP_CONTEXT_NORMAL}    debug=3
     Set Suite Variable    ${body}    {"UserId": ${SQL_UserToRemove1}},{"UserId": ${SQL_UserToRemove2}}
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT (user_id) FROM ou_user WHERE ou_id=${SQL_TalentPoolId}
@@ -1727,7 +1727,7 @@ DELETE_TalentPool_Candidates_Delete_Access_DoesNotExist
     Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
     ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE type_id = 131072 ORDER BY NEWID()
     Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
-    &{headers}=    Create Dictionary    Content-Type=application/json    ${CorporationIdentifier}=${RNOAUTH_CUSTOM_CORP}    ${UserIdentifier}=0${SQL_GET_USERID}    ${CultureIdentifier}=0${SQL_GET_USER_CULTURE}
+    &{headers}=    Create Dictionary    Content-Type=application/json    ${api_global_parameter_corpid}=${RNOAUTH_CUSTOM_CORP}    ${api_global_parameter_userid}=0${SQL_GET_USERID}    ${api_global_parameter_cultureid}=0${SQL_GET_USER_CULTURE}
     Create Session    http    ${HTTP_CONTEXT_NORMAL}    debug=3
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT(*) FROM ou WHERE ou.type_id = 131072
     ${resp}=    RequestsLibrary.Delete Request    http    /talentpools/${SQL_TalentPoolId}    data=${body}    headers=${headers}
@@ -1756,7 +1756,7 @@ DELETE_TalentPool_Candidates_Delete_Access_NotOwner
     Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
     ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE owner_id <> ${SQL_GET_USERID} AND type_id = 131072 ORDER BY NEWID()
     Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
-    &{headers}=    Create Dictionary    Content-Type=application/json    ${CorporationIdentifier}=${RNOAUTH_CUSTOM_CORP}    ${UserIdentifier}=0${SQL_GET_USERID}    ${CultureIdentifier}=0${SQL_GET_USER_CULTURE}
+    &{headers}=    Create Dictionary    Content-Type=application/json    ${api_global_parameter_corpid}=${RNOAUTH_CUSTOM_CORP}    ${api_global_parameter_userid}=0${SQL_GET_USERID}    ${api_global_parameter_cultureid}=0${SQL_GET_USER_CULTURE}
     Create Session    http    ${HTTP_CONTEXT_NORMAL}    debug=3
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT(*) FROM ou WHERE ou.type_id = 131072
     ${resp}=    RequestsLibrary.Delete Request    http    /talentpools/${SQL_TalentPoolId}    data=${body}    headers=${headers}
@@ -1785,7 +1785,7 @@ DELETE_TalentPool_Candidates_Delete_Input_TPId_DoesNotExist
     Connect    ${RNOAUTH_CUSTOM_SERVER}    ${SQL_DB}
     ${SQL_TalentPoolId}=    Execute Raw    SELECT MAX(ou_id)+1000 FROM ou
     Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
-    &{headers}=    Create Dictionary    Content-Type=application/json    ${CorporationIdentifier}=${RNOAUTH_CUSTOM_CORP}    ${UserIdentifier}=0${SQL_GET_USERID}    ${CultureIdentifier}=0${SQL_GET_USER_CULTURE}
+    &{headers}=    Create Dictionary    Content-Type=application/json    ${api_global_parameter_corpid}=${RNOAUTH_CUSTOM_CORP}    ${api_global_parameter_userid}=0${SQL_GET_USERID}    ${api_global_parameter_cultureid}=0${SQL_GET_USER_CULTURE}
     Create Session    http    ${HTTP_CONTEXT_NORMAL}    debug=3
     ${SQL_CandidateCountBefore}=    Execute Raw    SELECT COUNT(*) FROM ou WHERE ou.type_id = 131072
     ${resp}=    RequestsLibrary.Delete Request    http    /talentpools/${SQL_TalentPoolId}    data=${body}    headers=${headers}
@@ -1816,7 +1816,7 @@ DELETE_TalentPool_Candidates_Remove_2
     Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
     ${SQL_UserToRemove1}=    Execute Raw    SELECT TOP 1 ou_user.user_id FROM ou_user LEFT JOIN users ON ou_user.user_id = users.user_id WHERE users.user_id > 0 AND ou_user.ou_id = ${SQL_TalentPoolId} AND users.user_id NOT IN (SELECT owner_id FROM ou WHERE ou_id = ${SQL_TalentPoolId}) AND users.status_id = 1 ORDER BY NEWID()
     Set Suite Variable    ${SQL_UserToRemove1}    ${SQL_UserToRemove1}
-    &{headers}=    Create Dictionary    Content-Type=application/json    ${CorporationIdentifier}=${RNOAUTH_CUSTOM_CORP}    ${UserIdentifier}=0${SQL_GET_USERID}    ${CultureIdentifier}=0${SQL_GET_USER_CULTURE}
+    &{headers}=    Create Dictionary    Content-Type=application/json    ${api_global_parameter_corpid}=${RNOAUTH_CUSTOM_CORP}    ${api_global_parameter_userid}=0${SQL_GET_USERID}    ${api_global_parameter_cultureid}=0${SQL_GET_USER_CULTURE}
     Create Session    http    ${HTTP_CONTEXT_NORMAL}    debug=3
     Set Suite Variable    ${body}    [{\"UserId\": ${SQL_UserToRemove1}}]
     ${resp}=    RequestsLibrary.Delete Request    http    /talentpools/${SQL_TalentPoolId}/candidates    data=${body}    headers=${headers}
@@ -1845,9 +1845,9 @@ PUT_TalentPool_Rename_Access
     ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE (owner_id = ${SQL_GET_USERID} OR ou_id IN (SELECT ou_id FROM talent_pool_shared_user WHERE user_id = ${SQL_GET_USERID})) AND ou.type_id = 131072 ORDER BY NEWID()
     Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    X-USERID    ${SQL_GET_USERID}
-    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Next Request May Not Succeed
     Set Request Body    { \"Title\":\"${SUBMITTED_TITLE}\"}
@@ -1875,9 +1875,9 @@ PUT_TalentPool_Candidate_Status_Set
     ${SQL_GetCandidateId1Status}=    Execute Raw    SELECT TOP 1 status_id FROM ou_user_status WHERE culture_id = 1 AND status_id IN (128,256,512,1024) ORDER BY NEWID()
     Set Suite Variable    ${SQL_GetCandidateId1Status}    ${SQL_GetCandidateId1Status}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Set Request Body    [{"UserId": ${SQL_GetCandidateId1},"Status": ${SQL_GetCandidateId1Status}}]
     HttpLibrary.HTTP.PUT    /talentpool-api/talentpools/${SQL_TalentPoolId}/candidates/status
@@ -1904,9 +1904,9 @@ PUT_TalentPool_Rename_Access_Owner
     ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE (owner_id <> ${SQL_GET_USERID} AND ou_id NOT IN (SELECT ou_id FROM talent_pool_shared_user WHERE user_id = ${SQL_GET_USERID})) AND ou.type_id = 131072 ORDER BY NEWID()
     Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    X-USERID    ${SQL_GET_USERID}
-    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Next Request May Not Succeed
     Set Request Body    { \"Title\":\"${SUBMITTED_TITLE}\"}
@@ -1931,9 +1931,9 @@ PUT_TalentPool_Rename_Access_Not_Active
     ${SQL_TalentPoolId}=    Execute Raw    SELECT TOP 1 ou_id FROM ou WHERE (owner_id = ${SQL_GET_USERID}) AND ou.type_id = 131072 ORDER BY NEWID()
     Set Suite Variable    ${SQL_TalentPoolId}    ${SQL_TalentPoolId}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    application/json
     Set Request Body    { \"Title\":\"${SUBMITTED_TITLE}\"}
     HttpLibrary.HTTP.PUT    /talentpool-api/talentpools/${SQL_TalentPoolId}
@@ -1964,9 +1964,9 @@ PUT_TalentPool_Candidate_Status_Set_NewCandidate
     ${SQL_GetCandidateId1Status}=    Execute Raw    SELECT 128
     Set Suite Variable    ${SQL_GetCandidateId1Status}    ${SQL_GetCandidateId1Status}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    X-USERID    ${SQL_GET_USERID}
-    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Set Request Body    [{"UserId": ${SQL_GetCandidateId1},"Status": ${SQL_GetCandidateId1Status}}]
     HttpLibrary.HTTP.PUT    /talentpool-api/talentpools/${SQL_TalentPoolId}/candidates/status
@@ -1997,9 +1997,9 @@ PUT_TalentPool_Candidate_Status_Set_Value_Placed
     ${SQL_GetCandidateId1Status}=    Execute Raw    SELECT 1024
     Set Suite Variable    ${SQL_GetCandidateId1Status}    ${SQL_GetCandidateId1Status}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    ${CorporationIdentifier}    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    ${UserIdentifier}    ${SQL_GET_USERID}
-    Set Request Header    ${CultureIdentifier}    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Set Request Body    [{"UserId": ${SQL_GetCandidateId1},"Status": ${SQL_GetCandidateId1Status}}]
     HttpLibrary.HTTP.PUT    /talentpool-api/talentpools/${SQL_TalentPoolId}/candidates/status
@@ -2035,9 +2035,9 @@ PUT_TalentPool_Candidate_Status_Set_Elaborate_Users_2
     ${SQL_GetCandidateId2Status}=    Execute Raw    SELECT TOP 1 status_id FROM ou_user_status WHERE culture_id = 1 AND status_id IN (128,256,512,1024) ORDER BY NEWID()
     Set Suite Variable    ${SQL_GetCandidateId2Status}    ${SQL_GetCandidateId2Status}
     Create Http Context    ${HTTP_CONTEXT}    http
-    Set Request Header    X-CORP    ${RNOAUTH_CUSTOM_CORP}
-    Set Request Header    X-USERID    ${SQL_GET_USERID}
-    Set Request Header    X-CULTUREID    ${SQL_GET_USER_CULTURE}
+    Set Request Header    ${api_global_parameter_corpid}    ${RNOAUTH_CUSTOM_CORP}
+    Set Request Header    ${api_global_parameter_userid}    ${SQL_GET_USERID}
+    Set Request Header    ${api_global_parameter_cultureid}    ${SQL_GET_USER_CULTURE}
     Set Request Header    content-type    \ application/json
     Set Request Body    [{"UserId": ${SQL_GetCandidateId1},"Status": ${SQL_GetCandidate1Status},{"UserId": ${SQL_GetCandidateId2},"Status": ${SQL_GetCandidate2Status}}}]
     HttpLibrary.HTTP.PUT    /talentpool-api/talentpools/${SQL_TalentPoolId}/candidates/status

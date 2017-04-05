@@ -6,10 +6,12 @@ Documentation     *INSTRUCTIONS: To Run this dynamically add the following line 
 ...               *To Use with TestRail use the following:*
 ...
 ...               *Patch*
-...               -d TestResults -v RNOAUTH_HOST:QA01 --listener TestRailListener:479
+...               -d TestResults -v RNOAUTH_HOST:QA01 --listener TestRailListener:2386
+...               -d TestResults -v RNOAUTH_HOST:QA01 -v api_global_parameter_profile:qa01 \ --listener TestRailListener:2386
 ...
 ...               *Release*
 ...               -d TestResults -v RNOAUTH_HOST:QA052 --listener TestRailListener:479
+...               -d TestResults -v RNOAUTH_HOST:QA052_RL -v api_global_parameter_profile:qa052 \ --listener TestRailListener:479
 ...
 ...               *Next Release*
 ...               -d TestResults -v RNOAUTH_HOST:QA03 --listener TestRailListener:479

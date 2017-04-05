@@ -13,6 +13,14 @@ ${smp.corpname_qa01}    qa01-auto-smp-api    # Patch Corp Portal Name
 ${smp.corpname_qa03}    qa03-auto-smp-api    # Next Release Corp Portal Name
 ${smp.randomTitle}    ${EMPTY}
 ${smp_suite_title}    SMP API TEST SUITE
-${CorporationIdentifier}    x-csod-corp-id    # New API Parameters 3/27/2017
-${UserIdentifier}    x-csod-user-id    # New API Parameters 3/27/2017
-${CultureIdentifier}    x-csod-default-culture-id    # New API Parameters 3/27/2017
+# TEST RUNTIME VARIABLES
+${api_global_parameter_profile}    qa052    # Here we can use qa052 or qa01 as a pybot -v variable argument.
+${api_global_parameter_corpid}    ${api_global_parameter_corpid_${api_global_parameter_profile}}
+${api_global_parameter_userid}    ${api_global_parameter_userid_${api_global_parameter_profile}}
+${api_global_parameter_cultureid}    ${api_global_parameter_cultureid_${api_global_parameter_profile}}
+${api_global_parameter_corpid_qa052}    x-csod-corp-id    # New API Parameters 3/27/2017
+${api_global_parameter_userid_qa052}    x-csod-user-id    # New API Parameters 3/27/2017
+${api_global_parameter_cultureid_qa052}    x-csod-default-culture-id    # New API Parameters 3/27/2017
+${api_global_parameter_corpid_qa01}    X-CORP    # Old API Parameters
+${api_global_parameter_userid_qa01}    X-USERID    # Old API Parameters
+${api_global_parameter_cultureid_qa01}    X-CULTUREID    # Old API Parameters
