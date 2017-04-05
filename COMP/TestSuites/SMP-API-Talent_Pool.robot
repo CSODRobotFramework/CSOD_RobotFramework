@@ -35,7 +35,7 @@ POST-API_Talent_Pool_Create_Succ_Return_Name
     ...
     ...    *NOTE:* The Run Arguments will select what set of data to run durning run time by providing QA01 or QA052 or QA03 as the environment after the scaler RNOAUTH_HOST:
     ...    -d TestResults will put the output report.html and log.html in a folder named TestResults.
-    [Tags]    testrailid=24402
+    [Tags]    POST    testrailid=24402
     REST_NOAUTH
     REST_AuthToken
     POST_TalentPool_Create    InnocentName    Title    200
