@@ -2,7 +2,7 @@
 @echo off
 ::cd C:\Users\gfung\.jenkins\workspace\COMP-Smoketest-Admin-Side\COMP\TestSuites\robotframework-rerunfailed-master\
 ::cd C:\Users\gfung\.jenkins\workspace\SMP-API-Talent_Pool\COMP\TestSuites\robotframework-rerunfailed-master\
-cd C:\Users\gfung\.jenkins\workspace\SMP-API-Talent_Pool\TestSuites\
+cd C:\Users\gfung\.jenkins\workspace\SMP-API-Talent_Pool_QA01\COMP\TestSuites\
 ::cd C:\Users\gfung\.jenkins\workspace\SMP-API-Talent_Pool\COMP\TestSuites\
 rd /s /q OG_TEST_RESULTS
 ::del output.xml
@@ -12,7 +12,8 @@ echo # Running tests first time #
 echo #######################################
 ::pybot --outputdir OG_TEST_RESULTS unstable_suite.robot
 ::cmd /c pybot --outputdir OG_TEST_RESULTS ReRunTest.robot
-cmd /c pybot --outputdir OG_TEST_RESULTS  -v RNOAUTH_HOST:QA01 SMP-API-Talent_Pool.robot
+
+cmd /c pybot --outputdir OG_TEST_RESULTS  -i POST -i PUT -i GET -i DELETE -v RNOAUTH_HOST:QA01 -v api_global_parameter_profile:qa01  --listener TestRailListener:2386 SMP-API-Talent_Pool.robot
 ::cmd /c pybot –outputdir C:\Users\gfung\.jenkins\workspace\COMP\TestSuites\ %*
 
 :: we stop the script here if all the tests were OK
