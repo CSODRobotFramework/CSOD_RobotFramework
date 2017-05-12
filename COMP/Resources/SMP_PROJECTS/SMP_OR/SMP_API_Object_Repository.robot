@@ -21,6 +21,6 @@ ${api_global_parameter_cultureid}    ${api_global_parameter_cultureid_${api_glob
 ${api_global_parameter_corpid_qa052}    x-csod-corp-id    # New API Parameters 3/27/2017
 ${api_global_parameter_userid_qa052}    x-csod-user-id    # New API Parameters 3/27/2017
 ${api_global_parameter_cultureid_qa052}    x-csod-default-culture-id    # New API Parameters 3/27/2017
-${api_global_parameter_corpid_qa01}    X-CORP    # Old API Parameters
-${api_global_parameter_userid_qa01}    X-USERID    # Old API Parameters
-${api_global_parameter_cultureid_qa01}    X-CULTUREID    # Old API Parameters
+${api_global_parameter_corpid_qa01}    x-csod-corp-id    # Old API Parameters
+${api_global_parameter_userid_qa01}    x-csod-user-id    # Old API Parameters
+${api_global_parameter_cultureid_qa01}    x-csod-default-culture-id    # Old API Parameters
